@@ -37,6 +37,14 @@ func _process(delta: float) -> void:
 	else:
 		set_animation("Idle")
 	
+	if is_on_wall() and not is_on_floor():
+		velocity.y *= .7
+		set_animation("Sliding")
+		if direction < 0:
+			animated_sprite_2d.flip_h = true
+		elif direction > 0:
+			animated_sprite_2d.flip_h = false
+	
 	
 	if direction < 0:
 		if camera_2d.position.x > min_camera_x:

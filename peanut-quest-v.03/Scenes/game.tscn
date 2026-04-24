@@ -3,7 +3,6 @@
 [ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="1_ebmjs"]
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://cmnsfdh04sel0" path="res://Scenes/player.tscn" id="2_qxrlw"]
-[ext_resource type="PackedScene" uid="uid://dvpvjptb4catj" path="res://Scenes/peanut.tscn" id="4_3dryh"]
 
 [node name="Game" type="Node2D" unique_id=1669609359]
 
@@ -37,12 +36,3 @@ tile_set = ExtResource("1_ebmjs")
 [node name="Player" parent="." unique_id=474886339 instance=ExtResource("2_qxrlw")]
 position = Vector2(-66, -25)
 collision_mask = 4
-
-[node name="Peanut" parent="." unique_id=1925227343 instance=ExtResource("4_3dryh")]
-position = Vector2(-172, -103)
-
-[node name="Peanut2" parent="." unique_id=1820627308 instance=ExtResource("4_3dryh")]
-position = Vector2(-54, -94)
-
-[node name="Peanut3" parent="." unique_id=1666416367 instance=ExtResource("4_3dryh")]
-position = Vector2(-103, -87)
