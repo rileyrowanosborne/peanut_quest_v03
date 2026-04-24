@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dvpvjptb4catj"]
+
+[ext_resource type="Texture2D" uid="uid://dtd6atkxtapw3" path="res://Assets/Sprites/MiniPeanut.png" id="1_1ndom"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ndom"]
+rough = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnmwc"]
+radius = 3.0
+
+[node name="Peanut" type="RigidBody2D" unique_id=1925227343]
+collision_layer = 8
+collision_mask = 15
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_1ndom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1545391655]
+shape = SubResource("CircleShape2D_dnmwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034250093]
+texture = ExtResource("1_1ndom")
