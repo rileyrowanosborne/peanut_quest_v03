@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cp7g432cve4ed" path="res://Assets/Sprites/16x16 peanut - idle-SpriteSheet.png" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://b2s3dqxvk82js" path="res://Scripts/player.gd" id="1_vgqql"]
+[ext_resource type="PackedScene" uid="uid://mbgctqh60kcs" path="res://Scenes/spark_pop.tscn" id="2_3smsa"]
 [ext_resource type="Texture2D" uid="uid://bin6cln6l0qfe" path="res://Assets/Sprites/16x16 Peanut - walking-SpriteSheet.png" id="2_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dsdx54vnywqcq" path="res://Assets/Sprites/16x16 Peanut - Death-Sheet.png" id="2_fkybt"]
+[ext_resource type="Texture2D" uid="uid://3vs0678uh8gm" path="res://Assets/Sprites/Peanut Ground Sliding-Sheet 2.png" id="4_3smsa"]
 [ext_resource type="Texture2D" uid="uid://cam6hqp8wq2l3" path="res://Assets/Sprites/Peanut - Sliding-Sheet.png" id="4_x3wgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
@@ -30,6 +32,26 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("2_fkybt")
 region = Rect2(80, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
+atlas = ExtResource("4_3smsa")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
+atlas = ExtResource("4_3smsa")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
+atlas = ExtResource("4_3smsa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpjfl"]
+atlas = ExtResource("4_3smsa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
+atlas = ExtResource("4_3smsa")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_v0iea")
 region = Rect2(0, 0, 16, 16)
@@ -37,6 +59,22 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("1_v0iea")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
 atlas = ExtResource("4_x3wgy")
@@ -57,22 +95,6 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
 atlas = ExtResource("4_x3wgy")
 region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("2_cvnsp")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vgqql"]
 animations = [{
@@ -101,6 +123,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fs7ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6n3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olqyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpjfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi64h")
+}],
+"loop": true,
+"name": &"Ground Sliding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cvnsp")
 }, {
 "duration": 1.0,
@@ -108,26 +150,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dp3o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h4iuc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fd4e3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qqcod")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igrcy")
-}],
-"loop": true,
-"name": &"Sliding",
 "speed": 5.0
 }, {
 "frames": [{
@@ -146,6 +168,26 @@ animations = [{
 "loop": true,
 "name": &"Walking",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dp3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4iuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd4e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqcod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igrcy")
+}],
+"loop": true,
+"name": &"Wall Sliding",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v0iea"]
@@ -155,11 +197,12 @@ height = 14.0
 [node name="Player" type="CharacterBody2D" unique_id=474886339]
 collision_mask = 14
 script = ExtResource("1_vgqql")
+spark_scene = ExtResource("2_3smsa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"Sliding"
+animation = &"Ground Sliding"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=209413438]
@@ -176,4 +219,23 @@ position_smoothing_speed = 8.0
 wait_time = 0.1
 one_shot = true
 
+[node name="Slide Timer" type="Timer" parent="." unique_id=923494075]
+wait_time = 0.3
+one_shot = true
+
+[node name="SlideCooldownTimer" type="Timer" parent="." unique_id=153027926]
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=124599926]
+wait_time = 0.15
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=256806192]
+wait_time = 0.1
+one_shot = true
+
+[node name="WallCoyoteTimer" type="Timer" parent="." unique_id=1165483206]
+wait_time = 0.15
+one_shot = true
+
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
+[connection signal="timeout" from="Slide Timer" to="." method="_on_slide_timer_timeout"]
