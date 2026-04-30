@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://cfhmdac4we1e4"]
+
+[ext_resource type="Script" uid="uid://bl1th2g25mwjk" path="res://Scripts/naked_player.gd" id="1_qtl4q"]
+[ext_resource type="PackedScene" uid="uid://mbgctqh60kcs" path="res://Scenes/spark_pop.tscn" id="2_vdrt6"]
+[ext_resource type="Texture2D" uid="uid://dsdx54vnywqcq" path="res://Assets/Sprites/16x16 Peanut - Death-Sheet.png" id="3_b3toe"]
+[ext_resource type="Texture2D" uid="uid://cofmgesefps50" path="res://Assets/Sprites/NakedPeanut-Idle-Sheet.png" id="5_akt7d"]
+[ext_resource type="Texture2D" uid="uid://cei5r20t60j1q" path="res://Assets/Sprites/NakedPeanut-Walking-Sheet.png" id="6_doe4k"]
+[ext_resource type="Texture2D" uid="uid://cnteccohjwfgn" path="res://Assets/Sprites/NakedPeanut-Slide-Sheet.png" id="6_qtl4q"]
+[ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="7_akt7d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("3_b3toe")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("3_b3toe")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("3_b3toe")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("3_b3toe")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("3_b3toe")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("3_b3toe")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we3bk"]
+atlas = ExtResource("5_akt7d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttses"]
+atlas = ExtResource("5_akt7d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3djym"]
+atlas = ExtResource("6_doe4k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdrt6"]
+atlas = ExtResource("6_doe4k")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3toe"]
+atlas = ExtResource("6_doe4k")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm7a4"]
+atlas = ExtResource("6_doe4k")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akt7d"]
+atlas = ExtResource("6_qtl4q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doe4k"]
+atlas = ExtResource("6_qtl4q")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgqql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we3bk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttses")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3djym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdrt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3toe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm7a4")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akt7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doe4k")
+}],
+"loop": true,
+"name": &"Wall Sliding",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
+size = Vector2(5, 7)
+
+[sub_resource type="Curve" id="Curve_doe4k"]
+_data = [Vector2(0.0042918473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9021115, 0.0, 0, 0]
+point_count = 2
+
+[node name="Naked Peanut" type="CharacterBody2D" unique_id=474886339]
+z_index = 5
+collision_mask = 14
+script = ExtResource("1_qtl4q")
+spark_scene = ExtResource("2_vdrt6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_vgqql")
+animation = &"Wall Sliding"
+autoplay = "Idle"
+flip_h = true
+
+[node name="StandingCollisionShape" type="CollisionShape2D" parent="." unique_id=209413438]
+position = Vector2(-0.5, -3.5)
+shape = SubResource("RectangleShape2D_3smsa")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1996103102]
+position = Vector2(0, -33)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=1435141582]
+wait_time = 0.1
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=124599926]
+wait_time = 0.15
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=256806192]
+wait_time = 0.1
+one_shot = true
+
+[node name="WallCoyoteTimer" type="Timer" parent="." unique_id=1165483206]
+wait_time = 0.15
+one_shot = true
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1336583942]
+position = Vector2(0, -6)
+target_position = Vector2(-4, 0)
+collision_mask = 4
+
+[node name="RayCastLeft2" type="RayCast2D" parent="." unique_id=538324401]
+position = Vector2(0, -1)
+target_position = Vector2(-4, 0)
+collision_mask = 4
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=2082616257]
+position = Vector2(0, -1)
+target_position = Vector2(4, 0)
+collision_mask = 4
+
+[node name="RayCastRight2" type="RayCast2D" parent="." unique_id=1939521829]
+position = Vector2(0, -6)
+target_position = Vector2(4, 0)
+collision_mask = 4
+
+[node name="RayCastUp" type="RayCast2D" parent="." unique_id=436122749]
+visible = false
+position = Vector2(0, -5)
+target_position = Vector2(0, -5)
+collision_mask = 4
+
+[node name="Poof" type="CPUParticles2D" parent="." unique_id=889198808]
+position = Vector2(0, -6)
+emitting = false
+texture = ExtResource("7_akt7d")
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_doe4k")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=957685912]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

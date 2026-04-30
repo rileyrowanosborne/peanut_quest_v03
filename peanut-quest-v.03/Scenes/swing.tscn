@@ -63,8 +63,12 @@ script = ExtResource("1_xco5j")
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SlashArea" unique_id=1900966384]
+rotation = -2.911862
 polygon = PackedVector2Array(0, -5, 2, -2, 2, 2, 1, 4, -3, 7, -1, 2, -1, -2, -4, -7)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=266872341]
+rotation = 0.35730025
 sprite_frames = SubResource("SpriteFrames_ryi2r")
-frame = 2
+frame = 6
+frame_progress = 1.0
+flip_h = true
