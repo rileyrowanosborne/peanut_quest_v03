@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dtq3enlykje37"]
+
+[ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_fp88v"]
+[ext_resource type="Texture2D" uid="uid://ckehudllllgbs" path="res://Assets/Sprites/MutantPeanut1 - Idle-Sheet.png" id="2_fp88v"]
+[ext_resource type="Texture2D" uid="uid://dxwtl1kuurbrp" path="res://Assets/Sprites/MutantPeanut1 - Walking-Sheet.png" id="4_ndkt0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8k3m"]
+atlas = ExtResource("2_fp88v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwi6p"]
+atlas = ExtResource("2_fp88v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfoxu"]
+atlas = ExtResource("2_fp88v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdmrv"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbh1m"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_makno"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3se3"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8k8lc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8k3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwi6p")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfoxu")
+}],
+"loop": true,
+"name": &"Spinning",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdmrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbh1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_makno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3se3")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b6wr"]
+size = Vector2(10, 12)
+
+[node name="Mutant Peanut 1" type="CharacterBody2D" unique_id=691855468]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_fp88v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131323402]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_8k8lc")
+animation = &"Spinning"
+autoplay = "Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=575869523]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_3b6wr")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1952075195]
+position = Vector2(0, -10)
+target_position = Vector2(7, 0)
+collision_mask = 7
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1861814704]
+position = Vector2(0, -10)
+target_position = Vector2(-7, 0)
+collision_mask = 7
+
+[node name="DirectionCooldown" type="Timer" parent="." unique_id=2069196719]
+wait_time = 2.0
+one_shot = true
+
+[node name="DirectionTimer" type="Timer" parent="." unique_id=179728961]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

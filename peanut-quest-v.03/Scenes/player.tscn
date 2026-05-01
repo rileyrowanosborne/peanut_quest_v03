@@ -332,10 +332,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10297519, 0.18388426),
+"times": PackedFloat32Array(0, 0.10297519, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(-6.999999, -18), Vector2(-6, -19), Vector2(-6, -17)]
+"values": [Vector2(-5, -17), Vector2(-5, -18), Vector2(-5, -17)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -347,7 +347,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.18388426),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [3.3270435, 3.380702761113017, 3.2934362985133006]
+"values": [3.3270435, 3.380702761113017, 3.293436298513301]
 }
 
 [sub_resource type="Animation" id="Animation_olqyp"]
@@ -376,7 +376,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [3.9936163, 4.0456732061228555, 3.9584067435231387]
+"values": [3.9936163, 4.0456732061228555, 3.9584067435231383]
 }
 
 [sub_resource type="Animation" id="Animation_wpjfl"]
@@ -393,7 +393,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.104201086, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(4.000001, -20.000002), Vector2(5, -21), Vector2(3, -21)]
+"values": [Vector2(5, -18), Vector2(6, -18), Vector2(5, -18)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -763,7 +763,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.04665274, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(0.99999976, -23), Vector2(1, -24), Vector2(0.99999976, -23)]
+"values": [Vector2(1, -18), Vector2(1, -19), Vector2(1, -20)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -798,7 +798,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
-collision_mask = 14
+collision_mask = 12
 script = ExtResource("1_vgqql")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
@@ -818,11 +818,6 @@ shape = SubResource("RectangleShape2D_3smsa")
 visible = false
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_8erm5")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1996103102]
-position = Vector2(0, -33)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
 
 [node name="TurnTimer" type="Timer" parent="." unique_id=1435141582]
 wait_time = 0.05

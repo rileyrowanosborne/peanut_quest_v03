@@ -13,7 +13,6 @@ enum peanut_mode  {
 
 var current_mode : peanut_mode
 
-var spawn_point : Vector2 = Vector2(-57,-56)
 
 var current_shelled_peanut_instance
 var current_naked_peanut_instance
@@ -21,7 +20,7 @@ var current_naked_peanut_instance
 
 
 func _ready() -> void:
-	spawn_shelled_player(spawn_point)
+	spawn_shelled_player(RoomChangeGlobal.player_pos)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("change_peanut_mode"):

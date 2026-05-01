@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var turn_timer: Timer = $TurnTimer
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var standing_collision_shape: CollisionShape2D = $StandingCollisionShape
 @onready var sliding_collision_shape: CollisionShape2D = $SlidingCollisionShape
 
@@ -66,11 +65,19 @@ var can_jump : bool = true
 var direction : float
 
 func _ready() -> void:
+	add_to_group("player")
+	
 	current_speed = normal_speed
 	spawn_timer.start()
 	GameState.player_is_wall_sliding = false
 	GameState.player_can_attack = true
 	GameState.player_is_attacking = false
+	
+	if RoomChangeGlobal.activate:
+		global_position = RoomChangeGlobal.player_pos
+		if RoomChangeGlobal.player_jump_on_enter:
+			velocity.y = jump_velocity
+		RoomChangeGlobal.activate = false
 
 	
 
@@ -81,7 +88,7 @@ func _process(delta: float) -> void:
 	GameState.player_location = global_position
 	GameState.player_direction = direction
 	GameState.player_is_on_ground = is_on_floor()
-	
+
 	
 	if GameState.player_is_wall_sliding:
 		set_animation("Wall Sliding")
@@ -116,17 +123,6 @@ func _process(delta: float) -> void:
 		GameState.player_is_wall_sliding = false
 
 	
-	if direction < 0:
-		if camera_2d.position.x > min_camera_x:
-			camera_2d.position.x -= 2
-	elif direction > 0:
-		if camera_2d.position.x < max_camera_x:
-			camera_2d.position.x += 2
-	else:
-		if camera_2d.position.x < neutral_camera_x:
-			camera_2d.position.x += 1
-		else:
-			camera_2d.position.x -= 1
 
 
 

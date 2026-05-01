@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://dl8bjd77r26rl"]
+
+[ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_e4k71"]
+[ext_resource type="Texture2D" uid="uid://c7onxc58apqx" path="res://Assets/Sprites/Slurm - Idle-Sheet.png" id="2_m2dv5"]
+[ext_resource type="Texture2D" uid="uid://dl0hfeu48pvyp" path="res://Assets/Sprites/Slurm - Walking-Sheet.png" id="3_t58k1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfdeo"]
+atlas = ExtResource("2_m2dv5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svkxs"]
+atlas = ExtResource("2_m2dv5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wrtd"]
+atlas = ExtResource("2_m2dv5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4twk"]
+atlas = ExtResource("3_t58k1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq5vn"]
+atlas = ExtResource("3_t58k1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8k8lc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfdeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svkxs")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wrtd")
+}],
+"loop": true,
+"name": &"Spinning",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4twk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq5vn")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b6wr"]
+size = Vector2(13, 14)
+
+[node name="Slurm" type="CharacterBody2D" unique_id=691855468]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_e4k71")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131323402]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_8k8lc")
+animation = &"Spinning"
+autoplay = "Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=575869523]
+position = Vector2(-0.5, -7)
+shape = SubResource("RectangleShape2D_3b6wr")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1952075195]
+position = Vector2(0, -10)
+target_position = Vector2(7, 0)
+collision_mask = 7
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1861814704]
+position = Vector2(0, -10)
+target_position = Vector2(-7, 0)
+collision_mask = 7
+
+[node name="DirectionCooldown" type="Timer" parent="." unique_id=2069196719]
+wait_time = 2.0
+one_shot = true
+
+[node name="DirectionTimer" type="Timer" parent="." unique_id=179728961]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

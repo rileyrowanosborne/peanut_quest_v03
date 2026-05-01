@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://xox3v7xvtmm2"]
+
+[ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_3b6wr"]
+[ext_resource type="Texture2D" uid="uid://bfl8rq74gdbyj" path="res://Assets/Sprites/LittleDeer - Idle-Sheet.png" id="2_3b6wr"]
+[ext_resource type="Texture2D" uid="uid://dmxchrblqj58" path="res://Assets/Sprites/Little Deer - Spinning-Sheet.png" id="3_3b6wr"]
+[ext_resource type="Texture2D" uid="uid://fonmiwab1j7p" path="res://Assets/Sprites/Little Deer - Walking-Sheet.png" id="4_qtv63"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtv63"]
+atlas = ExtResource("2_3b6wr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be81y"]
+atlas = ExtResource("2_3b6wr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkigt"]
+atlas = ExtResource("3_3b6wr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x4ce"]
+atlas = ExtResource("3_3b6wr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ded8w"]
+atlas = ExtResource("3_3b6wr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhdw8"]
+atlas = ExtResource("3_3b6wr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sirfo"]
+atlas = ExtResource("4_qtv63")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bto1a"]
+atlas = ExtResource("4_qtv63")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emvyu"]
+atlas = ExtResource("4_qtv63")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqv14"]
+atlas = ExtResource("4_qtv63")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8k8lc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtv63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be81y")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkigt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x4ce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ded8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhdw8")
+}],
+"loop": true,
+"name": &"Spinning",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sirfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bto1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emvyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqv14")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b6wr"]
+size = Vector2(15, 11)
+
+[node name="Little Deer" type="CharacterBody2D" unique_id=691855468]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_3b6wr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131323402]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_8k8lc")
+animation = &"Idle"
+autoplay = "Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=575869523]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_3b6wr")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1952075195]
+position = Vector2(0, -10)
+target_position = Vector2(7, 0)
+collision_mask = 7
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1861814704]
+position = Vector2(0, -10)
+target_position = Vector2(-7, 0)
+collision_mask = 7
+
+[node name="DirectionCooldown" type="Timer" parent="." unique_id=2069196719]
+wait_time = 2.0
+one_shot = true
+
+[node name="DirectionTimer" type="Timer" parent="." unique_id=179728961]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

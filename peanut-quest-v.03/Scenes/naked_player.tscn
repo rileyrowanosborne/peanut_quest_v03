@@ -153,11 +153,6 @@ flip_h = true
 position = Vector2(-0.5, -3.5)
 shape = SubResource("RectangleShape2D_3smsa")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1996103102]
-position = Vector2(0, -33)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-
 [node name="TurnTimer" type="Timer" parent="." unique_id=1435141582]
 wait_time = 0.1
 one_shot = true

@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var turn_timer: Timer = $TurnTimer
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var standing_collision_shape: CollisionShape2D = $StandingCollisionShape
 
 
@@ -31,10 +30,11 @@ var current_speed : float
 
 var normal_speed : float = 275.0
 
-var wall_slide_speed : float = .5
+var wall_slide_speed : float = .6
+
 
 var acceleration : float = .1
-var decceleration : float = .05
+var decceleration : float = .2
 
 var air_acceleration : float = .05
 var air_decceleration : float = .01
@@ -80,19 +80,6 @@ func _process(delta: float) -> void:
 		elif ray_cast_right.is_colliding() or ray_cast_right_2.is_colliding():
 			animated_sprite_2d.flip_h = false
 			wall_jump_direction = -1
-	
-	
-	if direction < 0:
-		if camera_2d.position.x > min_camera_x:
-			camera_2d.position.x -= 2
-	elif direction > 0:
-		if camera_2d.position.x < max_camera_x:
-			camera_2d.position.x += 2
-	else:
-		if camera_2d.position.x < neutral_camera_x:
-			camera_2d.position.x += 1
-		else:
-			camera_2d.position.x -= 1
 
 
 
