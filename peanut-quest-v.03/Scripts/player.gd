@@ -1,34 +1,43 @@
 extends CharacterBody2D
 
 
+#main player nodes
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var turn_timer: Timer = $TurnTimer
 @onready var standing_collision_shape: CollisionShape2D = $StandingCollisionShape
 @onready var sliding_collision_shape: CollisionShape2D = $SlidingCollisionShape
 
 
+#timers
+@onready var turn_timer: Timer = $Timers/TurnTimer
+@onready var slide_timer: Timer = $"Timers/Slide Timer"
+@onready var slide_cooldown_timer: Timer = $Timers/SlideCooldownTimer
+@onready var coyote_timer: Timer = $Timers/CoyoteTimer
+@onready var jump_buffer_timer: Timer = $Timers/JumpBufferTimer
+@onready var wall_coyote_timer: Timer = $Timers/WallCoyoteTimer
+@onready var wall_slide_wait_timer: Timer = $Timers/WallSlideWaitTimer
+@onready var spawn_timer: Timer = $Timers/SpawnTimer
 
-@onready var slide_cooldown_timer: Timer = $SlideCooldownTimer
-@onready var slide_timer: Timer = $"Slide Timer"
-@onready var coyote_timer: Timer = $CoyoteTimer
-@onready var jump_buffer_timer: Timer = $JumpBufferTimer
-@onready var wall_coyote_timer: Timer = $WallCoyoteTimer
 
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var ray_cast_left_2: RayCast2D = $RayCastLeft2
 
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var ray_cast_right_2: RayCast2D = $RayCastRight2
-@onready var ray_cast_up: RayCast2D = $RayCastUp
+#raycasts
+@onready var ray_cast_left: RayCast2D = $RayCasts/RayCastLeft
+@onready var ray_cast_left_2: RayCast2D = $RayCasts/RayCastLeft2
+@onready var ray_cast_right: RayCast2D = $RayCasts/RayCastRight
+@onready var ray_cast_right_2: RayCast2D = $RayCasts/RayCastRight2
+@onready var ray_cast_up: RayCast2D = $RayCasts/RayCastUp
+
+
+
 
 @onready var poof: CPUParticles2D = $Poof
-@onready var spawn_timer: Timer = $SpawnTimer
+
 
 
 @onready var mega_sword: Node2D = $MegaSword
 
 
 @export var spark_scene : PackedScene
+
 
 
 
@@ -53,6 +62,8 @@ var is_sliding : bool = false
 var is_slide_jumping : bool = false
 
 var wall_jump_direction : float
+
+var override_wallslide : bool = false
 
 
 var max_camera_x : int = 40
@@ -88,6 +99,11 @@ func _process(delta: float) -> void:
 	GameState.player_location = global_position
 	GameState.player_direction = direction
 	GameState.player_is_on_ground = is_on_floor()
+	
+	if GameState.player_direction == -1:
+		GameState.last_dir = -1
+	if GameState.player_direction == 1:
+		GameState.last_dir = 1
 
 	
 	if GameState.player_is_wall_sliding:
@@ -107,22 +123,21 @@ func _process(delta: float) -> void:
 				set_animation("Idle")
 		else:
 			set_animation("Idle")
-
 	
-
 	
-	if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()) and not is_on_floor():
-		GameState.player_is_wall_sliding = true
-		if ray_cast_left.is_colliding() or ray_cast_left_2.is_colliding():
-			animated_sprite_2d.flip_h = true
-			wall_jump_direction = 1
-		elif ray_cast_right.is_colliding() or ray_cast_right_2.is_colliding():
-			animated_sprite_2d.flip_h = false
-			wall_jump_direction = -1
+	if not is_on_floor():
+		if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()):
+			GameState.player_is_wall_sliding = true
+			if ray_cast_left.is_colliding() or ray_cast_left_2.is_colliding():
+				animated_sprite_2d.flip_h = true
+				wall_jump_direction = 1
+			elif ray_cast_right.is_colliding() or ray_cast_right_2.is_colliding():
+				animated_sprite_2d.flip_h = false
+				wall_jump_direction = -1
+		else:
+			GameState.player_is_wall_sliding = false
 	else:
-		GameState.player_is_wall_sliding = false
-
-	
+		GameState.player_is_wall_sliding = false 
 
 
 
@@ -134,6 +149,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and can_jump:
+		wall_slide_wait_timer.start()
 		jump_buffer_timer.start()
 		
 	if not jump_buffer_timer.is_stopped() and (is_on_floor() or not coyote_timer.is_stopped()):
@@ -147,20 +163,20 @@ func _physics_process(delta: float) -> void:
 		jump_buffer_timer.stop()
 		coyote_timer.stop()
 
-	
 	if Input.is_action_just_released("jump") and !jump_cancelled:
 		jump_cancelled = true
 		velocity.y *= .4
-		
+
 	if is_on_floor():
 		jump_cancelled = false
 		is_slide_jumping = false
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+
+
+#Movement
 	direction = Input.get_axis("move_left", "move_right")
 	if direction:
-		if is_on_floor():
+		if is_on_floor(): 
 			velocity.x = lerp(velocity.x, current_speed * direction, acceleration)
 		else:
 			if not is_slide_jumping:
@@ -171,8 +187,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, current_speed * air_decceleration)
 	
-	if is_on_wall() and not is_on_floor():
-		velocity.y *= wall_slide_speed
+
+#Wallslide logic
+	if GameState.player_is_wall_sliding and not is_on_floor():
+		if wall_slide_wait_timer.is_stopped():
+			velocity.y *= wall_slide_speed
 	
 	
 	
@@ -180,6 +199,9 @@ func _physics_process(delta: float) -> void:
 		current_speed = slide_speed
 		sliding_collision_shape.disabled = false
 		standing_collision_shape.disabled = true
+		
+		if ray_cast_up.is_colliding():
+			can_jump = false
 	else:
 		current_speed = normal_speed
 		sliding_collision_shape.disabled = true
@@ -208,11 +230,13 @@ func _input(event: InputEvent) -> void:
 			is_sliding = true
 			slide_timer.start()
 	
-	if is_sliding and event.is_action_pressed("jump"):
+	if is_sliding and event.is_action_pressed("jump") and !ray_cast_up.is_colliding():
+		GameState.slide_blocking_attack = false
 		if (is_on_floor() or not coyote_timer.is_stopped()):
 			is_slide_jumping = true
 			spawn_spark(global_position)
-	
+	else:
+		GameState.slide_blocking_attack = true
 	
 
 func set_animation(anim : String):
@@ -241,9 +265,18 @@ func _on_slide_timer_timeout() -> void:
 		is_sliding = false
 
 
-func despawn():
+
+func take_damage():
+	GlobalSignalBus.emit_signal("health_check")
+	
+	if GameState.current_health > 0:
+		velocity.y = jump_velocity
+		GameState.current_health -= 1
+		print("youch!")
+	elif GameState.current_health <= 0:
+		velocity.y = jump_velocity * 2
+		GlobalSignalBus.emit_signal("shelled_peanut_died")
+		die()
+
+func die():
 	queue_free()
-
-
-func _on_spawn_timer_timeout() -> void:
-	poof.emitting = true

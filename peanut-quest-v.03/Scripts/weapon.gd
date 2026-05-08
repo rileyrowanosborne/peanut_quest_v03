@@ -7,34 +7,50 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 
+@onready var left_swing_collision: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft/LeftSwingCollision"
+@onready var right_swing_collision: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight/RightSwingCollision"
+@onready var air_swing_collision: CollisionShape2D = $"../Swings/SwingAir/SlashAreaAir/AirSwingCollision"
 
-@onready var slash_area_left: Area2D = $"../Swings/SwingLeft/SlashAreaLeft"
+
+
 @onready var swing_left_anim: AnimatedSprite2D = $"../Swings/SwingLeft/SwingLeftAnim"
-@onready var slash_area_right: Area2D = $"../Swings/SwingRight/SlashAreaRight"
+
 @onready var swing_right_anim: AnimatedSprite2D = $"../Swings/SwingRight/SwingRightAnim"
 
 @onready var swing_air_anim: AnimatedSprite2D = $"../Swings/SwingAir/SwingAirAnim"
 @onready var swing_air_anim_2: AnimatedSprite2D = $"../Swings/SwingAir/SwingAirAnim2"
 @onready var swing_air_anim_3: AnimatedSprite2D = $"../Swings/SwingAir/SwingAirAnim3"
-@onready var slash_area_air: Area2D = $"../Swings/SwingAir/SlashAreaAir"
 
 
+@onready var stab_left_anim: AnimatedSprite2D = $"../Swings/SwingLeft/StabLeftAnim"
+@onready var stab_right_anim: AnimatedSprite2D = $"../Swings/SwingRight/StabRightAnim"
+
+@onready var swing_left_anim_2: AnimatedSprite2D = $"../Swings/SwingLeft/SwingLeftAnim2"
+@onready var swing_right_anim_2: AnimatedSprite2D = $"../Swings/SwingRight/SwingRightAnim2"
 
 @onready var swing_delay_timer: Timer = $SwingDelayTimer
+@onready var combo_timer: Timer = $ComboTimer
 
 @onready var sword_particles_1: CPUParticles2D = $SwordParticles1
+
+
+var current_combo : int = 0
 
 
 enum sword_state {
 	l_idle,
 	l_walk,
 	l_slide,
-	l_attack,
+	l_attack1,
+	l_attack2,
+	l_attack3,
 	l_air,
 	r_idle,
 	r_walk,
 	r_slide,
-	r_attack,
+	r_attack1,
+	r_attack2,
+	r_attack3,
 	r_air,
 	air_neutral,
 	air_attack,
@@ -48,33 +64,56 @@ var current_state : sword_state
 
 func _ready() -> void:
 	current_state = sword_state.l_idle
+	current_combo = 0
 
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("swing") and GameState.player_can_attack:
+		GameState.player_can_attack = false
+		swing_delay_timer.start(GameState.current_swing_delay)
+		GameState.player_is_attacking = true
+		combo_timer.start()
+
+		if GameState.player_is_on_ground:
+			if GameState.last_dir < 0:
+				if current_combo == 0:
+					current_state = sword_state.l_attack1
+					swing_left_anim.play("Slash")
+				if current_combo == 1:
+					current_state = sword_state.l_attack2
+					stab_left_anim.play("Stab")
+				if current_combo == 2:
+					current_state = sword_state.l_attack3
+					swing_left_anim_2.play("Slash")
+					
+				current_combo += 1
+				current_combo = clamp(current_combo, 0, 2)
+
+			if GameState.last_dir > 0:
+				if current_combo == 0:
+					current_state = sword_state.r_attack1
+					swing_right_anim.play("Slash")
+				if current_combo == 1:
+					current_state = sword_state.r_attack2
+					stab_right_anim.play("Stab")
+				if current_combo == 2:
+					current_state = sword_state.r_attack3
+					swing_right_anim_2.play("Slash")
+					
+				current_combo += 1
+				current_combo = clamp(current_combo, 0, 2)
 		
-		
-		if not GameState.player_is_attacking:
-			GameState.player_is_attacking = true
-			swing_delay_timer.start(GameState.current_swing_delay)
-			
-			if GameState.player_is_on_ground:
-				if GameState.last_dir < 0:
-					current_state = sword_state.l_attack
-					swing_left_anim.play("default")
-				elif GameState.last_dir > 0:
-					current_state = sword_state.r_attack
-					swing_right_anim.play("default")
-			else:
-				current_state = sword_state.air_attack
-				swing_air_anim.play("default")
-				swing_air_anim_2.play("default")
-				swing_air_anim_3.play("default")
-		
+		else:
+			current_state = sword_state.air_attack
+			swing_air_anim.play("Slash")
+			swing_air_anim_2.play("Slash")
+			swing_air_anim_3.play("Slash")
 
 
 func _process(delta: float) -> void:
+	
+	
 	
 	
 	match current_state:
@@ -96,8 +135,17 @@ func _process(delta: float) -> void:
 			else:
 				sword_particles_1.emitting = false
 		
-		sword_state.l_attack:
-			animation_player.play("AttackLeft")
+		sword_state.l_attack1:
+			animation_player.play("AttackLeft1")
+			sword_particles_1.emitting = false
+			
+			
+		sword_state.l_attack2:
+			animation_player.play("AttackLeft2")
+			sword_particles_1.emitting = false
+			
+		sword_state.l_attack3:
+			animation_player.play("AttackLeft3")
 			sword_particles_1.emitting = false
 		
 		sword_state.r_idle:
@@ -118,13 +166,22 @@ func _process(delta: float) -> void:
 			else:
 				sword_particles_1.emitting = false
 			
-		sword_state.r_attack:
-			animation_player.play("AttackRight")
+		sword_state.r_attack1:
+			animation_player.play("AttackRight1")
+			sword_particles_1.emitting = false
+		
+		sword_state.r_attack2:
+			animation_player.play("AttackRight2")
+			sword_particles_1.emitting = false
+		
+		sword_state.r_attack3:
+			animation_player.play("AttackRight3")
 			sword_particles_1.emitting = false
 		
 		sword_state.air_attack:
 			animation_player.play("AirAttack")
 			sword_particles_1.emitting = false
+
 		
 		sword_state.wall_slide:
 			animation_player.play("WallSlide")
@@ -180,25 +237,38 @@ func _process(delta: float) -> void:
 	
 	
 	if swing_left_anim.is_playing():
-		slash_area_left.monitoring = true
+		left_swing_collision.disabled = false
 	else:
-		slash_area_left.monitoring = false
+		left_swing_collision.disabled = true
 	
 	if swing_right_anim.is_playing():
-		slash_area_right.monitoring = true
+		right_swing_collision.disabled = false
 	else:
-		slash_area_right.monitoring = false
+		right_swing_collision.disabled = true
 	
 	if swing_air_anim.is_playing():
-		slash_area_air.monitoring = true
+		air_swing_collision.disabled = false
 	else:
-		slash_area_air.monitoring = false
+		air_swing_collision.disabled = true
 
 
 func _on_swing_delay_timer_timeout() -> void:
+	GameState.player_can_attack = true
 	GameState.player_is_attacking = false
-	if GameState.last_dir > 0:
+	if GameState.player_direction > 0:
 		current_state = sword_state.r_idle
-	elif  GameState.last_dir < 0:
+	elif  GameState.player_direction < 0:
 		current_state = sword_state.l_idle
 	
+
+
+func _on_combo_timer_timeout() -> void:
+	current_combo = 0
+
+
+func _on_swing_left_anim_2_animation_finished() -> void:
+	current_combo = 0
+
+
+func _on_swing_right_anim_2_animation_finished() -> void:
+	current_combo = 0

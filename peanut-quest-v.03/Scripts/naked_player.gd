@@ -19,7 +19,9 @@ extends CharacterBody2D
 
 @onready var poof: CPUParticles2D = $Poof
 @onready var spawn_timer: Timer = $SpawnTimer
+@onready var wall_slide_wait_timer: Timer = $WallSlideWaitTimer
 
+@onready var invul_timer: Timer = $InvulTimer
 
 
 @export var spark_scene : PackedScene
@@ -32,11 +34,10 @@ var normal_speed : float = 275.0
 
 var wall_slide_speed : float = .6
 
+var acceleration : float = .2
+var decceleration : float = .1
 
-var acceleration : float = .1
-var decceleration : float = .2
-
-var air_acceleration : float = .05
+var air_acceleration : float = .1
 var air_decceleration : float = .01
 
 
@@ -55,8 +56,11 @@ var direction : float
 
 
 func _ready() -> void:
+	add_to_group("player")
+	velocity.y = jump_velocity
 	current_speed = normal_speed
 	spawn_timer.start()
+	invul_timer.start()
 
 
 func _process(delta: float) -> void:
@@ -64,22 +68,33 @@ func _process(delta: float) -> void:
 	GameState.player_direction = direction
 	GameState.player_location = global_position
 	
-	if direction:
-		if turn_timer.is_stopped():
-			turn_timer.start()
-		if is_on_floor():
-			set_animation("Walking")
-	else:
-		set_animation("Idle")
 	
-	if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()) and not is_on_floor():
+	if GameState.player_is_wall_sliding:
 		set_animation("Wall Sliding")
-		if ray_cast_left.is_colliding() or ray_cast_left_2.is_colliding():
-			animated_sprite_2d.flip_h = true
-			wall_jump_direction = 1
-		elif ray_cast_right.is_colliding() or ray_cast_right_2.is_colliding():
-			animated_sprite_2d.flip_h = false
-			wall_jump_direction = -1
+	else:
+		if direction:
+			if turn_timer.is_stopped():
+				turn_timer.start()
+			if is_on_floor():
+				set_animation("Walking")
+			else:
+				set_animation("Idle")
+		else:
+			set_animation("Idle")
+	
+	if not is_on_floor():
+		if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()):
+			GameState.player_is_wall_sliding = true
+			if ray_cast_left.is_colliding() or ray_cast_left_2.is_colliding():
+				animated_sprite_2d.flip_h = true
+				wall_jump_direction = 1
+			elif ray_cast_right.is_colliding() or ray_cast_right_2.is_colliding():
+				animated_sprite_2d.flip_h = false
+				wall_jump_direction = -1
+		else:
+			GameState.player_is_wall_sliding = false
+	else:
+		GameState.player_is_wall_sliding = false 
 
 
 
@@ -90,6 +105,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
+		wall_slide_wait_timer.start()
 		jump_buffer_timer.start()
 		
 	if not jump_buffer_timer.is_stopped() and (is_on_floor() or not coyote_timer.is_stopped()):
@@ -125,8 +141,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0.0, current_speed * air_decceleration)
 	
-	if is_on_wall() and not is_on_floor():
-		velocity.y *= wall_slide_speed
+	if GameState.player_is_wall_sliding and not is_on_floor():
+		if wall_slide_wait_timer.is_stopped():
+			velocity.y *= wall_slide_speed
 	
 	
 	
@@ -164,9 +181,10 @@ func _on_turn_timer_timeout() -> void:
 		animated_sprite_2d.flip_h = false
 
 
-
-func despawn():
-	queue_free()
+func take_damage():
+	if invul_timer.is_stopped():
+		queue_free()
+		GlobalSignalBus.emit_signal("respawn_peanut")
 
 
 func _on_spawn_timer_timeout() -> void:

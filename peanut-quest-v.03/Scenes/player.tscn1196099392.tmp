@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="11_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_pu2lt"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="14_7dp3o"]
-[ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="15_h4iuc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
 atlas = ExtResource("2_fkybt")
@@ -1354,7 +1353,6 @@ visible = false
 [node name="NakedPeanutSpawner" type="Node2D" parent="." unique_id=1021726358]
 position = Vector2(0, -7)
 script = ExtResource("14_7dp3o")
-naked_peanut_scene = ExtResource("15_h4iuc")
 
 [node name="Timers" type="Node" parent="." unique_id=46473684]
 

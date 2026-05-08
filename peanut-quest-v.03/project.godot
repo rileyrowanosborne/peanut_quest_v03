@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*uid://db5vk8uwupqwu"
 RoomChangeGlobal="*uid://cvyavtetxb2g3"
+GlobalSignalBus="*uid://cyl11w60vmpst"
 
 [display]
 

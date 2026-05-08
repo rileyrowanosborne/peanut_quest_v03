@@ -11,6 +11,9 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		
+
+		
 		RoomChangeGlobal.activate = true
 		RoomChangeGlobal.player_pos = player_pos
 		RoomChangeGlobal.player_jump_on_enter = player_jump_on_enter

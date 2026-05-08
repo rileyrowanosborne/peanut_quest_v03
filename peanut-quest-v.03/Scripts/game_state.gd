@@ -14,18 +14,22 @@ var player_is_wall_sliding : bool
 
 var player_is_attacking : bool
 var player_can_attack : bool
-var current_swing_delay : float = 1.0
+var current_swing_delay : float = .4
+
+
+var current_health : int = 2
+var current_max_health : int = 2
+
+
+var swing_combo_active : bool = false
+
+
+var slide_blocking_attack : bool = false
+
+
+
 
 
 func _ready() -> void:
-	last_dir = -1
 	player_is_attacking = false
 	player_can_attack = true
-
-
-func _process(delta: float) -> void:
-
-	if GameState.player_direction == -1:
-		GameState.last_dir = -1
-	elif GameState.player_direction == 1:
-		GameState.last_dir = 1

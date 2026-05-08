@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dab4v1jruacn2"]
+
+[ext_resource type="Texture2D" uid="uid://dtd6atkxtapw3" path="res://Assets/Sprites/MiniPeanut.png" id="1_e0onf"]
+[ext_resource type="Script" uid="uid://chrblk17b68hp" path="res://Scripts/hud.gd" id="1_fccik"]
+
+[node name="Hud" type="CanvasLayer" unique_id=471024502]
+script = ExtResource("1_fccik")
+
+[node name="HealthBar" type="HBoxContainer" parent="." unique_id=1824240978]
+offset_right = 485.0
+offset_bottom = 101.0
+
+[node name="PeanutTexture" type="TextureRect" parent="HealthBar" unique_id=1709614681]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+expand_mode = 2
+
+[node name="PeanutTexture2" type="TextureRect" parent="HealthBar" unique_id=1037404588]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+expand_mode = 2
+
+[node name="PeanutTexture3" type="TextureRect" parent="HealthBar" unique_id=269045407]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+expand_mode = 2
+
+[node name="PeanutTexture4" type="TextureRect" parent="HealthBar" unique_id=1457288423]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+expand_mode = 2
+
+[node name="PeanutTexture5" type="TextureRect" parent="HealthBar" unique_id=1141752381]
+layout_mode = 2
+texture = ExtResource("1_e0onf")
+expand_mode = 2

@@ -215,5 +215,13 @@ scale_amount_curve = SubResource("Curve_doe4k")
 wait_time = 0.05
 one_shot = true
 
+[node name="WallSlideWaitTimer" type="Timer" parent="." unique_id=2106757762]
+wait_time = 0.1
+one_shot = true
+
+[node name="InvulTimer" type="Timer" parent="." unique_id=1874441640]
+one_shot = true
+
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WallSlideWaitTimer" to="." method="_on_wall_slide_wait_timer_timeout"]

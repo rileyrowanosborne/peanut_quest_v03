@@ -113,16 +113,16 @@ shape = SubResource("RectangleShape2D_3b6wr")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=1952075195]
 position = Vector2(0, -10)
-target_position = Vector2(7, 0)
-collision_mask = 7
+target_position = Vector2(9, 0)
+collision_mask = 4
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1861814704]
 position = Vector2(0, -10)
-target_position = Vector2(-7, 0)
-collision_mask = 7
+target_position = Vector2(-9, 0)
+collision_mask = 4
 
 [node name="DirectionCooldown" type="Timer" parent="." unique_id=2069196719]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 
 [node name="DirectionTimer" type="Timer" parent="." unique_id=179728961]
