@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="6_dr21r"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_agare"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_0b1k8"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="9_dr21r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]
 texture = ExtResource("6_dr21r")
@@ -122,3 +123,5 @@ position = Vector2(25, 392)
 [node name="FadeToBlackScreen" parent="." unique_id=1795882491 instance=ExtResource("8_0b1k8")]
 
 [node name="Player" parent="." unique_id=474886339 instance=ExtResource("2_0b1k8")]
+
+[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("9_dr21r")]

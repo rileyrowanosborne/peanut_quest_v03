@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bptkbbt4lsccg"]
+
+[ext_resource type="Texture2D" uid="uid://blm277oylwm5h" path="res://Assets/Sprites/LilHeart1-Idle-Sheet.png" id="1_lnglm"]
+[ext_resource type="Script" uid="uid://ck0dk4gxcmphp" path="res://Scripts/floating_enemy.gd" id="1_r7tau"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7tau"]
+atlas = ExtResource("1_lnglm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13iji"]
+atlas = ExtResource("1_lnglm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1xop"]
+atlas = ExtResource("1_lnglm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v17bt"]
+atlas = ExtResource("1_lnglm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ltvrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7tau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13iji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1xop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v17bt")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lnglm"]
+radius = 6.0
+
+[node name="LilHeartOne" type="CharacterBody2D" unique_id=1870179522]
+collision_layer = 32
+collision_mask = 22
+script = ExtResource("1_r7tau")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=798551390]
+sprite_frames = SubResource("SpriteFrames_ltvrl")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.92925227
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1762971701]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_lnglm")

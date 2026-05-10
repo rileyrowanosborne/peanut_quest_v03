@@ -6,20 +6,28 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
+@onready var left_swing_collision: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft1/LeftSwingCollision"
+@onready var left_swing_collision_2: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft2/LeftSwingCollision2"
+@onready var left_swing_collision_3: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft3/LeftSwingCollision3"
 
-@onready var left_swing_collision: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft/LeftSwingCollision"
 @onready var right_swing_collision: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight/RightSwingCollision"
-@onready var air_swing_collision: CollisionShape2D = $"../Swings/SwingAir/SlashAreaAir/AirSwingCollision"
+
+@onready var right_swing_collision_2: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight2/RightSwingCollision2"
+@onready var right_swing_collision_3: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight3/RightSwingCollision3"
+
+
+
+@onready var air_swing_collision: CollisionPolygon2D = $"../Swings/SwingAir/SlashAreaAir/AirSwingCollision"
+
+
 
 
 
 @onready var swing_left_anim: AnimatedSprite2D = $"../Swings/SwingLeft/SwingLeftAnim"
-
 @onready var swing_right_anim: AnimatedSprite2D = $"../Swings/SwingRight/SwingRightAnim"
+@onready var stab_air_anim: AnimatedSprite2D = $"../Swings/SwingAir/StabAirAnim"
 
-@onready var swing_air_anim: AnimatedSprite2D = $"../Swings/SwingAir/SwingAirAnim"
-@onready var swing_air_anim_2: AnimatedSprite2D = $"../Swings/SwingAir/SwingAirAnim2"
-@onready var swing_air_anim_3: AnimatedSprite2D = $"../Swings/SwingAir/SwingAirAnim3"
+
 
 
 @onready var stab_left_anim: AnimatedSprite2D = $"../Swings/SwingLeft/StabLeftAnim"
@@ -70,52 +78,57 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("swing") and GameState.player_can_attack:
-		GameState.player_can_attack = false
-		swing_delay_timer.start(GameState.current_swing_delay)
-		GameState.player_is_attacking = true
-		combo_timer.start()
+		swing_combo()
 
-		if GameState.player_is_on_ground:
-			if GameState.last_dir < 0:
-				if current_combo == 0:
-					current_state = sword_state.l_attack1
-					swing_left_anim.play("Slash")
-				if current_combo == 1:
-					current_state = sword_state.l_attack2
-					stab_left_anim.play("Stab")
-				if current_combo == 2:
-					current_state = sword_state.l_attack3
-					swing_left_anim_2.play("Slash")
-					
-				current_combo += 1
-				current_combo = clamp(current_combo, 0, 2)
 
-			if GameState.last_dir > 0:
-				if current_combo == 0:
-					current_state = sword_state.r_attack1
-					swing_right_anim.play("Slash")
-				if current_combo == 1:
-					current_state = sword_state.r_attack2
-					stab_right_anim.play("Stab")
-				if current_combo == 2:
-					current_state = sword_state.r_attack3
-					swing_right_anim_2.play("Slash")
-					
-				current_combo += 1
-				current_combo = clamp(current_combo, 0, 2)
-		
-		else:
-			current_state = sword_state.air_attack
-			swing_air_anim.play("Slash")
-			swing_air_anim_2.play("Slash")
-			swing_air_anim_3.play("Slash")
+func swing_combo():
+	
+	GameState.player_can_attack = false
+	swing_delay_timer.start(GameState.current_swing_delay)
+	GameState.player_is_attacking = true
+	combo_timer.start()
+	if GameState.player_is_on_ground:
+		if GameState.last_dir < 0:
+			if current_combo == 0:
+				current_state = sword_state.l_attack1
+				swing_left_anim.play("Slash")
+			if current_combo == 1:
+				current_state = sword_state.l_attack2
+				stab_left_anim.play("Stab")
+			if current_combo == 2:
+				current_state = sword_state.l_attack3
+				swing_left_anim_2.play("Slash")
+				
+			current_combo += 1
+			current_combo = clamp(current_combo, 0, 2)
+
+		if GameState.last_dir > 0:
+			if current_combo == 0:
+				current_state = sword_state.r_attack1
+				swing_right_anim.play("Slash")
+			if current_combo == 1:
+				current_state = sword_state.r_attack2
+				stab_right_anim.play("Stab")
+			if current_combo == 2:
+				current_state = sword_state.r_attack3
+				swing_right_anim_2.play("Slash")
+				
+			current_combo += 1
+			current_combo = clamp(current_combo, 0, 2)
+	
+	else:
+		current_state = sword_state.air_attack
+		stab_air_anim.play("Stab")
 
 
 func _process(delta: float) -> void:
 	
+	swing_collisions()
+	
+	state_machine()
 	
 	
-	
+func state_machine():
 	match current_state:
 		sword_state.l_idle:
 			animation_player.play("IdleLeft")
@@ -205,8 +218,8 @@ func _process(delta: float) -> void:
 			current_state = sword_state.wall_slide
 			GameState.player_can_attack = false
 		else:
+			GameState.player_can_attack = true
 			if GameState.player_is_on_ground:
-				GameState.player_can_attack = true
 				if GameState.player_direction != 0:
 					if GameState.player_direction > 0:
 						if GameState.player_is_sliding:
@@ -235,18 +248,50 @@ func _process(delta: float) -> void:
 						current_state = sword_state.r_air
 		
 	
-	
+
+
+func swing_collisions():
 	if swing_left_anim.is_playing():
+		await get_tree().create_timer(.1).timeout
 		left_swing_collision.disabled = false
 	else:
 		left_swing_collision.disabled = true
 	
+	if stab_left_anim.is_playing():
+		await get_tree().create_timer(.1).timeout
+		left_swing_collision_2.disabled = false
+	else:
+		left_swing_collision_2.disabled = true
+	
+	if swing_left_anim_2.is_playing():
+		await get_tree().create_timer(.1).timeout
+		left_swing_collision_3.disabled = false
+	else:
+		left_swing_collision_3.disabled = true
+	
 	if swing_right_anim.is_playing():
+		await get_tree().create_timer(.1).timeout
 		right_swing_collision.disabled = false
 	else:
 		right_swing_collision.disabled = true
+		
 	
-	if swing_air_anim.is_playing():
+	if stab_right_anim.is_playing():
+		await get_tree().create_timer(.1).timeout
+		right_swing_collision_2.disabled = false
+	else:
+		right_swing_collision_2.disabled = true
+	
+	
+	if swing_right_anim_2.is_playing():
+		await get_tree().create_timer(.1).timeout
+		right_swing_collision_3.disabled = false
+	else:
+		right_swing_collision_3.disabled = true
+		
+	
+	if stab_air_anim.is_playing():
+		await get_tree().create_timer(.1).timeout
 		air_swing_collision.disabled = false
 	else:
 		air_swing_collision.disabled = true

@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://cmnsfdh04sel0" path="res://Scenes/player.tscn" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://dbt2t6gh6koc3" path="res://Assets/Sprites/Forest Tile Set 16 x 16.png" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="7_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://dtq3enlykje37" path="res://Scenes/mutant_peanut_1.tscn" id="8_ldgsr"]
+[ext_resource type="PackedScene" uid="uid://xox3v7xvtmm2" path="res://Scenes/little_deer.tscn" id="8_v158k"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="11_o5yvi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
@@ -419,6 +421,8 @@ sources/0 = SubResource("TileSetAtlasSource_i6g32")
 
 [node name="Game" type="Node2D" unique_id=1669609359]
 script = ExtResource("1_i6g32")
+current_level = 1.0
+respawn_point = Vector2(-386, -344)
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1199931103]
 repeat_size = Vector2(1052, 648)
@@ -452,7 +456,7 @@ position = Vector2(-419, -13)
 position = Vector2(78, -13)
 
 [node name="Mutant Peanut 3" parent="." unique_id=269906573 instance=ExtResource("8_ldgsr")]
-position = Vector2(-194, -68)
+position = Vector2(-374, -111)
 
 [node name="Mutant Peanut 4" parent="." unique_id=94921470 instance=ExtResource("8_ldgsr")]
 position = Vector2(-208, -185)
@@ -461,4 +465,15 @@ position = Vector2(-208, -185)
 is_following_player = true
 
 [node name="Player" parent="." unique_id=474886339 instance=ExtResource("2_qxrlw")]
-position = Vector2(10, -284)
+position = Vector2(9, -179)
+
+[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("7_1l0tm")]
+
+[node name="Little Deer" parent="." unique_id=1312518948 instance=ExtResource("8_v158k")]
+position = Vector2(-124, -9)
+
+[node name="Little Deer2" parent="." unique_id=1060127618 instance=ExtResource("8_v158k")]
+position = Vector2(-326, -13)
+
+[node name="Little Deer3" parent="." unique_id=1764047341 instance=ExtResource("8_v158k")]
+position = Vector2(72, -27)

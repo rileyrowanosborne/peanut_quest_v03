@@ -76,6 +76,8 @@ var can_jump : bool = true
 var direction : float
 
 func _ready() -> void:
+	
+	
 	add_to_group("player")
 	
 	current_speed = normal_speed
@@ -83,6 +85,7 @@ func _ready() -> void:
 	GameState.player_is_wall_sliding = false
 	GameState.player_can_attack = true
 	GameState.player_is_attacking = false
+	GameState.last_dir = 1
 	
 	if RoomChangeGlobal.activate:
 		global_position = RoomChangeGlobal.player_pos
@@ -105,24 +108,26 @@ func _process(delta: float) -> void:
 	if GameState.player_direction == 1:
 		GameState.last_dir = 1
 
-	
-	if GameState.player_is_wall_sliding:
-		set_animation("Wall Sliding")
-	else:
-		if direction:
-			if direction < 0:
-				animated_sprite_2d.flip_h = true
-			elif direction > 0:
-				animated_sprite_2d.flip_h = false
-			if is_on_floor():
-				if is_sliding:
-					set_animation("Ground Sliding")
+	if not GameState.is_being_hit:
+		if GameState.player_is_wall_sliding:
+			set_animation("Wall Sliding")
+		else:
+			if direction:
+				if direction < 0:
+					animated_sprite_2d.flip_h = true
+				elif direction > 0:
+					animated_sprite_2d.flip_h = false
+				if is_on_floor():
+					if is_sliding:
+						set_animation("Ground Sliding")
+					else:
+						set_animation("Walking")
 				else:
-					set_animation("Walking")
+					set_animation("Idle")
 			else:
 				set_animation("Idle")
-		else:
-			set_animation("Idle")
+	else:
+		set_animation("Crack")
 	
 	
 	if not is_on_floor():
@@ -134,6 +139,7 @@ func _process(delta: float) -> void:
 			elif ray_cast_right.is_colliding() or ray_cast_right_2.is_colliding():
 				animated_sprite_2d.flip_h = false
 				wall_jump_direction = -1
+				
 		else:
 			GameState.player_is_wall_sliding = false
 	else:
@@ -266,17 +272,24 @@ func _on_slide_timer_timeout() -> void:
 
 
 
-func take_damage():
-	GlobalSignalBus.emit_signal("health_check")
+func take_damage(attack_dir : Vector2):
 	
-	if GameState.current_health > 0:
-		velocity.y = jump_velocity
-		GameState.current_health -= 1
-		print("youch!")
-	elif GameState.current_health <= 0:
-		velocity.y = jump_velocity * 2
-		GlobalSignalBus.emit_signal("shelled_peanut_died")
-		die()
+	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
+	GameState.knockback_direction = knockback_dir
+	
+	if not GameState.is_invul:
+		GameState.player_invul(.5)
+		if GameState.current_health > 0:
+			GameState.freeze_frame(.1, .4)
+			velocity = knockback_dir * 500
+			GameState.current_health -= 1
+			GlobalSignalBus.emit_signal("health_check")
+			if GameState.current_health < 1:
+				GameState.freeze_frame(.1, .4)
+				GlobalSignalBus.emit_signal("shelled_peanut_died")
+				die()
+	
+
 
 func die():
 	queue_free()

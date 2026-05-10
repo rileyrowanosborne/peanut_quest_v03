@@ -2,9 +2,69 @@
 
 [ext_resource type="Texture2D" uid="uid://dtd6atkxtapw3" path="res://Assets/Sprites/MiniPeanut.png" id="1_e0onf"]
 [ext_resource type="Script" uid="uid://chrblk17b68hp" path="res://Scripts/hud.gd" id="1_fccik"]
+[ext_resource type="Texture2D" uid="uid://btdswqini1dbe" path="res://Assets/Sprites/NutCrackHud-Sheet.png" id="3_bjfho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjfho"]
+atlas = ExtResource("3_bjfho")
+region = Rect2(288, 0, 288, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1xeu"]
+atlas = ExtResource("3_bjfho")
+region = Rect2(576, 0, 288, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
+atlas = ExtResource("3_bjfho")
+region = Rect2(0, 0, 288, 162)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1xeu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjfho")
+}],
+"loop": false,
+"name": &"CriticalHealth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1xeu")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Crunch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fbih")
+}],
+"loop": false,
+"name": &"LowHealth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"NormalHealth",
+"speed": 5.0
+}]
 
 [node name="Hud" type="CanvasLayer" unique_id=471024502]
 script = ExtResource("1_fccik")
+
+[node name="HudCrack" type="AnimatedSprite2D" parent="." unique_id=1510171497]
+position = Vector2(576, 324)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_t1xeu")
+animation = &"Crunch"
+autoplay = "NormalHealth"
+frame = 1
+frame_progress = 1.0
 
 [node name="HealthBar" type="HBoxContainer" parent="." unique_id=1824240978]
 offset_right = 485.0

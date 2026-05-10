@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xox3v7xvtmm2"]
 
-[ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_3b6wr"]
+[ext_resource type="Script" uid="uid://dwvg8xq7utf3u" path="res://Scripts/little_deer.gd" id="1_3b6wr"]
 [ext_resource type="Texture2D" uid="uid://bfl8rq74gdbyj" path="res://Assets/Sprites/LittleDeer - Idle-Sheet.png" id="2_3b6wr"]
 [ext_resource type="Texture2D" uid="uid://dmxchrblqj58" path="res://Assets/Sprites/Little Deer - Spinning-Sheet.png" id="3_3b6wr"]
 [ext_resource type="Texture2D" uid="uid://fonmiwab1j7p" path="res://Assets/Sprites/Little Deer - Walking-Sheet.png" id="4_qtv63"]

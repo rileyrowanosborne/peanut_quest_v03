@@ -10,11 +10,26 @@
 [ext_resource type="Texture2D" uid="uid://4tquif4jvn7s" path="res://Assets/Sprites/CharactersSheet.png" id="9_tx1dd"]
 [ext_resource type="Script" uid="uid://4l8fq2msvsm" path="res://Scripts/swings.gd" id="9_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://w4xopesbdmc5" path="res://Assets/Sprites/Stab-Sheet.png" id="10_pu2lt"]
-[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="11_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_pu2lt"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="14_7dp3o"]
 [ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="15_h4iuc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
+atlas = ExtResource("2_fkybt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
 atlas = ExtResource("2_fkybt")
@@ -60,10 +75,6 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("4_3smsa")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("1_v0iea")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
 atlas = ExtResource("1_v0iea")
 region = Rect2(16, 0, 16, 16)
@@ -106,6 +117,29 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vgqql"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuaoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wohnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36dho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wohnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuaoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvnsp")
+}],
+"loop": false,
+"name": &"Crack",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8erm5")
@@ -464,8 +498,40 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tx1dd"]
-radius = 8.498364
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqcod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypfnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ijsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1odr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gysh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfarp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6uwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83xs0")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Stab",
+"speed": 15.0
+}]
 
 [sub_resource type="Curve" id="Curve_pu2lt"]
 _data = [Vector2(0.0042918473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9021115, 0.0, 0, 0]
@@ -473,29 +539,30 @@ point_count = 2
 
 [sub_resource type="Animation" id="Animation_fs7ks"]
 resource_name = "AirAttack"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.3, 0.3812534, 0.4278374, 0.4756473),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.101680025, 0.2, 0.23333333, 0.36666667, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [2.12371, 2.485122, 3.4354322, 5.078754, 6.476488, 7.948019, 9.280298, 11.041962, 12.813898]
+"values": [Vector2(1.0000005, -20.999998), Vector2(-1.0000005, -2.999998), Vector2(-1, 11), Vector2(-1, -33), Vector2(-1.000001, 11), Vector2(2.3841858e-07, -18.000004)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.1262672, 0.2, 0.26666668, 0.3, 0.3812534, 0.4278374, 0.4756473),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.101680025, 0.2, 0.36666667, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-13.000002, -2.9999995), Vector2(-13, -7.000001), Vector2(-7, -19), Vector2(14, -12.999998), Vector2(5.999999, 3.000001), Vector2(-10.999999, 2), Vector2(-10, -16.000002), Vector2(12, -18), Vector2(6, 4)]
+"values": [3.9936163, 0.85370183, 0.85370183, 0.85370183, -2.2848427]
 }
 
 [sub_resource type="Animation" id="Animation_l6n3p"]
@@ -1127,7 +1194,7 @@ script = ExtResource("1_vgqql")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"Idle"
+animation = &"Crack"
 autoplay = "Idle"
 
 [node name="StandingCollisionShape" type="CollisionShape2D" parent="." unique_id=209413438]
@@ -1210,7 +1277,6 @@ color = Color(0.21568628, 0.5803922, 0.43137255, 1)
 one_shot = true
 
 [node name="Swings" type="Node2D" parent="." unique_id=1092733860]
-visible = false
 z_index = 2
 z_as_relative = false
 position = Vector2(25, -19)
@@ -1223,15 +1289,37 @@ position = Vector2(-12.498054, -11.15142)
 rotation = 1.2468159
 scale = Vector2(0.9999999, 0.9999999)
 
-[node name="SlashAreaLeft" type="Area2D" parent="Swings/SwingLeft" unique_id=1769316567]
+[node name="SlashAreaLeft1" type="Area2D" parent="Swings/SwingLeft" unique_id=1769316567]
 position = Vector2(1.219525, 2.7409413)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 34
 
-[node name="LeftSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft" unique_id=1900966384]
+[node name="LeftSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft1" unique_id=1900966384]
 position = Vector2(-2.9461892, -4.161727)
 rotation = -2.6452823
-polygon = PackedVector2Array(0, -5, 2, -2, 2, 2, 1, 4, -3, 7, -1, 2, -1, -2, -4, -7)
+polygon = PackedVector2Array(0, -5, 2, -2, 2, 2, 0.5274677, 5.8736334, -4.0870647, 12.417118, -9.025787, 12.822796, -8.983722, 4.0226436, -8.983722, 4.0226436, -4, -7)
+disabled = true
+
+[node name="SlashAreaLeft2" type="Area2D" parent="Swings/SwingLeft" unique_id=1480235385]
+position = Vector2(1.219525, 2.7409413)
+collision_layer = 0
+collision_mask = 34
+
+[node name="LeftSwingCollision2" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft2" unique_id=1840100091]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(0.12267208, -4.532163, -4.349478, 1.2796922, -7.5607653, 2.173417, -7.2554054, -0.95638275, -2.7832556, -6.768238, -0.03942299, -7.6010666)
+disabled = true
+
+[node name="SlashAreaLeft3" type="Area2D" parent="Swings/SwingLeft" unique_id=1742041875]
+position = Vector2(1.219525, 2.7409413)
+collision_layer = 0
+collision_mask = 34
+
+[node name="LeftSwingCollision3" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft3" unique_id=743139755]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(-2.4384737, -2.2969694, 0.16209412, 3.0689049, -0.89548874, 7.72286, -4.0870647, 12.417118, -9.493242, 12.883691, -8.983722, 4.0226436, -8.983722, 4.0226436, -5.141122, -4.79722)
 disabled = true
 
 [node name="SwingLeftAnim" type="AnimatedSprite2D" parent="Swings/SwingLeft" unique_id=266872341]
@@ -1267,12 +1355,36 @@ scale = Vector2(0.9999999, 0.9999999)
 position = Vector2(-8.358326, 3.354025)
 rotation = 1.4167347
 collision_layer = 0
-collision_mask = 2
+collision_mask = 34
 
 [node name="RightSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingRight/SlashAreaRight" unique_id=744125012]
+position = Vector2(-3.5596046, -4.21588)
+rotation = -2.6452823
+polygon = PackedVector2Array(0.4971485, -7.08357, 2, -2, 2, 2, 0.42649746, 5.4106746, -3.9087973, 5.5626917, -8.802277, -2.8319511, -8.802277, -2.8319511, -11.605434, -13.51049, -4.571164, -11.923336)
+disabled = true
+
+[node name="SlashAreaRight2" type="Area2D" parent="Swings/SwingRight" unique_id=1160077798]
+position = Vector2(-8.358326, 3.354025)
+rotation = 1.4167347
+collision_layer = 0
+collision_mask = 34
+
+[node name="RightSwingCollision2" type="CollisionPolygon2D" parent="Swings/SwingRight/SlashAreaRight2" unique_id=2056385707]
 position = Vector2(-2.9461892, -4.161727)
 rotation = -2.6452823
-polygon = PackedVector2Array(0, -5, 2, -2, 2, 2, 1, 4, -3, 7, -1, 2, -1, -2, -4, -7)
+polygon = PackedVector2Array(-0.010092735, 3.9853282, 0.8515291, 7.307284, -1.9644909, 6.7666736, -7.2395406, 0.74297285, -7.423162, -1.3834889, -4.836995, -1.0842891)
+disabled = true
+
+[node name="SlashAreaRight3" type="Area2D" parent="Swings/SwingRight" unique_id=76345840]
+position = Vector2(-8.358326, 3.354025)
+rotation = 1.4167347
+collision_layer = 0
+collision_mask = 34
+
+[node name="RightSwingCollision3" type="CollisionPolygon2D" parent="Swings/SwingRight/SlashAreaRight3" unique_id=1681312332]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(-2.6629972, -12.81963, 1.8878212, -6.1063714, 2.7147694, -1.3706264, 2.6338634, 1.9282131, 0.6794653, 4.709559, -3.3320475, 4.846949, -8.802277, -2.8319511, -8.802277, -2.8319511, -9.249119, -13.452702)
 disabled = true
 
 [node name="SwingRightAnim" type="AnimatedSprite2D" parent="Swings/SwingRight" unique_id=572431893]
@@ -1301,31 +1413,24 @@ flip_v = true
 [node name="SwingAir" type="Node2D" parent="Swings" unique_id=469088787]
 
 [node name="SlashAreaAir" type="Area2D" parent="Swings/SwingAir" unique_id=1861808287]
+position = Vector2(-3.6705542, -7.942454)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 34
 
-[node name="AirSwingCollision" type="CollisionShape2D" parent="Swings/SwingAir/SlashAreaAir" unique_id=64083965]
-position = Vector2(-8.58193, -3.43437)
-shape = SubResource("CircleShape2D_tx1dd")
+[node name="AirSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingAir/SlashAreaAir" unique_id=1948067587]
+position = Vector2(1.7189819, -1.5778295)
+scale = Vector2(0.9999998, 0.9999998)
+polygon = PackedVector2Array(8.840478, -8.1145525, 3.9931889, 0.40688562, -4.7061377, 5.2246265, -5.8129945, 3.5258093, 0.18148136, -4.238758)
 disabled = true
 
-[node name="SwingAirAnim" type="AnimatedSprite2D" parent="Swings/SwingAir" unique_id=769265257]
-position = Vector2(-5.8000154, -7.7977076)
-rotation = -1.2468159
-sprite_frames = SubResource("SpriteFrames_ryi2r")
-animation = &"Slash"
-
-[node name="SwingAirAnim2" type="AnimatedSprite2D" parent="Swings/SwingAir" unique_id=1971731049]
-position = Vector2(-13.537229, -3.4106112)
-rotation = -3.3219662
-sprite_frames = SubResource("SpriteFrames_ryi2r")
-animation = &"Slash"
-
-[node name="SwingAirAnim3" type="AnimatedSprite2D" parent="Swings/SwingAir" unique_id=2143567020]
-position = Vector2(-5.692006, 0.69997025)
-rotation = -5.1771245
-sprite_frames = SubResource("SpriteFrames_ryi2r")
-animation = &"Slash"
+[node name="StabAirAnim" type="AnimatedSprite2D" parent="Swings/SwingAir" unique_id=187315784]
+position = Vector2(1.9573634, -12.655777)
+rotation = -0.7538713
+scale = Vector2(0.99999964, 0.99999964)
+sprite_frames = SubResource("SpriteFrames_qqcod")
+animation = &"Stab"
+frame = 8
+frame_progress = 1.0
 
 [node name="Poof" type="CPUParticles2D" parent="." unique_id=1266647201]
 position = Vector2(0, -7)
@@ -1347,9 +1452,6 @@ scale_amount_curve = SubResource("Curve_pu2lt")
 root_node = NodePath("../MegaSword")
 libraries/ = SubResource("AnimationLibrary_tx1dd")
 autoplay = &"IdleLeft"
-
-[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("11_gymyn")]
-visible = false
 
 [node name="NakedPeanutSpawner" type="Node2D" parent="." unique_id=1021726358]
 position = Vector2(0, -7)
@@ -1390,9 +1492,13 @@ one_shot = true
 
 [connection signal="timeout" from="MegaSword/SwingDelayTimer" to="MegaSword" method="_on_swing_delay_timer_timeout"]
 [connection signal="timeout" from="MegaSword/ComboTimer" to="MegaSword" method="_on_combo_timer_timeout"]
-[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft" to="Swings" method="_on_slash_area_left_body_entered"]
+[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft1" to="Swings" method="_on_slash_area_left_body_entered"]
+[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft2" to="Swings" method="_on_slash_area_left_body_entered"]
+[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft3" to="Swings" method="_on_slash_area_left_body_entered"]
 [connection signal="animation_finished" from="Swings/SwingLeft/SwingLeftAnim2" to="MegaSword" method="_on_swing_left_anim_2_animation_finished"]
 [connection signal="body_entered" from="Swings/SwingRight/SlashAreaRight" to="Swings" method="_on_slash_area_right_body_entered"]
+[connection signal="body_entered" from="Swings/SwingRight/SlashAreaRight2" to="Swings" method="_on_slash_area_right_body_entered"]
+[connection signal="body_entered" from="Swings/SwingRight/SlashAreaRight3" to="Swings" method="_on_slash_area_right_body_entered"]
 [connection signal="animation_finished" from="Swings/SwingRight/SwingRightAnim2" to="MegaSword" method="_on_swing_right_anim_2_animation_finished"]
 [connection signal="body_entered" from="Swings/SwingAir/SlashAreaAir" to="Swings" method="_on_slash_area_air_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="MegaSword" method="_on_animation_player_animation_finished"]

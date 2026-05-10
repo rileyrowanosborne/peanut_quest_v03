@@ -21,7 +21,6 @@ extends CharacterBody2D
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var wall_slide_wait_timer: Timer = $WallSlideWaitTimer
 
-@onready var invul_timer: Timer = $InvulTimer
 
 
 @export var spark_scene : PackedScene
@@ -54,13 +53,21 @@ var neutral_camera_x : int = 0
 
 var direction : float
 
+var knockback_dir : Vector2
+	
+
 
 func _ready() -> void:
+	
 	add_to_group("player")
-	velocity.y = jump_velocity
+	GlobalSignalBus.emit_signal("health_check")
+	
+	
+	
+	velocity = GameState.knockback_direction * 500
 	current_speed = normal_speed
 	spawn_timer.start()
-	invul_timer.start()
+	GameState.player_invul(.5)
 
 
 func _process(delta: float) -> void:
@@ -181,10 +188,18 @@ func _on_turn_timer_timeout() -> void:
 		animated_sprite_2d.flip_h = false
 
 
-func take_damage():
-	if invul_timer.is_stopped():
-		queue_free()
+func take_damage(attack_dir : Vector2):
+	
+	knockback_dir = (global_position - attack_dir).normalized()
+	
+	if not GameState.is_invul:
+		rotate(atan2(knockback_dir.x, knockback_dir.y))
+		velocity = knockback_dir * 2000
+		GameState.freeze_frame(.1, .4)
+		await get_tree().create_timer(.4).timeout
+		
 		GlobalSignalBus.emit_signal("respawn_peanut")
+		queue_free()
 
 
 func _on_spawn_timer_timeout() -> void:

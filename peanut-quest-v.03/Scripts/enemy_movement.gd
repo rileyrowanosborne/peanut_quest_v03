@@ -22,6 +22,11 @@ var speed : float = 50
 var current_direction : int
 @export var current_health : int = 3
 
+var knockback_active : bool
+
+var can_attack : bool = true
+var can_move : bool = true
+
 enum movement_states {
 	r_idle,
 	l_idle,
@@ -147,7 +152,6 @@ func _on_direction_timer_timeout() -> void:
 
 
 func _on_attack_timer_timeout() -> void:
-	print('attacking')
 	is_attacking = true
 	
 
@@ -160,18 +164,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "LeftAttack" or anim_name == "RightAttack":
 		right_hit_box.monitoring = false
 		left_hit_box.monitoring = false
-		print('no longer attacking')
 		is_attacking = false
 		attack_cooldown.start()
 		
-
-
-
-func take_damage():
-	velocity.y = -50
-	current_health -= 1
-	
-	print("enemy hit!")
-	
-	if current_health <= 0:
-		queue_free()

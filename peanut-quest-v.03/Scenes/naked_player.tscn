@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cfhmdac4we1e4"]
 
-[ext_resource type="Script" uid="uid://bl1th2g25mwjk" path="res://Scripts/naked_player.gd" id="1_qtl4q"]
-[ext_resource type="PackedScene" uid="uid://mbgctqh60kcs" path="res://Scenes/spark_pop.tscn" id="2_vdrt6"]
+[ext_resource type="Script" uid="uid://chh5bp0ft4hyj" path="res://Scripts/naked_peanut.gd" id="1_qtl4q"]
 [ext_resource type="Texture2D" uid="uid://dsdx54vnywqcq" path="res://Assets/Sprites/16x16 Peanut - Death-Sheet.png" id="3_b3toe"]
 [ext_resource type="Texture2D" uid="uid://cofmgesefps50" path="res://Assets/Sprites/NakedPeanut-Idle-Sheet.png" id="5_akt7d"]
 [ext_resource type="Texture2D" uid="uid://cei5r20t60j1q" path="res://Assets/Sprites/NakedPeanut-Walking-Sheet.png" id="6_doe4k"]
@@ -140,7 +139,6 @@ point_count = 2
 z_index = 5
 collision_mask = 14
 script = ExtResource("1_qtl4q")
-spark_scene = ExtResource("2_vdrt6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -7)
@@ -217,9 +215,6 @@ one_shot = true
 
 [node name="WallSlideWaitTimer" type="Timer" parent="." unique_id=2106757762]
 wait_time = 0.1
-one_shot = true
-
-[node name="InvulTimer" type="Timer" parent="." unique_id=1874441640]
 one_shot = true
 
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]

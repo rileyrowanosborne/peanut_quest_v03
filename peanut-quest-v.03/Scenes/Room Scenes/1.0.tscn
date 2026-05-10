@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="6_lkgna"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_ji1tu"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_akedd"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="9_ap0f8"]
+[ext_resource type="PackedScene" uid="uid://xox3v7xvtmm2" path="res://Scenes/little_deer.tscn" id="10_b2m8p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2m8p"]
 texture = ExtResource("6_ap0f8")
@@ -81,6 +83,8 @@ sources/0 = SubResource("TileSetAtlasSource_b2m8p")
 
 [node name="1" type="Node2D" unique_id=82904511]
 script = ExtResource("1_akedd")
+current_level = 1.0
+respawn_point = Vector2(30, 3)
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=749319197]
 repeat_size = Vector2(1052, 648)
@@ -135,3 +139,14 @@ player_pos = Vector2(623, 106)
 
 [node name="Player" parent="." unique_id=474886339 instance=ExtResource("2_akedd")]
 position = Vector2(28, 21)
+
+[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("9_ap0f8")]
+
+[node name="Little Deer" parent="." unique_id=691855468 instance=ExtResource("10_b2m8p")]
+position = Vector2(925, 87)
+
+[node name="Little Deer2" parent="." unique_id=1261840094 instance=ExtResource("10_b2m8p")]
+position = Vector2(713, 426)
+
+[node name="Little Deer3" parent="." unique_id=400700418 instance=ExtResource("10_b2m8p")]
+position = Vector2(68, 47)
