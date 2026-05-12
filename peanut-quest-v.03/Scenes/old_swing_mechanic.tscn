@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://k6vp2yrnuse"]
+
+[sub_resource type="GDScript" id="GDScript_nnebi"]
+script/source = "extends Node2D
+
+
+
+
+
+
+"
+
+[node name="SwingLeft" type="Node2D" unique_id=1113192291]
+position = Vector2(-12.498054, -11.15142)
+rotation = 1.2468159
+scale = Vector2(0.9999999, 0.9999999)
+script = SubResource("GDScript_nnebi")
+
+[node name="SlashAreaLeft1" type="Area2D" parent="." unique_id=1167807787]
+position = Vector2(1.219525, 2.7409413)
+collision_layer = 0
+collision_mask = 34
+
+[node name="LeftSwingCollision" type="CollisionPolygon2D" parent="SlashAreaLeft1" unique_id=887724378]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(0, -5, 2, -2, 2, 2, 0.5274677, 5.8736334, -4.0870647, 12.417118, -9.025787, 12.822796, -8.983722, 4.0226436, -8.983722, 4.0226436, -4, -7)
+disabled = true
+
+[node name="SlashAreaLeft2" type="Area2D" parent="." unique_id=482841171]
+position = Vector2(1.219525, 2.7409413)
+collision_layer = 0
+collision_mask = 34
+
+[node name="LeftSwingCollision2" type="CollisionPolygon2D" parent="SlashAreaLeft2" unique_id=1499384727]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(0.12267208, -4.532163, -4.349478, 1.2796922, -7.5607653, 2.173417, -7.2554054, -0.95638275, -2.7832556, -6.768238, -0.03942299, -7.6010666)
+disabled = true
+
+[node name="SlashAreaLeft3" type="Area2D" parent="." unique_id=987804683]
+position = Vector2(1.219525, 2.7409413)
+collision_layer = 0
+collision_mask = 34
+
+[node name="LeftSwingCollision3" type="CollisionPolygon2D" parent="SlashAreaLeft3" unique_id=708502268]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(-2.4384737, -2.2969694, 0.16209412, 3.0689049, -0.89548874, 7.72286, -4.0870647, 12.417118, -9.493242, 12.883691, -8.983722, 4.0226436, -8.983722, 4.0226436, -5.141122, -4.79722)
+disabled = true
+
+[node name="SwingRight" type="Node2D" parent="." unique_id=136749100]
+position = Vector2(2.3584585, 5.527095)
+rotation = 1.2468159
+scale = Vector2(0.9999999, 0.9999999)
+
+[node name="SlashAreaRight" type="Area2D" parent="SwingRight" unique_id=281750255]
+position = Vector2(-8.358326, 3.354025)
+rotation = 1.4167347
+collision_layer = 0
+collision_mask = 34
+
+[node name="RightSwingCollision" type="CollisionPolygon2D" parent="SwingRight/SlashAreaRight" unique_id=463862046]
+position = Vector2(-3.5596046, -4.21588)
+rotation = -2.6452823
+polygon = PackedVector2Array(0.4971485, -7.08357, 2, -2, 2, 2, 0.42649746, 5.4106746, -3.9087973, 5.5626917, -8.802277, -2.8319511, -8.802277, -2.8319511, -11.605434, -13.51049, -4.571164, -11.923336)
+disabled = true
+
+[node name="SlashAreaRight2" type="Area2D" parent="SwingRight" unique_id=664812919]
+position = Vector2(-8.358326, 3.354025)
+rotation = 1.4167347
+collision_layer = 0
+collision_mask = 34
+
+[node name="RightSwingCollision2" type="CollisionPolygon2D" parent="SwingRight/SlashAreaRight2" unique_id=109602026]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(-0.010092735, 3.9853282, 0.8515291, 7.307284, -1.9644909, 6.7666736, -7.2395406, 0.74297285, -7.423162, -1.3834889, -4.836995, -1.0842891)
+disabled = true
+
+[node name="SlashAreaRight3" type="Area2D" parent="SwingRight" unique_id=1043525986]
+position = Vector2(-8.358326, 3.354025)
+rotation = 1.4167347
+collision_layer = 0
+collision_mask = 34
+
+[node name="RightSwingCollision3" type="CollisionPolygon2D" parent="SwingRight/SlashAreaRight3" unique_id=554542496]
+position = Vector2(-2.9461892, -4.161727)
+rotation = -2.6452823
+polygon = PackedVector2Array(-2.6629972, -12.81963, 1.8878212, -6.1063714, 2.7147694, -1.3706264, 2.6338634, 1.9282131, 0.6794653, 4.709559, -3.3320475, 4.846949, -8.802277, -2.8319511, -8.802277, -2.8319511, -9.249119, -13.452702)
+disabled = true
+
+[node name="SwingAir" type="Node2D" parent="." unique_id=526698648]
+
+[node name="SlashAreaAir" type="Area2D" parent="SwingAir" unique_id=37238688]
+position = Vector2(-3.6705542, -7.942454)
+collision_layer = 0
+collision_mask = 34
+
+[node name="AirSwingCollision" type="CollisionPolygon2D" parent="SwingAir/SlashAreaAir" unique_id=166820831]
+position = Vector2(1.7189819, -1.5778295)
+scale = Vector2(0.9999998, 0.9999998)
+polygon = PackedVector2Array(8.840478, -8.1145525, 3.9931889, 0.40688562, -4.7061377, 5.2246265, -5.8129945, 3.5258093, 0.18148136, -4.238758)
+disabled = true

@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://3vs0678uh8gm" path="res://Assets/Sprites/Peanut Ground Sliding-Sheet 2.png" id="4_3smsa"]
 [ext_resource type="Texture2D" uid="uid://cam6hqp8wq2l3" path="res://Assets/Sprites/Peanut - Sliding-Sheet.png" id="4_x3wgy"]
 [ext_resource type="Script" uid="uid://bk47e1xsdi7ft" path="res://Scripts/weapon.gd" id="8_f1ek2"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/hit_box.tscn" id="9_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://4tquif4jvn7s" path="res://Assets/Sprites/CharactersSheet.png" id="9_tx1dd"]
-[ext_resource type="Script" uid="uid://4l8fq2msvsm" path="res://Scripts/swings.gd" id="9_ukyrk"]
 [ext_resource type="Texture2D" uid="uid://w4xopesbdmc5" path="res://Assets/Sprites/Stab-Sheet.png" id="10_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="11_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_pu2lt"]
@@ -1276,69 +1276,41 @@ color = Color(0.21568628, 0.5803922, 0.43137255, 1)
 [node name="ComboTimer" type="Timer" parent="MegaSword" unique_id=214561519]
 one_shot = true
 
+[node name="HitBox" parent="MegaSword" unique_id=1323420167 instance=ExtResource("9_h4iuc")]
+position = Vector2(-11.806696, -11.515296)
+collision_mask = 34
+
+[node name="SwordCollision" type="CollisionPolygon2D" parent="MegaSword/HitBox" unique_id=866212477]
+rotation = 0.7119635
+polygon = PackedVector2Array(-15.157003, 1.5050464, -7.829611, 4.8679748, 9.585768, 6.1735816, 9.385525, -6.473944, -7.9797935, -4.6176696, -15.207064, -1.656836, -15.809404, 0.2503047)
+disabled = true
+
 [node name="Swings" type="Node2D" parent="." unique_id=1092733860]
 z_index = 2
 z_as_relative = false
 position = Vector2(25, -19)
 rotation = -0.8281868
 scale = Vector2(3.0000002, 3.0000002)
-script = ExtResource("9_ukyrk")
 
-[node name="SwingLeft" type="Node2D" parent="Swings" unique_id=940254685]
-position = Vector2(-12.498054, -11.15142)
-rotation = 1.2468159
+[node name="SwingLeftAnim" type="AnimatedSprite2D" parent="Swings" unique_id=266872341]
+position = Vector2(-13.093607, -13.772018)
+rotation = 1.6041162
 scale = Vector2(0.9999999, 0.9999999)
-
-[node name="SlashAreaLeft1" type="Area2D" parent="Swings/SwingLeft" unique_id=1769316567]
-position = Vector2(1.219525, 2.7409413)
-collision_layer = 0
-collision_mask = 34
-
-[node name="LeftSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft1" unique_id=1900966384]
-position = Vector2(-2.9461892, -4.161727)
-rotation = -2.6452823
-polygon = PackedVector2Array(0, -5, 2, -2, 2, 2, 0.5274677, 5.8736334, -4.0870647, 12.417118, -9.025787, 12.822796, -8.983722, 4.0226436, -8.983722, 4.0226436, -4, -7)
-disabled = true
-
-[node name="SlashAreaLeft2" type="Area2D" parent="Swings/SwingLeft" unique_id=1480235385]
-position = Vector2(1.219525, 2.7409413)
-collision_layer = 0
-collision_mask = 34
-
-[node name="LeftSwingCollision2" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft2" unique_id=1840100091]
-position = Vector2(-2.9461892, -4.161727)
-rotation = -2.6452823
-polygon = PackedVector2Array(0.12267208, -4.532163, -4.349478, 1.2796922, -7.5607653, 2.173417, -7.2554054, -0.95638275, -2.7832556, -6.768238, -0.03942299, -7.6010666)
-disabled = true
-
-[node name="SlashAreaLeft3" type="Area2D" parent="Swings/SwingLeft" unique_id=1742041875]
-position = Vector2(1.219525, 2.7409413)
-collision_layer = 0
-collision_mask = 34
-
-[node name="LeftSwingCollision3" type="CollisionPolygon2D" parent="Swings/SwingLeft/SlashAreaLeft3" unique_id=743139755]
-position = Vector2(-2.9461892, -4.161727)
-rotation = -2.6452823
-polygon = PackedVector2Array(-2.4384737, -2.2969694, 0.16209412, 3.0689049, -0.89548874, 7.72286, -4.0870647, 12.417118, -9.493242, 12.883691, -8.983722, 4.0226436, -8.983722, 4.0226436, -5.141122, -4.79722)
-disabled = true
-
-[node name="SwingLeftAnim" type="AnimatedSprite2D" parent="Swings/SwingLeft" unique_id=266872341]
-position = Vector2(-2.6738544, -0.2696768)
-rotation = 0.35730025
 sprite_frames = SubResource("SpriteFrames_pu2lt")
 animation = &"Slash"
 flip_h = true
 
-[node name="StabLeftAnim" type="AnimatedSprite2D" parent="Swings/SwingLeft" unique_id=939348358]
-position = Vector2(-4.9734144, 4.401847)
-rotation = 2.714959
+[node name="StabLeftAnim" type="AnimatedSprite2D" parent="Swings" unique_id=939348358]
+position = Vector2(-18.254147, -14.464802)
+rotation = -2.3214104
+scale = Vector2(0.9999998, 0.9999998)
 sprite_frames = SubResource("SpriteFrames_ukyrk")
 animation = &"Stab"
 
-[node name="SwingLeftAnim2" type="AnimatedSprite2D" parent="Swings/SwingLeft" unique_id=592443668]
-position = Vector2(0.5742259, -2.8093572)
-rotation = 0.47290266
-scale = Vector2(1.6383908, 1.6165285)
+[node name="SwingLeftAnim2" type="AnimatedSprite2D" parent="Swings" unique_id=592443668]
+position = Vector2(-9.65205, -11.501405)
+rotation = 1.7197186
+scale = Vector2(1.6383907, 1.6165284)
 sprite_frames = SubResource("SpriteFrames_h4iuc")
 animation = &"Slash"
 frame = 7
@@ -1346,85 +1318,31 @@ frame_progress = 1.0
 flip_h = true
 flip_v = true
 
-[node name="SwingRight" type="Node2D" parent="Swings" unique_id=290236662]
-position = Vector2(2.3584585, 5.527095)
-rotation = 1.2468159
-scale = Vector2(0.9999999, 0.9999999)
-
-[node name="SlashAreaRight" type="Area2D" parent="Swings/SwingRight" unique_id=2138957672]
-position = Vector2(-8.358326, 3.354025)
-rotation = 1.4167347
-collision_layer = 0
-collision_mask = 34
-
-[node name="RightSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingRight/SlashAreaRight" unique_id=744125012]
-position = Vector2(-3.5596046, -4.21588)
-rotation = -2.6452823
-polygon = PackedVector2Array(0.4971485, -7.08357, 2, -2, 2, 2, 0.42649746, 5.4106746, -3.9087973, 5.5626917, -8.802277, -2.8319511, -8.802277, -2.8319511, -11.605434, -13.51049, -4.571164, -11.923336)
-disabled = true
-
-[node name="SlashAreaRight2" type="Area2D" parent="Swings/SwingRight" unique_id=1160077798]
-position = Vector2(-8.358326, 3.354025)
-rotation = 1.4167347
-collision_layer = 0
-collision_mask = 34
-
-[node name="RightSwingCollision2" type="CollisionPolygon2D" parent="Swings/SwingRight/SlashAreaRight2" unique_id=2056385707]
-position = Vector2(-2.9461892, -4.161727)
-rotation = -2.6452823
-polygon = PackedVector2Array(-0.010092735, 3.9853282, 0.8515291, 7.307284, -1.9644909, 6.7666736, -7.2395406, 0.74297285, -7.423162, -1.3834889, -4.836995, -1.0842891)
-disabled = true
-
-[node name="SlashAreaRight3" type="Area2D" parent="Swings/SwingRight" unique_id=76345840]
-position = Vector2(-8.358326, 3.354025)
-rotation = 1.4167347
-collision_layer = 0
-collision_mask = 34
-
-[node name="RightSwingCollision3" type="CollisionPolygon2D" parent="Swings/SwingRight/SlashAreaRight3" unique_id=1681312332]
-position = Vector2(-2.9461892, -4.161727)
-rotation = -2.6452823
-polygon = PackedVector2Array(-2.6629972, -12.81963, 1.8878212, -6.1063714, 2.7147694, -1.3706264, 2.6338634, 1.9282131, 0.6794653, 4.709559, -3.3320475, 4.846949, -8.802277, -2.8319511, -8.802277, -2.8319511, -9.249119, -13.452702)
-disabled = true
-
-[node name="SwingRightAnim" type="AnimatedSprite2D" parent="Swings/SwingRight" unique_id=572431893]
-position = Vector2(-3.2494087, -0.74327195)
-rotation = -1.2468159
+[node name="SwingRightAnim" type="AnimatedSprite2D" parent="Swings" unique_id=572431893]
+position = Vector2(2.028638, 2.2101192)
+scale = Vector2(0.9999998, 0.9999998)
 sprite_frames = SubResource("SpriteFrames_ryi2r")
 animation = &"Stab"
 
-[node name="StabRightAnim" type="AnimatedSprite2D" parent="Swings/SwingRight" unique_id=624104207]
-position = Vector2(6.09231, 0.57289714)
-rotation = -0.4116368
-scale = Vector2(0.99999994, 0.99999994)
+[node name="StabRightAnim" type="AnimatedSprite2D" parent="Swings" unique_id=624104207]
+position = Vector2(3.7548056, 11.484835)
+rotation = 0.8351791
+scale = Vector2(0.99999964, 0.99999964)
 sprite_frames = SubResource("SpriteFrames_7dp3o")
 animation = &"Stab"
 
-[node name="SwingRightAnim2" type="AnimatedSprite2D" parent="Swings/SwingRight" unique_id=268395241]
-position = Vector2(-6.3633146, -1.1819948)
-rotation = -1.0977734
-scale = Vector2(1.1826009, 1.374473)
+[node name="SwingRightAnim2" type="AnimatedSprite2D" parent="Swings" unique_id=268395241]
+position = Vector2(1.453248, -0.8814516)
+rotation = 0.14904247
+scale = Vector2(1.1826006, 1.3744727)
 sprite_frames = SubResource("SpriteFrames_fd4e3")
 animation = &"Slash"
 frame = 7
 frame_progress = 1.0
 flip_v = true
 
-[node name="SwingAir" type="Node2D" parent="Swings" unique_id=469088787]
-
-[node name="SlashAreaAir" type="Area2D" parent="Swings/SwingAir" unique_id=1861808287]
-position = Vector2(-3.6705542, -7.942454)
-collision_layer = 0
-collision_mask = 34
-
-[node name="AirSwingCollision" type="CollisionPolygon2D" parent="Swings/SwingAir/SlashAreaAir" unique_id=1948067587]
-position = Vector2(1.7189819, -1.5778295)
-scale = Vector2(0.9999998, 0.9999998)
-polygon = PackedVector2Array(8.840478, -8.1145525, 3.9931889, 0.40688562, -4.7061377, 5.2246265, -5.8129945, 3.5258093, 0.18148136, -4.238758)
-disabled = true
-
-[node name="StabAirAnim" type="AnimatedSprite2D" parent="Swings/SwingAir" unique_id=187315784]
-position = Vector2(1.9573634, -12.655777)
+[node name="StabAirAnim" type="AnimatedSprite2D" parent="Swings" unique_id=187315784]
+position = Vector2(1.9573641, -12.655778)
 rotation = -0.7538713
 scale = Vector2(0.99999964, 0.99999964)
 sprite_frames = SubResource("SpriteFrames_qqcod")
@@ -1492,15 +1410,8 @@ one_shot = true
 
 [connection signal="timeout" from="MegaSword/SwingDelayTimer" to="MegaSword" method="_on_swing_delay_timer_timeout"]
 [connection signal="timeout" from="MegaSword/ComboTimer" to="MegaSword" method="_on_combo_timer_timeout"]
-[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft1" to="Swings" method="_on_slash_area_left_body_entered"]
-[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft2" to="Swings" method="_on_slash_area_left_body_entered"]
-[connection signal="body_entered" from="Swings/SwingLeft/SlashAreaLeft3" to="Swings" method="_on_slash_area_left_body_entered"]
-[connection signal="animation_finished" from="Swings/SwingLeft/SwingLeftAnim2" to="MegaSword" method="_on_swing_left_anim_2_animation_finished"]
-[connection signal="body_entered" from="Swings/SwingRight/SlashAreaRight" to="Swings" method="_on_slash_area_right_body_entered"]
-[connection signal="body_entered" from="Swings/SwingRight/SlashAreaRight2" to="Swings" method="_on_slash_area_right_body_entered"]
-[connection signal="body_entered" from="Swings/SwingRight/SlashAreaRight3" to="Swings" method="_on_slash_area_right_body_entered"]
-[connection signal="animation_finished" from="Swings/SwingRight/SwingRightAnim2" to="MegaSword" method="_on_swing_right_anim_2_animation_finished"]
-[connection signal="body_entered" from="Swings/SwingAir/SlashAreaAir" to="Swings" method="_on_slash_area_air_body_entered"]
+[connection signal="animation_finished" from="Swings/SwingLeftAnim2" to="MegaSword" method="_on_swing_left_anim_2_animation_finished"]
+[connection signal="animation_finished" from="Swings/SwingRightAnim2" to="MegaSword" method="_on_swing_right_anim_2_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="MegaSword" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]

@@ -6,35 +6,17 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
-@onready var left_swing_collision: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft1/LeftSwingCollision"
-@onready var left_swing_collision_2: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft2/LeftSwingCollision2"
-@onready var left_swing_collision_3: CollisionPolygon2D = $"../Swings/SwingLeft/SlashAreaLeft3/LeftSwingCollision3"
 
-@onready var right_swing_collision: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight/RightSwingCollision"
+@onready var sword_collision: CollisionPolygon2D = $HitBox/SwordCollision
 
-@onready var right_swing_collision_2: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight2/RightSwingCollision2"
-@onready var right_swing_collision_3: CollisionPolygon2D = $"../Swings/SwingRight/SlashAreaRight3/RightSwingCollision3"
+@onready var swing_left_anim: AnimatedSprite2D = $"../Swings/SwingLeftAnim"
+@onready var stab_left_anim: AnimatedSprite2D = $"../Swings/StabLeftAnim"
+@onready var swing_left_anim_2: AnimatedSprite2D = $"../Swings/SwingLeftAnim2"
+@onready var swing_right_anim: AnimatedSprite2D = $"../Swings/SwingRightAnim"
+@onready var stab_right_anim: AnimatedSprite2D = $"../Swings/StabRightAnim"
+@onready var swing_right_anim_2: AnimatedSprite2D = $"../Swings/SwingRightAnim2"
+@onready var stab_air_anim: AnimatedSprite2D = $"../Swings/StabAirAnim"
 
-
-
-@onready var air_swing_collision: CollisionPolygon2D = $"../Swings/SwingAir/SlashAreaAir/AirSwingCollision"
-
-
-
-
-
-@onready var swing_left_anim: AnimatedSprite2D = $"../Swings/SwingLeft/SwingLeftAnim"
-@onready var swing_right_anim: AnimatedSprite2D = $"../Swings/SwingRight/SwingRightAnim"
-@onready var stab_air_anim: AnimatedSprite2D = $"../Swings/SwingAir/StabAirAnim"
-
-
-
-
-@onready var stab_left_anim: AnimatedSprite2D = $"../Swings/SwingLeft/StabLeftAnim"
-@onready var stab_right_anim: AnimatedSprite2D = $"../Swings/SwingRight/StabRightAnim"
-
-@onready var swing_left_anim_2: AnimatedSprite2D = $"../Swings/SwingLeft/SwingLeftAnim2"
-@onready var swing_right_anim_2: AnimatedSprite2D = $"../Swings/SwingRight/SwingRightAnim2"
 
 @onready var swing_delay_timer: Timer = $SwingDelayTimer
 @onready var combo_timer: Timer = $ComboTimer
@@ -123,9 +105,9 @@ func swing_combo():
 
 func _process(delta: float) -> void:
 	
-	swing_collisions()
-	
 	state_machine()
+	
+	state_machine_logic()
 	
 	
 func state_machine():
@@ -133,9 +115,11 @@ func state_machine():
 		sword_state.l_idle:
 			animation_player.play("IdleLeft")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = true
 		
 		sword_state.l_walk:
 			animation_player.play("WalkLeft")
+			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
 			else:
@@ -143,6 +127,7 @@ func state_machine():
 		
 		sword_state.l_slide:
 			animation_player.play("DashLeft")
+			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
 			else:
@@ -151,22 +136,27 @@ func state_machine():
 		sword_state.l_attack1:
 			animation_player.play("AttackLeft1")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 			
 			
 		sword_state.l_attack2:
 			animation_player.play("AttackLeft2")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 			
 		sword_state.l_attack3:
 			animation_player.play("AttackLeft3")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 		
 		sword_state.r_idle:
 			animation_player.play("IdleRight")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = true
 		
 		sword_state.r_walk:
 			animation_player.play("WalkRight")
+			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
 			else:
@@ -174,6 +164,7 @@ func state_machine():
 		
 		sword_state.r_slide:
 			animation_player.play("DashRight")
+			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
 			else:
@@ -182,37 +173,46 @@ func state_machine():
 		sword_state.r_attack1:
 			animation_player.play("AttackRight1")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 		
 		sword_state.r_attack2:
 			animation_player.play("AttackRight2")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 		
 		sword_state.r_attack3:
 			animation_player.play("AttackRight3")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 		
 		sword_state.air_attack:
 			animation_player.play("AirAttack")
 			sword_particles_1.emitting = false
+			sword_collision.disabled = false
 
 		
 		sword_state.wall_slide:
+			sword_collision.disabled = true
 			animation_player.play("WallSlide")
 			sword_particles_1.emitting = false
 		
 		sword_state.air_neutral:
+			sword_collision.disabled = true
 			animation_player.play("AirNeutral")
 			sword_particles_1.emitting = false
 		
 		sword_state.l_air:
+			sword_collision.disabled = true
 			animation_player.play("AirLeft")
 			sword_particles_1.emitting = false
 		
 		sword_state.r_air:
+			sword_collision.disabled = true
 			animation_player.play("AirRight")
 			sword_particles_1.emitting = false
 	
-	
+
+func state_machine_logic():
 	if not GameState.player_is_attacking:
 		if GameState.player_is_wall_sliding:
 			current_state = sword_state.wall_slide
@@ -248,53 +248,6 @@ func state_machine():
 						current_state = sword_state.r_air
 		
 	
-
-
-func swing_collisions():
-	if swing_left_anim.is_playing():
-		await get_tree().create_timer(.1).timeout
-		left_swing_collision.disabled = false
-	else:
-		left_swing_collision.disabled = true
-	
-	if stab_left_anim.is_playing():
-		await get_tree().create_timer(.1).timeout
-		left_swing_collision_2.disabled = false
-	else:
-		left_swing_collision_2.disabled = true
-	
-	if swing_left_anim_2.is_playing():
-		await get_tree().create_timer(.1).timeout
-		left_swing_collision_3.disabled = false
-	else:
-		left_swing_collision_3.disabled = true
-	
-	if swing_right_anim.is_playing():
-		await get_tree().create_timer(.1).timeout
-		right_swing_collision.disabled = false
-	else:
-		right_swing_collision.disabled = true
-		
-	
-	if stab_right_anim.is_playing():
-		await get_tree().create_timer(.1).timeout
-		right_swing_collision_2.disabled = false
-	else:
-		right_swing_collision_2.disabled = true
-	
-	
-	if swing_right_anim_2.is_playing():
-		await get_tree().create_timer(.1).timeout
-		right_swing_collision_3.disabled = false
-	else:
-		right_swing_collision_3.disabled = true
-		
-	
-	if stab_air_anim.is_playing():
-		await get_tree().create_timer(.1).timeout
-		air_swing_collision.disabled = false
-	else:
-		air_swing_collision.disabled = true
 
 
 func _on_swing_delay_timer_timeout() -> void:
