@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://qr7tnfywjdvg"]
+
+[ext_resource type="Script" uid="uid://b0jpgspcp8kkw" path="res://Scripts/shield.gd" id="1_oux8c"]
+[ext_resource type="Texture2D" uid="uid://dhadxuhqahd6n" path="res://Assets/Sprites/PeanutShield.png" id="2_afmmn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0asfq"]
+size = Vector2(16, 3)
+
+[node name="Shield" type="Node2D" unique_id=1619026927]
+script = ExtResource("1_oux8c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1194837915]
+position = Vector2(1, -18)
+texture = ExtResource("2_afmmn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=66951975]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=368345135]
+position = Vector2(1, -12.5)
+shape = SubResource("RectangleShape2D_0asfq")

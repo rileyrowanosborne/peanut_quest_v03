@@ -1,17 +1,91 @@
 [gd_scene format=3 uid="uid://yvyyr8nosrox"]
 
-[ext_resource type="PackedScene" uid="uid://dak4uid276uq3" path="res://Scenes/projectile.tscn" id="1_5juvi"]
 [ext_resource type="Script" uid="uid://drq6v8idg2l0t" path="res://Scripts/projectile_body.gd" id="1_vtnnc"]
+[ext_resource type="Script" uid="uid://bkhwd7e5qay0r" path="res://Scripts/projectile.gd" id="2_moxdl"]
+[ext_resource type="Texture2D" uid="uid://dawkw6ttpocqp" path="res://Assets/Sprites/BloodProjectile1.png" id="2_vtnnc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5juvi"]
-radius = 2.0
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtnnc"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_moxdl"]
+radius = 8.0
 
 [node name="ProjectileBody" type="RigidBody2D" unique_id=661009827]
-collision_layer = 0
+collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_vtnnc")
 
-[node name="Projectile" parent="." unique_id=448737671 instance=ExtResource("1_5juvi")]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=78635791]
+visible = false
 shape = SubResource("CircleShape2D_5juvi")
+
+[node name="ProjectileRange" type="Area2D" parent="." unique_id=1611438658]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileRange" unique_id=1188146132]
+shape = SubResource("CircleShape2D_vtnnc")
+
+[node name="ProjectileArea" type="Area2D" parent="." unique_id=1347561818]
+collision_layer = 0
+collision_mask = 129
+script = ExtResource("2_moxdl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileArea" unique_id=374155630]
+visible = false
+shape = SubResource("CircleShape2D_moxdl")
+
+[node name="Sprite2D" type="Sprite2D" parent="ProjectileArea" unique_id=546580858]
+texture = ExtResource("2_vtnnc")
+
+[node name="RayCast2D" type="RayCast2D" parent="ProjectileArea" unique_id=1508109438]
+visible = false
+target_position = Vector2(0, 5)
+collision_mask = 4
+
+[node name="RayCast2D2" type="RayCast2D" parent="ProjectileArea" unique_id=922235400]
+visible = false
+target_position = Vector2(3, 3)
+collision_mask = 4
+
+[node name="RayCast2D3" type="RayCast2D" parent="ProjectileArea" unique_id=1641371230]
+visible = false
+target_position = Vector2(5, 0)
+collision_mask = 4
+
+[node name="RayCast2D4" type="RayCast2D" parent="ProjectileArea" unique_id=1837781201]
+visible = false
+target_position = Vector2(3, -3)
+collision_mask = 4
+
+[node name="RayCast2D5" type="RayCast2D" parent="ProjectileArea" unique_id=216621934]
+visible = false
+target_position = Vector2(0, -5)
+collision_mask = 4
+
+[node name="RayCast2D6" type="RayCast2D" parent="ProjectileArea" unique_id=1926257043]
+visible = false
+target_position = Vector2(-3, -3)
+collision_mask = 4
+
+[node name="RayCast2D7" type="RayCast2D" parent="ProjectileArea" unique_id=161495410]
+visible = false
+position = Vector2(3, 0)
+target_position = Vector2(-8, 0)
+collision_mask = 4
+
+[node name="RayCast2D8" type="RayCast2D" parent="ProjectileArea" unique_id=79157032]
+visible = false
+target_position = Vector2(-4, 3)
+collision_mask = 4
+
+[node name="InvulTimer" type="Timer" parent="ProjectileArea" unique_id=2086324006]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="ProjectileRange" to="." method="_on_projectile_range_body_entered"]
+[connection signal="body_exited" from="ProjectileRange" to="." method="_on_projectile_range_body_exited"]
+[connection signal="body_entered" from="ProjectileArea" to="ProjectileArea" method="_on_body_entered"]
+[connection signal="timeout" from="ProjectileArea/InvulTimer" to="ProjectileArea" method="_on_invul_timer_timeout"]

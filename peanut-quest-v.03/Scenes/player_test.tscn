@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://3vs0678uh8gm" path="res://Assets/Sprites/Peanut Ground Sliding-Sheet 2.png" id="4_sduab"]
 [ext_resource type="Texture2D" uid="uid://bin6cln6l0qfe" path="res://Assets/Sprites/16x16 Peanut - walking-SpriteSheet.png" id="5_tvrp7"]
 [ext_resource type="Texture2D" uid="uid://cam6hqp8wq2l3" path="res://Assets/Sprites/Peanut - Sliding-Sheet.png" id="6_1klfb"]
-[ext_resource type="Script" uid="uid://b0jpgspcp8kkw" path="res://Scripts/shield.gd" id="10_0asfq"]
-[ext_resource type="Texture2D" uid="uid://dhadxuhqahd6n" path="res://Assets/Sprites/PeanutShield.png" id="10_lbtjm"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_e0rbb"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="13_q526i"]
 [ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="14_sdx7n"]
@@ -235,7 +233,7 @@ size = Vector2(10, 6)
 
 [node name="PlayerTest" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
-collision_mask = 38
+collision_mask = 102
 script = ExtResource("1_o60cq")
 
 [node name="Particles" type="Node2D" parent="." unique_id=935651078]
@@ -407,15 +405,6 @@ one_shot = true
 [node name="SpawnTimer" type="Timer" parent="Timers" unique_id=2089353797]
 wait_time = 0.05
 one_shot = true
-
-[node name="Shield" type="Node2D" parent="." unique_id=1929917957]
-visible = false
-position = Vector2(0, -7)
-script = ExtResource("10_0asfq")
-
-[node name="Sprite2D" type="Sprite2D" parent="Shield" unique_id=67568641]
-position = Vector2(1, -18)
-texture = ExtResource("10_lbtjm")
 
 [connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]

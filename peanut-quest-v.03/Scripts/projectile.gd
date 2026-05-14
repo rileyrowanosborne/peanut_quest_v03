@@ -3,7 +3,6 @@ extends Area2D
 
 var invul : bool = true
 
-@onready var invul_timer: Timer = $InvulTimer
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var ray_cast_2d_2: RayCast2D = $RayCast2D2
@@ -13,6 +12,9 @@ var invul : bool = true
 @onready var ray_cast_2d_6: RayCast2D = $RayCast2D6
 @onready var ray_cast_2d_7: RayCast2D = $RayCast2D7
 @onready var ray_cast_2d_8: RayCast2D = $RayCast2D8
+
+
+@onready var invul_timer: Timer = $InvulTimer
 
 
 
@@ -34,10 +36,14 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.has_method("take_damage"):
 			body.take_damage(global_position)
 			get_parent().queue_free()
+	if body.is_in_group("enemy") and not invul:
+		if body.has_method("take_damage"):
+			body.take_damage(global_position)
+			get_parent().queue_free()
 
 
 func world_collision():
-	if invul_timer.is_stopped():
+	if not invul:
 		if ray_cast_2d.is_colliding()\
 		or ray_cast_2d_2.is_colliding()\
 		or ray_cast_2d_3.is_colliding()\
@@ -46,7 +52,7 @@ func world_collision():
 		or ray_cast_2d_6.is_colliding()\
 		or ray_cast_2d_7.is_colliding()\
 		or ray_cast_2d_8.is_colliding():
-			queue_free()
+			get_parent().queue_free()
 
 
 func _on_invul_timer_timeout() -> void:

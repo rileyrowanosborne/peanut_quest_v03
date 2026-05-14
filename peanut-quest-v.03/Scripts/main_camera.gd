@@ -31,6 +31,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("aim_down"):
 		if not GameState.player_direction:
 			is_looking_down = true
+		
+		else:
+			is_looking_down = false
 	
 	if event.is_action_released("aim_down"):
 		is_looking_down = false

@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://e5m0812xik60"]
+
+[ext_resource type="Texture2D" uid="uid://c6rpy02l71aj5" path="res://Assets/Sprites/Heart-monculus-Beat-Sheet.png" id="1_lohef"]
+[ext_resource type="Script" uid="uid://cjmhxkpmbr7xf" path="res://Scripts/mid_heart_two.gd" id="1_u3137"]
+[ext_resource type="Texture2D" uid="uid://bmb82q4gmxjfu" path="res://Assets/Sprites/Heart-monculus-Idle-Sheet.png" id="2_u3137"]
+[ext_resource type="Texture2D" uid="uid://bvg0d4k8v7bdc" path="res://Assets/Sprites/Heart-monculus-IdleBlink-Sheet.png" id="3_4rn3f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgfil"]
+atlas = ExtResource("1_lohef")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkfnj"]
+atlas = ExtResource("1_lohef")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkbds"]
+atlas = ExtResource("1_lohef")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or8iy"]
+atlas = ExtResource("1_lohef")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my3wj"]
+atlas = ExtResource("1_lohef")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nguta"]
+atlas = ExtResource("1_lohef")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxm8j"]
+atlas = ExtResource("2_u3137")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fillh"]
+atlas = ExtResource("2_u3137")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chijx"]
+atlas = ExtResource("2_u3137")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s3mw"]
+atlas = ExtResource("2_u3137")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ias2c"]
+atlas = ExtResource("2_u3137")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5edtr"]
+atlas = ExtResource("2_u3137")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gclwm"]
+atlas = ExtResource("3_4rn3f")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luo6b"]
+atlas = ExtResource("3_4rn3f")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jixte"]
+atlas = ExtResource("3_4rn3f")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpe5p"]
+atlas = ExtResource("3_4rn3f")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdkd4"]
+atlas = ExtResource("3_4rn3f")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iek47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgfil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkfnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkbds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or8iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my3wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nguta")
+}],
+"loop": false,
+"name": &"Beat",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxm8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fillh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chijx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s3mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ias2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5edtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxm8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gclwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luo6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jixte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpe5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdkd4")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lohef"]
+radius = 13.0
+height = 38.0
+
+[node name="MidHeartTwo" type="CharacterBody2D" unique_id=722759973]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_u3137")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=4702372]
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_iek47")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.69163716
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=996144633]
+visible = false
+position = Vector2(0, -19)
+shape = SubResource("CapsuleShape2D_lohef")

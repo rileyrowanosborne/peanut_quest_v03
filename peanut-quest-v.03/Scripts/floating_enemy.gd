@@ -47,7 +47,6 @@ func take_damage(attack_dir : Vector2):
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
 	
 	owner.current_health -= 1
-	GameState.freeze_frame(.5,.4)
 	
 	
 	
