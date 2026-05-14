@@ -2,18 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://blm277oylwm5h" path="res://Assets/Sprites/LilHeart1-Idle-Sheet.png" id="1_lnglm"]
 [ext_resource type="Script" uid="uid://ck0dk4gxcmphp" path="res://Scripts/floating_enemy.gd" id="1_r7tau"]
+[ext_resource type="PackedScene" uid="uid://r2ylrtqkw4bw" path="res://Scenes/death_blood_spurt.tscn" id="2_v17bt"]
+[ext_resource type="Script" uid="uid://ckda6cxhgnnb6" path="res://Scripts/chomp_range.gd" id="3_13iji"]
+[ext_resource type="Texture2D" uid="uid://cua3pdm5kdvh0" path="res://Assets/Sprites/LilHeart1-InRange-Sheet.png" id="3_ltvrl"]
+[ext_resource type="PackedScene" uid="uid://cb26vgl3memhx" path="res://Scenes/blood_spurt.tscn" id="4_o1xop"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_864bc"]
+atlas = ExtResource("3_ltvrl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8qhg"]
+atlas = ExtResource("3_ltvrl")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7tau"]
 atlas = ExtResource("1_lnglm")
 region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13iji"]
-atlas = ExtResource("1_lnglm")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1xop"]
-atlas = ExtResource("1_lnglm")
-region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v17bt"]
 atlas = ExtResource("1_lnglm")
@@ -23,36 +27,59 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_864bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8qhg")
+}],
+"loop": true,
+"name": &"InRange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_r7tau")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_13iji")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o1xop")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v17bt")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"OutRange",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lnglm"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7tau"]
+radius = 30.0
+
 [node name="LilHeartOne" type="CharacterBody2D" unique_id=1870179522]
 collision_layer = 32
-collision_mask = 22
+collision_mask = 4
 script = ExtResource("1_r7tau")
+blood_spurt_scene = ExtResource("2_v17bt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=798551390]
+position = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_ltvrl")
-animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.92925227
+animation = &"OutRange"
+autoplay = "OutRange"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1762971701]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_lnglm")
+
+[node name="ChompRange" type="Area2D" parent="." unique_id=606261336]
+script = ExtResource("3_13iji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChompRange" unique_id=954994878]
+visible = false
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_r7tau")
+
+[node name="BloodSpurt" parent="." unique_id=243127032 instance=ExtResource("4_o1xop")]
+
+[connection signal="body_entered" from="ChompRange" to="ChompRange" method="_on_body_entered"]
+[connection signal="body_exited" from="ChompRange" to="ChompRange" method="_on_body_exited"]

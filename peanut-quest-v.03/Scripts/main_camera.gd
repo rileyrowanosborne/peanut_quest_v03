@@ -18,6 +18,7 @@ var is_looking_down : bool = false
 @export var is_following_player : bool = false
 @export var camera_zoom : Vector2 = Vector2(3.5,3.5)
 
+var controller_active: bool
 
 
 func _ready() -> void:
@@ -26,10 +27,15 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("move_down") and GameState.player_is_on_ground and GameState.player_direction == 0:
-		await get_tree().create_timer(.5).timeout
-		is_looking_down = true
-		
+	
+	if event.is_action_pressed("aim_down"):
+		if not GameState.player_direction:
+			is_looking_down = true
+	
+	if event.is_action_released("aim_down"):
+		is_looking_down = false
+	
+
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,10 +51,7 @@ func _process(delta: float) -> void:
 			elif camera_offset_x < neutral_camera_x:
 				camera_offset_x += 1
 		
-		
-		if not Input.is_action_pressed("move_down"):
-			is_looking_down = false
-		
+	
 		
 		if is_looking_down:
 			if camera_offset_y > max_camera_y:

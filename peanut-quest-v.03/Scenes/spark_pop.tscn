@@ -54,6 +54,7 @@ animations = [{
 }]
 
 [node name="SparkPop" type="AnimatedSprite2D" unique_id=296590692]
+z_index = 10
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ypfnu")
 autoplay = "default"

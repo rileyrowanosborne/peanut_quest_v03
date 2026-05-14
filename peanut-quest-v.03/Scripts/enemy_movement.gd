@@ -18,6 +18,10 @@ extends CharacterBody2D
 @onready var right_hit_box: Area2D = $RightHitBox
 
 
+@export var spark_scene : PackedScene
+@onready var lil_heart_one: CharacterBody2D = $LilHeartOne
+@onready var heart_string: Line2D = $HeartString
+
 var speed : float = 50
 var current_direction : int
 @export var current_health : int = 3
@@ -33,7 +37,8 @@ enum movement_states {
 	r_walking,
 	l_walking,
 	r_attacking,
-	l_attacking
+	l_attacking,
+	dead
 }
 
 var current_state : movement_states
@@ -49,8 +54,10 @@ func _ready() -> void:
 	direction_cooldown.start()
 	attack_timer.start()
 
+
 func _process(delta: float) -> void:
 	
+	heart_string.points = [to_local(global_position), to_local(lil_heart_one.global_position)]
 	
 	if current_direction == -1:
 		last_dir = -1
@@ -69,25 +76,28 @@ func _process(delta: float) -> void:
 	elif current_direction > 0:
 		animated_sprite_2d.flip_h = false
 	
-	if is_attacking:
-		if current_direction == -1:
-			current_state = movement_states.l_attacking
+	if current_health > 0:
+		
+		if is_attacking:
+			if current_direction == -1:
+				current_state = movement_states.l_attacking
 
-		elif current_direction == 1:
-			current_state = movement_states.r_attacking
-	else:
-		if current_direction == -1:
-			current_state = movement_states.l_walking
-			
-		elif current_direction == 1:
-			current_state = movement_states.r_walking
+			elif current_direction == 1:
+				current_state = movement_states.r_attacking
 		else:
-			if current_direction == 0:
-				if last_dir == -1:
-					current_state = movement_states.l_idle
-				elif last_dir == 1:
-					current_state = movement_states.r_idle
-
+			if current_direction == -1:
+				current_state = movement_states.l_walking
+				
+			elif current_direction == 1:
+				current_state = movement_states.r_walking
+			else:
+				if current_direction == 0:
+					if last_dir == -1:
+						current_state = movement_states.l_idle
+					elif last_dir == 1:
+						current_state = movement_states.r_idle
+	else:
+		current_state = movement_states.dead
 
 	match current_state:
 		
@@ -121,6 +131,10 @@ func _process(delta: float) -> void:
 			animation_player.play("RightAttack")
 			right_slash.play("Slash")
 			right_hit_box.monitoring = true
+		
+		movement_states.dead:
+			speed = 0
+			animated_sprite_2d.play("Spinning")
 
 	
 	
@@ -166,4 +180,19 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		left_hit_box.monitoring = false
 		is_attacking = false
 		attack_cooldown.start()
-		
+	
+
+func die():
+	heart_string.hide()
+	velocity.y = -150
+	await get_tree().create_timer(.6).timeout
+	spawn_spark(global_position)
+	await get_tree().create_timer(.5).timeout
+	queue_free()
+
+
+func spawn_spark(world_location : Vector2):
+	if spark_scene:
+		var spark_instance = spark_scene.instantiate()
+		get_tree().current_scene.add_child(spark_instance)
+		spark_instance.global_position = world_location

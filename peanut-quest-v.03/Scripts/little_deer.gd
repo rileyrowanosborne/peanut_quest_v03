@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 
-var speed : float = 50
+var speed : float = 20
 var current_direction : int
 
 @onready var direction_cooldown: Timer = $DirectionCooldown

@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://dbbjlsbcpyj3l"]
+
+[ext_resource type="Texture2D" uid="uid://p0x13fpoip16" path="res://Assets/Sprites/MidEyeBlinking-Sheet.png" id="1_urosa"]
+[ext_resource type="Script" uid="uid://belpvdecngk1w" path="res://Scripts/mid_heart_one.gd" id="1_yqk7q"]
+[ext_resource type="PackedScene" uid="uid://22jawyldipx4" path="res://Scenes/projectile_launcher.tscn" id="3_ji2er"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqk7q"]
+atlas = ExtResource("1_urosa")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji2er"]
+atlas = ExtResource("1_urosa")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da1dg"]
+atlas = ExtResource("1_urosa")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj4wb"]
+atlas = ExtResource("1_urosa")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3jho"]
+atlas = ExtResource("1_urosa")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq4fh"]
+atlas = ExtResource("1_urosa")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3lgu1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji2er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da1dg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj4wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3jho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq4fh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_urosa"]
+radius = 15.0
+
+[node name="MidHeartOne" type="CharacterBody2D" unique_id=1833482725]
+collision_layer = 32
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_yqk7q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2059091274]
+sprite_frames = SubResource("SpriteFrames_3lgu1")
+frame_progress = 0.6915114
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=794214418]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_urosa")
+
+[node name="ProjectileLauncher" parent="." unique_id=110929225 instance=ExtResource("3_ji2er")]
+aiming_direction = Vector2(1, 1)
+
+[node name="ProjectileLauncher2" parent="." unique_id=1908461673 instance=ExtResource("3_ji2er")]
+aiming_direction = Vector2(0, 1)
+
+[node name="ProjectileLauncher3" parent="." unique_id=41015906 instance=ExtResource("3_ji2er")]
+aiming_direction = Vector2(-1, 1)

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cb26vgl3memhx"]
+
+[ext_resource type="Script" uid="uid://b4de11i27vlue" path="res://Scripts/blood_spurt.gd" id="2_fwu0i"]
+
+[sub_resource type="Curve" id="Curve_fwu0i"]
+_data = [Vector2(0.0064516217, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.123595595), -4.591417, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_pgg28"]
+offsets = PackedFloat32Array(0, 0.51937985)
+colors = PackedColorArray(0.45490196, 0.15294118, 0.101960786, 1, 0.7921569, 0.2627451, 0.1764706, 1)
+
+[node name="BloodSpurt" type="Node2D" unique_id=243127032]
+script = ExtResource("2_fwu0i")
+
+[node name="BloodParticles" type="CPUParticles2D" parent="." unique_id=250968333]
+emitting = false
+lifetime = 0.19
+one_shot = true
+explosiveness = 1.0
+randomness = 0.45
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 107.14
+initial_velocity_max = 192.85
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_fwu0i")
+color_ramp = SubResource("Gradient_pgg28")

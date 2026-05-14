@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dak4uid276uq3"]
+
+[ext_resource type="Texture2D" uid="uid://dawkw6ttpocqp" path="res://Assets/Sprites/BloodProjectile1.png" id="1_f8cdk"]
+[ext_resource type="Script" uid="uid://bkhwd7e5qay0r" path="res://Scripts/projectile.gd" id="1_yr2qt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f8cdk"]
+radius = 8.0
+
+[node name="Projectile" type="Area2D" unique_id=448737671]
+collision_layer = 0
+script = ExtResource("1_yr2qt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=826554903]
+shape = SubResource("CircleShape2D_f8cdk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=200105037]
+texture = ExtResource("1_f8cdk")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=258285956]
+target_position = Vector2(0, 5)
+collision_mask = 4
+
+[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1978345239]
+target_position = Vector2(3, 3)
+collision_mask = 4
+
+[node name="RayCast2D3" type="RayCast2D" parent="." unique_id=781547172]
+target_position = Vector2(5, 0)
+collision_mask = 4
+
+[node name="RayCast2D4" type="RayCast2D" parent="." unique_id=1120088539]
+target_position = Vector2(3, -3)
+collision_mask = 4
+
+[node name="RayCast2D5" type="RayCast2D" parent="." unique_id=772820946]
+target_position = Vector2(0, -5)
+collision_mask = 4
+
+[node name="RayCast2D6" type="RayCast2D" parent="." unique_id=1937116042]
+target_position = Vector2(-3, -3)
+collision_mask = 4
+
+[node name="RayCast2D7" type="RayCast2D" parent="." unique_id=1755475184]
+position = Vector2(3, 0)
+target_position = Vector2(-8, 0)
+collision_mask = 4
+
+[node name="RayCast2D8" type="RayCast2D" parent="." unique_id=1682811054]
+target_position = Vector2(-4, 3)
+collision_mask = 4
+
+[node name="InvulTimer" type="Timer" parent="." unique_id=1303535271]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="InvulTimer" to="." method="_on_invul_timer_timeout"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_fp88v"]
 [ext_resource type="Texture2D" uid="uid://ckehudllllgbs" path="res://Assets/Sprites/MutantPeanut1 - Idle-Sheet.png" id="2_fp88v"]
+[ext_resource type="PackedScene" uid="uid://mbgctqh60kcs" path="res://Scenes/spark_pop.tscn" id="2_jbh1m"]
 [ext_resource type="Texture2D" uid="uid://4tquif4jvn7s" path="res://Assets/Sprites/CharactersSheet.png" id="4_fp88v"]
 [ext_resource type="Texture2D" uid="uid://dxwtl1kuurbrp" path="res://Assets/Sprites/MutantPeanut1 - Walking-Sheet.png" id="4_ndkt0"]
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="5_ndkt0"]
@@ -349,8 +350,15 @@ _data = {
 [node name="Mutant Peanut 1" type="CharacterBody2D" unique_id=691855468]
 z_index = 1
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_fp88v")
+spark_scene = ExtResource("2_jbh1m")
+
+[node name="HeartString" type="Line2D" parent="." unique_id=1161146314]
+z_as_relative = false
+position = Vector2(0, -7)
+width = 1.0
+default_color = Color(0.7921569, 0.2627451, 0.1764706, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131323402]
 position = Vector2(0, -7)

@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://r2ylrtqkw4bw"]
+
+[ext_resource type="Script" uid="uid://cgw6sbtce02ki" path="res://Scripts/death_blood_spurt.gd" id="1_u6yww"]
+[ext_resource type="Texture2D" uid="uid://dajy8yyx5vlwr" path="res://Assets/Sprites/BloodSpurtAbsorb-Sheet.png" id="2_cp7fs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltvrl"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_864bc"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8qhg"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrftk"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdx3e"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0bje"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdn2s"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c1c6"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8lfv"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvbtp"]
+atlas = ExtResource("2_cp7fs")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dj4q7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltvrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_864bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8qhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrftk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdx3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0bje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdn2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c1c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8lfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvbtp")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="DeathBloodSpurt" type="Node2D" unique_id=2036347134]
+script = ExtResource("1_u6yww")
+
+[node name="BloodSpurt" type="AnimatedSprite2D" parent="." unique_id=2114919895]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_dj4q7")
+
+[connection signal="animation_finished" from="BloodSpurt" to="." method="_on_blood_spurt_animation_finished"]
