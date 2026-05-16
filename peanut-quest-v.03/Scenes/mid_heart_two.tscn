@@ -4,11 +4,6 @@
 [ext_resource type="Script" uid="uid://cjmhxkpmbr7xf" path="res://Scripts/mid_heart_two.gd" id="1_u3137"]
 [ext_resource type="Texture2D" uid="uid://bmb82q4gmxjfu" path="res://Assets/Sprites/Heart-monculus-Idle-Sheet.png" id="2_u3137"]
 [ext_resource type="Texture2D" uid="uid://bvg0d4k8v7bdc" path="res://Assets/Sprites/Heart-monculus-IdleBlink-Sheet.png" id="3_4rn3f"]
-[ext_resource type="Texture2D" uid="uid://c0734pprprsd8" path="res://Assets/Sprites/Laser1.png" id="5_mkbds"]
-[ext_resource type="Script" uid="uid://c2vqq1c3gvg28" path="res://Scripts/laser_beam.gd" id="5_or8iy"]
-[ext_resource type="Texture2D" uid="uid://b1070r472fvmi" path="res://Assets/Sprites/Laser2.png" id="6_or8iy"]
-[ext_resource type="Texture2D" uid="uid://cpfdeogakk2jx" path="res://Assets/Sprites/Laser3.png" id="7_my3wj"]
-[ext_resource type="Texture2D" uid="uid://b3tcoomnome4v" path="res://Assets/Sprites/Laser4.png" id="8_nguta"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgfil"]
 atlas = ExtResource("1_lohef")
@@ -149,17 +144,6 @@ animations = [{
 radius = 13.0
 height = 38.0
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_gxm8j"]
-frames = 4
-frame_0/texture = ExtResource("5_mkbds")
-frame_0/duration = 0.2
-frame_1/texture = ExtResource("6_or8iy")
-frame_1/duration = 0.2
-frame_2/texture = ExtResource("7_my3wj")
-frame_2/duration = 0.2
-frame_3/texture = ExtResource("8_nguta")
-frame_3/duration = 0.2
-
 [node name="MidHeartTwo" type="CharacterBody2D" unique_id=722759973]
 collision_layer = 2
 collision_mask = 4
@@ -176,26 +160,3 @@ frame_progress = 0.69163716
 visible = false
 position = Vector2(0, -19)
 shape = SubResource("CapsuleShape2D_lohef")
-
-[node name="LaserBeam" type="Node2D" parent="." unique_id=231808653]
-script = ExtResource("5_or8iy")
-
-[node name="RayCastRight" type="RayCast2D" parent="LaserBeam" unique_id=1066838240]
-position = Vector2(0, -27)
-target_position = Vector2(200, 0)
-
-[node name="RightLine" type="Line2D" parent="LaserBeam/RayCastRight" unique_id=1850725561]
-texture = SubResource("AnimatedTexture_gxm8j")
-texture_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="RayCast2DLeft" type="RayCast2D" parent="LaserBeam" unique_id=998049796]
-position = Vector2(0, -27)
-target_position = Vector2(-200, 0)
-
-[node name="LeftLine" type="Line2D" parent="LaserBeam/RayCast2DLeft" unique_id=1225262854]
-texture = SubResource("AnimatedTexture_gxm8j")
-texture_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2

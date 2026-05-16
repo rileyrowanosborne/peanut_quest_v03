@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cgq1kd1gr7rfi"]
+
+[ext_resource type="Script" uid="uid://c2vqq1c3gvg28" path="res://Scripts/laser_beam.gd" id="1_ot8dx"]
+[ext_resource type="Texture2D" uid="uid://n88dx0ts0esm" path="res://Assets/Sprites/LaserBeam-Large-Sheet.png" id="2_moj7p"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/hit_box.tscn" id="3_io348"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io348"]
+atlas = ExtResource("2_moj7p")
+region = Rect2(0, 0, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swr2m"]
+atlas = ExtResource("2_moj7p")
+region = Rect2(512, 0, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot8dx"]
+atlas = ExtResource("2_moj7p")
+region = Rect2(1024, 0, 512, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhstf"]
+atlas = ExtResource("2_moj7p")
+region = Rect2(1536, 0, 512, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7cuw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io348")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swr2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot8dx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhstf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swr2m"]
+size = Vector2(511, 16)
+
+[node name="LaserBeam" type="Node2D" unique_id=64217272]
+script = ExtResource("1_ot8dx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1130932850]
+sprite_frames = SubResource("SpriteFrames_d7cuw")
+autoplay = "default"
+
+[node name="HitBox" parent="." unique_id=1323420167 instance=ExtResource("3_io348")]
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1574308266]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_swr2m")

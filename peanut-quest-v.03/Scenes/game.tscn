@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dbbjlsbcpyj3l" path="res://Scenes/mid_heart_one.tscn" id="9_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://e5m0812xik60" path="res://Scenes/mid_heart_two.tscn" id="10_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="11_o5yvi"]
+[ext_resource type="PackedScene" uid="uid://cgq1kd1gr7rfi" path="res://Scenes/laser_beam.tscn" id="11_rku1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("5_wowpa")
@@ -504,3 +505,6 @@ position = Vector2(315, -101)
 
 [node name="MidHeartTwo" parent="." unique_id=722759973 instance=ExtResource("10_ldgsr")]
 position = Vector2(-210, -81)
+
+[node name="LaserBeam" parent="." unique_id=64217272 instance=ExtResource("11_rku1e")]
+position = Vector2(299, -130)
