@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var wall_coyote_timer: Timer = $Timers/WallCoyoteTimer
 @onready var wall_slide_wait_timer: Timer = $Timers/WallSlideWaitTimer
 @onready var spawn_timer: Timer = $Timers/SpawnTimer
+@onready var dash_timer: Timer = $Timers/DashTimer
 
 
 
@@ -48,6 +49,7 @@ var current_speed : float
 
 var normal_speed : float = 200.0
 var slide_speed : float = 400.0
+var dash_power : float = 400.0
 
 var wall_slide_speed : float = .6
 
@@ -63,6 +65,10 @@ var jump_cancelled : bool = false
 
 var is_sliding : bool = false
 var is_slide_jumping : bool = false
+
+var is_dashing : bool = false
+var dash_dir : float = 1.0
+var can_dash : bool = true
 
 var wall_jump_direction : float
 
@@ -88,7 +94,7 @@ func _ready() -> void:
 	GameState.player_is_wall_sliding = false
 	GameState.player_can_attack = true
 	GameState.player_is_attacking = false
-	GameState.last_dir = 1
+	
 	
 	if RoomChangeGlobal.activate:
 		global_position = RoomChangeGlobal.player_pos
@@ -101,36 +107,40 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
+	
 	GameState.player_is_sliding = is_sliding
 	GameState.player_location = global_position
 	GameState.player_direction = direction
 	GameState.player_is_on_ground = is_on_floor()
-	
-	if GameState.player_direction == -1:
-		GameState.last_dir = -1
-	if GameState.player_direction == 1:
-		GameState.last_dir = 1
 
 	if not GameState.is_being_hit:
 		if GameState.player_is_wall_sliding:
 			set_animation("Wall Sliding")
 		else:
-			if direction:
-				if direction < 0:
-					animated_sprite_2d.flip_h = true
-				elif direction > 0:
-					animated_sprite_2d.flip_h = false
-				if is_on_floor():
+			if is_on_floor():
+				if direction:
 					if is_sliding:
 						set_animation("Ground Sliding")
 					else:
 						set_animation("Walking")
 				else:
-					set_animation("Idle")
+					if is_sliding:
+						set_animation("Ground Sliding")
+					else:
+						set_animation("Idle")
 			else:
-				set_animation("Idle")
+				if is_dashing:
+					set_animation("Dashing")
+				else:
+					set_animation("Idle")
 	else:
 		set_animation("Crack")
+	
+	if not is_dashing and not is_sliding:
+		if direction < 0:
+			animated_sprite_2d.flip_h = true
+		elif direction > 0:
+			animated_sprite_2d.flip_h = false
 	
 	
 	if not is_on_floor():
@@ -147,6 +157,7 @@ func _process(delta: float) -> void:
 			GameState.player_is_wall_sliding = false
 	else:
 		GameState.player_is_wall_sliding = false 
+	
 
 
 
@@ -155,6 +166,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		is_sliding = false
+	else:
+		is_dashing = false
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and can_jump:
@@ -179,8 +192,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jump_cancelled = false
 		is_slide_jumping = false
+		can_dash = true
 	
-
 
 #Movement
 	direction = Input.get_axis("move_left", "move_right")
@@ -196,23 +209,30 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, current_speed * air_decceleration)
 	
+	if direction:
+		if direction < 0:
+			GameState.last_dir = -1
+		if direction > 0:
+			GameState.last_dir = 1
+		
 
 #Wallslide logic
 	if GameState.player_is_wall_sliding and not is_on_floor():
 		if wall_slide_wait_timer.is_stopped():
 			velocity.y *= wall_slide_speed
 	
-	
+	if is_dashing:
+		velocity.x = dash_power * dash_dir
+		velocity.y *= .9
 	
 	if is_sliding:
-		current_speed = slide_speed
+		velocity.x = slide_speed * dash_dir
 		sliding_collision_shape.disabled = false
 		standing_collision_shape.disabled = true
 		
 		if ray_cast_up.is_colliding():
 			can_jump = false
 	else:
-		current_speed = normal_speed
 		sliding_collision_shape.disabled = true
 		standing_collision_shape.disabled = false
 	
@@ -229,15 +249,24 @@ func _physics_process(delta: float) -> void:
 	
 	if was_on_wall and not is_on_wall():
 		wall_coyote_timer.start()
+		
 	
  
 
 
 func _input(event: InputEvent) -> void:
-	if is_on_floor() and not is_sliding:
-		if event.is_action_pressed("Slide") and direction != 0:
-			is_sliding = true
-			slide_timer.start()
+
+	if event.is_action_pressed("Slide"):
+		dash_dir = GameState.last_dir
+		if is_on_floor():
+			if not is_sliding:
+				is_sliding = true
+				slide_timer.start()
+		else:
+			if can_dash:
+				dash_timer.start()
+				is_dashing = true
+
 	
 	if is_sliding and event.is_action_pressed("jump") and !ray_cast_up.is_colliding():
 		GameState.slide_blocking_attack = false
@@ -306,3 +335,7 @@ func take_damage(attack_dir : Vector2):
 
 func die():
 	queue_free()
+
+
+func _on_dash_timer_timeout() -> void:
+	is_dashing = false
