@@ -2,8 +2,109 @@
 
 [ext_resource type="Texture2D" uid="uid://c6rpy02l71aj5" path="res://Assets/Sprites/Heart-monculus-Beat-Sheet.png" id="1_lohef"]
 [ext_resource type="Script" uid="uid://cjmhxkpmbr7xf" path="res://Scripts/mid_heart_two.gd" id="1_u3137"]
+[ext_resource type="Texture2D" uid="uid://fq8ivtq6abuo" path="res://Assets/Sprites/Heart-Splosion-Sheet.png" id="2_4rn3f"]
+[ext_resource type="Script" uid="uid://gsr2yq5wnob6" path="res://Scripts/hit_box.gd" id="2_rgfil"]
 [ext_resource type="Texture2D" uid="uid://bmb82q4gmxjfu" path="res://Assets/Sprites/Heart-monculus-Idle-Sheet.png" id="2_u3137"]
 [ext_resource type="Texture2D" uid="uid://bvg0d4k8v7bdc" path="res://Assets/Sprites/Heart-monculus-IdleBlink-Sheet.png" id="3_4rn3f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh1wk"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iek47"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q7c5"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5lh6"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsf4m"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3wws"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aye5c"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iib6x"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yeo4"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvo86"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43n70"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6utv6"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8mtj"]
+atlas = ExtResource("2_4rn3f")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1aipr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh1wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iek47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q7c5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5lh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsf4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3wws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aye5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iib6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yeo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvo86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43n70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6utv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8mtj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgfil"]
 atlas = ExtResource("1_lohef")
@@ -141,7 +242,6 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lohef"]
-radius = 13.0
 height = 38.0
 
 [node name="MidHeartTwo" type="CharacterBody2D" unique_id=722759973]
@@ -149,14 +249,40 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_u3137")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=4702372]
+[node name="HeartSplosion" type="Node2D" parent="." unique_id=34667031]
+
+[node name="HitBox" type="Area2D" parent="HeartSplosion" unique_id=736778260]
+collision_layer = 0
+script = ExtResource("2_rgfil")
+
+[node name="SplosionCollisionShape" type="CollisionPolygon2D" parent="HeartSplosion/HitBox" unique_id=627510938]
+position = Vector2(-1, 2)
+polygon = PackedVector2Array(-43, -2, -43, -44, -31, -76, 1, -87, 34, -76, 45, -43, 45, -2)
+disabled = true
+
+[node name="SplosionAnim" type="AnimatedSprite2D" parent="HeartSplosion" unique_id=816884535]
+position = Vector2(0, -63)
+sprite_frames = SubResource("SpriteFrames_1aipr")
+frame = 12
+frame_progress = 1.0
+
+[node name="AttackTimer" type="Timer" parent="HeartSplosion" unique_id=1181577916]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="HeartAnim" type="AnimatedSprite2D" parent="." unique_id=4702372]
 position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_iek47")
-animation = &"Idle"
+animation = &"Beat"
 autoplay = "Idle"
-frame_progress = 0.69163716
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=996144633]
-visible = false
 position = Vector2(0, -19)
 shape = SubResource("CapsuleShape2D_lohef")
+
+[connection signal="body_entered" from="HeartSplosion/HitBox" to="HeartSplosion/HitBox" method="_on_body_entered"]
+[connection signal="animation_finished" from="HeartSplosion/SplosionAnim" to="." method="_on_splosion_anim_animation_finished"]
+[connection signal="timeout" from="HeartSplosion/AttackTimer" to="." method="_on_attack_timer_timeout"]

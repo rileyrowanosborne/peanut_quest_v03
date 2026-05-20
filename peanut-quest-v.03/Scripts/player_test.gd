@@ -42,6 +42,7 @@ extends CharacterBody2D
 
 @export var spark_scene : PackedScene
 
+const HEALTHY_SHELLED_PEANUT = preload("uid://dgqsh7lws08ks")
 
 
 
@@ -327,13 +328,18 @@ func take_damage(attack_dir : Vector2):
 			GameState.current_health -= 1
 			GlobalSignalBus.emit_signal("health_check")
 			if GameState.current_health < 1:
-				GameState.freeze_frame(.1, .4)
-				GlobalSignalBus.emit_signal("shelled_peanut_died")
 				die()
-	
+
+func take_laser_damage():
+	GameState.current_health = 0
+	GlobalSignalBus.emit_signal("health_check")
+	die()
+
 
 
 func die():
+	GameState.freeze_frame(.1, .4)
+	GlobalSignalBus.emit_signal("shelled_peanut_died")
 	queue_free()
 
 
