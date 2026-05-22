@@ -21,6 +21,7 @@ extends CharacterBody2D
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var wall_slide_wait_timer: Timer = $WallSlideWaitTimer
 
+@onready var absorb_particle_effect: CPUParticles2D = $AbsorbParticleEffect
 
 
 @export var spark_scene : PackedScene
@@ -54,6 +55,8 @@ var neutral_camera_x : int = 0
 var direction : float
 
 var knockback_dir : Vector2
+
+var alive : bool = true
 	
 
 
@@ -61,7 +64,10 @@ func _ready() -> void:
 	
 	add_to_group("player")
 	GlobalSignalBus.emit_signal("health_check")
+	GlobalSignalBus.connect("essence_collect", collect)
+	alive = true
 	
+	GlobalSignalBus.connect("reshell_peanut", reshell)
 	
 	
 	velocity = GameState.knockback_direction * 500
@@ -75,19 +81,21 @@ func _process(delta: float) -> void:
 	GameState.player_direction = direction
 	GameState.player_location = global_position
 	
-	
-	if GameState.player_is_wall_sliding:
-		set_animation("Wall Sliding")
-	else:
-		if direction:
-			if turn_timer.is_stopped():
-				turn_timer.start()
-			if is_on_floor():
-				set_animation("Walking")
+	if alive:
+		if GameState.player_is_wall_sliding:
+			set_animation("Wall Sliding")
+		else:
+			if direction:
+				if turn_timer.is_stopped():
+					turn_timer.start()
+				if is_on_floor():
+					set_animation("Walking")
+				else:
+					set_animation("Idle")
 			else:
 				set_animation("Idle")
-		else:
-			set_animation("Idle")
+	else:
+		set_animation("Death")
 	
 	if not is_on_floor():
 		if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()):
@@ -168,8 +176,7 @@ func _physics_process(delta: float) -> void:
 		wall_coyote_timer.start()
 	
  
-	
-	
+
 
 func set_animation(anim : String):
 	if animated_sprite_2d.animation != anim:
@@ -195,12 +202,34 @@ func take_damage(attack_dir : Vector2):
 	if not GameState.is_invul:
 		rotate(atan2(knockback_dir.x, knockback_dir.y))
 		velocity = knockback_dir * 2000
+		die()
+
+
+func die():
+	GameState.freeze_frame(.1, .4)
+	GlobalSignalBus.emit_signal("respawn_peanut")
+	queue_free()
+
+func reshell():
+	queue_free()
+
+
+func take_laser_damage():
+	if not GameState.is_invul:
+		alive = false
+		velocity.y = jump_velocity
 		GameState.freeze_frame(.1, .4)
 		await get_tree().create_timer(.4).timeout
-		
+
 		GlobalSignalBus.emit_signal("respawn_peanut")
 		queue_free()
-
+	
+	
 
 func _on_spawn_timer_timeout() -> void:
 	poof.emitting = true
+
+
+
+func collect():
+	absorb_particle_effect.emitting = true

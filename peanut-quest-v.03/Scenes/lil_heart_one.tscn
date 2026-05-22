@@ -54,6 +54,10 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7tau"]
 radius = 30.0
 
+[sub_resource type="Gradient" id="Gradient_ltvrl"]
+offsets = PackedFloat32Array(0.7311828, 1)
+colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 1, 1, 0)
+
 [node name="LilHeartOne" type="CharacterBody2D" unique_id=1870179522]
 collision_layer = 32
 collision_mask = 4
@@ -61,7 +65,7 @@ script = ExtResource("1_r7tau")
 blood_spurt_scene = ExtResource("2_v17bt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=798551390]
-position = Vector2(1, -1)
+position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_ltvrl")
 animation = &"OutRange"
 autoplay = "OutRange"
@@ -80,6 +84,22 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_r7tau")
 
 [node name="BloodSpurt" parent="." unique_id=243127032 instance=ExtResource("4_o1xop")]
+
+[node name="AbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=224110098]
+position = Vector2(0, -7)
+emitting = false
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_ltvrl")
 
 [connection signal="body_entered" from="ChompRange" to="ChompRange" method="_on_body_entered"]
 [connection signal="body_exited" from="ChompRange" to="ChompRange" method="_on_body_exited"]

@@ -1,7 +1,7 @@
 extends Node
 
 var player_direction : float
-var last_dir : float
+var last_dir : float = 1.0
 
 var player_is_sliding  : bool
 
@@ -19,7 +19,7 @@ var current_swing_delay : float = .4
 
 var current_health : int
  
-var current_max_health : int = 3
+var current_max_health : int = 2
 
 
 var is_invul : bool
@@ -33,6 +33,13 @@ var slide_blocking_attack : bool = false
 
 
 var knockback_direction : Vector2
+
+var current_slow_down_power : float = .3
+var current_slow_down_length : float = 2.0
+
+var total_brain_essence : int = 0
+
+var first_load : bool = true
 
 
 func _ready() -> void:

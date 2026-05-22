@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://bmbok4ghbbxic"]
 
 [ext_resource type="Script" uid="uid://pnl613v220st" path="res://Scripts/player_test.gd" id="1_o60cq"]
+[ext_resource type="Texture2D" uid="uid://vcruqpwowjd3" path="res://Assets/Sprites/CircleZap-Sheet_2.png" id="3_o60cq"]
 [ext_resource type="SpriteFrames" uid="uid://dgqsh7lws08ks" path="res://Assets/Resources/healthy_shelled_peanut.tres" id="3_yi8xp"]
+[ext_resource type="Script" uid="uid://c3kydfwve6dfv" path="res://Scripts/peanut_anims.gd" id="4_j8edj"]
+[ext_resource type="Texture2D" uid="uid://bug2cu0ph6q4t" path="res://Assets/Sprites/SmallRing.png" id="6_wix4t"]
+[ext_resource type="Script" uid="uid://c7dur43lqefgu" path="res://Scripts/slow_down_time_bar.gd" id="7_5n1oj"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_e0rbb"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="13_q526i"]
 [ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="14_sdx7n"]
@@ -14,6 +18,102 @@ point_count = 2
 _data = [Vector2(0.0042918473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9021115, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_j8edj"]
+offsets = PackedFloat32Array(0.9032258, 1)
+colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbtjm"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0asfq"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve6vs"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dx66"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qki6r"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prfrf"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67lvd"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sduab"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvrp7"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1klfb"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy2dr"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3wa8"]
+atlas = ExtResource("3_o60cq")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlwpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbtjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0asfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ve6vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dx66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qki6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prfrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67lvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sduab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvrp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1klfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy2dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3wa8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(9, 13)
 
@@ -22,7 +122,7 @@ size = Vector2(10, 6)
 
 [node name="PlayerTest" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
-collision_mask = 102
+collision_mask = 294
 script = ExtResource("1_o60cq")
 
 [node name="Particles" type="Node2D" parent="." unique_id=935651078]
@@ -111,13 +211,35 @@ initial_velocity_max = 10.0
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_pu2lt")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
+[node name="AbsorbParticleEffect" type="CPUParticles2D" parent="Particles" unique_id=1397903387]
+position = Vector2(0, -7)
+emitting = false
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_j8edj")
+
+[node name="CircleZapAnim" type="AnimatedSprite2D" parent="Particles" unique_id=966449141]
+modulate = Color(0.90380466, 0.51707095, 0.94682246, 1)
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_hlwpc")
+frame = 11
+frame_progress = 1.0
+
+[node name="PeanutAnims" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("3_yi8xp")
-animation = &"Idle"
+animation = &"Wall Sliding"
 autoplay = "Idle"
-frame = 1
-frame_progress = 0.2853157
+script = ExtResource("4_j8edj")
 
 [node name="StandingCollisionShape" type="CollisionShape2D" parent="." unique_id=209413438]
 visible = false
@@ -202,7 +324,25 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=1838870689]
+
+[node name="SlowDownTimeBar" type="TextureProgressBar" parent="." unique_id=466373547]
+offset_left = -40.0
+offset_top = -46.0
+offset_right = 40.0
+offset_bottom = 34.0
+max_value = 2.0
+step = 0.05
+fill_mode = 4
+texture_progress = ExtResource("6_wix4t")
+script = ExtResource("7_5n1oj")
+
+[node name="SlowTimer" type="Timer" parent="SlowDownTimeBar" unique_id=1799413533]
+one_shot = true
+
 [connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]
+[connection signal="timeout" from="Timers/SlideCooldownTimer" to="." method="_on_slide_cooldown_timer_timeout"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]

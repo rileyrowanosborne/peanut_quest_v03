@@ -1,35 +1,31 @@
 [gd_scene format=3 uid="uid://cfhmdac4we1e4"]
 
 [ext_resource type="Script" uid="uid://chh5bp0ft4hyj" path="res://Scripts/naked_peanut.gd" id="1_qtl4q"]
-[ext_resource type="Texture2D" uid="uid://dsdx54vnywqcq" path="res://Assets/Sprites/16x16 Peanut - Death-Sheet.png" id="3_b3toe"]
+[ext_resource type="Texture2D" uid="uid://eufxu4qkildc" path="res://Assets/Sprites/PeanutOnFIre-Sheet.png" id="2_qtl4q"]
 [ext_resource type="Texture2D" uid="uid://cofmgesefps50" path="res://Assets/Sprites/NakedPeanut-Idle-Sheet.png" id="5_akt7d"]
 [ext_resource type="Texture2D" uid="uid://cei5r20t60j1q" path="res://Assets/Sprites/NakedPeanut-Walking-Sheet.png" id="6_doe4k"]
 [ext_resource type="Texture2D" uid="uid://cnteccohjwfgn" path="res://Assets/Sprites/NakedPeanut-Slide-Sheet.png" id="6_qtl4q"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="7_akt7d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
-atlas = ExtResource("3_b3toe")
+[sub_resource type="Gradient" id="Gradient_qtl4q"]
+offsets = PackedFloat32Array(0.9032258, 1)
+colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fl2a"]
+atlas = ExtResource("2_qtl4q")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
-atlas = ExtResource("3_b3toe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_soy88"]
+atlas = ExtResource("2_qtl4q")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
-atlas = ExtResource("3_b3toe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vab4"]
+atlas = ExtResource("2_qtl4q")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
-atlas = ExtResource("3_b3toe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxbf1"]
+atlas = ExtResource("2_qtl4q")
 region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
-atlas = ExtResource("3_b3toe")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
-atlas = ExtResource("3_b3toe")
-region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_we3bk"]
 atlas = ExtResource("5_akt7d")
@@ -67,24 +63,18 @@ region = Rect2(16, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8erm5")
+"texture": SubResource("AtlasTexture_0fl2a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f1ek2")
+"texture": SubResource("AtlasTexture_soy88")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tx1dd")
+"texture": SubResource("AtlasTexture_5vab4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gymyn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pu2lt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ukyrk")
+"texture": SubResource("AtlasTexture_cxbf1")
 }],
-"loop": false,
+"loop": true,
 "name": &"Death",
 "speed": 10.0
 }, {
@@ -137,13 +127,29 @@ point_count = 2
 
 [node name="Naked Peanut" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
-collision_mask = 14
+collision_mask = 430
 script = ExtResource("1_qtl4q")
+
+[node name="AbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=1841263796]
+position = Vector2(0, -7)
+emitting = false
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_qtl4q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"Wall Sliding"
+animation = &"Death"
 autoplay = "Idle"
 flip_h = true
 

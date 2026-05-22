@@ -20,5 +20,5 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action"):
 		if in_range:
 			if owner.has_method("take_damage"):
-				owner.take_damage(global_position)
+				owner.take_damage(GameState.player_location)
 		

@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://bmbok4ghbbxic"]
+
+[ext_resource type="Script" uid="uid://pnl613v220st" path="res://Scripts/player_test.gd" id="1_o60cq"]
+[ext_resource type="SpriteFrames" uid="uid://dgqsh7lws08ks" path="res://Assets/Resources/healthy_shelled_peanut.tres" id="3_yi8xp"]
+[ext_resource type="Texture2D" uid="uid://bug2cu0ph6q4t" path="res://Assets/Sprites/SmallRing.png" id="6_wix4t"]
+[ext_resource type="Script" uid="uid://c7dur43lqefgu" path="res://Scripts/slow_down_time_bar.gd" id="7_5n1oj"]
+[ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_e0rbb"]
+[ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="13_q526i"]
+[ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="14_sdx7n"]
+
+[sub_resource type="Curve" id="Curve_0asfq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.8684733, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pu2lt"]
+_data = [Vector2(0.0042918473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9021115, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
+size = Vector2(9, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8erm5"]
+size = Vector2(10, 6)
+
+[node name="PlayerTest" type="CharacterBody2D" unique_id=474886339]
+z_index = 5
+collision_mask = 102
+script = ExtResource("1_o60cq")
+
+[node name="Particles" type="Node2D" parent="." unique_id=935651078]
+
+[node name="crack_one" type="CPUParticles2D" parent="Particles" unique_id=1027871287]
+position = Vector2(5, -2)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_0asfq")
+color = Color(0, 0, 0, 1)
+
+[node name="crack_two" type="CPUParticles2D" parent="Particles" unique_id=1158122227]
+position = Vector2(-6, -4)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_0asfq")
+color = Color(0, 0, 0, 1)
+
+[node name="crack_three" type="CPUParticles2D" parent="Particles" unique_id=1433176282]
+position = Vector2(-4, -12)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_0asfq")
+color = Color(0, 0, 0, 1)
+
+[node name="crack_four" type="CPUParticles2D" parent="Particles" unique_id=801919525]
+position = Vector2(4, -12)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_0asfq")
+color = Color(0, 0, 0, 1)
+
+[node name="Poof" type="CPUParticles2D" parent="Particles" unique_id=1266647201]
+position = Vector2(0, -7)
+emitting = false
+texture = ExtResource("12_e0rbb")
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_pu2lt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1406106892]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("3_yi8xp")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 1
+frame_progress = 0.2853157
+
+[node name="StandingCollisionShape" type="CollisionShape2D" parent="." unique_id=209413438]
+visible = false
+position = Vector2(-0.5, -6.5)
+shape = SubResource("RectangleShape2D_3smsa")
+
+[node name="SlidingCollisionShape" type="CollisionShape2D" parent="." unique_id=45325646]
+visible = false
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_8erm5")
+
+[node name="RayCasts" type="Node2D" parent="." unique_id=1072300622]
+
+[node name="RayCastLeft" type="RayCast2D" parent="RayCasts" unique_id=1336583942]
+visible = false
+position = Vector2(0, -12)
+target_position = Vector2(-6, 0)
+collision_mask = 4
+
+[node name="RayCastLeft2" type="RayCast2D" parent="RayCasts" unique_id=538324401]
+visible = false
+position = Vector2(0, -2)
+target_position = Vector2(-6, 0)
+collision_mask = 4
+
+[node name="RayCastRight" type="RayCast2D" parent="RayCasts" unique_id=2082616257]
+visible = false
+position = Vector2(0, -2)
+target_position = Vector2(5, 0)
+collision_mask = 4
+
+[node name="RayCastRight2" type="RayCast2D" parent="RayCasts" unique_id=1939521829]
+visible = false
+position = Vector2(0, -12)
+target_position = Vector2(5, 0)
+collision_mask = 4
+
+[node name="RayCastUp" type="RayCast2D" parent="RayCasts" unique_id=436122749]
+visible = false
+position = Vector2(0, -5)
+target_position = Vector2(0, -5)
+collision_mask = 4
+
+[node name="NakedPeanutSpawner" type="Node2D" parent="." unique_id=1021726358]
+position = Vector2(0, -7)
+script = ExtResource("13_q526i")
+naked_peanut_scene = ExtResource("14_sdx7n")
+
+[node name="Timers" type="Node" parent="." unique_id=46473684]
+
+[node name="TurnTimer" type="Timer" parent="Timers" unique_id=1435141582]
+wait_time = 0.05
+one_shot = true
+
+[node name="Slide Timer" type="Timer" parent="Timers" unique_id=923494075]
+wait_time = 0.2
+one_shot = true
+
+[node name="SlideCooldownTimer" type="Timer" parent="Timers" unique_id=153027926]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers" unique_id=124599926]
+wait_time = 0.15
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="Timers" unique_id=256806192]
+wait_time = 0.1
+one_shot = true
+
+[node name="WallCoyoteTimer" type="Timer" parent="Timers" unique_id=1165483206]
+wait_time = 0.15
+one_shot = true
+
+[node name="WallSlideWaitTimer" type="Timer" parent="Timers" unique_id=1909228414]
+wait_time = 0.1
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="Timers" unique_id=2089353797]
+wait_time = 0.05
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="Timers" unique_id=693970047]
+wait_time = 0.2
+one_shot = true
+
+[node name="SlowDownTimeBar" type="TextureProgressBar" parent="." unique_id=466373547]
+offset_left = -40.0
+offset_top = -46.0
+offset_right = 40.0
+offset_bottom = 34.0
+step = 20.0
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("6_wix4t")
+script = ExtResource("7_5n1oj")
+
+[node name="SlowTimer" type="Timer" parent="SlowDownTimeBar" unique_id=1799413533]
+one_shot = true
+
+[connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
+[connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]
+[connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="SlowDownTimeBar/SlowTimer" to="SlowDownTimeBar" method="_on_slow_timer_timeout"]

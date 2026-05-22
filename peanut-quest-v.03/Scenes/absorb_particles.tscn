@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://by2xtrhi8a3ce"]
+
+[ext_resource type="Script" uid="uid://dvl1ymhdjygie" path="res://Scripts/absorb_particles.gd" id="1_lsf2x"]
+
+[sub_resource type="Gradient" id="Gradient_vddbg"]
+offsets = PackedFloat32Array(0.8172043, 1)
+colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 1, 1, 0)
+
+[node name="AbsorbParticles" type="Node2D" unique_id=833550951]
+script = ExtResource("1_lsf2x")
+
+[node name="AbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=1753567853]
+z_index = 1
+z_as_relative = false
+emitting = false
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+radial_accel_min = -400.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_vddbg")
+
+[connection signal="finished" from="AbsorbParticleEffect" to="." method="_on_absorb_particle_effect_finished"]

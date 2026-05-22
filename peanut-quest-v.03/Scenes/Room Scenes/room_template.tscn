@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cv6nd8457be6o"]
 
 [ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_0b1k8"]
-[ext_resource type="PackedScene" uid="uid://cmnsfdh04sel0" path="res://Scenes/player.tscn" id="2_0b1k8"]
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="4_5emc1"]
 [ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="5_1y8cq"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="6_aq6v7"]
 [ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="6_dr21r"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_agare"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_0b1k8"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/player_test.tscn" id="9_5emc1"]
 [ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="9_dr21r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]
@@ -122,6 +122,7 @@ position = Vector2(25, 392)
 
 [node name="FadeToBlackScreen" parent="." unique_id=1795882491 instance=ExtResource("8_0b1k8")]
 
-[node name="Player" parent="." unique_id=474886339 instance=ExtResource("2_0b1k8")]
-
 [node name="Hud" parent="." unique_id=471024502 instance=ExtResource("9_dr21r")]
+
+[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("9_5emc1")]
+position = Vector2(-3, 10)

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dur4d6ypi0otf"]
+
+[ext_resource type="Texture2D" uid="uid://er4dapap08es" path="res://Assets/Sprites/StoneSlab1.png" id="1_nbnng"]
+[ext_resource type="Script" uid="uid://cwphcjrnxyuo7" path="res://Scripts/stone_slab.gd" id="1_q3x7l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbnng"]
+size = Vector2(56, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3x7l"]
+size = Vector2(56, 9.5)
+
+[node name="StoneSlab" type="RigidBody2D" unique_id=1933216202]
+collision_layer = 256
+collision_mask = 4
+script = ExtResource("1_q3x7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=242695940]
+texture = ExtResource("1_nbnng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552110103]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_nbnng")
+
+[node name="CrushingZone" type="Area2D" parent="." unique_id=1338934812]
+position = Vector2(0, 46)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrushingZone" unique_id=662494251]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_q3x7l")
+
+[connection signal="body_entered" from="CrushingZone" to="." method="_on_crushing_zone_body_entered"]

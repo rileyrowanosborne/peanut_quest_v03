@@ -3,11 +3,23 @@
 [ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_fp88v"]
 [ext_resource type="Texture2D" uid="uid://ckehudllllgbs" path="res://Assets/Sprites/MutantPeanut1 - Idle-Sheet.png" id="2_fp88v"]
 [ext_resource type="PackedScene" uid="uid://mbgctqh60kcs" path="res://Scenes/spark_pop.tscn" id="2_jbh1m"]
+[ext_resource type="Texture2D" uid="uid://cuk0olbew0m75" path="res://Assets/Sprites/VeinTest3.png" id="3_fdmrv"]
 [ext_resource type="Texture2D" uid="uid://4tquif4jvn7s" path="res://Assets/Sprites/CharactersSheet.png" id="4_fp88v"]
+[ext_resource type="Texture2D" uid="uid://coijrgljc4ix4" path="res://Assets/Sprites/VeinTest3.2.png" id="4_makno"]
 [ext_resource type="Texture2D" uid="uid://dxwtl1kuurbrp" path="res://Assets/Sprites/MutantPeanut1 - Walking-Sheet.png" id="4_ndkt0"]
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="5_ndkt0"]
+[ext_resource type="Texture2D" uid="uid://b34xk6rs1cooo" path="res://Assets/Sprites/VeinTest3.3.png" id="5_nwi17"]
 [ext_resource type="Script" uid="uid://gsr2yq5wnob6" path="res://Scripts/hit_box.gd" id="6_p8k3m"]
 [ext_resource type="PackedScene" uid="uid://bptkbbt4lsccg" path="res://Scenes/lil_heart_one.tscn" id="7_rwi6p"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fdmrv"]
+frames = 3
+speed_scale = 5.0
+frame_0/texture = ExtResource("3_fdmrv")
+frame_1/texture = ExtResource("4_makno")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_nwi17")
+frame_2/duration = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8k3m"]
 atlas = ExtResource("2_fp88v")
@@ -357,8 +369,9 @@ spark_scene = ExtResource("2_jbh1m")
 [node name="HeartString" type="Line2D" parent="." unique_id=1161146314]
 z_as_relative = false
 position = Vector2(0, -7)
-width = 1.0
-default_color = Color(0.7921569, 0.2627451, 0.1764706, 1)
+width = 20.0
+texture = SubResource("AnimatedTexture_fdmrv")
+texture_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131323402]
 position = Vector2(0, -7)

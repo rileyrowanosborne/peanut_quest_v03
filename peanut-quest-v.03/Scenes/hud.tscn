@@ -1,30 +1,43 @@
 [gd_scene format=3 uid="uid://dab4v1jruacn2"]
 
-[ext_resource type="Texture2D" uid="uid://dtd6atkxtapw3" path="res://Assets/Sprites/MiniPeanut.png" id="1_e0onf"]
 [ext_resource type="Script" uid="uid://chrblk17b68hp" path="res://Scripts/hud.gd" id="1_fccik"]
-[ext_resource type="Texture2D" uid="uid://btdswqini1dbe" path="res://Assets/Sprites/NutCrackHud-Sheet.png" id="3_bjfho"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjfho"]
-atlas = ExtResource("3_bjfho")
-region = Rect2(288, 0, 288, 162)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t1xeu"]
-atlas = ExtResource("3_bjfho")
-region = Rect2(576, 0, 288, 162)
+[ext_resource type="Texture2D" uid="uid://b40kyov0rtvk0" path="res://Assets/Sprites/PeanutCracks-Sheet.png" id="2_bjfho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
-atlas = ExtResource("3_bjfho")
-region = Rect2(0, 0, 288, 162)
+atlas = ExtResource("2_bjfho")
+region = Rect2(72, 0, 72, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1xeu"]
+atlas = ExtResource("2_bjfho")
+region = Rect2(0, 0, 72, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjfho"]
+atlas = ExtResource("2_bjfho")
+region = Rect2(72, 0, 72, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t1xeu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bjfho")
+"texture": SubResource("AtlasTexture_6fbih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1xeu")
 }],
 "loop": false,
 "name": &"CriticalHealth",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjfho")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Crunch",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -34,16 +47,8 @@ animations = [{
 "texture": null
 }],
 "loop": false,
-"name": &"Crunch",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6fbih")
-}],
-"loop": false,
 "name": &"LowHealth",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -58,39 +63,9 @@ animations = [{
 script = ExtResource("1_fccik")
 
 [node name="HudCrack" type="AnimatedSprite2D" parent="." unique_id=1510171497]
+modulate = Color(0.38928655, 0.38928664, 0.38928658, 1)
 position = Vector2(576, 324)
-scale = Vector2(4, 4)
+scale = Vector2(16, 16.2)
 sprite_frames = SubResource("SpriteFrames_t1xeu")
-animation = &"Crunch"
+animation = &"LowHealth"
 autoplay = "NormalHealth"
-frame = 1
-frame_progress = 1.0
-
-[node name="HealthBar" type="HBoxContainer" parent="." unique_id=1824240978]
-offset_right = 485.0
-offset_bottom = 101.0
-
-[node name="PeanutTexture" type="TextureRect" parent="HealthBar" unique_id=1709614681]
-layout_mode = 2
-texture = ExtResource("1_e0onf")
-expand_mode = 2
-
-[node name="PeanutTexture2" type="TextureRect" parent="HealthBar" unique_id=1037404588]
-layout_mode = 2
-texture = ExtResource("1_e0onf")
-expand_mode = 2
-
-[node name="PeanutTexture3" type="TextureRect" parent="HealthBar" unique_id=269045407]
-layout_mode = 2
-texture = ExtResource("1_e0onf")
-expand_mode = 2
-
-[node name="PeanutTexture4" type="TextureRect" parent="HealthBar" unique_id=1457288423]
-layout_mode = 2
-texture = ExtResource("1_e0onf")
-expand_mode = 2
-
-[node name="PeanutTexture5" type="TextureRect" parent="HealthBar" unique_id=1141752381]
-layout_mode = 2
-texture = ExtResource("1_e0onf")
-expand_mode = 2

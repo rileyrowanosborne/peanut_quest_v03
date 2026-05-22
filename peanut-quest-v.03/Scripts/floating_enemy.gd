@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @onready var blood_spurt: Node2D = $BloodSpurt
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var absorb_particle_effect: CPUParticles2D = $AbsorbParticleEffect
+
 
 
 @export var speed : float = 10.0
@@ -12,17 +14,24 @@ var in_range : bool = false
 
 var current_dir : Vector2
 
+var chase_player: bool = false
+
+var knockback_velocity : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	add_to_group("enemy")
-	current_dir = Vector2(randi_range(-1,1), randi_range(-1,1))
+	current_dir = Vector2(randi_range(-1,1), randi_range(-1,1)).normalized()
 	await get_tree().create_timer(3).timeout
 	change_direction()
 
 
 func _physics_process(delta: float) -> void:
 	
-	velocity = current_dir * speed
+	var movement_velocity = current_dir * speed
+	
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 500 * delta)
+	
+	velocity = movement_velocity + knockback_velocity
 	
 	move_and_slide()
 
@@ -31,10 +40,13 @@ func _process(delta: float) -> void:
 		set_animation("InRange")
 	else:
 		set_animation("OutRange")
+	
+	if chase_player:
+		absorb_particle_effect.global_position = GameState.player_location
 
 
 func change_direction():
-	current_dir = Vector2(randi_range(-1,1), randi_range(-1,1))
+	current_dir = Vector2(randi_range(-1,1), randi_range(-1,1)).normalized()
 	
 	await get_tree().create_timer(3).timeout
 	change_direction()
@@ -48,6 +60,7 @@ func take_damage(attack_dir : Vector2):
 	
 	owner.current_health -= 1
 	
+	knockback_velocity = knockback_dir * 200
 	
 	
 	if owner.current_health <= 0:
@@ -56,6 +69,8 @@ func take_damage(attack_dir : Vector2):
 		spawn_blood_spurt()
 		animated_sprite_2d.hide()
 		if owner.has_method("die"):
+			chase_player = true
+			absorb_particle_effect.emitting = true
 			owner.die()
 		else:
 			print("missing die function on emeny owner - message sent from floating enemy script")

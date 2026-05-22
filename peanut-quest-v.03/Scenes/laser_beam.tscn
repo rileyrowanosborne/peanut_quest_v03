@@ -101,6 +101,7 @@ animations = [{
 script = ExtResource("1_ot8dx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1130932850]
+z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_d7cuw")
 autoplay = "default"
 frame_progress = 0.08871835
@@ -116,18 +117,71 @@ shape = SubResource("RectangleShape2D_swr2m")
 one_shot = true
 
 [node name="LeftLaserLauncher" type="AnimatedSprite2D" parent="." unique_id=1655363423]
+z_index = 2
+z_as_relative = false
 position = Vector2(-240, 0)
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_qxwcf")
 animation = &"Idle"
 autoplay = "Idle"
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="LeftLaserLauncher" unique_id=231160270]
+z_as_relative = false
+position = Vector2(1.1920929e-07, 3)
+emitting = false
+one_shot = true
+direction = Vector2(0, 0)
+spread = 31.86
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -300.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.7921569, 0.2627451, 0.1764706, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LeftLaserLauncher" unique_id=873823689]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftLaserLauncher/StaticBody2D" unique_id=341465975]
+polygon = PackedVector2Array(-15.999999, 16, -9, 9, 9, 9, 16, 16)
+
 [node name="RightLaserLauncher" type="AnimatedSprite2D" parent="." unique_id=1815900605]
+z_index = 2
+z_as_relative = false
 position = Vector2(240, 0)
 rotation = -1.5707964
 sprite_frames = SubResource("SpriteFrames_qxwcf")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 1.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="RightLaserLauncher" unique_id=1444944116]
+z_as_relative = false
+position = Vector2(-2.1855695e-07, 5)
+rotation = -3.1415925
+emitting = false
+one_shot = true
+direction = Vector2(0, 0)
+spread = 31.86
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -300.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.7921569, 0.2627451, 0.1764706, 1)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="RightLaserLauncher" unique_id=1228041692]
+position = Vector2(0.99999946, 12)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightLaserLauncher/StaticBody2D2" unique_id=878116621]
+position = Vector2(-0.99999946, -12)
+polygon = PackedVector2Array(-15.999999, 16, -9, 9, 9, 9, 16, 16)
 
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]

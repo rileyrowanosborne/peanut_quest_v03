@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://p0x13fpoip16" path="res://Assets/Sprites/MidEyeBlinking-Sheet.png" id="1_urosa"]
 [ext_resource type="Script" uid="uid://belpvdecngk1w" path="res://Scripts/mid_heart_one.gd" id="1_yqk7q"]
 [ext_resource type="PackedScene" uid="uid://r2ylrtqkw4bw" path="res://Scenes/death_blood_spurt.tscn" id="2_da1dg"]
+[ext_resource type="PackedScene" uid="uid://by2xtrhi8a3ce" path="res://Scenes/absorb_particles.tscn" id="2_gj4wb"]
 [ext_resource type="PackedScene" uid="uid://22jawyldipx4" path="res://Scenes/projectile_launcher.tscn" id="3_ji2er"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqk7q"]
@@ -82,9 +83,6 @@ animations = [{
 "speed": 14.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_urosa"]
-radius = 15.0
-
 [sub_resource type="Curve" id="Curve_da1dg"]
 _data = [Vector2(0.0064516217, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.123595595), -4.591417, 0.0, 0, 0]
 point_count = 2
@@ -98,16 +96,8 @@ collision_layer = 160
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_yqk7q")
+absorb_scene = ExtResource("2_gj4wb")
 blood_spurt_scene = ExtResource("2_da1dg")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2059091274]
-sprite_frames = SubResource("SpriteFrames_3lgu1")
-autoplay = "default"
-frame_progress = 0.6915114
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=794214418]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_urosa")
 
 [node name="ProjectileLauncher" parent="." unique_id=110929225 instance=ExtResource("3_ji2er")]
 aiming_direction = Vector2(1, 1)
@@ -117,6 +107,11 @@ aiming_direction = Vector2(0, 1)
 
 [node name="ProjectileLauncher3" parent="." unique_id=41015906 instance=ExtResource("3_ji2er")]
 aiming_direction = Vector2(-1, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2059091274]
+sprite_frames = SubResource("SpriteFrames_3lgu1")
+autoplay = "default"
+frame_progress = 0.6915114
 
 [node name="BloodParticles" type="CPUParticles2D" parent="." unique_id=619976124]
 position = Vector2(-10, -10)
@@ -151,3 +146,6 @@ scale_amount_min = 2.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_da1dg")
 color_ramp = SubResource("Gradient_gj4wb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1525947609]
+polygon = PackedVector2Array(-14, -11, 0, -11, 14, -11, 12, 3, 0, 13, -12, 3)

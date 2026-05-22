@@ -8,7 +8,7 @@
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtnnc"]
-radius = 28.0
+radius = 33.01515
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_moxdl"]
 radius = 8.0
@@ -17,6 +17,21 @@ radius = 8.0
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_vtnnc")
+
+[node name="AbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=34849461]
+emitting = false
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.7757306, 0.25989625, 0.2339215, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=78635791]
 visible = false

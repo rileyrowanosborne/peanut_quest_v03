@@ -7,6 +7,10 @@ extends Node2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
+@onready var cpu_particles_2d: CPUParticles2D = $LeftLaserLauncher/CPUParticles2D
+@onready var cpu_particles_2d_2: CPUParticles2D = $RightLaserLauncher/CPUParticles2D2
+
+
 @onready var left_laser_launcher: AnimatedSprite2D = $LeftLaserLauncher
 @onready var right_laser_launcher: AnimatedSprite2D = $RightLaserLauncher
 
@@ -46,6 +50,8 @@ func _on_duration_timer_timeout() -> void:
 	elif not currently_active:
 		left_laser_launcher.play("FireUp")
 		right_laser_launcher.play("FireUp")
+		cpu_particles_2d.emitting = true
+		cpu_particles_2d_2.emitting = true
 		await get_tree().create_timer(1).timeout
 		left_laser_launcher.play("Firing")
 		right_laser_launcher.play("Firing")

@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://cqayvgi0lytow"]
+
+[ext_resource type="Texture2D" uid="uid://dwryoc0kornim" path="res://Assets/Sprites/Brain - Attack-Sheet.png" id="1_0oja7"]
+[ext_resource type="Script" uid="uid://beqplwq6d363d" path="res://Scripts/brain_collectible.gd" id="1_g0dj8"]
+[ext_resource type="Texture2D" uid="uid://chspxedo7mmm4" path="res://Assets/Sprites/Brain - Idle-Sheet.png" id="1_yduh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0oja7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekye2"]
+atlas = ExtResource("1_0oja7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vld4"]
+atlas = ExtResource("1_0oja7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8i5b"]
+atlas = ExtResource("1_0oja7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv20d"]
+atlas = ExtResource("1_0oja7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0dj8"]
+atlas = ExtResource("1_yduh2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veqvw"]
+atlas = ExtResource("1_yduh2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m025k"]
+atlas = ExtResource("1_yduh2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvn0b"]
+atlas = ExtResource("1_yduh2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekye2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekye2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vld4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8i5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv20d")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Collected",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0dj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veqvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m025k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvn0b")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="BrainCollectible" type="Node2D" unique_id=2136597901]
+script = ExtResource("1_g0dj8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=436783506]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=428345168]
+shape = SubResource("CircleShape2D_0oja7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=35126992]
+sprite_frames = SubResource("SpriteFrames_ekye2")
+animation = &"Collected"
+autoplay = "Idle"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
