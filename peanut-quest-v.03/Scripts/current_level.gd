@@ -10,6 +10,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalSignalBus.emit_signal("essence_update")
+	
 	GlobalSignalBus.connect("respawn_peanut", reload_level)
 	
 	GlobalSignalBus.connect("reshell_complete", reshell_peanut)
@@ -21,12 +23,13 @@ func _ready() -> void:
 	
 
 func reload_level():
-	
-	get_tree().call_deferred("reload_current_scene")
+	GameState.current_brain_essence = 0
+	get_tree().reload_current_scene()
 	GameState.current_health = GameState.current_max_health
 
 
 func reshell_peanut():
+	GlobalSignalBus.emit_signal("essence_update")
 	spawn_peanut(GameState.player_location)
 
 

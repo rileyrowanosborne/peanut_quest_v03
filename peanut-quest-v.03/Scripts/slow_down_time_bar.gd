@@ -15,5 +15,6 @@ func _process(delta: float) -> void:
 
 
 func start_slow_bar():
-	slow_timer.start(GameState.current_slow_down_length * GameState.current_slow_down_power)
-	max_value = slow_timer.time_left
+		slow_timer.start(GameState.current_slow_down_length * GameState.current_slow_down_power)
+		max_value = slow_timer.time_left
+	

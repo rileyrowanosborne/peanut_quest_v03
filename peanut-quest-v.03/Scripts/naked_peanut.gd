@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var wall_slide_wait_timer: Timer = $WallSlideWaitTimer
 
 @onready var absorb_particle_effect: CPUParticles2D = $AbsorbParticleEffect
+@onready var circle_zap_anim: AnimatedSprite2D = $CircleZapAnim
 
 
 @export var spark_scene : PackedScene
@@ -200,13 +201,15 @@ func take_damage(attack_dir : Vector2):
 	knockback_dir = (global_position - attack_dir).normalized()
 	
 	if not GameState.is_invul:
-		rotate(atan2(knockback_dir.x, knockback_dir.y))
-		velocity = knockback_dir * 2000
 		die()
 
 
 func die():
+	current_speed = 0.0
+	rotate(atan2(knockback_dir.x, knockback_dir.y))
+	velocity = knockback_dir * 2000
 	GameState.freeze_frame(.1, .4)
+	await get_tree().create_timer(.4).timeout
 	GlobalSignalBus.emit_signal("respawn_peanut")
 	queue_free()
 
@@ -233,3 +236,4 @@ func _on_spawn_timer_timeout() -> void:
 
 func collect():
 	absorb_particle_effect.emitting = true
+	circle_zap_anim.play("default")

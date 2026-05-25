@@ -83,7 +83,6 @@ func die():
 	blood_particles.emitting = true
 	blood_particles_2.emitting = true
 	spawn_blood_spurt()
-	GlobalSignalBus.emit_signal("essence_collect")
 	spawn_absorb_particles()
 
 	

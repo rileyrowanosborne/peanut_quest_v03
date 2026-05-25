@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dsurcmgwckfir"]
+
+[ext_resource type="Script" uid="uid://n0tuj3lxwccs" path="res://Scripts/little_goop.gd" id="1_7epn0"]
+[ext_resource type="Texture2D" uid="uid://b34lvk2pjihnl" path="res://Assets/Sprites/SlimeBounce2-Sheet.png" id="2_7epn0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhkmc"]
+atlas = ExtResource("2_7epn0")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4ptw"]
+atlas = ExtResource("2_7epn0")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtbwq"]
+atlas = ExtResource("2_7epn0")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kjyc"]
+atlas = ExtResource("2_7epn0")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skr2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhkmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4ptw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtbwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kjyc")
+}],
+"loop": false,
+"name": &"Bounce",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kjyc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb6it"]
+radius = 8.0
+height = 22.0
+
+[node name="LittleGoop" type="Node2D" unique_id=984228061]
+script = ExtResource("1_7epn0")
+
+[node name="GoopAnims" type="AnimatedSprite2D" parent="." unique_id=1704014726]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_skr2x")
+animation = &"Bounce"
+autoplay = "Idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=534536373]
+position = Vector2(0, -3)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1628702671]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tb6it")
+
+[connection signal="animation_finished" from="GoopAnims" to="." method="_on_goop_anims_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://chrblk17b68hp" path="res://Scripts/hud.gd" id="1_fccik"]
 [ext_resource type="Texture2D" uid="uid://b40kyov0rtvk0" path="res://Assets/Sprites/PeanutCracks-Sheet.png" id="2_bjfho"]
+[ext_resource type="Texture2D" uid="uid://bsce8qkxh16ki" path="res://Assets/Sprites/SpecialBarTest2.png" id="3_bjfho"]
+[ext_resource type="Texture2D" uid="uid://buj6bajc2e7q1" path="res://Assets/Sprites/ChargeBarTest1-Under.png" id="4_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://gvj0ntniej47" path="res://Assets/Sprites/ChargeBarTest1-Progress.png" id="5_36asn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
 atlas = ExtResource("2_bjfho")
@@ -69,3 +72,23 @@ scale = Vector2(16, 16.2)
 sprite_frames = SubResource("SpriteFrames_t1xeu")
 animation = &"LowHealth"
 autoplay = "NormalHealth"
+
+[node name="SpecialProgressBar" type="TextureProgressBar" parent="." unique_id=2146799886]
+visible = false
+offset_left = 1152.0
+offset_top = 648.0
+offset_right = 2304.0
+offset_bottom = 1296.0
+rotation = 3.1415927
+fill_mode = 8
+texture_progress = ExtResource("3_bjfho")
+
+[node name="SpecialProgressBar2" type="TextureProgressBar" parent="." unique_id=28553631]
+offset_left = 9.000001
+offset_top = 559.99994
+offset_right = 73.0
+offset_bottom = 575.99994
+scale = Vector2(5, 5)
+max_value = 10.0
+texture_under = ExtResource("4_t1xeu")
+texture_progress = ExtResource("5_36asn")

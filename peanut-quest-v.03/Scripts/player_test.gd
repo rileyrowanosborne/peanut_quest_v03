@@ -71,6 +71,8 @@ var air_dashing_deccel : float = -1
 var jump_velocity = -325.0
 var jump_cancelled : bool = false
 
+var bounce_velocity : float = 600
+
 var is_sliding : bool = false
 
 var is_dashing : bool = false
@@ -273,8 +275,11 @@ func _input(event: InputEvent) -> void:
 	
 	
 	if event.is_action_pressed("special_l") or event.is_action_pressed("special_r"):
-		GlobalSignalBus.emit_signal("slow_down_start")
-		GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
+		if GameState.current_brain_essence >= 2:
+			GlobalSignalBus.emit_signal("slow_down_start")
+			GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
+			GameState.current_brain_essence -= 2
+			GlobalSignalBus.emit_signal("essence_update")
 
 	if event.is_action_pressed("Slide"):
 		dash_dir = GameState.last_dir
@@ -382,3 +387,9 @@ func _on_dash_cooldown_timer_timeout() -> void:
 
 func _on_slide_cooldown_timer_timeout() -> void:
 	slide_on_cooldown = false
+
+
+func bounce(bounce_dir : Vector2, bounce_multiplier : float):
+	
+	
+	velocity = bounce_dir * bounce_velocity * bounce_multiplier

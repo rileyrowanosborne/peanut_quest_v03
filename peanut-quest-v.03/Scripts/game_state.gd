@@ -37,9 +37,13 @@ var knockback_direction : Vector2
 var current_slow_down_power : float = .3
 var current_slow_down_length : float = 2.0
 
-var total_brain_essence : int = 0
+var current_brain_essence : int = 0
+
+var max_brain_essence : int = 10
+
 
 var first_load : bool = true
+
 
 
 func _ready() -> void:
