@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bu0jv5bm0baat"]
+
+[ext_resource type="Texture2D" uid="uid://chtqfjcrf3wb" path="res://Assets/Sprites/MimicEating-Sheet.png" id="1_04fji"]
+[ext_resource type="Script" uid="uid://cerdm2520pvf5" path="res://Scripts/mimic_slime.gd" id="1_vsche"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8ti"]
+atlas = ExtResource("1_04fji")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u64a"]
+atlas = ExtResource("1_04fji")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwnyw"]
+atlas = ExtResource("1_04fji")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hnik"]
+atlas = ExtResource("1_04fji")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpd36"]
+atlas = ExtResource("1_04fji")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mex6o"]
+atlas = ExtResource("1_04fji")
+region = Rect2(448, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srk2x"]
+atlas = ExtResource("1_04fji")
+region = Rect2(512, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsche"]
+atlas = ExtResource("1_04fji")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhoi0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u64a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwnyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hnik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpd36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mex6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srk2x")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsche")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srk2x")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.5
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0kk1h"]
+radius = 7.0
+height = 22.0
+
+[node name="MimicSlime" type="Node2D" unique_id=546070944]
+script = ExtResource("1_vsche")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=996313117]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_uhoi0")
+animation = &"Attack"
+autoplay = "Idle"
+frame = 6
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=761288916]
+position = Vector2(0, -8)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1966713768]
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0kk1h")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

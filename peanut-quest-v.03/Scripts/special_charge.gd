@@ -3,20 +3,23 @@ extends CPUParticles2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobalSignalBus.connect("essence_update", essence_update)
 	
-	essence_update()
-
-
-
-func essence_update():
+	emitting = true
 	
-	if GameState.current_brain_essence == 0:
+	GlobalSignalBus.connect("salt_update", salt_update)
+	
+	salt_update()
+
+
+
+func salt_update():
+	
+	if GameState.current_salt == 0:
 		emitting = false
 	else:
 		emitting = true
 
-	match GameState.current_brain_essence:
+	match GameState.current_salt:
 		1:
 			amount = 1
 		2:

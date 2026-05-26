@@ -21,7 +21,11 @@ extends CharacterBody2D
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var wall_slide_wait_timer: Timer = $WallSlideWaitTimer
 
-@onready var absorb_particle_effect: CPUParticles2D = $AbsorbParticleEffect
+
+@onready var salt_absorb_particle_effect: CPUParticles2D = $SaltAbsorbParticleEffect
+@onready var brain_absorb_particle_effect: CPUParticles2D = $BrainAbsorbParticleEffect
+
+
 @onready var circle_zap_anim: AnimatedSprite2D = $CircleZapAnim
 
 
@@ -58,6 +62,8 @@ var direction : float
 var knockback_dir : Vector2
 
 var alive : bool = true
+
+var bounce_velocity : float = 600
 	
 
 
@@ -65,7 +71,8 @@ func _ready() -> void:
 	
 	add_to_group("player")
 	GlobalSignalBus.emit_signal("health_check")
-	GlobalSignalBus.connect("essence_collect", collect)
+	GlobalSignalBus.connect("essence_collect", essence_collect)
+	
 	alive = true
 	
 	GlobalSignalBus.connect("reshell_peanut", reshell)
@@ -74,7 +81,7 @@ func _ready() -> void:
 	velocity = GameState.knockback_direction * 500
 	current_speed = normal_speed
 	spawn_timer.start()
-	GameState.player_invul(.5)
+	GameState.player_invul(1)
 
 
 func _process(delta: float) -> void:
@@ -143,6 +150,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jump_cancelled = false
 	
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("move_left", "move_right")
@@ -157,26 +165,36 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0.0, current_speed * air_decceleration)
 	
+	
 	if GameState.player_is_wall_sliding and not is_on_floor():
 		if wall_slide_wait_timer.is_stopped():
 			velocity.y *= wall_slide_speed
 	
 	
-	
-
-	
 	var was_on_floor = is_on_floor()
 	var was_on_wall = is_on_wall()
 	
+	
 	move_and_slide()
+	
 	
 	if was_on_floor and not is_on_floor():
 		coyote_timer.start()
+	
 	
 	if was_on_wall and not is_on_wall():
 		wall_coyote_timer.start()
 	
  
+func _input(event: InputEvent) -> void:
+	
+	
+	if event.is_action_pressed("special_l") or event.is_action_pressed("special_r"):
+		if GameState.current_salt >= 1:
+			GlobalSignalBus.emit_signal("slow_down_start")
+			GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
+			GameState.current_salt -= 1
+			GlobalSignalBus.emit_signal("salt_update")
 
 
 func set_animation(anim : String):
@@ -234,6 +252,16 @@ func _on_spawn_timer_timeout() -> void:
 
 
 
-func collect():
-	absorb_particle_effect.emitting = true
+func essence_collect():
+	brain_absorb_particle_effect.emitting = true
+	await get_tree().create_timer(.2).timeout
 	circle_zap_anim.play("default")
+
+func salt_collect():
+	salt_absorb_particle_effect.emitting = true
+
+
+func bounce(bounce_dir : Vector2, bounce_multiplier : float):
+	
+	
+	velocity = bounce_dir * bounce_velocity * bounce_multiplier

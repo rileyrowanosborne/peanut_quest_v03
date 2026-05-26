@@ -7,12 +7,14 @@ extends CanvasLayer
 
 @onready var special_progress_bar_2: TextureProgressBar = $SpecialProgressBar2
 
+@onready var salt_progress_bar: TextureProgressBar = $SaltProgressBar
 
 
 func _ready() -> void:
 	show()
 	GlobalSignalBus.connect("health_check", health_check)
 	GlobalSignalBus.connect("essence_update", special_bar_update)
+	GlobalSignalBus.connect("salt_update", salt_bar_update)
 	health_check()
 
 
@@ -24,6 +26,10 @@ func health_check():
 
 func special_bar_update():
 	special_progress_bar_2.value = GameState.current_brain_essence
+	
+
+func salt_bar_update():
+	salt_progress_bar.value = GameState.current_salt
 
 
 func crack():

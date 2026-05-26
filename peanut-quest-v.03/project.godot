@@ -26,6 +26,10 @@ GlobalSignalBus="*uid://cyl11w60vmpst"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/project-time-tracker/plugin.cfg")
+
 [input]
 
 move_left={

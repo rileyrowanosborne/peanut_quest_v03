@@ -39,8 +39,10 @@ extends CharacterBody2D
 @onready var crack_two: CPUParticles2D = $Particles/crack_two
 @onready var crack_three: CPUParticles2D = $Particles/crack_three
 @onready var crack_four: CPUParticles2D = $Particles/crack_four
-@onready var absorb_particle_effect: CPUParticles2D = $Particles/AbsorbParticleEffect
 @onready var circle_zap_anim: AnimatedSprite2D = $Particles/CircleZapAnim
+@onready var brain_absorb_particle_effect: CPUParticles2D = $Particles/BrainAbsorbParticleEffect
+
+@onready var salt_absorb_particle_effect: CPUParticles2D = $Particles/SaltAbsorbParticleEffect
 
 
 
@@ -115,7 +117,8 @@ func _ready() -> void:
 		RoomChangeGlobal.activate = false
 	
 	
-	GlobalSignalBus.connect("essence_collect", collect)
+	GlobalSignalBus.connect("essence_collect", essence_collect)
+	GlobalSignalBus.connect("salt_collect", salt_collect)
 	
 	GlobalSignalBus.emit_signal("health_check")
 
@@ -275,11 +278,11 @@ func _input(event: InputEvent) -> void:
 	
 	
 	if event.is_action_pressed("special_l") or event.is_action_pressed("special_r"):
-		if GameState.current_brain_essence >= 2:
+		if GameState.current_salt >= 1:
 			GlobalSignalBus.emit_signal("slow_down_start")
 			GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
-			GameState.current_brain_essence -= 2
-			GlobalSignalBus.emit_signal("essence_update")
+			GameState.current_salt -= 1
+			GlobalSignalBus.emit_signal("salt_update")
 
 	if event.is_action_pressed("Slide"):
 		dash_dir = GameState.last_dir
@@ -375,8 +378,8 @@ func _on_dash_timer_timeout() -> void:
 	is_dashing = false
 
 
-func collect():
-	absorb_particle_effect.emitting = true
+func essence_collect():
+	brain_absorb_particle_effect.emitting = true
 	await get_tree().create_timer(.2).timeout
 	circle_zap_anim.play("default")
 
@@ -390,6 +393,7 @@ func _on_slide_cooldown_timer_timeout() -> void:
 
 
 func bounce(bounce_dir : Vector2, bounce_multiplier : float):
-	
-	
 	velocity = bounce_dir * bounce_velocity * bounce_multiplier
+
+func salt_collect():
+	salt_absorb_particle_effect.emitting = true

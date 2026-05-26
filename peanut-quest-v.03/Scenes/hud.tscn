@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bsce8qkxh16ki" path="res://Assets/Sprites/SpecialBarTest2.png" id="3_bjfho"]
 [ext_resource type="Texture2D" uid="uid://buj6bajc2e7q1" path="res://Assets/Sprites/ChargeBarTest1-Under.png" id="4_t1xeu"]
 [ext_resource type="Texture2D" uid="uid://gvj0ntniej47" path="res://Assets/Sprites/ChargeBarTest1-Progress.png" id="5_36asn"]
+[ext_resource type="Texture2D" uid="uid://cnxldf5mdemf2" path="res://Assets/Sprites/SaltMeter.png" id="6_36asn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
 atlas = ExtResource("2_bjfho")
@@ -84,11 +85,22 @@ fill_mode = 8
 texture_progress = ExtResource("3_bjfho")
 
 [node name="SpecialProgressBar2" type="TextureProgressBar" parent="." unique_id=28553631]
-offset_left = 9.000001
-offset_top = 559.99994
-offset_right = 73.0
-offset_bottom = 575.99994
-scale = Vector2(5, 5)
+offset_left = 406.0
+offset_top = 554.0
+offset_right = 470.0
+offset_bottom = 570.0
+rotation = 3.1415927
+scale = Vector2(4, 4)
 max_value = 10.0
 texture_under = ExtResource("4_t1xeu")
 texture_progress = ExtResource("5_36asn")
+
+[node name="SaltProgressBar" type="TextureProgressBar" parent="." unique_id=843298411]
+offset_left = 13.0
+offset_top = 552.00006
+offset_right = 77.0
+offset_bottom = 568.00006
+scale = Vector2(5, 5)
+max_value = 10.0
+texture_under = ExtResource("4_t1xeu")
+texture_progress = ExtResource("6_36asn")

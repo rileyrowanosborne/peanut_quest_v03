@@ -11,6 +11,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalSignalBus.emit_signal("essence_update")
+	GlobalSignalBus.emit_signal("salt_update")
 	
 	GlobalSignalBus.connect("respawn_peanut", reload_level)
 	
@@ -30,6 +31,7 @@ func reload_level():
 
 func reshell_peanut():
 	GlobalSignalBus.emit_signal("essence_update")
+	GlobalSignalBus.emit_signal("salt_update")
 	spawn_peanut(GameState.player_location)
 
 

@@ -7,10 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cei5r20t60j1q" path="res://Assets/Sprites/NakedPeanut-Walking-Sheet.png" id="6_doe4k"]
 [ext_resource type="Texture2D" uid="uid://cnteccohjwfgn" path="res://Assets/Sprites/NakedPeanut-Slide-Sheet.png" id="6_qtl4q"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="7_akt7d"]
-
-[sub_resource type="Gradient" id="Gradient_qtl4q"]
-offsets = PackedFloat32Array(0.9450867, 1)
-colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 0.09803922, 0.16862746, 1)
+[ext_resource type="Script" uid="uid://d25j227ikawr8" path="res://Scripts/special_charge.gd" id="8_doe4k"]
+[ext_resource type="Texture2D" uid="uid://bug2cu0ph6q4t" path="res://Assets/Sprites/SmallRing.png" id="9_ttses"]
+[ext_resource type="Script" uid="uid://c7dur43lqefgu" path="res://Scripts/slow_down_time_bar.gd" id="10_3djym"]
+[ext_resource type="Texture2D" uid="uid://cye8litj2w7cu" path="res://Assets/Sprites/SaltParticle.png" id="10_vdrt6"]
+[ext_resource type="Texture2D" uid="uid://b3qcv3sbf35ja" path="res://Assets/Sprites/SaltParticle2.png" id="11_b3toe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbtjm"]
 atlas = ExtResource("2_akt7d")
@@ -221,26 +222,24 @@ size = Vector2(5, 7)
 _data = [Vector2(0.0042918473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9021115, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_ttses"]
+offsets = PackedFloat32Array(0.9450867, 1)
+colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 0.09803922, 0.16862746, 1)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_bm7a4"]
+frames = 2
+frame_0/texture = ExtResource("10_vdrt6")
+frame_1/texture = ExtResource("11_b3toe")
+frame_1/duration = 1.0
+
+[sub_resource type="Curve" id="Curve_0fl2a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48272252), -3.9420319, 0.0, 0, 0]
+point_count = 2
+
 [node name="Naked Peanut" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
 collision_mask = 430
 script = ExtResource("1_qtl4q")
-
-[node name="AbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=219891414]
-position = Vector2(0, -7)
-emitting = false
-one_shot = true
-explosiveness = 0.82
-randomness = 1.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 50.0
-radial_accel_min = -500.0
-radial_accel_max = -100.0
-scale_amount_min = 3.0
-scale_amount_max = 3.0
-color_ramp = SubResource("Gradient_qtl4q")
 
 [node name="CircleZapAnim" type="AnimatedSprite2D" parent="." unique_id=2012293475]
 modulate = Color(0.90380466, 0.51707095, 0.94682246, 1)
@@ -323,6 +322,69 @@ one_shot = true
 [node name="WallSlideWaitTimer" type="Timer" parent="." unique_id=2106757762]
 wait_time = 0.1
 one_shot = true
+
+[node name="SlowDownTimeBar" type="TextureProgressBar" parent="." unique_id=1650277116]
+offset_left = -40.0
+offset_top = -46.0
+offset_right = 40.0
+offset_bottom = 34.0
+max_value = 2.0
+step = 0.05
+fill_mode = 4
+texture_progress = ExtResource("9_ttses")
+script = ExtResource("10_3djym")
+
+[node name="SlowTimer" type="Timer" parent="SlowDownTimeBar" unique_id=1920537844]
+one_shot = true
+
+[node name="SaltAbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=2069002749]
+position = Vector2(0, -7)
+emitting = false
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+
+[node name="BrainAbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=1928533609]
+position = Vector2(0, -7)
+emitting = false
+one_shot = true
+explosiveness = 0.82
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_ttses")
+
+[node name="SpecialCharge" type="CPUParticles2D" parent="." unique_id=1880287556]
+position = Vector2(0, -7)
+emitting = false
+texture = SubResource("AnimatedTexture_bm7a4")
+lifetime = 0.2
+preprocess = 0.5
+explosiveness = 0.1
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_curve = SubResource("Curve_0fl2a")
+color = Color(0.9316924, 0.929657, 0.9703724, 1)
+script = ExtResource("8_doe4k")
 
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

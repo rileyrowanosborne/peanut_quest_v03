@@ -10,6 +10,9 @@ signal slow_down_start
 signal essence_collect
 signal essence_update
 
+signal salt_collect
+signal salt_update
+
 
 signal shelled_peanut_died
 signal naked_peanut_died

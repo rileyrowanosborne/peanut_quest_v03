@@ -38,8 +38,10 @@ var current_slow_down_power : float = .3
 var current_slow_down_length : float = 2.0
 
 var current_brain_essence : int = 0
-
 var max_brain_essence : int = 10
+
+var current_salt : int = 0
+var max_salt: int = 10
 
 
 var first_load : bool = true

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n0tuj3lxwccs" path="res://Scripts/little_goop.gd" id="1_7epn0"]
 [ext_resource type="Texture2D" uid="uid://b34lvk2pjihnl" path="res://Assets/Sprites/SlimeBounce2-Sheet.png" id="2_7epn0"]
+[ext_resource type="Texture2D" uid="uid://bc5n264iluidl" path="res://Assets/Sprites/SlimeBounce2-Sheet_Idle.png" id="3_5kjyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vhkmc"]
 atlas = ExtResource("2_7epn0")
@@ -18,6 +19,14 @@ region = Rect2(144, 0, 48, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kjyc"]
 atlas = ExtResource("2_7epn0")
 region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmflh"]
+atlas = ExtResource("3_5kjyc")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skr2x"]
+atlas = ExtResource("3_5kjyc")
+region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_skr2x"]
 animations = [{
@@ -40,11 +49,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5kjyc")
+"texture": SubResource("AtlasTexture_jmflh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skr2x")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 3.0
+"speed": 2.5
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tb6it"]
@@ -55,17 +67,18 @@ height = 22.0
 script = ExtResource("1_7epn0")
 
 [node name="GoopAnims" type="AnimatedSprite2D" parent="." unique_id=1704014726]
-position = Vector2(0, -16)
+position = Vector2(-1, -16)
 sprite_frames = SubResource("SpriteFrames_skr2x")
-animation = &"Bounce"
+animation = &"Idle"
 autoplay = "Idle"
+frame_progress = 0.8777624
 
 [node name="Area2D" type="Area2D" parent="." unique_id=534536373]
 position = Vector2(0, -3)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1628702671]
-position = Vector2(0, -5)
+position = Vector2(-1, -5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_tb6it")
 
