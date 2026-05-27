@@ -469,6 +469,16 @@ shape = SubResource("CircleShape2D_p8k3m")
 [node name="LilHeartOne" parent="." unique_id=1870179522 instance=ExtResource("7_rwi6p")]
 position = Vector2(-36, -39)
 
+[node name="RayCastRightDown" type="RayCast2D" parent="." unique_id=1031031079]
+position = Vector2(7, -11)
+target_position = Vector2(0, 13)
+collision_mask = 4
+
+[node name="RayCastLeftDown" type="RayCast2D" parent="." unique_id=1274635667]
+position = Vector2(-7, -11)
+target_position = Vector2(0, 13)
+collision_mask = 4
+
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
 [connection signal="animation_finished" from="Sword/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

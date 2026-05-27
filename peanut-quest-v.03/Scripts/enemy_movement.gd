@@ -2,6 +2,11 @@ extends CharacterBody2D
 
 
 
+@onready var ray_cast_right_down: RayCast2D = $RayCastRightDown
+@onready var ray_cast_left_down: RayCast2D = $RayCastLeftDown
+
+
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
@@ -64,11 +69,11 @@ func _process(delta: float) -> void:
 	elif current_direction == 1:
 		last_dir = 1
 	
-	
-	if ray_cast_left.is_colliding():
+
+	if not ray_cast_left_down.is_colliding() or ray_cast_left.is_colliding():
 		current_direction = 1
 		
-	if ray_cast_right.is_colliding():
+	if not ray_cast_right_down.is_colliding() or ray_cast_right.is_colliding():
 		current_direction = -1
 	
 	if current_direction < 0:

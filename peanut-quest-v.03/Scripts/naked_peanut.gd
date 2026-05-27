@@ -228,6 +228,7 @@ func die():
 	velocity = knockback_dir * 2000
 	GameState.freeze_frame(.1, .4)
 	await get_tree().create_timer(.4).timeout
+	GameState.max_salt = 0
 	GlobalSignalBus.emit_signal("respawn_peanut")
 	queue_free()
 

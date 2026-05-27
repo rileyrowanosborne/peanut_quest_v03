@@ -16,7 +16,7 @@ var neutral_camera_y : int = 30
 var is_looking_down : bool = false
 
 @export var is_following_player : bool = false
-@export var camera_zoom : Vector2 = Vector2(3.5,3.5)
+@export var camera_zoom : Vector2 = Vector2(3,3)
 
 var controller_active: bool
 
