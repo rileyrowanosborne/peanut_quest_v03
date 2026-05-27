@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bu0jv5bm0baat" path="res://Scenes/mimic_slime.tscn" id="17_ewbju"]
 [ext_resource type="PackedScene" uid="uid://dnmx623fdsfp6" path="res://Scenes/salt_dispenser.tscn" id="18_85qyi"]
 [ext_resource type="PackedScene" uid="uid://culr42vwer34x" path="res://Scenes/brain_ball.tscn" id="19_iivbl"]
+[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/sword_power_up.tscn" id="20_7nbq1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("5_wowpa")
@@ -462,9 +463,6 @@ is_following_player = true
 
 [node name="Hud" parent="." unique_id=471024502 instance=ExtResource("7_1l0tm")]
 
-[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("8_h4fw4")]
-position = Vector2(-510, -2)
-
 [node name="WorldLasers" type="Node2D" parent="." unique_id=287047272]
 
 [node name="LaserBeam" parent="WorldLasers" unique_id=64217272 instance=ExtResource("11_rku1e")]
@@ -752,6 +750,11 @@ position = Vector2(2334, -452)
 
 [node name="BrainBall3" parent="." unique_id=1067212293 instance=ExtResource("19_iivbl")]
 position = Vector2(1891, -452)
+
+[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("8_h4fw4")]
+position = Vector2(130, -489)
+
+[node name="SwordPowerUp" parent="PlayerTest" unique_id=1218250284 instance=ExtResource("20_7nbq1")]
 
 [editable path="WorldLasers/LaserBeam"]
 [editable path="WorldLasers/LaserBeam8"]
