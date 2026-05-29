@@ -4,9 +4,10 @@ extends CharacterBody2D
 @onready var blood_particles: CPUParticles2D = $BloodParticles
 @onready var blood_particles_2: CPUParticles2D = $BloodParticles2
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var munch_text: RichTextLabel = $MunchText
 
 
-var current_health : int = 3
+var current_health : int = 10
 @export var absorb_scene : PackedScene
 
 
@@ -60,7 +61,11 @@ func take_damage(attack_dir : Vector2):
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
 	knockback_velocity = knockback_dir * 100
 	current_health -= 1
+	munch_text.position = Vector2(randi_range(-50,50), randi_range(-50,50))
+	munch_text.show()
 	health_check()
+	await  get_tree().create_timer(.5).timeout
+	munch_text.hide()
 
 
 func health_check():
@@ -96,3 +101,24 @@ func spawn_absorb_particles():
 		var absorb_instance = absorb_scene.instantiate()
 		get_tree().current_scene.add_child(absorb_instance)
 		absorb_instance.global_position = global_position
+
+
+var in_range : bool = false
+var player_loc : Vector2
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_loc = body.global_position
+		in_range = true
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		in_range = true
+
+
+func _input(event: InputEvent) -> void:
+	if in_range:
+		if event.is_action("action"):
+			take_damage(player_loc)

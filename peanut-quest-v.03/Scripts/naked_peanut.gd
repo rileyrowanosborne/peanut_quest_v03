@@ -68,6 +68,7 @@ var bounce_velocity : float = 600
 
 
 func _ready() -> void:
+	GameState.player_is_shelled = false
 	
 	add_to_group("player")
 	GlobalSignalBus.emit_signal("health_check")
@@ -218,6 +219,16 @@ func take_damage(attack_dir : Vector2):
 	
 	knockback_dir = (global_position - attack_dir).normalized()
 	
+	velocity = knockback_dir * 2000
+	GameState.freeze_frame(.1, .4)
+	
+	if not GameState.is_invul:
+		die()
+
+func take_spike_damage():
+	velocity.y = -600
+	GameState.freeze_frame(.1, .4)
+	
 	if not GameState.is_invul:
 		die()
 
@@ -225,10 +236,8 @@ func take_damage(attack_dir : Vector2):
 func die():
 	current_speed = 0.0
 	rotate(atan2(knockback_dir.x, knockback_dir.y))
-	velocity = knockback_dir * 2000
-	GameState.freeze_frame(.1, .4)
 	await get_tree().create_timer(.4).timeout
-	GameState.max_salt = 0
+	GameState.current_salt = 0
 	GlobalSignalBus.emit_signal("respawn_peanut")
 	queue_free()
 

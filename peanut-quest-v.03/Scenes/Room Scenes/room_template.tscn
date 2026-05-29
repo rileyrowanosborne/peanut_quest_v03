@@ -80,6 +80,13 @@ texture = ExtResource("6_dr21r")
 [sub_resource type="TileSet" id="TileSet_1y8cq"]
 sources/0 = SubResource("TileSetAtlasSource_5emc1")
 
+[sub_resource type="Environment" id="Environment_dr21r"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 5.77
+glow_bloom = 0.1
+
 [node name="Template" type="Node2D" unique_id=82904511]
 script = ExtResource("1_0b1k8")
 
@@ -104,6 +111,7 @@ position = Vector2(777, 744.6667)
 texture = ExtResource("4_5emc1")
 
 [node name="TileMap" type="TileMapLayer" parent="." unique_id=777071391]
+z_index = 2
 tile_set = ExtResource("5_1y8cq")
 
 [node name="Decor" type="TileMapLayer" parent="." unique_id=1527221862]
@@ -126,3 +134,6 @@ position = Vector2(25, 392)
 
 [node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("9_5emc1")]
 position = Vector2(-3, 10)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1567601840]
+environment = SubResource("Environment_dr21r")

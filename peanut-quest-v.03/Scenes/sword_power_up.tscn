@@ -950,11 +950,11 @@ _data = {
 &"WallSlide": SubResource("Animation_7dp3o")
 }
 
-[node name="SwortdPowerUp" type="Node2D" unique_id=1218250284]
-
-[node name="MegaSword" type="Node2D" parent="." unique_id=976456871]
+[node name="SwordPowerUp" type="Node2D" unique_id=1218250284]
 z_index = 1
 z_as_relative = false
+
+[node name="MegaSword" type="Node2D" parent="." unique_id=976456871]
 position = Vector2(0.99999857, -7.000001)
 rotation = 2.12371
 script = ExtResource("1_q8ojv")

@@ -1,20 +1,19 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://conjsqldubh0o"]
 
-[ext_resource type="Texture2D" uid="uid://dsdx54vnywqcq" path="res://Assets/Sprites/16x16 Peanut - Death-Sheet.png" id="1_k3gdo"]
-[ext_resource type="Texture2D" uid="uid://cp7g432cve4ed" path="res://Assets/Sprites/16x16 peanut - idle-SpriteSheet.png" id="2_hdr4e"]
+[ext_resource type="Texture2D" uid="uid://dk4pburruxly5" path="res://Assets/Sprites/PeanutSheet-LowHealth-export.png" id="2_alf7g"]
 [ext_resource type="Texture2D" uid="uid://cs08ccxwf132x" path="res://Assets/Sprites/PeanutSheet-LowHealth.png" id="3_aao8a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
-atlas = ExtResource("1_k3gdo")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_55jkx"]
+atlas = ExtResource("2_alf7g")
+region = Rect2(0, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
-atlas = ExtResource("1_k3gdo")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdt7k"]
+atlas = ExtResource("2_alf7g")
+region = Rect2(16, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("2_hdr4e")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_alf7g"]
+atlas = ExtResource("2_alf7g")
+region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8w7a"]
 atlas = ExtResource("3_aao8a")
@@ -108,16 +107,13 @@ region = Rect2(64, 64, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xuaoq")
+"texture": SubResource("AtlasTexture_55jkx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wohnl")
+"texture": SubResource("AtlasTexture_gdt7k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xuaoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvnsp")
+"texture": SubResource("AtlasTexture_alf7g")
 }],
 "loop": false,
 "name": &"Crack",

@@ -22,3 +22,8 @@ signal reshell_complete
 
 
 signal crushed
+
+
+
+signal sword_activate
+signal sword_deactivate

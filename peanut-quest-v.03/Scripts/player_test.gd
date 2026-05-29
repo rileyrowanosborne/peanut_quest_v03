@@ -48,6 +48,7 @@ extends CharacterBody2D
 
 @export var spark_scene : PackedScene
 
+
 var speed_sample_position: float = 0.0
 
 
@@ -100,6 +101,7 @@ var direction : float
 
 func _ready() -> void:
 	
+	GameState.player_is_shelled = true
 	
 	add_to_group("player")
 	
@@ -351,21 +353,64 @@ func take_damage(attack_dir : Vector2):
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
 	GameState.knockback_direction = knockback_dir
 	
+		
+	
 	if not GameState.is_invul:
 		GameState.player_invul(.5)
-		if GameState.current_health > 0:
+		
+		if GameState.sword_is_active:
+			GlobalSignalBus.emit_signal("sword_deactivate")
 			GameState.freeze_frame(.1, .4)
 			velocity = knockback_dir * 500
-			GameState.current_health -= 1
-			GlobalSignalBus.emit_signal("health_check")
-			if GameState.current_health < 1:
-				die()
+		else:
+			if GameState.current_health > 0:
+				GameState.freeze_frame(.1, .4)
+				velocity = knockback_dir * 500
+				GameState.current_health -= 1
+				GlobalSignalBus.emit_signal("health_check")
+				if GameState.current_health < 1:
+					die()
 
 func take_laser_damage():
-	GameState.current_health = 0
-	GlobalSignalBus.emit_signal("health_check")
-	die()
+	if GameState.sword_is_active:
+		GameState.player_invul(.5)
+		GameState.freeze_frame(.1, .4)
+		velocity.y = -400
+		GlobalSignalBus.emit_signal("sword_deactivate")
+		
+	else:
+		GameState.current_health = 0
+		GlobalSignalBus.emit_signal("health_check")
+		
+		die()
+		
 
+func take_spike_damage():
+	var random_num = randi_range(1,4)
+	if random_num == 1:
+		crack_one.emitting = true
+	elif random_num == 2:
+		crack_two.emitting = true
+	elif random_num == 3:
+		crack_three.emitting = true
+	elif random_num == 4:
+		crack_four.emitting = true
+	
+	if not GameState.is_invul:
+		GameState.player_invul(.5)
+		
+		if GameState.sword_is_active:
+			GlobalSignalBus.emit_signal("sword_deactivate")
+			GameState.freeze_frame(.1, .4)
+			velocity.y = -400
+		else:
+			if GameState.current_health > 0:
+				GameState.freeze_frame(.1, .4)
+				velocity.y = -400
+				GameState.current_health -= 1
+				GlobalSignalBus.emit_signal("health_check")
+				if GameState.current_health < 1:
+					die()
 
 
 func die():
@@ -397,3 +442,6 @@ func bounce(bounce_dir : Vector2, bounce_multiplier : float):
 
 func salt_collect():
 	salt_absorb_particle_effect.emitting = true
+
+
+ 

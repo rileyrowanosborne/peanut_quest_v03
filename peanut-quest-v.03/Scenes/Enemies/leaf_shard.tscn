@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://cxoxdyssv0fcy"]
+
+[ext_resource type="Script" uid="uid://buwfihw0r3pra" path="res://Scripts/leaf_shard.gd" id="1_q7eou"]
+[ext_resource type="Texture2D" uid="uid://brm1ge6pudk6y" path="res://Assets/Sprites/GrassCrystal-Idle-Sheet.png" id="2_i0gmh"]
+[ext_resource type="Texture2D" uid="uid://c6revy4jcme4r" path="res://Assets/Sprites/GrassCrystal-laser-Sheet.png" id="3_a7u0r"]
+[ext_resource type="Script" uid="uid://ci8cdyyvcqoj8" path="res://Scripts/laser_ray_cast.gd" id="3_i0gmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1p01"]
+atlas = ExtResource("3_a7u0r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1km0i"]
+atlas = ExtResource("3_a7u0r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68hop"]
+atlas = ExtResource("3_a7u0r")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylhre"]
+atlas = ExtResource("3_a7u0r")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7u0r"]
+atlas = ExtResource("2_i0gmh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waw0c"]
+atlas = ExtResource("2_i0gmh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6tyc"]
+atlas = ExtResource("2_i0gmh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d54ty"]
+atlas = ExtResource("2_i0gmh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68hop"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1p01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1km0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68hop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylhre")
+}],
+"loop": true,
+"name": &"Firing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7u0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waw0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6tyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d54ty")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="LeafShard" type="Node2D" unique_id=1678065873]
+script = ExtResource("1_q7eou")
+rotation_dir = -1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1824328483]
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 95.73
+initial_velocity_max = 152.72
+radial_accel_min = -500.0
+radial_accel_max = -500.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.54787934, 0.76750803, 0.49842983, 1)
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1380216012]
+
+[node name="LaserRayCast" type="RayCast2D" parent="Pivot" unique_id=1259833522]
+target_position = Vector2(0, 2000)
+collision_mask = 37
+script = ExtResource("3_i0gmh")
+color = Color(0.39792636, 0.89481866, 0.4539513, 1)
+is_casting = true
+
+[node name="Line2D" type="Line2D" parent="Pivot/LaserRayCast" unique_id=739235481]
+modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 5.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=788786959]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_68hop")
+animation = &"Idle"
+autoplay = "Idle"

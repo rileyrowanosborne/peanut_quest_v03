@@ -43,10 +43,11 @@ var max_brain_essence : int = 10
 var current_salt : int = 0
 var max_salt: int = 10
 
+var player_is_shelled : bool = true
 
 var first_load : bool = true
 
-
+var sword_is_active : bool = false
 
 func _ready() -> void:
 	player_is_attacking = false

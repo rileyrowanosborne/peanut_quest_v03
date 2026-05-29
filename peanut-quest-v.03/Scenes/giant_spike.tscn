@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://cpgqjhiqjjqn7"]
+
+[ext_resource type="Script" uid="uid://djbvue6t5155u" path="res://Scripts/giant_spike.gd" id="1_kqgoa"]
+[ext_resource type="Texture2D" uid="uid://b1h5os87yeqlu" path="res://Assets/Sprites/GiantSpike.png" id="1_u7e5y"]
+
+[sub_resource type="Animation" id="Animation_u7e5y"]
+resource_name = "Pierce"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.21283044, 0.3, 0.6666667, 2),
+"transitions": PackedFloat32Array(1, 0.40612617, 1, 0.22531268, 1),
+"update": 0,
+"values": [Vector2(0, 68), Vector2(0, 68), Vector2(0, -64), Vector2(0, -64), Vector2(0, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.21283044, 0.3, 0.6666667, 2),
+"transitions": PackedFloat32Array(1, 0.406, 1, 0.22531268, 1),
+"update": 0,
+"values": [Vector2(0, 132), Vector2(0, 132), Vector2(0, 0), Vector2(0, 0), Vector2(0, 132)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.3, 0.6666667, 0.8666667, 1.0659628),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6333333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.6333333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_kqgoa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqgoa"]
+_data = {
+&"Pierce": SubResource("Animation_u7e5y"),
+&"RESET": SubResource("Animation_kqgoa")
+}
+
+[node name="GiantSpike" type="Node2D" unique_id=2136340908]
+script = ExtResource("1_kqgoa")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1004301743]
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=424547347]
+visible = false
+polygon = PackedVector2Array(-14, 0, 18, 0, 18, -7, 13, -14, 8.083252, -57.431286, 10, -68, 6, -79, 2.8588333, -107.270424, 6, -114, 1.5648956, -118.91579, 1, -124, 0, -126, -2.5266876, -106.86944, -8, -99, -5.208153, -86.5669, -10, -44, -16, -32, -13, -20)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1871236272]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -64)
+texture = ExtResource("1_u7e5y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1655258294]
+libraries/ = SubResource("AnimationLibrary_kqgoa")
+
+[node name="DustRumble" type="CPUParticles2D" parent="." unique_id=811446069]
+position = Vector2(1, 0)
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.27
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, -1)
+spread = 59.25
+gravity = Vector2(0, 100)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+
+[node name="DustRumble2" type="CPUParticles2D" parent="." unique_id=834821635]
+position = Vector2(-4, 0)
+emitting = false
+one_shot = true
+explosiveness = 0.27
+randomness = 1.0
+direction = Vector2(0, -1)
+spread = 59.25
+gravity = Vector2(0, 100)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+
+[node name="DustRumble3" type="CPUParticles2D" parent="." unique_id=1259345230]
+position = Vector2(6, 1)
+emitting = false
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.27
+randomness = 1.0
+direction = Vector2(0, -1)
+spread = 59.25
+gravity = Vector2(0, 50)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+
+[node name="Timer" type="Timer" parent="." unique_id=893852898]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

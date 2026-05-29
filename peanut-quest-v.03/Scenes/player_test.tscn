@@ -1,22 +1,18 @@
 [gd_scene format=3 uid="uid://bmbok4ghbbxic"]
 
 [ext_resource type="Script" uid="uid://pnl613v220st" path="res://Scripts/player_test.gd" id="1_o60cq"]
+[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/sword_power_up.tscn" id="2_tvrp7"]
 [ext_resource type="Texture2D" uid="uid://vcruqpwowjd3" path="res://Assets/Sprites/CircleZap-Sheet_2.png" id="3_o60cq"]
 [ext_resource type="Script" uid="uid://c3kydfwve6dfv" path="res://Scripts/peanut_anims.gd" id="4_j8edj"]
 [ext_resource type="Script" uid="uid://d25j227ikawr8" path="res://Scripts/special_charge.gd" id="4_lbtjm"]
-[ext_resource type="Texture2D" uid="uid://cye8litj2w7cu" path="res://Assets/Sprites/SaltParticle.png" id="4_sduab"]
-[ext_resource type="Texture2D" uid="uid://dsdx54vnywqcq" path="res://Assets/Sprites/16x16 Peanut - Death-Sheet.png" id="5_prfrf"]
-[ext_resource type="Texture2D" uid="uid://b3qcv3sbf35ja" path="res://Assets/Sprites/SaltParticle2.png" id="5_tvrp7"]
-[ext_resource type="Texture2D" uid="uid://cp7g432cve4ed" path="res://Assets/Sprites/16x16 peanut - idle-SpriteSheet.png" id="6_67lvd"]
+[ext_resource type="Script" uid="uid://sv8la1tj8vdm" path="res://Scripts/essence_charge.gd" id="5_8dx66"]
 [ext_resource type="Texture2D" uid="uid://bug2cu0ph6q4t" path="res://Assets/Sprites/SmallRing.png" id="6_wix4t"]
 [ext_resource type="Script" uid="uid://c7dur43lqefgu" path="res://Scripts/slow_down_time_bar.gd" id="7_5n1oj"]
-[ext_resource type="Texture2D" uid="uid://coym51emh4w7" path="res://Assets/Sprites/FlyingPeanut.png" id="7_sduab"]
-[ext_resource type="Texture2D" uid="uid://3vs0678uh8gm" path="res://Assets/Sprites/Peanut Ground Sliding-Sheet 2.png" id="8_tvrp7"]
-[ext_resource type="Texture2D" uid="uid://bin6cln6l0qfe" path="res://Assets/Sprites/16x16 Peanut - walking-SpriteSheet.png" id="9_1klfb"]
-[ext_resource type="Texture2D" uid="uid://cam6hqp8wq2l3" path="res://Assets/Sprites/Peanut - Sliding-Sheet.png" id="10_oy2dr"]
+[ext_resource type="SpriteFrames" uid="uid://dgqsh7lws08ks" path="res://Assets/Resources/PlayerSpriteSheets/healthy_shelled_peanut.tres" id="7_qki6r"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_e0rbb"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="13_q526i"]
 [ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="14_sdx7n"]
+[ext_resource type="Script" uid="uid://cokdxkup1526y" path="res://Scripts/power_up_node.gd" id="18_tvrp7"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.8684733, 0.0, 0, 0]
@@ -118,12 +114,6 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_1klfb"]
-frames = 2
-frame_0/texture = ExtResource("4_sduab")
-frame_1/texture = ExtResource("5_tvrp7")
-frame_1/duration = 1.0
-
 [sub_resource type="Curve" id="Curve_o60cq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48272252), -3.9420319, 0.0, 0, 0]
 point_count = 2
@@ -132,224 +122,9 @@ point_count = 2
 offsets = PackedFloat32Array(0.9450867, 1)
 colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 0.09803922, 0.16862746, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wohnl"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
-atlas = ExtResource("6_67lvd")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hlwpc"]
-atlas = ExtResource("7_sduab")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
-atlas = ExtResource("5_prfrf")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
-atlas = ExtResource("8_tvrp7")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
-atlas = ExtResource("8_tvrp7")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
-atlas = ExtResource("8_tvrp7")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpjfl"]
-atlas = ExtResource("8_tvrp7")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
-atlas = ExtResource("8_tvrp7")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
-atlas = ExtResource("6_67lvd")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
-atlas = ExtResource("9_1klfb")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
-atlas = ExtResource("9_1klfb")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
-atlas = ExtResource("9_1klfb")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
-atlas = ExtResource("9_1klfb")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
-atlas = ExtResource("10_oy2dr")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
-atlas = ExtResource("10_oy2dr")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
-atlas = ExtResource("10_oy2dr")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
-atlas = ExtResource("10_oy2dr")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
-atlas = ExtResource("10_oy2dr")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_aeet5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuaoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wohnl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuaoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvnsp")
-}],
-"loop": false,
-"name": &"Crack",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hlwpc")
-}],
-"loop": false,
-"name": &"Dashing",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8erm5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1ek2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tx1dd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gymyn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pu2lt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ukyrk")
-}],
-"loop": false,
-"name": &"Death",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fs7ks")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l6n3p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_olqyp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wpjfl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bi64h")
-}],
-"loop": true,
-"name": &"Ground Sliding",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvnsp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6t5aa")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x3wgy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fkybt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vgqql")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3smsa")
-}],
-"loop": true,
-"name": &"Walking",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dp3o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h4iuc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fd4e3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qqcod")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igrcy")
-}],
-"loop": true,
-"name": &"Wall Sliding",
-"speed": 5.0
-}]
+[sub_resource type="Curve" id="Curve_qki6r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48272252), -3.9420319, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(9, 13)
@@ -458,7 +233,6 @@ frame_progress = 1.0
 [node name="SpecialCharge" type="CPUParticles2D" parent="Particles" unique_id=1770305083]
 position = Vector2(0, -7)
 emitting = false
-texture = SubResource("AnimatedTexture_1klfb")
 lifetime = 0.2
 preprocess = 0.5
 explosiveness = 0.1
@@ -469,11 +243,14 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 100.0
 radial_accel_min = -500.0
 radial_accel_max = -100.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_o60cq")
-color = Color(0.9316924, 0.929657, 0.9703724, 1)
+color = Color(1.5138813, 1.5076562, 1.5699072, 1)
 script = ExtResource("4_lbtjm")
 
 [node name="BrainAbsorbParticleEffect" type="CPUParticles2D" parent="Particles" unique_id=1397903387]
+modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
 position = Vector2(0, -7)
 emitting = false
 one_shot = true
@@ -504,10 +281,29 @@ radial_accel_max = -100.0
 scale_amount_min = 3.0
 scale_amount_max = 3.0
 
+[node name="EssenceCharge" type="CPUParticles2D" parent="Particles" unique_id=1646684039]
+position = Vector2(0, -4)
+emitting = false
+lifetime = 0.2
+preprocess = 0.5
+explosiveness = 0.1
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_qki6r")
+color = Color(0.9019608, 0.49803922, 0.49803922, 1)
+script = ExtResource("5_8dx66")
+
 [node name="PeanutAnims" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -7)
-sprite_frames = SubResource("SpriteFrames_aeet5")
-animation = &"Idle"
+sprite_frames = ExtResource("7_qki6r")
+animation = &"Crack"
 autoplay = "Idle"
 script = ExtResource("4_j8edj")
 
@@ -597,6 +393,7 @@ one_shot = true
 [node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=1838870689]
 
 [node name="SlowDownTimeBar" type="TextureProgressBar" parent="." unique_id=466373547]
+visible = false
 offset_left = -40.0
 offset_top = -46.0
 offset_right = 40.0
@@ -609,6 +406,10 @@ script = ExtResource("7_5n1oj")
 
 [node name="SlowTimer" type="Timer" parent="SlowDownTimeBar" unique_id=1799413533]
 one_shot = true
+
+[node name="PowerUpNode" type="Node2D" parent="." unique_id=433657927]
+script = ExtResource("18_tvrp7")
+sword_scene = ExtResource("2_tvrp7")
 
 [connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]

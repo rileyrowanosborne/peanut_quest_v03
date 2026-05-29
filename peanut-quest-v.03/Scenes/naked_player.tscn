@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://chh5bp0ft4hyj" path="res://Scripts/naked_peanut.gd" id="1_qtl4q"]
 [ext_resource type="Texture2D" uid="uid://vcruqpwowjd3" path="res://Assets/Sprites/CircleZap-Sheet_2.png" id="2_akt7d"]
 [ext_resource type="Texture2D" uid="uid://eufxu4qkildc" path="res://Assets/Sprites/PeanutOnFIre-Sheet.png" id="2_qtl4q"]
+[ext_resource type="Script" uid="uid://sv8la1tj8vdm" path="res://Scripts/essence_charge.gd" id="3_3djym"]
 [ext_resource type="Texture2D" uid="uid://cofmgesefps50" path="res://Assets/Sprites/NakedPeanut-Idle-Sheet.png" id="5_akt7d"]
 [ext_resource type="Texture2D" uid="uid://cei5r20t60j1q" path="res://Assets/Sprites/NakedPeanut-Walking-Sheet.png" id="6_doe4k"]
 [ext_resource type="Texture2D" uid="uid://cnteccohjwfgn" path="res://Assets/Sprites/NakedPeanut-Slide-Sheet.png" id="6_qtl4q"]
@@ -10,8 +11,10 @@
 [ext_resource type="Script" uid="uid://d25j227ikawr8" path="res://Scripts/special_charge.gd" id="8_doe4k"]
 [ext_resource type="Texture2D" uid="uid://bug2cu0ph6q4t" path="res://Assets/Sprites/SmallRing.png" id="9_ttses"]
 [ext_resource type="Script" uid="uid://c7dur43lqefgu" path="res://Scripts/slow_down_time_bar.gd" id="10_3djym"]
-[ext_resource type="Texture2D" uid="uid://cye8litj2w7cu" path="res://Assets/Sprites/SaltParticle.png" id="10_vdrt6"]
-[ext_resource type="Texture2D" uid="uid://b3qcv3sbf35ja" path="res://Assets/Sprites/SaltParticle2.png" id="11_b3toe"]
+
+[sub_resource type="Curve" id="Curve_ttses"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48272252), -3.9420319, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbtjm"]
 atlas = ExtResource("2_akt7d")
@@ -226,20 +229,48 @@ point_count = 2
 offsets = PackedFloat32Array(0.9450867, 1)
 colors = PackedColorArray(0.9019608, 0.49803922, 0.49803922, 1, 1, 0.09803922, 0.16862746, 1)
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_bm7a4"]
-frames = 2
-frame_0/texture = ExtResource("10_vdrt6")
-frame_1/texture = ExtResource("11_b3toe")
-frame_1/duration = 1.0
-
-[sub_resource type="Curve" id="Curve_0fl2a"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48272252), -3.9420319, 0.0, 0, 0]
-point_count = 2
-
 [node name="Naked Peanut" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
 collision_mask = 430
 script = ExtResource("1_qtl4q")
+
+[node name="SaltCharge" type="CPUParticles2D" parent="." unique_id=760922090]
+position = Vector2(0, -4)
+emitting = false
+lifetime = 0.2
+preprocess = 0.5
+explosiveness = 0.1
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_ttses")
+color = Color(1.5138813, 1.5076562, 1.5699072, 1)
+script = ExtResource("8_doe4k")
+
+[node name="EssenceCharge" type="CPUParticles2D" parent="." unique_id=687965157]
+position = Vector2(0, -4)
+emitting = false
+lifetime = 0.2
+preprocess = 0.5
+explosiveness = 0.1
+randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -100.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_ttses")
+color = Color(0.9019608, 0.49803922, 0.49803922, 1)
+script = ExtResource("3_3djym")
 
 [node name="CircleZapAnim" type="AnimatedSprite2D" parent="." unique_id=2012293475]
 modulate = Color(0.90380466, 0.51707095, 0.94682246, 1)
@@ -353,6 +384,7 @@ scale_amount_min = 3.0
 scale_amount_max = 3.0
 
 [node name="BrainAbsorbParticleEffect" type="CPUParticles2D" parent="." unique_id=1928533609]
+modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
 position = Vector2(0, -7)
 emitting = false
 one_shot = true
@@ -367,24 +399,6 @@ radial_accel_max = -100.0
 scale_amount_min = 3.0
 scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_ttses")
-
-[node name="SpecialCharge" type="CPUParticles2D" parent="." unique_id=1880287556]
-position = Vector2(0, -7)
-emitting = false
-texture = SubResource("AnimatedTexture_bm7a4")
-lifetime = 0.2
-preprocess = 0.5
-explosiveness = 0.1
-randomness = 1.0
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 100.0
-radial_accel_min = -500.0
-radial_accel_max = -100.0
-scale_amount_curve = SubResource("Curve_0fl2a")
-color = Color(0.9316924, 0.929657, 0.9703724, 1)
-script = ExtResource("8_doe4k")
 
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

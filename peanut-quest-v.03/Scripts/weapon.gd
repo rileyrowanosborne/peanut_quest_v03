@@ -26,6 +26,7 @@ extends Node2D
 
 var current_combo : int = 0
 
+var crossfade_amount : float = 0
 
 enum sword_state {
 	l_idle,
@@ -53,6 +54,7 @@ var current_state : sword_state
 
 
 func _ready() -> void:
+	
 	current_state = sword_state.l_idle
 	current_combo = 0
 
@@ -113,12 +115,12 @@ func _process(delta: float) -> void:
 func state_machine():
 	match current_state:
 		sword_state.l_idle:
-			animation_player.play("IdleLeft")
+			animation_player.play("IdleLeft", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = true
 		
 		sword_state.l_walk:
-			animation_player.play("WalkLeft")
+			animation_player.play("WalkLeft", crossfade_amount)
 			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
@@ -126,7 +128,7 @@ func state_machine():
 				sword_particles_1.emitting = false
 		
 		sword_state.l_slide:
-			animation_player.play("DashLeft")
+			animation_player.play("DashLeft", crossfade_amount)
 			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
@@ -134,28 +136,28 @@ func state_machine():
 				sword_particles_1.emitting = false
 		
 		sword_state.l_attack1:
-			animation_player.play("AttackLeft1")
+			animation_player.play("AttackLeft1", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 			
 			
 		sword_state.l_attack2:
-			animation_player.play("AttackLeft2")
+			animation_player.play("AttackLeft2", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 			
 		sword_state.l_attack3:
-			animation_player.play("AttackLeft3")
+			animation_player.play("AttackLeft3", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 		
 		sword_state.r_idle:
-			animation_player.play("IdleRight")
+			animation_player.play("IdleRight", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = true
 		
 		sword_state.r_walk:
-			animation_player.play("WalkRight")
+			animation_player.play("WalkRight", crossfade_amount)
 			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
@@ -163,7 +165,7 @@ func state_machine():
 				sword_particles_1.emitting = false
 		
 		sword_state.r_slide:
-			animation_player.play("DashRight")
+			animation_player.play("DashRight", crossfade_amount)
 			sword_collision.disabled = true
 			if GameState.player_is_on_ground:
 				sword_particles_1.emitting = true
@@ -171,44 +173,44 @@ func state_machine():
 				sword_particles_1.emitting = false
 			
 		sword_state.r_attack1:
-			animation_player.play("AttackRight1")
+			animation_player.play("AttackRight1", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 		
 		sword_state.r_attack2:
-			animation_player.play("AttackRight2")
+			animation_player.play("AttackRight2", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 		
 		sword_state.r_attack3:
-			animation_player.play("AttackRight3")
+			animation_player.play("AttackRight3", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 		
 		sword_state.air_attack:
-			animation_player.play("AirAttack")
+			animation_player.play("AirAttack", crossfade_amount)
 			sword_particles_1.emitting = false
 			sword_collision.disabled = false
 
 		
 		sword_state.wall_slide:
 			sword_collision.disabled = true
-			animation_player.play("WallSlide")
+			animation_player.play("WallSlide", crossfade_amount)
 			sword_particles_1.emitting = false
 		
 		sword_state.air_neutral:
 			sword_collision.disabled = true
-			animation_player.play("AirNeutral")
+			animation_player.play("AirNeutral", crossfade_amount)
 			sword_particles_1.emitting = false
 		
 		sword_state.l_air:
 			sword_collision.disabled = true
-			animation_player.play("AirLeft")
+			animation_player.play("AirLeft", crossfade_amount)
 			sword_particles_1.emitting = false
 		
 		sword_state.r_air:
 			sword_collision.disabled = true
-			animation_player.play("AirRight")
+			animation_player.play("AirRight", crossfade_amount)
 			sword_particles_1.emitting = false
 	
 

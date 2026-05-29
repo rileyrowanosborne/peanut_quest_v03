@@ -25,9 +25,9 @@ func _ready() -> void:
 
 func reload_level():
 	GameState.current_brain_essence = 0
-	get_tree().reload_current_scene()
+	GameState.current_salt = 0
 	GameState.current_health = GameState.current_max_health
-
+	get_tree().call_deferred("reload_current_scene")
 
 func reshell_peanut():
 	GlobalSignalBus.emit_signal("essence_update")

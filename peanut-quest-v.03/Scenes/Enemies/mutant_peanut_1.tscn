@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="5_ndkt0"]
 [ext_resource type="Texture2D" uid="uid://b34xk6rs1cooo" path="res://Assets/Sprites/VeinTest3.3.png" id="5_nwi17"]
 [ext_resource type="Script" uid="uid://gsr2yq5wnob6" path="res://Scripts/hit_box.gd" id="6_p8k3m"]
-[ext_resource type="PackedScene" uid="uid://bptkbbt4lsccg" path="res://Scenes/lil_heart_one.tscn" id="7_rwi6p"]
+[ext_resource type="PackedScene" uid="uid://bptkbbt4lsccg" path="res://Scenes/Enemies/lil_heart_one.tscn" id="7_rwi6p"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_fdmrv"]
 frames = 3

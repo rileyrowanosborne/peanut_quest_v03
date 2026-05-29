@@ -8,6 +8,7 @@ func _ready() -> void:
 	
 	GlobalSignalBus.connect("salt_update", salt_update)
 	
+	
 	salt_update()
 
 

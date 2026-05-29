@@ -245,7 +245,7 @@ animations = [{
 height = 38.0
 
 [node name="MidHeartTwo" type="CharacterBody2D" unique_id=722759973]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_u3137")
 

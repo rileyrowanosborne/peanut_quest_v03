@@ -26,10 +26,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func collect():
+	is_on = false
 	salt_absorb_particle_effect.emitting = true
 	animated_sprite_2d.hide()
 	GameState.current_salt += 1
-	is_on = false
 	GlobalSignalBus.emit_signal("salt_update")
 	await get_tree().create_timer(.5).timeout
 	queue_free()

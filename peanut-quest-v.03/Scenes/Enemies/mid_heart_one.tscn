@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://r2ylrtqkw4bw" path="res://Scenes/death_blood_spurt.tscn" id="2_da1dg"]
 [ext_resource type="PackedScene" uid="uid://by2xtrhi8a3ce" path="res://Scenes/absorb_particles.tscn" id="2_gj4wb"]
 [ext_resource type="PackedScene" uid="uid://22jawyldipx4" path="res://Scenes/projectile_launcher.tscn" id="3_ji2er"]
+[ext_resource type="Theme" uid="uid://wx3xl3qoocmx" path="res://Assets/Resources/YellowText.tres" id="6_a18mo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqk7q"]
 atlas = ExtResource("1_urosa")
@@ -91,12 +92,16 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.51937985)
 colors = PackedColorArray(0.45490196, 0.15294118, 0.101960786, 1, 0.7921569, 0.2627451, 0.1764706, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfl4y"]
+size = Vector2(28, 13.5)
+
 [node name="MidHeartOne" type="CharacterBody2D" unique_id=1833482725]
 collision_layer = 160
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_yqk7q")
 absorb_scene = ExtResource("2_gj4wb")
+speed = 25.0
 blood_spurt_scene = ExtResource("2_da1dg")
 
 [node name="ProjectileLauncher" parent="." unique_id=110929225 instance=ExtResource("3_ji2er")]
@@ -149,3 +154,29 @@ color_ramp = SubResource("Gradient_gj4wb")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1525947609]
 polygon = PackedVector2Array(-14, -11, 0, -11, 14, -11, 12, 3, 0, 13, -12, 3)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=778709221]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1500966072]
+position = Vector2(0, -18.25)
+shape = SubResource("RectangleShape2D_dfl4y")
+
+[node name="MunchText" type="RichTextLabel" parent="." unique_id=314734688]
+visible = false
+offset_left = -21.0
+offset_top = -37.0
+offset_right = 21.0
+offset_bottom = -28.0
+theme = ExtResource("6_a18mo")
+theme_override_colors/default_color = Color(0.84664536, 0.7579415, 0.3944859, 1)
+theme_override_colors/font_shadow_color = Color(0.17361182, 0.14694414, 0.036895964, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "*munch*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

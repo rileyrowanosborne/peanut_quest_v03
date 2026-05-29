@@ -7,6 +7,8 @@ extends TextureProgressBar
 func _ready() -> void:
 	GlobalSignalBus.connect("slow_down_start", start_slow_bar)
 	
+	show()
+	
 
 func _process(delta: float) -> void:
 	

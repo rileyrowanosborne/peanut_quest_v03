@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	
 	
 	
-	if ray_cast_down.is_colliding():
+	if ray_cast_down.is_colliding() and current_dir == Vector2(0,1):
 		current_dir = Vector2(1,0)
 	
 	elif ray_cast_right.is_colliding():

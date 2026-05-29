@@ -4,7 +4,7 @@ extends Node2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 
-@export var shot_delay : float = 1.0
+@export var shot_delay : float = 2.0
 @export var aiming_direction : Vector2 = Vector2(1,0)
 @export var projectile_scene : PackedScene
 

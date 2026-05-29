@@ -98,6 +98,7 @@ animations = [{
 }]
 
 [node name="LaserBeam" type="Node2D" unique_id=64217272]
+modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
 script = ExtResource("1_ot8dx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1130932850]
