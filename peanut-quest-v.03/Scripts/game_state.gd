@@ -10,6 +10,8 @@ var player_is_on_ground : bool
 
 var player_location : Vector2
 
+var player_center_location : Vector2
+
 var player_is_wall_sliding : bool
 
 var player_is_attacking : bool

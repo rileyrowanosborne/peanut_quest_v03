@@ -22,6 +22,8 @@ func _ready() -> void:
 
 
 
+
+
 func _physics_process(delta: float) -> void:
 	
 	target_position.x = move_toward(
@@ -39,8 +41,8 @@ func _physics_process(delta: float) -> void:
 	if is_colliding():
 		
 		target = get_collider()
-		#if target.has_method("take_damage"):
-			#target.take_damage(owner.global_position)
+		if target.has_method("take_damage"):
+			target.take_damage(owner.global_position)
 		
 		laser_end_position = to_local(get_collision_point())
 	
@@ -81,7 +83,6 @@ func set_color(new_color: Color):
 @export var growth_time := .1
 
 var tween : Tween = null
-
 
 
 

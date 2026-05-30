@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d1e7prwevg3d8"]
+
+[ext_resource type="Texture2D" uid="uid://b5jhvu1fne3xi" path="res://Assets/Sprites/HandPlatform2.png" id="1_0mi2f"]
+
+[node name="HorizontalHandPlatform" type="Node2D" unique_id=226549757]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1775275801]
+position = Vector2(128, 1)
+texture = ExtResource("1_0mi2f")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=507540263]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=39725024]
+polygon = PackedVector2Array(0, -2, 246, -5, 246, 12, 0, 15)
