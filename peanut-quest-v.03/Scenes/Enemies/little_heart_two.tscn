@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://bcj7b0t3q7xx2"]
+
+[ext_resource type="Texture2D" uid="uid://csosgrled54kv" path="res://Assets/Sprites/SmallHeartTwo-Sheet-Idle.png" id="1_jup27"]
+[ext_resource type="Script" uid="uid://c658awuhx7bt0" path="res://Scripts/little_heart_two.gd" id="1_q4b58"]
+[ext_resource type="Script" uid="uid://ci8cdyyvcqoj8" path="res://Scripts/laser_ray_cast.gd" id="3_q4b58"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddxsu"]
+atlas = ExtResource("1_jup27")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq6t6"]
+atlas = ExtResource("1_jup27")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpgux"]
+atlas = ExtResource("1_jup27")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s83pq"]
+atlas = ExtResource("1_jup27")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25385"]
+atlas = ExtResource("1_jup27")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5u4u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddxsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq6t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpgux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s83pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25385")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4b58"]
+size = Vector2(20, 19)
+
+[node name="LittleHeartTwo" type="Node2D" unique_id=1700280880]
+script = ExtResource("1_q4b58")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1387828274]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_w5u4u")
+autoplay = "default"
+frame_progress = 0.48214376
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1423332958]
+
+[node name="Laser" type="RayCast2D" parent="Pivot" unique_id=474950692]
+target_position = Vector2(200, 0)
+collision_mask = 5
+script = ExtResource("3_q4b58")
+color = Color(1.5720325, 0.4471257, 0.29592857, 0.88235295)
+max_length = 250.0
+
+[node name="Line2D" type="Line2D" parent="Pivot/Laser" unique_id=1028521780]
+points = PackedVector2Array(0, 0, 50, 0)
+width = 4.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LaserParticles" type="CPUParticles2D" parent="Pivot/Laser" unique_id=1857964736]
+amount = 16
+lifetime = 0.5
+emission_shape = 5
+emission_points = PackedVector2Array(0, 0, 50, 0, 100, 0, 150, 0, 200, 0, 250, 0)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1.2514945, 0.43502992, 0.30197644, 1)
+
+[node name="BodyParticles" type="CPUParticles2D" parent="." unique_id=2065008541]
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -500.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(1.5720325, 0.4471257, 0.29592857, 0.88235295)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1220150058]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=529114837]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_q4b58")

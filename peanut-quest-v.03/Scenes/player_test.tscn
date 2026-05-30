@@ -11,7 +11,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dgqsh7lws08ks" path="res://Assets/Resources/PlayerSpriteSheets/healthy_shelled_peanut.tres" id="7_qki6r"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_e0rbb"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="13_q526i"]
-[ext_resource type="Script" uid="uid://bvqy24abbonba" path="res://Scripts/player_position_marker.gd" id="14_qki6r"]
 [ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/naked_player.tscn" id="14_sdx7n"]
 [ext_resource type="Script" uid="uid://cokdxkup1526y" path="res://Scripts/power_up_node.gd" id="18_tvrp7"]
 
@@ -411,10 +410,6 @@ one_shot = true
 [node name="PowerUpNode" type="Node2D" parent="." unique_id=433657927]
 script = ExtResource("18_tvrp7")
 sword_scene = ExtResource("2_tvrp7")
-
-[node name="PlayerPositionMarker" type="Marker2D" parent="." unique_id=1325948380]
-position = Vector2(0, -52)
-script = ExtResource("14_qki6r")
 
 [connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]

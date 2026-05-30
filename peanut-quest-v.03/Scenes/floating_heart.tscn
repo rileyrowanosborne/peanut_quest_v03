@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cnrjsiitvc7dd"]
+
+[ext_resource type="Texture2D" uid="uid://dasw01fmvsi3c" path="res://Assets/Sprites/FloatingHeart.png" id="1_abiwf"]
+[ext_resource type="Script" uid="uid://dmodeiclmy1fk" path="res://Scripts/floating_heart.gd" id="1_jrm5r"]
+
+[node name="FloatingHeart" type="CharacterBody2D" unique_id=2101287276]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_jrm5r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=96621116]
+position = Vector2(0, -1)
+texture = ExtResource("1_abiwf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1934305509]
+polygon = PackedVector2Array(-16, -8, 16, -8, 13, 3, 0, 13, -12, 4)

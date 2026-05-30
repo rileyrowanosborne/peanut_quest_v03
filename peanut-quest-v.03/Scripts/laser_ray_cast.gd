@@ -1,7 +1,7 @@
-@tool
 extends RayCast2D
 
 @onready var line_2d: Line2D = $Line2D
+@onready var laser_particles: CPUParticles2D = $LaserParticles
 
 @export var color := Color.WHITE: set = set_color
 
@@ -42,6 +42,9 @@ func _physics_process(delta: float) -> void:
 		laser_end_position = to_local(get_collision_point())
 	
 	line_2d.points[1] = laser_end_position
+	
+
+
 
 
 @export var is_casting := false: set = set_is_casting

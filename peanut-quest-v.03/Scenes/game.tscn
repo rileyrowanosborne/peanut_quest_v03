@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cpgqjhiqjjqn7" path="res://Scenes/giant_spike.tscn" id="24_vm72l"]
 [ext_resource type="PackedScene" uid="uid://jqvnyu46j6cx" path="res://Scenes/vertical_hand_platform.tscn" id="26_fkdbe"]
 [ext_resource type="PackedScene" uid="uid://d1e7prwevg3d8" path="res://Scenes/horizontal_hand_platform.tscn" id="27_81klo"]
+[ext_resource type="PackedScene" uid="uid://cnrjsiitvc7dd" path="res://Scenes/floating_heart.tscn" id="28_tgy6u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
 texture = ExtResource("5_wowpa")
@@ -810,7 +811,7 @@ position = Vector2(-1, -104)
 position = Vector2(-4, -42)
 
 [node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("8_h4fw4")]
-position = Vector2(1634, 45)
+position = Vector2(-877, 93)
 
 [node name="SwordStone" parent="." unique_id=933023054 instance=ExtResource("20_7nbq1")]
 position = Vector2(715, -176)
@@ -846,6 +847,15 @@ scale = Vector2(-0.758, 1)
 [node name="HorizontalHandPlatform3" parent="." unique_id=557301603 instance=ExtResource("27_81klo")]
 position = Vector2(1841, -264)
 scale = Vector2(-0.758, 1)
+
+[node name="FloatingHeart" parent="." unique_id=2101287276 instance=ExtResource("28_tgy6u")]
+position = Vector2(-1219, -14)
+
+[node name="FloatingHeart2" parent="." unique_id=834143864 instance=ExtResource("28_tgy6u")]
+position = Vector2(-1045, 32)
+
+[node name="FloatingHeart3" parent="." unique_id=1104311413 instance=ExtResource("28_tgy6u")]
+position = Vector2(-1211, 74)
 
 [editable path="WorldLasers/LaserBeam"]
 [editable path="WorldLasers/LaserBeam8"]

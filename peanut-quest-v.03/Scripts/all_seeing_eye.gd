@@ -8,6 +8,7 @@ extends Node2D
 @onready var aiming_laser: RayCast2D = $Pivot/AimingLaser
 @onready var firing_laser: RayCast2D = $Pivot/FiringLaser
 @onready var firing_particles: CPUParticles2D = $FiringParticles
+@onready var laser_particles: CPUParticles2D = $Pivot/FiringLaser/LaserParticles
 
 var in_range : bool = false
 
@@ -49,9 +50,11 @@ func _on_laser_blast_timer_timeout() -> void:
 	await get_tree().create_timer(1).timeout
 	animated_sprite_2d.play("Close")
 	await get_tree().create_timer(.3).timeout
+	laser_particles.emitting = true
 	firing_laser.set_is_casting(true)
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(1).timeout
 	firing_laser.set_is_casting(false)
+	laser_particles.emitting = false
 	laser_blast_timer.start()
 
 

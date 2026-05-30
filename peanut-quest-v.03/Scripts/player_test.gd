@@ -356,7 +356,7 @@ func take_damage(attack_dir : Vector2):
 		
 	
 	if not GameState.is_invul:
-		GameState.player_invul(.5)
+		GameState.player_invul(1)
 		
 		if GameState.sword_is_active:
 			GlobalSignalBus.emit_signal("sword_deactivate")

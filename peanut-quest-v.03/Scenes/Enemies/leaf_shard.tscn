@@ -93,7 +93,7 @@ color = Color(0.54787934, 0.76750803, 0.49842983, 1)
 [node name="Pivot" type="Node2D" parent="." unique_id=1380216012]
 
 [node name="LaserRayCast" type="RayCast2D" parent="Pivot" unique_id=1259833522]
-target_position = Vector2(0, 2000)
+target_position = Vector2(1400, 0)
 collision_mask = 37
 script = ExtResource("3_i0gmh")
 color = Color(0.39792636, 0.89481866, 0.4539513, 1)
@@ -105,6 +105,22 @@ points = PackedVector2Array(0, 0, 0, 0)
 width = 5.0
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="LaserParticles" type="CPUParticles2D" parent="Pivot/LaserRayCast" unique_id=1871897725]
+amount = 16
+lifetime = 0.5
+emission_shape = 5
+emission_points = PackedVector2Array(0, 0, 50, 0, 100, 0, 150, 0, 200, 0, 250, 0)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.6346102, 1.3724523, 0.8220946, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=788786959]
 position = Vector2(0, -2)

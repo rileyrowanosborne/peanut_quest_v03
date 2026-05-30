@@ -194,6 +194,22 @@ width = 2.0
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="LaserParticles" type="CPUParticles2D" parent="Pivot/FiringLaser" unique_id=635412646]
+emitting = false
+amount = 16
+lifetime = 0.5
+emission_shape = 4
+emission_points = PackedVector2Array(0, 0, 50, 0, 100, 0, 150, 0, 200, 0, 250, 0, 25, 0, 75, 0, 125, 0, 175, 0, 225, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(1.2425919, 0.17489685, 0, 1)
+
 [node name="LaserBlastTimer" type="Timer" parent="." unique_id=1953972253]
 wait_time = 5.0
 one_shot = true
