@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://cv6nd8457be6o"]
 
-[ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_0b1k8"]
-[ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="4_5emc1"]
-[ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="5_1y8cq"]
-[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="6_aq6v7"]
-[ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="6_dr21r"]
-[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_agare"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_0b1k8"]
-[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/player_test.tscn" id="9_5emc1"]
-[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="9_dr21r"]
+[ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_tb4d4"]
+[ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="2_y4glo"]
+[ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="3_x2xpm"]
+[ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="4_81vs5"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="5_743na"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="6_1wwog"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="7_5pq64"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="8_1r3d1"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/player_test.tscn" id="9_uxg3i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]
-texture = ExtResource("6_dr21r")
+texture = ExtResource("4_81vs5")
 3:1/0 = 0
 3:2/0 = 0
 4:2/0 = 0
@@ -87,8 +87,8 @@ glow_enabled = true
 glow_intensity = 5.77
 glow_bloom = 0.1
 
-[node name="Template" type="Node2D" unique_id=82904511]
-script = ExtResource("1_0b1k8")
+[node name="BaseTemplate" type="Node2D" unique_id=82904511]
+script = ExtResource("1_tb4d4")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=844334467]
 repeat_size = Vector2(1052, 648)
@@ -108,32 +108,33 @@ repeat_times = 10
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=640664391]
 modulate = Color(0.3180198, 0.31801978, 0.31801975, 0.5019608)
 position = Vector2(777, 744.6667)
-texture = ExtResource("4_5emc1")
+texture = ExtResource("2_y4glo")
 
 [node name="TileMap" type="TileMapLayer" parent="." unique_id=777071391]
 z_index = 2
-tile_set = ExtResource("5_1y8cq")
+tile_set = ExtResource("3_x2xpm")
 
 [node name="Decor" type="TileMapLayer" parent="." unique_id=1527221862]
 tile_set = SubResource("TileSet_1y8cq")
 
-[node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("6_aq6v7")]
+[node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("5_743na")]
 position = Vector2(384, 216)
 zoom = Vector2(1.5, 1.5)
 camera_zoom = Vector2(2, 2)
 
-[node name="EntranceDoor" parent="." unique_id=429804739 instance=ExtResource("7_agare")]
+[node name="EntranceDoor" parent="." unique_id=429804739 instance=ExtResource("6_1wwog")]
 position = Vector2(664, 18)
 
-[node name="ExitDoor" parent="." unique_id=943823141 instance=ExtResource("7_agare")]
+[node name="ExitDoor" parent="." unique_id=943823141 instance=ExtResource("6_1wwog")]
 position = Vector2(25, 392)
 
-[node name="FadeToBlackScreen" parent="." unique_id=1795882491 instance=ExtResource("8_0b1k8")]
+[node name="FadeToBlackScreen" parent="." unique_id=1795882491 instance=ExtResource("7_5pq64")]
 
-[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("9_dr21r")]
+[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("8_1r3d1")]
+visible = false
 
-[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("9_5emc1")]
-position = Vector2(-3, 10)
+[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("9_uxg3i")]
+position = Vector2(384, 216)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1567601840]
 environment = SubResource("Environment_dr21r")

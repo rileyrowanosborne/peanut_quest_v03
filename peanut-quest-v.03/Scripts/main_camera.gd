@@ -1,5 +1,6 @@
 extends Camera2D
 
+@onready var initial_timer: Timer = $InitialTimer
 
 var camera_offset_x := 0
 var camera_offset_y := 0
@@ -15,13 +16,18 @@ var neutral_camera_y : int = 30
 
 var is_looking_down : bool = false
 
-@export var is_following_player : bool = false
+@export var is_following_player : bool = true
+
 @export var camera_zoom : Vector2 = Vector2(3,3)
 
 var controller_active: bool
 
 
+
 func _ready() -> void:
+	
+	initial_timer.start()
+	
 	if is_following_player:
 		global_position = GameState.player_location
 
@@ -43,6 +49,13 @@ func _input(event: InputEvent) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if not initial_timer.is_stopped():
+		position_smoothing_speed = 50
+	else:
+		position_smoothing_speed = 3
+	
+	
 	if is_following_player:
 		if GameState.player_direction < 0:
 			camera_offset_x = max(camera_offset_x - 2, min_camera_x)

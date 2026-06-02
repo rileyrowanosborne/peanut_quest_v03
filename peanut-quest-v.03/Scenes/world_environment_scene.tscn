@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b5oq8rd3gotms"]
+
+[sub_resource type="Environment" id="Environment_7nbq1"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 5.77
+glow_bloom = 0.1
+
+[node name="WorldEnvironment" type="WorldEnvironment" unique_id=41593997]
+environment = SubResource("Environment_7nbq1")
