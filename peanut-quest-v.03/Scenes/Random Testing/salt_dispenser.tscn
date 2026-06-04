@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://dnmx623fdsfp6"]
+
+[ext_resource type="Texture2D" uid="uid://dctsbjgpm5vpi" path="res://Assets/Sprites/TheHandFromAbove-Sheet.png" id="1_hr01o"]
+[ext_resource type="Script" uid="uid://biqjpqm1w3nsq" path="res://Scripts/salt_dispenser.gd" id="1_rm8lf"]
+[ext_resource type="PackedScene" uid="uid://cujaif1ymhmxl" path="res://Scenes/Collectibles/salt_collectible.tscn" id="2_af4g1"]
+[ext_resource type="Texture2D" uid="uid://dhktof5mk3nob" path="res://Assets/Sprites/Button-Sheet.png" id="2_aurdi"]
+[ext_resource type="Texture2D" uid="uid://4kkswmtalj0c" path="res://Assets/Sprites/ActiveButton-Sheet.png" id="4_74iil"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6kva"]
+atlas = ExtResource("2_aurdi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n5tc"]
+atlas = ExtResource("2_aurdi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0hsj"]
+atlas = ExtResource("4_74iil")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c0hsj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6kva")
+}],
+"loop": false,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n5tc")
+}],
+"loop": false,
+"name": &"Cooldown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0hsj")
+}],
+"loop": false,
+"name": &"Ready",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aurdi"]
+size = Vector2(27, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aurdi"]
+atlas = ExtResource("1_hr01o")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm8lf"]
+atlas = ExtResource("1_hr01o")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af4g1"]
+atlas = ExtResource("1_hr01o")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74iil"]
+atlas = ExtResource("1_hr01o")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ljqwj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aurdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm8lf")
+}],
+"loop": false,
+"name": &"Dispensing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af4g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74iil")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 1.5
+}]
+
+[node name="SaltDispenser" type="Node2D" unique_id=1233775085]
+script = ExtResource("1_rm8lf")
+salt_scene = ExtResource("2_af4g1")
+
+[node name="Button" type="Node2D" parent="." unique_id=1117190580]
+position = Vector2(0, -9)
+
+[node name="ButtonAnims" type="AnimatedSprite2D" parent="Button" unique_id=1245071420]
+sprite_frames = SubResource("SpriteFrames_c0hsj")
+animation = &"Cooldown"
+autoplay = "Ready"
+
+[node name="ButtonArea2D" type="Area2D" parent="Button" unique_id=412938023]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button/ButtonArea2D" unique_id=816890609]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_aurdi")
+
+[node name="Hand" type="Node2D" parent="." unique_id=489686023]
+position = Vector2(0, -86)
+
+[node name="HandAnims" type="AnimatedSprite2D" parent="Hand" unique_id=1626119699]
+rotation = -3.1415925
+sprite_frames = SubResource("SpriteFrames_ljqwj")
+animation = &"Dispensing"
+autoplay = "Idle"
+frame = 1
+frame_progress = 1.0
+
+[node name="SaltSpawnPoint" type="Node2D" parent="." unique_id=71845891]
+position = Vector2(0, -39)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=340159437]
+one_shot = true
+
+[connection signal="body_entered" from="Button/ButtonArea2D" to="." method="_on_button_area_2d_body_entered"]
+[connection signal="body_exited" from="Button/ButtonArea2D" to="." method="_on_button_area_2d_body_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

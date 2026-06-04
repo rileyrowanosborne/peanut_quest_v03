@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://cygpkjx34tm3w"]
 
 [ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_vib40"]
-[ext_resource type="PackedScene" uid="uid://cmnsfdh04sel0" path="res://Scenes/player.tscn" id="2_5fb5w"]
+[ext_resource type="PackedScene" uid="uid://cmnsfdh04sel0" path="res://Scenes/Player/player.tscn" id="2_5fb5w"]
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="4_hgys6"]
 [ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="5_bcrm6"]
-[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="6_p8q0b"]
-[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_3mot1"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_q20ft"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="6_p8q0b"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="7_3mot1"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="8_q20ft"]
 
 [node name="3" type="Node2D" unique_id=82904511]
 script = ExtResource("1_vib40")

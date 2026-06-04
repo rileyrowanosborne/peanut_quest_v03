@@ -5,17 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://dfgmemn8fa83e" path="res://Assets/Sprites/PristineCastle.png" id="3_yfwx0"]
 [ext_resource type="TileSet" uid="uid://chhyyjse4g402" path="res://Assets/Resources/PristineCastle.tres" id="4_30dnp"]
 [ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="5_gn604"]
-[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="6_06d4c"]
-[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_y2sem"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_875b7"]
-[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="9_ha6yi"]
-[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/player_test.tscn" id="10_gr1yl"]
-[ext_resource type="PackedScene" uid="uid://cpgqjhiqjjqn7" path="res://Scenes/giant_spike.tscn" id="11_ephqt"]
-[ext_resource type="PackedScene" uid="uid://bcj7b0t3q7xx2" path="res://Scenes/Enemies/little_heart_two.tscn" id="12_tl6nd"]
-[ext_resource type="PackedScene" uid="uid://dtq3enlykje37" path="res://Scenes/Enemies/mutant_peanut_1.tscn" id="13_7cft5"]
-[ext_resource type="PackedScene" uid="uid://dsurcmgwckfir" path="res://Scenes/little_goop.tscn" id="14_opl1w"]
-[ext_resource type="PackedScene" uid="uid://dbbjlsbcpyj3l" path="res://Scenes/Enemies/mid_heart_one.tscn" id="15_t8j4f"]
-[ext_resource type="PackedScene" uid="uid://e5m0812xik60" path="res://Scenes/Enemies/mid_heart_two.tscn" id="16_yfwx0"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="6_06d4c"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="7_y2sem"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="8_875b7"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/HUD/hud.tscn" id="9_ha6yi"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="10_gr1yl"]
+[ext_resource type="PackedScene" uid="uid://cpgqjhiqjjqn7" path="res://Scenes/Enemies/Pristine/giant_spike.tscn" id="11_ephqt"]
+[ext_resource type="PackedScene" uid="uid://bcj7b0t3q7xx2" path="res://Scenes/Enemies/Pristine/Hearts/little_heart_two.tscn" id="12_tl6nd"]
+[ext_resource type="PackedScene" uid="uid://dtq3enlykje37" path="res://Scenes/Enemies/Pristine/Hearts/mutant_peanut_1.tscn" id="13_7cft5"]
+[ext_resource type="PackedScene" uid="uid://dsurcmgwckfir" path="res://Scenes/Environment/Creatures/little_goop.tscn" id="14_opl1w"]
+[ext_resource type="PackedScene" uid="uid://dbbjlsbcpyj3l" path="res://Scenes/Enemies/Pristine/Hearts/mid_heart_one.tscn" id="15_t8j4f"]
+[ext_resource type="PackedScene" uid="uid://e5m0812xik60" path="res://Scenes/Enemies/Pristine/Hearts/mid_heart_two.tscn" id="16_yfwx0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gk2kq"]
 texture = ExtResource("3_yfwx0")
@@ -522,7 +522,6 @@ tile_set = SubResource("TileSet_1y8cq")
 [node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("6_06d4c")]
 position = Vector2(384, 216)
 zoom = Vector2(1.5, 1.5)
-camera_zoom = Vector2(3.5, 3.5)
 
 [node name="EntranceDoor" parent="." unique_id=429804739 instance=ExtResource("7_y2sem")]
 position = Vector2(865, 63)

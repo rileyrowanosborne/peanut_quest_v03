@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://b87ie518boiuy"]
+
+[ext_resource type="Texture2D" uid="uid://bj2vk24qlgnv2" path="res://Assets/Sprites/SpiderBackLayer.png" id="1_sbdki"]
+[ext_resource type="Texture2D" uid="uid://bpbt73bpf24rq" path="res://Assets/Sprites/SpiderLeg.png" id="2_nxbgl"]
+[ext_resource type="Texture2D" uid="uid://diilqwiqdr6r2" path="res://Assets/Sprites/SpiderMidLayer.png" id="2_qu26k"]
+[ext_resource type="Texture2D" uid="uid://claux21hx636" path="res://Assets/Sprites/SpiderFrontLayer.png" id="3_nxbgl"]
+[ext_resource type="Texture2D" uid="uid://bjysj0er7101h" path="res://Assets/Sprites/SpiderLegCurve.png" id="4_qu26k"]
+
+[node name="Spider" type="Node2D" unique_id=233913614]
+
+[node name="BackLegs" type="Node2D" parent="." unique_id=1488695692]
+
+[node name="LeftLegThree" type="Node2D" parent="BackLegs" unique_id=999307397]
+position = Vector2(-34, -31)
+
+[node name="Sprite2D2" type="Sprite2D" parent="BackLegs/LeftLegThree" unique_id=116923353]
+position = Vector2(-64, -25)
+texture = ExtResource("4_qu26k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="BackLegs/LeftLegThree" unique_id=1498891439]
+position = Vector2(-96, 103)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D4" type="Sprite2D" parent="BackLegs/LeftLegThree" unique_id=1332038181]
+position = Vector2(-96, 231)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D5" type="Sprite2D" parent="BackLegs/LeftLegThree" unique_id=1705595098]
+position = Vector2(-96, 359)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D6" type="Sprite2D" parent="BackLegs/LeftLegThree" unique_id=1094093510]
+position = Vector2(-96, 487)
+texture = ExtResource("2_nxbgl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BackLegs/LeftLegThree" unique_id=545681711]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackLegs/LeftLegThree/StaticBody2D" unique_id=1484872550]
+polygon = PackedVector2Array(-4, -14, -92, -34, -107, -16, -111, 146, -111, 548, -83, 550, -78, -1, -14, 13)
+
+[node name="RightLegThree" type="Node2D" parent="BackLegs" unique_id=539937090]
+position = Vector2(30, -34)
+
+[node name="Sprite2D" type="Sprite2D" parent="BackLegs/RightLegThree" unique_id=718286122]
+position = Vector2(64, -25)
+texture = ExtResource("4_qu26k")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="BackLegs/RightLegThree" unique_id=84983193]
+position = Vector2(96, 103)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D6" type="Sprite2D" parent="BackLegs/RightLegThree" unique_id=911880687]
+position = Vector2(96, 231)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D7" type="Sprite2D" parent="BackLegs/RightLegThree" unique_id=1135861549]
+position = Vector2(96, 359)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D8" type="Sprite2D" parent="BackLegs/RightLegThree" unique_id=1647652977]
+position = Vector2(96, 487)
+texture = ExtResource("2_nxbgl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BackLegs/RightLegThree" unique_id=1332588270]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackLegs/RightLegThree/StaticBody2D" unique_id=1298795266]
+polygon = PackedVector2Array(-5, -13, 93, -34, 107, -3, 111, 132, 111, 551, 82, 551, 81, 245, 78, 0, 16, 14)
+
+[node name="BackLayer" type="Node2D" parent="." unique_id=989018140]
+
+[node name="Back" type="Sprite2D" parent="BackLayer" unique_id=1921691962]
+texture = ExtResource("1_sbdki")
+
+[node name="MidLegs" type="Node2D" parent="." unique_id=811294213]
+
+[node name="RightLegTwo" type="Node2D" parent="MidLegs" unique_id=741525405]
+position = Vector2(0, -2)
+
+[node name="Sprite2D2" type="Sprite2D" parent="MidLegs/RightLegTwo" unique_id=93423607]
+position = Vector2(64, -17)
+texture = ExtResource("4_qu26k")
+flip_h = true
+
+[node name="Sprite2D7" type="Sprite2D" parent="MidLegs/RightLegTwo" unique_id=629089694]
+position = Vector2(96, 111)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D8" type="Sprite2D" parent="MidLegs/RightLegTwo" unique_id=214630159]
+position = Vector2(96, 239)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D9" type="Sprite2D" parent="MidLegs/RightLegTwo" unique_id=1098356769]
+position = Vector2(96, 366)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D10" type="Sprite2D" parent="MidLegs/RightLegTwo" unique_id=2035301288]
+position = Vector2(96, 494)
+texture = ExtResource("2_nxbgl")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="MidLegs/RightLegTwo" unique_id=1245150853]
+position = Vector2(30, 3)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MidLegs/RightLegTwo/StaticBody2D2" unique_id=1079051991]
+polygon = PackedVector2Array(-4, -12, 60, -29, 75, 1, 79, 70, 80, 555, 52, 555, 54, 319, 51, 21, 45, 1, 5, 12)
+
+[node name="LeftLegTwo" type="Node2D" parent="MidLegs" unique_id=1253929088]
+position = Vector2(-4, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="MidLegs/LeftLegTwo" unique_id=1088798008]
+position = Vector2(-64, -23)
+texture = ExtResource("4_qu26k")
+
+[node name="Sprite2D9" type="Sprite2D" parent="MidLegs/LeftLegTwo" unique_id=1966800470]
+position = Vector2(-97, 105)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D10" type="Sprite2D" parent="MidLegs/LeftLegTwo" unique_id=2030620302]
+position = Vector2(-97, 233)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D11" type="Sprite2D" parent="MidLegs/LeftLegTwo" unique_id=287293107]
+position = Vector2(-97, 361)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D12" type="Sprite2D" parent="MidLegs/LeftLegTwo" unique_id=1880417655]
+position = Vector2(-97, 489)
+texture = ExtResource("2_nxbgl")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="MidLegs/LeftLegTwo" unique_id=1532568121]
+position = Vector2(-35, -2)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MidLegs/LeftLegTwo/StaticBody2D3" unique_id=2050160117]
+polygon = PackedVector2Array(5, -14, -52, -31, -69, -13, -75, 72, -75, 554, -49, 554, -49, 161, -47, 26, -43, 2, -5, 9)
+
+[node name="MidLayer" type="Node2D" parent="." unique_id=189680124]
+
+[node name="Mid" type="Sprite2D" parent="MidLayer" unique_id=806676980]
+texture = ExtResource("2_qu26k")
+
+[node name="FrontLegs" type="Node2D" parent="." unique_id=544247429]
+
+[node name="LeftLegOne" type="Node2D" parent="FrontLegs" unique_id=710281067]
+position = Vector2(16, 34)
+scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontLegs/LeftLegOne" unique_id=2011813930]
+position = Vector2(-64, -25)
+texture = ExtResource("4_qu26k")
+
+[node name="Sprite2D11" type="Sprite2D" parent="FrontLegs/LeftLegOne" unique_id=1500257896]
+position = Vector2(-96.25, 102.5)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D12" type="Sprite2D" parent="FrontLegs/LeftLegOne" unique_id=836024329]
+position = Vector2(-96.25, 229.99998)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D13" type="Sprite2D" parent="FrontLegs/LeftLegOne" unique_id=844068088]
+position = Vector2(-96.25, 357.5)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D14" type="Sprite2D" parent="FrontLegs/LeftLegOne" unique_id=10415919]
+position = Vector2(-96.75, 485.24997)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D15" type="Sprite2D" parent="FrontLegs/LeftLegOne" unique_id=903421559]
+position = Vector2(-96.75, 612.75)
+texture = ExtResource("2_nxbgl")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="FrontLegs/LeftLegOne" unique_id=1565937536]
+position = Vector2(-49.999992, -11.250008)
+scale = Vector2(1.2499999, 1.2499999)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FrontLegs/LeftLegOne/StaticBody2D4" unique_id=1634318353]
+polygon = PackedVector2Array(3.9999962, -7.9999924, -30.000004, -17.999992, -43.000004, 7.6293945e-06, -48.000004, 116.00001, -48.000004, 550, -27.000004, 550, -27.000004, 186, -24.000004, 10.000008, -20.000004, 5.0000076, -3.0000038, 12.000008)
+
+[node name="RightLegOne" type="Node2D" parent="FrontLegs" unique_id=1412652874]
+position = Vector2(-16, 34)
+
+[node name="Sprite2D2" type="Sprite2D" parent="FrontLegs/RightLegOne" unique_id=915113871]
+position = Vector2(50.99999, -19.999996)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_qu26k")
+flip_h = true
+
+[node name="Sprite2D13" type="Sprite2D" parent="FrontLegs/RightLegOne" unique_id=1134586665]
+position = Vector2(76.600006, 82.2)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D14" type="Sprite2D" parent="FrontLegs/RightLegOne" unique_id=116133975]
+position = Vector2(76.600006, 184.2)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D15" type="Sprite2D" parent="FrontLegs/RightLegOne" unique_id=1616390146]
+position = Vector2(77, 286)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D16" type="Sprite2D" parent="FrontLegs/RightLegOne" unique_id=646979277]
+position = Vector2(76.6, 388.19998)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_nxbgl")
+
+[node name="Sprite2D17" type="Sprite2D" parent="FrontLegs/RightLegOne" unique_id=384519442]
+position = Vector2(76.99999, 490)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_nxbgl")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="FrontLegs/RightLegOne" unique_id=909123199]
+position = Vector2(41, -8.000004)
+scale = Vector2(0.99999994, 0.99999994)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FrontLegs/RightLegOne/StaticBody2D5" unique_id=1279458757]
+polygon = PackedVector2Array(-1, -10.999996, 31, -18.999996, 41, 1.0000038, 47, 276, 45, 550, 25, 549, 26, 183, 25, 32.000004, 19, 4.000004, 0, 9.000004)
+
+[node name="HeadLayer" type="Node2D" parent="." unique_id=1212903127]
+
+[node name="Head" type="Sprite2D" parent="HeadLayer" unique_id=292353243]
+texture = ExtResource("3_nxbgl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HeadLayer" unique_id=1504095373]
+position = Vector2(0, 26)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HeadLayer/StaticBody2D" unique_id=364849523]
+polygon = PackedVector2Array(-24, -19, 0, -20, 24, -19, 27, 16, 1, 25, -26, 14)

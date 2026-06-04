@@ -15,11 +15,16 @@ run/main_scene="uid://dv4qsndfdrmqi"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bf7suvovwln0e"
+
 [autoload]
 
 GameState="*uid://db5vk8uwupqwu"
 RoomChangeGlobal="*uid://cvyavtetxb2g3"
 GlobalSignalBus="*uid://cyl11w60vmpst"
+Music="*uid://cxulr8tpeagsk"
 
 [display]
 
@@ -128,7 +133,7 @@ swing={
 2d_physics/layer_6="Floating Enemies"
 2d_physics/layer_7="Projectiles"
 2d_physics/layer_8="MidHeart"
-2d_physics/layer_9="CrushingObjects"
+2d_physics/layer_9="Spider"
 
 [physics]
 
@@ -140,3 +145,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true

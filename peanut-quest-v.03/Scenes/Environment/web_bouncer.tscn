@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b4cvi3a0p6w3v"]
+
+[ext_resource type="Texture2D" uid="uid://cwv133b173uxx" path="res://Assets/Sprites/SpiderWebBouncer-Sheet.png" id="1_0elbj"]
+[ext_resource type="Script" uid="uid://ck2a8dndknwx6" path="res://Scripts/web_bouncer.gd" id="1_yxd33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hawnu"]
+atlas = ExtResource("1_0elbj")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xlgv"]
+atlas = ExtResource("1_0elbj")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4ark"]
+atlas = ExtResource("1_0elbj")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxd33"]
+atlas = ExtResource("1_0elbj")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hawnu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hawnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xlgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4ark")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hawnu")
+}],
+"loop": false,
+"name": &"Bounce",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hawnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxd33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4ark")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxd33")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxd33"]
+size = Vector2(42, 4)
+
+[node name="WebBouncer" type="Node2D" unique_id=156336114]
+script = ExtResource("1_yxd33")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899808500]
+sprite_frames = SubResource("SpriteFrames_hawnu")
+animation = &"Idle"
+frame_progress = 0.9140514
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1935718865]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=852770324]
+shape = SubResource("RectangleShape2D_yxd33")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

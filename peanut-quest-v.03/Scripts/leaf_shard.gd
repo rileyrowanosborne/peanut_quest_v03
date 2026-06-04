@@ -7,7 +7,7 @@ extends Node2D
 
 
 
-@export var rotation_dir : int = 1
+@export var rotation_dir : int =-1
 var rotation_speed : float = 50
 
 

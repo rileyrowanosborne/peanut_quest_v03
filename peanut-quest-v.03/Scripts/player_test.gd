@@ -55,9 +55,9 @@ var speed_sample_position: float = 0.0
 
 var current_speed : float
 
-var normal_speed : float = 200.0
-var slide_speed : float = 400.0
-var dash_power : float = 400.0
+var normal_speed : float = 175.0
+var slide_speed : float = 350.0
+var dash_power : float = 350.0
 
 var wall_slide_speed : float = .6
 
@@ -95,7 +95,7 @@ var min_camera_x : int = -40
 var neutral_camera_x : int = 0
 
 var can_jump : bool = true
-
+var jump_requested = false
 
 var direction : float
 
@@ -193,31 +193,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		is_dashing = false
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and can_jump:
-		wall_slide_wait_timer.start()
-		jump_buffer_timer.start()
-		
-	if not jump_buffer_timer.is_stopped() and (is_on_floor() or not coyote_timer.is_stopped()):
-		velocity.y = jump_velocity
-		jump_buffer_timer.stop()
-		coyote_timer.stop()
-	
-	if not jump_buffer_timer.is_stopped() and (is_on_wall() or not wall_coyote_timer.is_stopped()):
-		velocity.y = jump_velocity
-		velocity.x = current_speed * wall_jump_direction
-		jump_buffer_timer.stop()
-		coyote_timer.stop()
-
-	if Input.is_action_just_released("jump") and !jump_cancelled:
-		jump_cancelled = true
-		velocity.y *= .4
-
-	if is_on_floor():
-		jump_cancelled = false
-		can_dash = true
-	
-
 #Movement
 	direction = Input.get_axis("move_left", "move_right")
 	if direction:
@@ -261,6 +236,48 @@ func _physics_process(delta: float) -> void:
 		standing_collision_shape.disabled = false
 	
 	
+	# Handle jump.
+	#if Input.is_action_just_pressed("jump") and can_jump:
+		#wall_slide_wait_timer.start()
+		#jump_buffer_timer.start()
+		#
+	#if not jump_buffer_timer.is_stopped() and (is_on_floor() or not coyote_timer.is_stopped()):
+		#jump_buffer_timer.stop()
+		#
+	#
+	#if not jump_buffer_timer.is_stopped() and (is_on_wall() or not wall_coyote_timer.is_stopped()):
+		#velocity.y = jump_velocity
+		#velocity.x = current_speed * wall_jump_direction
+		#jump_buffer_timer.stop()
+		#coyote_timer.stop()
+#
+	#if Input.is_action_just_released("jump") and !jump_cancelled:
+		#jump_cancelled = true
+		#velocity.y *= .4
+#
+
+	
+	if Input.is_action_just_pressed("jump") and not jump_requested:
+		jump_requested = true
+		jump_buffer_timer.start()
+	
+	
+	if jump_requested:
+		
+		if is_on_floor() or not coyote_timer.is_stopped():
+			jump()
+			
+		elif is_on_wall() or not wall_coyote_timer.is_stopped():
+			wall_jump()
+	
+	if Input.is_action_just_released("jump") and !jump_cancelled:
+		jump_requested = false
+		jump_cancelled = true
+		velocity.y *= .4
+	
+	
+	
+	
 	var was_on_floor = is_on_floor()
 	var was_on_wall = is_on_wall()
 	
@@ -274,7 +291,26 @@ func _physics_process(delta: float) -> void:
 	if was_on_wall and not is_on_wall():
 		wall_coyote_timer.start()
 		
-	
+
+func jump():
+	wall_slide_wait_timer.start()
+	jump_requested = false
+	jump_cancelled = false
+	velocity.y = jump_velocity
+	jump_buffer_timer.stop()
+	coyote_timer.stop()
+	wall_coyote_timer.stop()
+
+func wall_jump():
+	wall_slide_wait_timer.start()
+	jump_requested = false
+	jump_cancelled = false
+	velocity.y = jump_velocity
+	velocity.x = current_speed * wall_jump_direction
+	jump_buffer_timer.stop()
+	coyote_timer.stop()
+	wall_coyote_timer.stop()
+
  
 func _input(event: InputEvent) -> void:
 	
@@ -300,10 +336,6 @@ func _input(event: InputEvent) -> void:
 				dash_cooldown_timer.start()
 				dash_timer.start()
 				is_dashing = true
-
-	
-
-
 
 
 
@@ -445,3 +477,7 @@ func salt_collect():
 
 
  
+
+
+func _on_jump_buffer_timer_timeout() -> void:
+	jump_requested = false

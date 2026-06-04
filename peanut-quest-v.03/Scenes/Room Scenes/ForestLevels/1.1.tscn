@@ -1,15 +1,26 @@
 [gd_scene format=4 uid="uid://b2um6n34kypm8"]
 
 [ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_2kalt"]
-[ext_resource type="PackedScene" uid="uid://cmnsfdh04sel0" path="res://Scenes/player.tscn" id="2_kpfj3"]
-[ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="4_ddgrm"]
+[ext_resource type="Texture2D" uid="uid://brbn8iyjxjt76" path="res://Assets/Sprites/BigClouds.png" id="3_ghm21"]
+[ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="4_o6vbs"]
+[ext_resource type="Texture2D" uid="uid://dgc7bvvyfxjo6" path="res://Assets/Sprites/BigClouds3.png" id="5_1imcj"]
 [ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="5_ofaxp"]
-[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="6_dxkt7"]
-[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="7_yl2r1"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="8_kpfj3"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="6_dxkt7"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="7_uvjv6"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="7_yl2r1"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="8_kpfj3"]
+[ext_resource type="PackedScene" uid="uid://b5oq8rd3gotms" path="res://Scenes/Essentials/world_environment_scene.tscn" id="8_ru6ru"]
+
+[sub_resource type="Environment" id="Environment_i6hof"]
+background_mode = 3
+tonemap_mode = 4
+glow_enabled = true
+glow_intensity = 1.56
+glow_bloom = 0.07
 
 [node name="1_1" type="Node2D" unique_id=82904511]
 script = ExtResource("1_2kalt")
+peanut_scene = ExtResource("7_uvjv6")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=749319197]
 repeat_size = Vector2(1052, 648)
@@ -19,19 +30,75 @@ repeat_times = 2
 offset_left = 1.0
 offset_right = 1154.0
 offset_bottom = 648.0
-color = Color(0.17361575, 0.17456171, 0.22747248, 1)
+color = Color(0.72060513, 0.727545, 0.80021596, 1)
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1599227243]
-scroll_scale = Vector2(0.9, 0.9)
-scroll_offset = Vector2(-286, -505)
-repeat_size = Vector2(128, 128)
-autoscroll = Vector2(1, -2)
+[node name="ForestTop" type="Node2D" parent="." unique_id=2124345985]
+position = Vector2(608, 680)
+
+[node name="TopCLouds2" type="Parallax2D" parent="ForestTop" unique_id=645769120]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(384, 0)
 repeat_times = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=677092148]
-modulate = Color(0.3180198, 0.31801978, 0.31801975, 0.5019608)
-position = Vector2(777, 744.6667)
-texture = ExtResource("4_ddgrm")
+[node name="Sprite2D" type="Sprite2D" parent="ForestTop/TopCLouds2" unique_id=48629418]
+modulate = Color(0.5870069, 0.60761607, 0.5944349, 1)
+position = Vector2(-252, -492)
+scale = Vector2(3, 3)
+texture = ExtResource("3_ghm21")
+flip_v = true
+
+[node name="TopClouds3" type="Parallax2D" parent="ForestTop" unique_id=526224692]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="ForestTop/TopClouds3" unique_id=503147154]
+modulate = Color(0.4035162, 0.46044523, 0.49866843, 1)
+position = Vector2(-272, -557)
+scale = Vector2(3, 3)
+texture = ExtResource("4_o6vbs")
+flip_v = true
+
+[node name="ForestBottom" type="Node2D" parent="." unique_id=1270854397]
+position = Vector2(82, 82)
+
+[node name="BottomClouds" type="Parallax2D" parent="ForestBottom" unique_id=1944867011]
+visible = false
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="ForestBottom/BottomClouds" unique_id=1300889840]
+modulate = Color(0.82000947, 0.66132975, 0.6837031, 1)
+position = Vector2(-23, 21)
+scale = Vector2(3, 3)
+texture = ExtResource("4_o6vbs")
+
+[node name="BottomClouds1" type="Parallax2D" parent="ForestBottom" unique_id=1736500760]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="ForestBottom/BottomClouds1" unique_id=191347686]
+modulate = Color(0.55921525, 0.48293662, 0.64676416, 1)
+position = Vector2(-111, 349)
+scale = Vector2(3, 3)
+texture = ExtResource("3_ghm21")
+
+[node name="BottomClouds2" type="Parallax2D" parent="ForestBottom" unique_id=1386230302]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="ForestBottom/BottomClouds2" unique_id=1819817118]
+modulate = Color(0.20829466, 0.14061773, 0.2494753, 1)
+position = Vector2(-125, 163)
+scale = Vector2(3, 3)
+texture = ExtResource("5_1imcj")
 
 [node name="TileMap" type="TileMapLayer" parent="." unique_id=777071391]
 tile_map_data = PackedByteArray("AAATAA0AAAABAAAAAAATAA4AAAABAAEAAAATAA8AAAABAAEAAAATABAAAAABAAEAAAAkABQAAAACAAIAAAAkABMAAAACAAEAAAAkABIAAAACAAEAAAAkABEAAAACAAEAAAAkABAAAAACAAEAAAAkAA8AAAACAAEAAAAkAA4AAAACAAEAAAAkAA0AAAACAAEAAAAkAAwAAAACAAEAAAAkAAsAAAACAAEAAAAkAAoAAAACAAEAAAAkAAkAAAACAAEAAAAkAAgAAAACAAEAAAAkAAcAAAACAAEAAAAkAAYAAAACAAAAAAAjABQAAAABAAIAAAAjABMAAAABAAEAAAAjABIAAAABAAEAAAAjABEAAAABAAEAAAAjABAAAAABAAEAAAAjAA8AAAABAAEAAAAjAA4AAAABAAEAAAAjAA0AAAABAAEAAAAjAAwAAAABAAEAAAAjAAsAAAABAAEAAAAjAAoAAAABAAEAAAAjAAkAAAABAAEAAAAjAAgAAAABAAEAAAAjAAcAAAABAAEAAAAjAAYAAAABAAAAAAAiABQAAAABAAIAAAAiABEAAAAAAAEAAAAiABAAAAAAAAEAAAAiAA8AAAAAAAEAAAAiAA4AAAAAAAEAAAAiAA0AAAABAAYAAAAiAAwAAAABAAEAAAAiAAsAAAABAAEAAAAiAAoAAAABAAEAAAAiAAkAAAABAAEAAAAiAAgAAAABAAEAAAAiAAcAAAABAAEAAAAiAAYAAAABAAAAAAAhABQAAAABAAIAAAAhABMAAAABAAAAAAAhAA0AAAAAAAIAAAAhAAwAAAAAAAEAAAAhAAsAAAAAAAEAAAAhAAoAAAABAAYAAAAhAAkAAAABAAEAAAAhAAgAAAABAAEAAAAhAAcAAAABAAEAAAAhAAYAAAABAAAAAAAgABQAAAABAAIAAAAgABMAAAAAAAcAAAAgABIAAAACAAAAAAAgAAcAAAABAAEAAAAgAAYAAAABAAAAAAAfABQAAAABAAIAAAAfABMAAAABAAEAAAAfABIAAAABAAAAAAAfAAcAAAABAAYAAAAfAAYAAAABAAAAAAAeABQAAAABAAIAAAAeABMAAAABAAEAAAAeABIAAAAAAAcAAAAeAAcAAAABAAIAAAAeAAYAAAABAAAAAAAdABQAAAABAAIAAAAdABMAAAABAAEAAAAdABIAAAABAAEAAAAdAAcAAAABAAIAAAAdAAYAAAABAAAAAAAcABQAAAABAAIAAAAcABMAAAABAAEAAAAcABIAAAABAAEAAAAcAAcAAAABAAIAAAAcAAYAAAAAAAcAAAAbABQAAAABAAIAAAAbABMAAAABAAEAAAAbABIAAAABAAcAAAAbAAcAAAABAAIAAAAbAAYAAAABAAEAAAAaABQAAAABAAIAAAAaABMAAAABAAcAAAAaABIAAAAAAAAAAAAaAAcAAAABAAIAAAAaAAYAAAABAAEAAAAZABQAAAABAAIAAAAZABMAAAABAAAAAAAZAAcAAAAAAAYAAAAZAAYAAAABAAEAAAAYABQAAAABAAIAAAAYABMAAAABAAAAAAAYAA8AAAACAAIAAAAYAA4AAAACAAAAAAAYAAoAAAACAAIAAAAYAAkAAAACAAEAAAAYAAgAAAAAAAYAAAAYAAcAAAABAAEAAAAYAAYAAAABAAEAAAAXABQAAAABAAIAAAAXABMAAAABAAAAAAAXABAAAAACAAEAAAAXAA8AAAAAAAYAAAAXAA4AAAABAAAAAAAXAAoAAAAAAAIAAAAXAAkAAAABAAYAAAAXAAgAAAABAAEAAAAXAAcAAAABAAEAAAAXAAYAAAABAAEAAAAWABQAAAABAAIAAAAWABMAAAABAAAAAAAWABAAAAABAAEAAAAWAA8AAAABAAEAAAAWAA4AAAABAAAAAAAWAAkAAAABAAIAAAAWAAgAAAABAAEAAAAWAAcAAAABAAEAAAAWAAYAAAABAAEAAAAVABQAAAABAAIAAAAVABMAAAABAAAAAAAVABAAAAABAAEAAAAVAA8AAAABAAEAAAAVAA4AAAAAAAcAAAAVAA0AAAACAAAAAAAVAAkAAAAAAAIAAAAVAAgAAAAAAAEAAAAVAAcAAAAAAAEAAAAVAAYAAAABAAYAAAAUABQAAAABAAIAAAAUABMAAAABAAAAAAAUABAAAAABAAEAAAAUAA8AAAABAAEAAAAUAA4AAAABAAEAAAAUAA0AAAABAAAAAAAUAAYAAAABAAIAAAATABQAAAABAAIAAAATABMAAAABAAAAAAATAAYAAAABAAIAAAASABQAAAABAAIAAAASABMAAAABAAAAAAASABEAAAAAAAIAAAASABAAAAABAAYAAAASAA8AAAABAAEAAAASAA4AAAABAAEAAAASAA0AAAABAAAAAAASAAYAAAABAAIAAAARABQAAAABAAIAAAARABMAAAABAAAAAAARABAAAAAAAAIAAAARAA8AAAABAAYAAAARAA4AAAABAAEAAAARAA0AAAABAAAAAAARAAYAAAAAAAIAAAAQABQAAAABAAIAAAAQABMAAAABAAAAAAAQAA8AAAABAAIAAAAQAA4AAAABAAEAAAAPABQAAAABAAIAAAAPABMAAAABAAAAAAAPAA8AAAABAAIAAAAPAA4AAAABAAEAAAAOABQAAAABAAIAAAAOABMAAAABAAAAAAAOAA8AAAABAAIAAAAOAA4AAAABAAEAAAANABQAAAABAAIAAAANABMAAAAAAAcAAAANABIAAAACAAEAAAANABEAAAACAAEAAAANABAAAAACAAEAAAANAA8AAAAAAAYAAAANAA4AAAABAAEAAAANAA0AAAABAAEAAAANAAwAAAABAAEAAAANAAsAAAABAAEAAAANAAoAAAABAAEAAAANAAkAAAAAAAcAAAANAAgAAAACAAEAAAANAAcAAAACAAEAAAANAAYAAAACAAAAAAAMABQAAAABAAIAAAAMABMAAAABAAEAAAAMABIAAAABAAEAAAAMABEAAAABAAEAAAAMABAAAAABAAEAAAAMAA8AAAABAAEAAAAMAA4AAAABAAEAAAAMAA0AAAABAAEAAAAMAAwAAAABAAEAAAAMAAsAAAABAAEAAAAMAAoAAAABAAEAAAAMAAkAAAABAAEAAAAMAAgAAAABAAEAAAAMAAcAAAABAAEAAAAMAAYAAAABAAAAAAALABQAAAAAAAIAAAALABMAAAAAAAEAAAALABIAAAAAAAEAAAALABEAAAAAAAEAAAALABAAAAAAAAEAAAALAA8AAAAAAAEAAAALAA4AAAAAAAEAAAALAA0AAAAAAAEAAAALAAwAAAAAAAEAAAALAAsAAAAAAAEAAAALAAoAAAAAAAEAAAALAAkAAAAAAAEAAAALAAgAAAAAAAEAAAALAAcAAAAAAAEAAAALAAYAAAAAAAAAAAAOAA0AAAABAAEAAAAOAAwAAAABAAEAAAAQAA0AAAAAAAcAAAAQAAwAAAACAAEAAAAPAA0AAAABAAEAAAAPAAwAAAABAAEAAAAZAAgAAAACAAIAAAAfAAgAAAAAAAIAAAAgAAkAAAAAAAEAAAAgAAoAAAAAAAIAAAAgAAgAAAABAAYAAAAeABEAAAACAAEAAAAeABAAAAACAAAAAAAdABAAAAAAAAcAAAAcABAAAAABAAcAAAAbABAAAAAAAAAAAAAbABEAAAAAAAEAAAAcABEAAAABAAEAAAAdABEAAAABAAEAAAAcAA8AAAAAAAAAAAAdAA8AAAACAAAAAAAiABMAAAABAAcAAAAiABIAAAAAAAEAAAAOAAsAAAAAAAcAAAAPAAsAAAABAAAAAAAQAAsAAAACAAAAAAAOAAoAAAACAAEAAAAOAAkAAAACAAAAAAARAAUAAAAAAAEAAAARAAQAAAAAAAAAAAASAAQAAAABAAAAAAATAAQAAAABAAAAAAAUAAQAAAABAAAAAAAVAAQAAAABAAAAAAAWAAQAAAABAAAAAAAXAAQAAAABAAAAAAAYAAQAAAABAAAAAAAZAAQAAAABAAAAAAAaAAQAAAABAAAAAAAbAAQAAAABAAAAAAAcAAQAAAACAAAAAAAcAAUAAAACAAEAAAAbAAUAAAABAAEAAAAaAAUAAAABAAEAAAAZAAUAAAABAAEAAAAYAAUAAAABAAEAAAAXAAUAAAABAAEAAAAWAAUAAAABAAEAAAAVAAUAAAABAAEAAAAUAAUAAAABAAEAAAATAAUAAAABAAEAAAASAAUAAAABAAEAAAATABEAAAABAAIAAAAUABEAAAABAAEAAAAVABEAAAABAAEAAAAWABEAAAABAAEAAAAXABEAAAACAAEAAAAUABIAAAAGAAEAAAAVABIAAAAHAAEAAAAWABIAAAAHAAEAAAAXABIAAAAIAAEAAAAcAAsAAAAAAAMAAAAdAAsAAAAFAAAAAAAdAAwAAAADAAIAAAA=")
@@ -40,15 +107,19 @@ tile_set = ExtResource("5_ofaxp")
 [node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("6_dxkt7")]
 position = Vector2(384, 216)
 zoom = Vector2(3, 3)
+is_following_player = false
 camera_zoom = Vector2(2, 2)
 
 [node name="DoorTo1" parent="." unique_id=429804739 instance=ExtResource("7_yl2r1")]
 position = Vector2(248, 113)
 rotation = 3.1415927
-connected_room = "res://Scenes/Room Scenes/1.0.tscn"
+connected_room = "res://Scenes/Room Scenes/ForestLevels/1.0.tscn"
 player_pos = Vector2(664, 577)
 
 [node name="FadeToBlackScreen" parent="." unique_id=1795882491 instance=ExtResource("8_kpfj3")]
 
-[node name="Player" parent="." unique_id=474886339 instance=ExtResource("2_kpfj3")]
-position = Vector2(251, 150)
+[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("7_uvjv6")]
+position = Vector2(247, 149)
+
+[node name="WorldEnvironment" parent="." unique_id=41593997 instance=ExtResource("8_ru6ru")]
+environment = SubResource("Environment_i6hof")

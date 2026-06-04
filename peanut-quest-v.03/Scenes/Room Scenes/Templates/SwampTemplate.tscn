@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="2_bl8ad"]
 [ext_resource type="TileSet" uid="uid://do0hv5sfdx1r0" path="res://Assets/Resources/SwampTileSet.tres" id="3_nktvt"]
 [ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="4_6tcub"]
-[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/main_camera.tscn" id="5_45jva"]
-[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/door_area_2d.tscn" id="6_msbis"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Fade_to_black_screen.tscn" id="7_pnacc"]
-[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/hud.tscn" id="8_v71cu"]
-[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/player_test.tscn" id="9_bojog"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="5_45jva"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="6_msbis"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="7_pnacc"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/HUD/hud.tscn" id="8_v71cu"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="9_bojog"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]
 texture = ExtResource("4_6tcub")

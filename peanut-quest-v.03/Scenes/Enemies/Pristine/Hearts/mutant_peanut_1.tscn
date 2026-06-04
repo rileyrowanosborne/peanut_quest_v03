@@ -1,0 +1,487 @@
+[gd_scene format=3 uid="uid://dtq3enlykje37"]
+
+[ext_resource type="Script" uid="uid://dwk13fju4mljy" path="res://Scripts/enemy_movement.gd" id="1_fp88v"]
+[ext_resource type="Texture2D" uid="uid://ckehudllllgbs" path="res://Assets/Sprites/MutantPeanut1 - Idle-Sheet.png" id="2_fp88v"]
+[ext_resource type="PackedScene" uid="uid://mbgctqh60kcs" path="res://Scenes/Particle Effects/spark_pop.tscn" id="2_jbh1m"]
+[ext_resource type="Texture2D" uid="uid://cuk0olbew0m75" path="res://Assets/Sprites/VeinTest3.png" id="3_fdmrv"]
+[ext_resource type="Texture2D" uid="uid://4tquif4jvn7s" path="res://Assets/Sprites/CharactersSheet.png" id="4_fp88v"]
+[ext_resource type="Texture2D" uid="uid://coijrgljc4ix4" path="res://Assets/Sprites/VeinTest3.2.png" id="4_makno"]
+[ext_resource type="Texture2D" uid="uid://dxwtl1kuurbrp" path="res://Assets/Sprites/MutantPeanut1 - Walking-Sheet.png" id="4_ndkt0"]
+[ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="5_ndkt0"]
+[ext_resource type="Texture2D" uid="uid://b34xk6rs1cooo" path="res://Assets/Sprites/VeinTest3.3.png" id="5_nwi17"]
+[ext_resource type="Script" uid="uid://gsr2yq5wnob6" path="res://Scripts/hit_box.gd" id="6_p8k3m"]
+[ext_resource type="PackedScene" uid="uid://bptkbbt4lsccg" path="res://Scenes/Enemies/Pristine/Hearts/lil_heart_one.tscn" id="7_rwi6p"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fdmrv"]
+frames = 3
+speed_scale = 5.0
+frame_0/texture = ExtResource("3_fdmrv")
+frame_1/texture = ExtResource("4_makno")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_nwi17")
+frame_2/duration = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8k3m"]
+atlas = ExtResource("2_fp88v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwi6p"]
+atlas = ExtResource("2_fp88v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfoxu"]
+atlas = ExtResource("2_fp88v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdmrv"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbh1m"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_makno"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3se3"]
+atlas = ExtResource("4_ndkt0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8k8lc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8k3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwi6p")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfoxu")
+}],
+"loop": true,
+"name": &"Spinning",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdmrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbh1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_makno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3se3")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b6wr"]
+size = Vector2(10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwi17"]
+atlas = ExtResource("5_ndkt0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rpw3"]
+atlas = ExtResource("5_ndkt0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afqyd"]
+atlas = ExtResource("5_ndkt0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8f3l"]
+atlas = ExtResource("5_ndkt0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u328h"]
+atlas = ExtResource("5_ndkt0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d188i"]
+atlas = ExtResource("5_ndkt0")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp88v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwi17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rpw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afqyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8f3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u328h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d188i")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Slash",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_rwi6p"]
+resource_name = "LeftAttack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-6, -11), Vector2(-2, -12.000001), Vector2(-12, -1.0000002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.19999999),
+"transitions": PackedFloat32Array(1, 2.3784142, 1),
+"update": 0,
+"values": [-1.3677368, -0.80652213, -3.3837018]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Sprite2D:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fp88v"]
+resource_name = "LeftIdle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword/Sprite2D:flip_v")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-6, -11), Vector2(-4, -14)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [-1.3677368, -1.0923507, -1.2974226]
+}
+
+[sub_resource type="Animation" id="Animation_ndkt0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.000001, -10.999999)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.0284166]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Sprite2D:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jbh1m"]
+resource_name = "RightAttack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -11), Vector2(0.9999995, -12.999999), Vector2(13, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 2.5491211, 1),
+"update": 0,
+"values": [-2.0284166, -2.4176872, 0.36134496]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Sprite2D:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_p8k3m"]
+resource_name = "RightIdle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(4.000001, -10.999999), Vector2(3.9999995, -12.999999)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [-2.0284166, -2.2745893, -2.0833333]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Sprite2D:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rwi6p"]
+_data = {
+&"LeftAttack": SubResource("Animation_rwi6p"),
+&"LeftIdle": SubResource("Animation_fp88v"),
+&"RESET": SubResource("Animation_ndkt0"),
+&"RightAttack": SubResource("Animation_jbh1m"),
+&"RightIdle": SubResource("Animation_p8k3m")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8k3m"]
+
+[node name="Mutant Peanut 1" type="CharacterBody2D" unique_id=691855468]
+z_index = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_fp88v")
+spark_scene = ExtResource("2_jbh1m")
+
+[node name="HeartString" type="Line2D" parent="." unique_id=1161146314]
+z_as_relative = false
+position = Vector2(0, -7)
+width = 20.0
+texture = SubResource("AnimatedTexture_fdmrv")
+texture_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=131323402]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_8k8lc")
+animation = &"Spinning"
+autoplay = "Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=575869523]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_3b6wr")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1952075195]
+position = Vector2(0, -10)
+target_position = Vector2(7, 0)
+collision_mask = 4
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1861814704]
+position = Vector2(0, -10)
+target_position = Vector2(-7, 0)
+collision_mask = 4
+
+[node name="DirectionCooldown" type="Timer" parent="." unique_id=2069196719]
+wait_time = 2.0
+one_shot = true
+
+[node name="DirectionTimer" type="Timer" parent="." unique_id=179728961]
+wait_time = 3.0
+one_shot = true
+
+[node name="Swing" type="Node2D" parent="." unique_id=1289847292]
+position = Vector2(0, -6)
+
+[node name="RightSwing" type="Node2D" parent="Swing" unique_id=1010970336]
+
+[node name="RightSlash" type="AnimatedSprite2D" parent="Swing/RightSwing" unique_id=1544450461]
+position = Vector2(16, -4.0000005)
+rotation = -0.6981317
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_fp88v")
+animation = &"Slash"
+frame = 7
+frame_progress = 1.0
+
+[node name="LeftSwing" type="Node2D" parent="Swing" unique_id=1169795980]
+
+[node name="LeftSlash" type="AnimatedSprite2D" parent="Swing/LeftSwing" unique_id=2048340021]
+position = Vector2(-19, -4)
+rotation = 0.6981317
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_fp88v")
+animation = &"Slash"
+frame = 7
+frame_progress = 1.0
+flip_h = true
+
+[node name="Sword" type="Node2D" parent="." unique_id=36363746]
+z_as_relative = false
+position = Vector2(4.000001, -10.999999)
+rotation = -2.0284166
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword" unique_id=267902208]
+texture = ExtResource("4_fp88v")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(32, 19, 16, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sword" unique_id=1378514004]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_rwi6p")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1494045792]
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=638764971]
+one_shot = true
+
+[node name="LeftHitBox" type="Area2D" parent="." unique_id=850004313]
+collision_layer = 0
+monitoring = false
+script = ExtResource("6_p8k3m")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LeftHitBox" unique_id=1384306762]
+position = Vector2(-12, -8)
+shape = SubResource("CircleShape2D_p8k3m")
+
+[node name="RightHitBox" type="Area2D" parent="." unique_id=117524567]
+collision_layer = 0
+monitoring = false
+script = ExtResource("6_p8k3m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RightHitBox" unique_id=1771797745]
+position = Vector2(11, -8)
+shape = SubResource("CircleShape2D_p8k3m")
+
+[node name="LilHeartOne" parent="." unique_id=1870179522 instance=ExtResource("7_rwi6p")]
+position = Vector2(-36, -39)
+
+[node name="RayCastRightDown" type="RayCast2D" parent="." unique_id=1031031079]
+position = Vector2(7, -11)
+target_position = Vector2(0, 13)
+collision_mask = 4
+
+[node name="RayCastLeftDown" type="RayCast2D" parent="." unique_id=1274635667]
+position = Vector2(-7, -11)
+target_position = Vector2(0, 13)
+collision_mask = 4
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
+[connection signal="animation_finished" from="Sword/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="LeftHitBox" to="LeftHitBox" method="_on_body_entered"]
+[connection signal="body_entered" from="RightHitBox" to="RightHitBox" method="_on_body_entered"]

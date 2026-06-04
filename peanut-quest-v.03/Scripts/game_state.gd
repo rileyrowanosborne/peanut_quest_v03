@@ -37,7 +37,7 @@ var slide_blocking_attack : bool = false
 var knockback_direction : Vector2
 
 var current_slow_down_power : float = .3
-var current_slow_down_length : float = 2.0
+var current_slow_down_length : float = 5.0
 
 var current_brain_essence : int = 0
 var max_brain_essence : int = 10
@@ -50,6 +50,9 @@ var player_is_shelled : bool = true
 var first_load : bool = true
 
 var sword_is_active : bool = false
+
+
+
 
 func _ready() -> void:
 	player_is_attacking = false
