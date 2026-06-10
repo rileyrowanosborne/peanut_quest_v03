@@ -209,6 +209,7 @@ scale_amount_curve = SubResource("Curve_0asfq")
 color = Color(0, 0, 0, 1)
 
 [node name="Poof" type="CPUParticles2D" parent="Particles" unique_id=1266647201]
+z_index = 5
 position = Vector2(0, -7)
 emitting = false
 texture = ExtResource("12_e0rbb")

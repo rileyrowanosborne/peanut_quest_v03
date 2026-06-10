@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://duo04m2pv6i3c" path="res://Scenes/Enemies/Bosses/snake_body.tscn" id="2_fhkki"]
 [ext_resource type="PackedScene" uid="uid://bllki3ybrs8dq" path="res://Scenes/Enemies/Bosses/snake_head.tscn" id="2_pjsxr"]
 [ext_resource type="PackedScene" uid="uid://03hj7d6kb063" path="res://Scenes/Enemies/Bosses/snake_tail.tscn" id="4_jnnl0"]
-[ext_resource type="PackedScene" uid="uid://68tv8d7mrvh7" path="res://Scenes/Enemies/Forest/FloatingEyeTest.tscn" id="9_jreep"]
+[ext_resource type="PackedScene" uid="uid://c6x0j1sysj7fk" path="res://Scenes/Projectiles/floating_eye.tscn" id="5_pjsxr"]
 
 [node name="SnakeBoss" type="Node2D" unique_id=1987407400]
 script = ExtResource("1_far4f")
@@ -49,14 +49,14 @@ movement_delay_amount = 3.0
 
 [node name="Eyes" type="Node2D" parent="." unique_id=877884580]
 
-[node name="FloatingEye2" parent="." unique_id=1833482725 instance=ExtResource("9_jreep")]
-position = Vector2(-62, -1)
+[node name="FloatingEye" parent="Eyes" unique_id=1937742067 instance=ExtResource("5_pjsxr")]
+position = Vector2(-1, -70)
 
-[node name="FloatingEye3" parent="." unique_id=2012628436 instance=ExtResource("9_jreep")]
-position = Vector2(0, -76)
+[node name="FloatingEye2" parent="Eyes" unique_id=1538685968 instance=ExtResource("5_pjsxr")]
+position = Vector2(-105, -1)
 
-[node name="FloatingEye4" parent="." unique_id=119198593 instance=ExtResource("9_jreep")]
-position = Vector2(79, -2)
+[node name="FloatingEye3" parent="Eyes" unique_id=67512773 instance=ExtResource("5_pjsxr")]
+position = Vector2(94, 1)
 
-[node name="FloatingEye5" parent="." unique_id=248885223 instance=ExtResource("9_jreep")]
-position = Vector2(0, 74)
+[node name="FloatingEye4" parent="Eyes" unique_id=1890996566 instance=ExtResource("5_pjsxr")]
+position = Vector2(1, 69)

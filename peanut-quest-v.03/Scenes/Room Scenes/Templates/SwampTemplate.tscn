@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="4_6tcub"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="5_45jva"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="6_msbis"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="7_pnacc"]
-[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/HUD/hud.tscn" id="8_v71cu"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="7_pnacc"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="8_v71cu"]
 [ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="9_bojog"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]

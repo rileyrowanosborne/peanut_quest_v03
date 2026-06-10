@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 
 var current_health : int = 10
+@export var is_boss : bool = false
 @export var absorb_scene : PackedScene
 
 
@@ -32,6 +33,7 @@ var chase_player : bool = false
 
 func _ready() -> void:
 	current_dir = direction_options.pick_random()
+	GameState.current_boss_health += current_health
 	
 	add_to_group("enemy")
 
@@ -56,8 +58,10 @@ func take_damage(attack_dir : Vector2):
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
 	knockback_velocity = knockback_dir * 100
 	current_health -= 1
+	if is_boss:
+		GameState.current_boss_health -= 1
 	health_check()
-
+	get_parent().get_parent().health_check()
 
 func health_check():
 	if current_health <= 0:

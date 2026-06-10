@@ -8,6 +8,8 @@ extends Node
 
 @export var peanut_scene : PackedScene
 
+@export var is_boss_room : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalSignalBus.emit_signal("essence_update")
@@ -17,6 +19,11 @@ func _ready() -> void:
 	
 	GlobalSignalBus.connect("reshell_complete", reshell_peanut)
 	
+	if is_boss_room:
+		GameState.boss_active = true
+		GlobalSignalBus.emit_signal("create_health_bar")
+		GlobalSignalBus.emit_signal("boss_health_update")
+	
 	if GameState.first_load:
 		GameState.first_load = false
 		GameState.current_health = GameState.current_max_health
@@ -24,6 +31,7 @@ func _ready() -> void:
 	
 
 func reload_level():
+	GameState.current_boss_health = 0
 	GameState.current_brain_essence = 0
 	GameState.current_salt = 0
 	GameState.current_health = GameState.current_max_health

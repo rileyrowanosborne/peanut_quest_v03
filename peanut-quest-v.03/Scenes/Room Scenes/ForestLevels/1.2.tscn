@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="5_wxtig"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="6_5b7s2"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="7_qpvfb"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="8_1y35v"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="8_1y35v"]
 
 [node name="1,2" type="Node2D" unique_id=82904511]
 script = ExtResource("1_c645q")

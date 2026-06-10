@@ -55,6 +55,9 @@ var slow_ability_unlocked : bool = false
 var phase_ability_unlocked : bool = false
 var goop_ability_unlocked : bool = false
 
+var boss_active : bool = false
+var current_boss_health : int = 0
+
 
 func _ready() -> void:
 	player_is_attacking = false

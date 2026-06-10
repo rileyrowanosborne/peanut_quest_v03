@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="6_dxkt7"]
 [ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="7_uvjv6"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="7_yl2r1"]
-[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="8_kpfj3"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="8_kpfj3"]
 [ext_resource type="PackedScene" uid="uid://b5oq8rd3gotms" path="res://Scenes/Essentials/world_environment_scene.tscn" id="8_ru6ru"]
 
 [sub_resource type="Environment" id="Environment_i6hof"]

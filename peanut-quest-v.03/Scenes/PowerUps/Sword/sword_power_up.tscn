@@ -985,7 +985,7 @@ initial_velocity_min = 1.0
 initial_velocity_max = 20.0
 scale_amount_min = 2.0
 scale_amount_max = 2.0
-color = Color(0.21568628, 0.5803922, 0.43137255, 1)
+color = Color(1.4954206, 1.4954206, 1.4954206, 1)
 
 [node name="ComboTimer" type="Timer" parent="MegaSword" unique_id=89513080]
 one_shot = true
