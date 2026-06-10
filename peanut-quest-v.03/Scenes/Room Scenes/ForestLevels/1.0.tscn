@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="10_vbu60"]
 [ext_resource type="PackedScene" uid="uid://b5oq8rd3gotms" path="res://Scenes/Essentials/world_environment_scene.tscn" id="11_uxhpe"]
 [ext_resource type="PackedScene" uid="uid://dsurcmgwckfir" path="res://Scenes/Environment/Creatures/little_goop.tscn" id="12_jefmi"]
+[ext_resource type="PackedScene" uid="uid://1nk5b5drxl3l" path="res://Scenes/Environment/vine.tscn" id="15_bfstf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2m8p"]
 texture = ExtResource("6_ap0f8")
@@ -232,3 +233,9 @@ environment = SubResource("Environment_uxhpe")
 
 [node name="LittleGoop" parent="." unique_id=984228061 instance=ExtResource("12_jefmi")]
 position = Vector2(98, 529)
+
+[node name="Vine" parent="." unique_id=8630817 instance=ExtResource("15_bfstf")]
+position = Vector2(256, 545)
+
+[node name="Vine2" parent="." unique_id=1282957053 instance=ExtResource("15_bfstf")]
+position = Vector2(256, 417)

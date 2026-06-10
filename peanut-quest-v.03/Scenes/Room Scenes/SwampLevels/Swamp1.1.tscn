@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://bu0jv5bm0baat" path="res://Scenes/Enemies/Swamp/mimic_slime.tscn" id="15_5og3l"]
 [ext_resource type="PackedScene" uid="uid://cxai72yr6a155" path="res://Scenes/Re-Shellers/nova_crystal.tscn" id="16_xg37u"]
 [ext_resource type="PackedScene" uid="uid://cqayvgi0lytow" path="res://Scenes/Collectibles/brain_collectible.tscn" id="17_e201r"]
+[ext_resource type="Texture2D" uid="uid://do0t2qlow4ss0" path="res://Assets/Sprites/CavernBackGround2.png" id="17_toxju"]
+[ext_resource type="Texture2D" uid="uid://dgc7bvvyfxjo6" path="res://Assets/Sprites/BigClouds3.png" id="18_1umo2"]
 [ext_resource type="PackedScene" uid="uid://b5oq8rd3gotms" path="res://Scenes/Essentials/world_environment_scene.tscn" id="19_i7487"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]
@@ -107,44 +109,92 @@ offset_right = 1495.0
 offset_bottom = 612.0
 color = Color(0.0758897, 0.07816311, 0.10789435, 1)
 
-[node name="CavernBottom" type="Node2D" parent="." unique_id=716468462]
-visible = false
-z_index = -1
-position = Vector2(300, 243)
+[node name="CavernTop" type="Node2D" parent="." unique_id=673221875]
+position = Vector2(520, -188)
 
-[node name="CavernBottom" type="Parallax2D" parent="CavernBottom" unique_id=54600443]
-scroll_scale = Vector2(0.2, 0.2)
-scroll_offset = Vector2(-316, -85)
+[node name="CavernTop1" type="Parallax2D" parent="CavernTop" unique_id=333340747]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(280, -225)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="CavernBottom/CavernBottom" unique_id=332999047]
-modulate = Color(0.1043335, 0.13474292, 0.18339342, 1)
-position = Vector2(56.000004, 71)
+[node name="Sprite2D" type="Sprite2D" parent="CavernTop/CavernTop1" unique_id=285542425]
+modulate = Color(0.028885316, 0.05512344, 0.03809672, 1)
+position = Vector2(-93, 448)
+scale = Vector2(3, 3)
+texture = ExtResource("17_toxju")
+
+[node name="CavernTop7" type="Parallax2D" parent="CavernTop" unique_id=1506417624]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(280, -225)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="CavernTop/CavernTop7" unique_id=1613710377]
+modulate = Color(0.25878257, 0.35652995, 0.29505056, 1)
+position = Vector2(-219.00002, 66)
+scale = Vector2(3, 3)
+texture = ExtResource("17_toxju")
+flip_v = true
+
+[node name="CavernTop2" type="Parallax2D" parent="CavernTop" unique_id=1992160097]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(280, -225)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="CavernTop/CavernTop2" unique_id=110233593]
+modulate = Color(0.13557556, 0.19718719, 0.15853655, 1)
+position = Vector2(-93, 448)
+scale = Vector2(3, 3)
+texture = ExtResource("18_1umo2")
+flip_v = true
+
+[node name="CavernTop6" type="Parallax2D" parent="CavernTop" unique_id=1844230149]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(280, -225)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="CavernTop/CavernTop6" unique_id=849022292]
+modulate = Color(0.13557556, 0.19718719, 0.15853655, 1)
+position = Vector2(-285, 69)
+scale = Vector2(3, 3)
+texture = ExtResource("18_1umo2")
+
+[node name="CavernBottom2" type="Node2D" parent="." unique_id=2129752154]
+position = Vector2(286, -213)
+
+[node name="CavernBottom" type="Parallax2D" parent="CavernBottom2" unique_id=860093572]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="CavernBottom2/CavernBottom" unique_id=1237629799]
+modulate = Color(0.23904923, 0.20870605, 0.076602496, 1)
+position = Vector2(33, 595)
 scale = Vector2(3, 3)
 texture = ExtResource("12_xg37u")
 
-[node name="CavernBottom2" type="Parallax2D" parent="CavernBottom" unique_id=791486233]
-scroll_scale = Vector2(0.3, 0.3)
-scroll_offset = Vector2(-293, -108)
+[node name="CavernBottom2" type="Parallax2D" parent="CavernBottom2" unique_id=855054683]
+scroll_scale = Vector2(0.5, 0.5)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="CavernBottom/CavernBottom2" unique_id=72947802]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-39, 73)
+[node name="Sprite2D" type="Sprite2D" parent="CavernBottom2/CavernBottom2" unique_id=1295106969]
+modulate = Color(0.17564929, 0.18900737, 0.018084528, 1)
+position = Vector2(46, 591)
 scale = Vector2(3, 3)
 texture = ExtResource("13_e201r")
 
-[node name="CavernBottom3" type="Parallax2D" parent="CavernBottom" unique_id=736234707]
-scroll_scale = Vector2(0.4, 0.4)
-scroll_offset = Vector2(-693, -54)
+[node name="CavernBottom3" type="Parallax2D" parent="CavernBottom2" unique_id=11919055]
+scroll_scale = Vector2(0.6, 0.6)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="CavernBottom/CavernBottom3" unique_id=1477046840]
-modulate = Color(0.39215687, 0.34901962, 0.16862746, 1)
-position = Vector2(3, 27)
+[node name="Sprite2D" type="Sprite2D" parent="CavernBottom2/CavernBottom3" unique_id=1152336640]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-6, 581)
 scale = Vector2(3, 3)
 texture = ExtResource("14_tfk2o")
 

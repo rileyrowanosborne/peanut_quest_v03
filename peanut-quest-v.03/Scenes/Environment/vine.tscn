@@ -133,6 +133,7 @@ rotation = -3.1415925
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Thorns" unique_id=1533288611]
 libraries/ = SubResource("AnimationLibrary_7qp7w")
+autoplay = &"Attack"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=704190961]
 position = Vector2(3, -64)
