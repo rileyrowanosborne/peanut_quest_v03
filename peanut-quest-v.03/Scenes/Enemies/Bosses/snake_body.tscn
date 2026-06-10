@@ -11,9 +11,8 @@ size = Vector2(48, 38)
 
 [node name="SnakeBody" type="CharacterBody2D" unique_id=1872342852]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 516
 script = ExtResource("1_bkhr2")
-sprite = ExtResource("2_bkhr2")
 speed = 100.0
 movement_delay_amount = 0.0
 
@@ -22,7 +21,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_bkhr2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=682362994]
-position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_bkhr2")
 
 [node name="MovementDelayTimer" type="Timer" parent="." unique_id=1760953913]

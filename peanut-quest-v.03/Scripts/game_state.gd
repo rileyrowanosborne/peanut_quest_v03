@@ -51,12 +51,15 @@ var first_load : bool = true
 
 var sword_is_active : bool = false
 
-
+var slow_ability_unlocked : bool = false
+var phase_ability_unlocked : bool = false
+var goop_ability_unlocked : bool = false
 
 
 func _ready() -> void:
 	player_is_attacking = false
 	player_can_attack = true
+	slow_ability_unlocked = true
 
 
 
@@ -69,12 +72,18 @@ func freeze_frame(time_scale: float, duration : float):
 
 func player_invul(length : float):
 	is_invul = true
-	is_being_hit = true
+	#is_being_hit = true
 	await get_tree().create_timer(length).timeout
 	is_invul = false
-	is_being_hit = false
+	#is_being_hit = false
 	
 	
-	
-	
-	
+
+func _input(event: InputEvent) -> void:
+	if slow_ability_unlocked:
+		if event.is_action_pressed("special_l"):
+			if current_salt >= 1:
+				GlobalSignalBus.emit_signal("slow_down_start")
+				freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
+				current_salt -= 1
+				GlobalSignalBus.emit_signal("salt_update")

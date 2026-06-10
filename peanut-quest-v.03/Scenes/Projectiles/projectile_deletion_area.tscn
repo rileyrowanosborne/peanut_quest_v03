@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://23v0uwtll7c0"]
+
+[ext_resource type="Script" uid="uid://c4q8u3ap3ql8j" path="res://Scripts/projectile_deletion_area.gd" id="1_vaihd"]
+
+[node name="ProjectileDeletionArea" type="Area2D" unique_id=1055729076]
+collision_layer = 0
+collision_mask = 512
+script = ExtResource("1_vaihd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c6x0j1sysj7fk"]
+
+[ext_resource type="Texture2D" uid="uid://cuhopi8r6l8f" path="res://Assets/Sprites/SpiderEye.png" id="1_8oabu"]
+[ext_resource type="Script" uid="uid://bjp6jlrxbhgxh" path="res://Scripts/floating_eye_test1.gd" id="1_pydij"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sshy"]
+radius = 15.0
+
+[node name="FloatingEye" type="CharacterBody2D" unique_id=1937742067]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_pydij")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=864648974]
+texture = ExtResource("1_8oabu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=509339471]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1223752791]
+shape = SubResource("CircleShape2D_4sshy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=769459954]
+shape = SubResource("CircleShape2D_4sshy")
+
+[node name="MovementDelayTimer" type="Timer" parent="." unique_id=939914136]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="MovementDelayTimer" to="." method="_on_movement_delay_timer_timeout"]

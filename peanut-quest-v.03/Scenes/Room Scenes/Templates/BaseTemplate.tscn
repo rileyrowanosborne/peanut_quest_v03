@@ -1,140 +1,111 @@
 [gd_scene format=3 uid="uid://cv6nd8457be6o"]
 
 [ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_tb4d4"]
-[ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="2_y4glo"]
-[ext_resource type="TileSet" uid="uid://fylwk4kk6d8v" path="res://Assets/Resources/ForestTileSet.tres" id="3_x2xpm"]
-[ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="4_81vs5"]
+[ext_resource type="PackedScene" uid="uid://bpn7rp1k1gffa" path="res://Scenes/Essentials/all_tile_maps.tscn" id="5_7e74x"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="5_743na"]
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="6_1wwog"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/HUD/Fade_to_black_screen.tscn" id="7_5pq64"]
+[ext_resource type="Texture2D" uid="uid://brbn8iyjxjt76" path="res://Assets/Sprites/BigClouds.png" id="7_7akgc"]
 [ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/HUD/hud.tscn" id="8_1r3d1"]
+[ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="8_7e74x"]
+[ext_resource type="Texture2D" uid="uid://cpegvjmy5ugwb" path="res://Assets/Sprites/CavernBackGround5.png" id="9_k2pbm"]
 [ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="9_uxg3i"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5emc1"]
-texture = ExtResource("4_81vs5")
-3:1/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-4:1/0 = 0
-5:0/0 = 0
-5:1/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-7:1/0 = 0
-7:0/0 = 0
-6:0/0 = 0
-6:1/0 = 0
-2:0/0 = 0
-2:1/0 = 0
-2:2/0 = 0
-1:2/0 = 0
-0:2/0 = 0
-0:1/0 = 0
-0:0/0 = 0
-1:0/0 = 0
-1:1/0 = 0
-5:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_1y8cq"]
-sources/0 = SubResource("TileSetAtlasSource_5emc1")
-
-[sub_resource type="Environment" id="Environment_dr21r"]
-background_mode = 3
-tonemap_mode = 1
-glow_enabled = true
-glow_intensity = 5.77
-glow_bloom = 0.1
+[ext_resource type="PackedScene" uid="uid://b5oq8rd3gotms" path="res://Scenes/Essentials/world_environment_scene.tscn" id="31_lqypp"]
 
 [node name="BaseTemplate" type="Node2D" unique_id=82904511]
 script = ExtResource("1_tb4d4")
 
-[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=844334467]
+[node name="Environment" type="Node2D" parent="." unique_id=914871331]
+
+[node name="Parallax2D2" type="Parallax2D" parent="Environment" unique_id=844334467]
 repeat_size = Vector2(1052, 648)
 repeat_times = 2
 
-[node name="ColorRect" type="ColorRect" parent="Parallax2D2" unique_id=565308919]
+[node name="ColorRect" type="ColorRect" parent="Environment/Parallax2D2" unique_id=565308919]
 offset_right = 1153.0
 offset_bottom = 648.0
-color = Color(0.17361575, 0.17456171, 0.22747248, 1)
+color = Color(0.80645424, 0.7392086, 0.45746195, 1)
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=172254798]
-scroll_offset = Vector2(-286, -505)
-repeat_size = Vector2(128, 128)
-autoscroll = Vector2(2, 0)
+[node name="CavernBottom" type="Node2D" parent="Environment" unique_id=960900776]
+
+[node name="CavernBottom" type="Parallax2D" parent="Environment/CavernBottom" unique_id=457402760]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
 repeat_times = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=640664391]
-modulate = Color(0.3180198, 0.31801978, 0.31801975, 0.5019608)
-position = Vector2(777, 744.6667)
-texture = ExtResource("2_y4glo")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom" unique_id=985030401]
+modulate = Color(0.23904923, 0.20870605, 0.076602496, 1)
+position = Vector2(65, 130)
+scale = Vector2(3, 3)
+texture = ExtResource("7_7akgc")
 
-[node name="TileMap" type="TileMapLayer" parent="." unique_id=777071391]
-z_index = 2
-tile_set = ExtResource("3_x2xpm")
+[node name="CavernBottom2" type="Parallax2D" parent="Environment/CavernBottom" unique_id=804295372]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
 
-[node name="Decor" type="TileMapLayer" parent="." unique_id=1527221862]
-tile_set = SubResource("TileSet_1y8cq")
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom2" unique_id=2018150678]
+modulate = Color(0.17564929, 0.18900737, 0.018084528, 1)
+position = Vector2(65, 132.99994)
+scale = Vector2(3, 3)
+texture = ExtResource("8_7e74x")
 
-[node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("5_743na")]
-position = Vector2(384, 216)
-zoom = Vector2(1.5, 1.5)
-camera_zoom = Vector2(2, 2)
+[node name="CavernBottom3" type="Parallax2D" parent="Environment/CavernBottom" unique_id=1143113087]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(256, 0)
+repeat_times = 10
 
-[node name="EntranceDoor" parent="." unique_id=429804739 instance=ExtResource("6_1wwog")]
-position = Vector2(664, 18)
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom3" unique_id=74884859]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(40, 231.99994)
+scale = Vector2(2, 2)
+texture = ExtResource("9_k2pbm")
 
-[node name="ExitDoor" parent="." unique_id=943823141 instance=ExtResource("6_1wwog")]
-position = Vector2(25, 392)
+[node name="Back" parent="Environment" unique_id=1152226528 instance=ExtResource("5_7e74x")]
 
-[node name="FadeToBlackScreen" parent="." unique_id=1795882491 instance=ExtResource("7_5pq64")]
+[node name="Doors" type="Node2D" parent="Environment" unique_id=688809580]
 
-[node name="Hud" parent="." unique_id=471024502 instance=ExtResource("8_1r3d1")]
+[node name="ExitDoor" parent="Environment/Doors" unique_id=943823141 instance=ExtResource("6_1wwog")]
+position = Vector2(1312, 322)
+rotation = -1.5707964
+collision_layer = 0
+
+[node name="Front" parent="Environment" unique_id=1330860940 instance=ExtResource("5_7e74x")]
+
+[node name="Decor" parent="Environment" unique_id=1272088760 instance=ExtResource("5_7e74x")]
+
+[node name="WorldEnvironment" parent="." unique_id=41593997 instance=ExtResource("31_lqypp")]
+
+[node name="PlayerStuff" type="Node2D" parent="." unique_id=1382231276]
+
+[node name="PlayerTest" parent="PlayerStuff" unique_id=474886339 instance=ExtResource("9_uxg3i")]
+position = Vector2(-5, 15)
+
+[node name="FadeToBlackScreen" parent="PlayerStuff" unique_id=1795882491 instance=ExtResource("7_5pq64")]
+
+[node name="Hud" parent="PlayerStuff" unique_id=471024502 instance=ExtResource("8_1r3d1")]
 visible = false
 
-[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("9_uxg3i")]
+[node name="MainCamera" parent="PlayerStuff" unique_id=1365551363 instance=ExtResource("5_743na")]
 position = Vector2(384, 216)
+zoom = Vector2(1.5, 1.5)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1567601840]
-environment = SubResource("Environment_dr21r")
+[node name="WorldLasers" type="Node2D" parent="." unique_id=1206287773]
+
+[node name="Enemies" type="Node2D" parent="." unique_id=759739250]
+
+[node name="Creatures" type="Node2D" parent="." unique_id=1747165081]
+
+[node name="Doors" type="Node2D" parent="." unique_id=1142413211]
+
+[node name="Bouncers" type="Node2D" parent="." unique_id=862695259]
+
+[node name="Stuff" type="Node2D" parent="." unique_id=1137947911]
+
+[node name="Collectibles" type="Node2D" parent="Stuff" unique_id=404684402]
+
+[node name="PowerUps" type="Node2D" parent="Stuff" unique_id=666432570]
+
+[node name="Hands" type="Node2D" parent="Stuff" unique_id=446176046]
+
+[node name="Hearts" type="Node2D" parent="Stuff" unique_id=882886335]

@@ -190,7 +190,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	
 	
-	if event.is_action_pressed("special_l") or event.is_action_pressed("special_r"):
+	if event.is_action_pressed("special_l"):
 		if GameState.current_salt >= 1:
 			GlobalSignalBus.emit_signal("slow_down_start")
 			GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)

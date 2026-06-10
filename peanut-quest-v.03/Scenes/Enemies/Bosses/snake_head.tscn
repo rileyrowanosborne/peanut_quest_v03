@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bllki3ybrs8dq"]
+
+[ext_resource type="Script" uid="uid://bgrx7r166j0ap" path="res://Scripts/snake_body.gd" id="1_lq087"]
+[ext_resource type="Texture2D" uid="uid://dyp6pnbumlpeo" path="res://Assets/Sprites/SnakeHead-Blink-1.png" id="2_lq087"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bkhr2"]
+radius = 23.021729
+
+[node name="Snakehead" type="CharacterBody2D" unique_id=1872342852]
+collision_layer = 0
+collision_mask = 516
+script = ExtResource("1_lq087")
+speed = 100.0
+movement_delay_amount = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=408595707]
+scale = Vector2(2, 2)
+texture = ExtResource("2_lq087")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=682362994]
+shape = SubResource("CircleShape2D_bkhr2")
+
+[node name="MovementDelayTimer" type="Timer" parent="." unique_id=1760953913]
+one_shot = true
+
+[node name="HitBox" type="Area2D" parent="." unique_id=941456058]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitBox" unique_id=1356311519]
+position = Vector2(-16, -1)
+polygon = PackedVector2Array(-40, -19, 14, -19, 31, -25, 46, -25, 55, -21, 65, -11, 68, -3, 68, 3, 65, 12, 51, 24, 45, 25, 31, 25, 11, 19, -39, 19)
+
+[connection signal="timeout" from="MovementDelayTimer" to="." method="_on_movement_delay_timer_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmbok4ghbbxic"]
 
 [ext_resource type="Script" uid="uid://pnl613v220st" path="res://Scripts/player_test.gd" id="1_o60cq"]
-[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/Player/PowerUps/Sword/sword_power_up.tscn" id="2_tvrp7"]
+[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/PowerUps/Sword/sword_power_up.tscn" id="2_tvrp7"]
 [ext_resource type="Texture2D" uid="uid://vcruqpwowjd3" path="res://Assets/Sprites/CircleZap-Sheet_2.png" id="3_o60cq"]
 [ext_resource type="Script" uid="uid://c3kydfwve6dfv" path="res://Scripts/peanut_anims.gd" id="4_j8edj"]
 [ext_resource type="Script" uid="uid://d25j227ikawr8" path="res://Scripts/special_charge.gd" id="4_lbtjm"]
@@ -134,8 +134,9 @@ size = Vector2(10, 6)
 
 [node name="PlayerTest" type="CharacterBody2D" unique_id=474886339]
 z_index = 5
-collision_mask = 292
+collision_mask = 804
 script = ExtResource("1_o60cq")
+dash_power = 400.0
 
 [node name="Particles" type="Node2D" parent="." unique_id=935651078]
 
@@ -365,6 +366,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="SlideCooldownTimer" type="Timer" parent="Timers" unique_id=153027926]
+wait_time = 0.6
 
 [node name="CoyoteTimer" type="Timer" parent="Timers" unique_id=124599926]
 wait_time = 0.15
@@ -391,6 +393,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=1838870689]
+wait_time = 0.6
 
 [node name="SlowDownTimeBar" type="TextureProgressBar" parent="." unique_id=466373547]
 visible = false

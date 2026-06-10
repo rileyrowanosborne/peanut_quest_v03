@@ -5,7 +5,7 @@
 
 [node name="FloatingHeart" type="CharacterBody2D" unique_id=2101287276]
 collision_layer = 32
-collision_mask = 4
+collision_mask = 516
 script = ExtResource("1_jrm5r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=96621116]

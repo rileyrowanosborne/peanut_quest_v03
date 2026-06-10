@@ -40,7 +40,6 @@ tile_set = ExtResource("5_qjrfc")
 [node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("6_75avk")]
 position = Vector2(287, 164)
 zoom = Vector2(2, 2)
-is_following_player = true
 
 [node name="DoorArea2D" parent="." unique_id=429804739 instance=ExtResource("7_df47q")]
 position = Vector2(40, 336)

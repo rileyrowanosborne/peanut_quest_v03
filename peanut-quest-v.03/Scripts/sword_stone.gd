@@ -31,12 +31,13 @@ func sword_deactivate():
 
 func _input(event: InputEvent) -> void:
 	
-	if event.is_action("action") and in_range and not GameState.sword_is_active and GameState.player_is_shelled:
+	if event.is_action_pressed("action") and in_range and not GameState.sword_is_active and GameState.player_is_shelled:
 		cpu_particles_2d.emitting = false
 		animated_sprite_2d.play("SwordPull")
 		
 		
 		await get_tree().create_timer(1.05).timeout
 		GlobalSignalBus.emit_signal("sword_activate")
-		
+		GameState.current_health = 3
 		GameState.sword_is_active = true
+		GlobalSignalBus.emit_signal("health_check")

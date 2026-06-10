@@ -2,63 +2,61 @@
 
 [ext_resource type="Script" uid="uid://djj5ggv7mkk6i" path="res://Scripts/snake_boss.gd" id="1_far4f"]
 [ext_resource type="PackedScene" uid="uid://duo04m2pv6i3c" path="res://Scenes/Enemies/Bosses/snake_body.tscn" id="2_fhkki"]
-[ext_resource type="Texture2D" uid="uid://dyp6pnbumlpeo" path="res://Assets/Sprites/SnakeHead-Blink-1.png" id="3_p8cl4"]
-[ext_resource type="Texture2D" uid="uid://uxa43ayc5jtm" path="res://Assets/Sprites/SnakeTailTest2.png" id="4_2fqdg"]
-[ext_resource type="Texture2D" uid="uid://dke4loef2057b" path="res://Assets/Sprites/SnakeHead-Blink-2.png" id="4_bp4cx"]
-[ext_resource type="Texture2D" uid="uid://b132sgy4uwxu2" path="res://Assets/Sprites/SnakeHead-Blink-3.png" id="5_rm24t"]
-[ext_resource type="Texture2D" uid="uid://bg7d20hd7jhp5" path="res://Assets/Sprites/SnakeHead-Blink-4.png" id="6_fuvor"]
-[ext_resource type="Texture2D" uid="uid://22a37mlji8wq" path="res://Assets/Sprites/SnakeHead-Blink-5.png" id="7_rm24t"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_n0cdp"]
-frames = 5
-frame_0/texture = ExtResource("3_p8cl4")
-frame_0/duration = 3.0
-frame_1/texture = ExtResource("4_bp4cx")
-frame_1/duration = 0.2
-frame_2/texture = ExtResource("5_rm24t")
-frame_2/duration = 0.2
-frame_3/texture = ExtResource("6_fuvor")
-frame_3/duration = 0.4
-frame_4/texture = ExtResource("7_rm24t")
-frame_4/duration = 0.2
+[ext_resource type="PackedScene" uid="uid://bllki3ybrs8dq" path="res://Scenes/Enemies/Bosses/snake_head.tscn" id="2_pjsxr"]
+[ext_resource type="PackedScene" uid="uid://03hj7d6kb063" path="res://Scenes/Enemies/Bosses/snake_tail.tscn" id="4_jnnl0"]
+[ext_resource type="PackedScene" uid="uid://68tv8d7mrvh7" path="res://Scenes/Enemies/Forest/FloatingEyeTest.tscn" id="9_jreep"]
 
 [node name="SnakeBoss" type="Node2D" unique_id=1987407400]
 script = ExtResource("1_far4f")
 
-[node name="SnakeHead" parent="." unique_id=1872342852 instance=ExtResource("2_fhkki")]
-sprite = SubResource("AnimatedTexture_n0cdp")
+[node name="Body" type="Node2D" parent="." unique_id=1827772893]
+
+[node name="Snakehead" parent="Body" unique_id=1872342852 instance=ExtResource("2_pjsxr")]
 movement_delay_amount = 0.25
 
-[node name="SnakeBody1" parent="." unique_id=2029324436 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody1" parent="Body" unique_id=2029324436 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 0.5
 
-[node name="SnakeBody2" parent="." unique_id=1781365319 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody2" parent="Body" unique_id=1781365319 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 0.75
 
-[node name="SnakeBody3" parent="." unique_id=1127015308 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody3" parent="Body" unique_id=1127015308 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 1.0
 
-[node name="SnakeBody4" parent="." unique_id=566284169 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody4" parent="Body" unique_id=566284169 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 1.25
 
-[node name="SnakeBody5" parent="." unique_id=1211060743 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody5" parent="Body" unique_id=1211060743 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 1.5
 
-[node name="SnakeBody6" parent="." unique_id=366032359 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody6" parent="Body" unique_id=366032359 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 1.75
 
-[node name="SnakeBody7" parent="." unique_id=611442085 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody7" parent="Body" unique_id=611442085 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 2.0
 
-[node name="SnakeBody8" parent="." unique_id=1589744611 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody8" parent="Body" unique_id=1589744611 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 2.25
 
-[node name="SnakeBody9" parent="." unique_id=1805611965 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody9" parent="Body" unique_id=1805611965 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 2.5
 
-[node name="SnakeBody10" parent="." unique_id=1564070045 instance=ExtResource("2_fhkki")]
+[node name="SnakeBody10" parent="Body" unique_id=1564070045 instance=ExtResource("2_fhkki")]
 movement_delay_amount = 2.75
 
-[node name="SnakeTail" parent="." unique_id=943687671 instance=ExtResource("2_fhkki")]
-sprite = ExtResource("4_2fqdg")
+[node name="SnakeTail" parent="Body" unique_id=1067387271 instance=ExtResource("4_jnnl0")]
 movement_delay_amount = 3.0
+
+[node name="Eyes" type="Node2D" parent="." unique_id=877884580]
+
+[node name="FloatingEye2" parent="." unique_id=1833482725 instance=ExtResource("9_jreep")]
+position = Vector2(-62, -1)
+
+[node name="FloatingEye3" parent="." unique_id=2012628436 instance=ExtResource("9_jreep")]
+position = Vector2(0, -76)
+
+[node name="FloatingEye4" parent="." unique_id=119198593 instance=ExtResource("9_jreep")]
+position = Vector2(79, -2)
+
+[node name="FloatingEye5" parent="." unique_id=248885223 instance=ExtResource("9_jreep")]
+position = Vector2(0, 74)

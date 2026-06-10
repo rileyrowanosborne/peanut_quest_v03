@@ -61,7 +61,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("swing") and GameState.player_can_attack:
+	if event.is_action_pressed("action") and GameState.player_can_attack:
 		swing_combo()
 
 

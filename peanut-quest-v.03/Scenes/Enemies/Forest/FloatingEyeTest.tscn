@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://68tv8d7mrvh7"]
+
+[ext_resource type="Script" uid="uid://belpvdecngk1w" path="res://Scripts/mid_heart_one.gd" id="1_qrspo"]
+[ext_resource type="PackedScene" uid="uid://by2xtrhi8a3ce" path="res://Scenes/Particle Effects/absorb_particles.tscn" id="2_byeen"]
+[ext_resource type="PackedScene" uid="uid://r2ylrtqkw4bw" path="res://Scenes/Particle Effects/death_blood_spurt.tscn" id="3_0phcj"]
+[ext_resource type="Texture2D" uid="uid://cuhopi8r6l8f" path="res://Assets/Sprites/SpiderEye.png" id="4_ubmfd"]
+
+[sub_resource type="Curve" id="Curve_da1dg"]
+_data = [Vector2(0.0064516217, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.123595595), -4.591417, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_gj4wb"]
+offsets = PackedFloat32Array(0, 0.51937985)
+colors = PackedColorArray(0.45490196, 0.15294118, 0.101960786, 1, 0.7921569, 0.2627451, 0.1764706, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubmfd"]
+radius = 15.033297
+
+[node name="FloatingEye2" type="CharacterBody2D" unique_id=1833482725]
+collision_layer = 0
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_qrspo")
+absorb_scene = ExtResource("2_byeen")
+speed = 25.0
+blood_spurt_scene = ExtResource("3_0phcj")
+
+[node name="BloodParticles" type="CPUParticles2D" parent="." unique_id=619976124]
+position = Vector2(-10, -10)
+emitting = false
+lifetime = 0.19
+one_shot = true
+explosiveness = 1.0
+randomness = 0.45
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 107.14
+initial_velocity_max = 192.85
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_da1dg")
+color_ramp = SubResource("Gradient_gj4wb")
+
+[node name="BloodParticles2" type="CPUParticles2D" parent="." unique_id=916231970]
+position = Vector2(5, 4)
+emitting = false
+lifetime = 0.19
+one_shot = true
+explosiveness = 1.0
+randomness = 0.45
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 107.14
+initial_velocity_max = 192.85
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_da1dg")
+color_ramp = SubResource("Gradient_gj4wb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=778709221]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1678499094]
+shape = SubResource("CircleShape2D_ubmfd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647311571]
+texture = ExtResource("4_ubmfd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428402327]
+shape = SubResource("CircleShape2D_ubmfd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

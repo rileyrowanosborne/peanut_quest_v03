@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 @onready var blood_particles: CPUParticles2D = $BloodParticles
 @onready var blood_particles_2: CPUParticles2D = $BloodParticles2
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var munch_text: RichTextLabel = $MunchText
 
 
 var current_health : int = 10
@@ -32,13 +31,7 @@ var chase_player : bool = false
 
 
 func _ready() -> void:
-	if is_moving:
-		current_dir = direction_options.pick_random()
-	
-	else:
-		current_dir = Vector2.ZERO
-	
-	add_to_group("enemy")
+	current_dir = direction_options.pick_random()
 
 
 
@@ -61,11 +54,7 @@ func take_damage(attack_dir : Vector2):
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
 	knockback_velocity = knockback_dir * 100
 	current_health -= 1
-	munch_text.position = Vector2(randi_range(-50,50), randi_range(-50,50))
-	munch_text.show()
 	health_check()
-	await  get_tree().create_timer(.5).timeout
-	munch_text.hide()
 
 
 func health_check():
@@ -84,7 +73,7 @@ func spawn_blood_spurt():
 
 
 func die():
-	animated_sprite_2d.hide()
+	sprite_2d.hide()
 	blood_particles.emitting = true
 	blood_particles_2.emitting = true
 	spawn_blood_spurt()
@@ -115,7 +104,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		in_range = true
+		in_range = false
 
 
 func _input(event: InputEvent) -> void:

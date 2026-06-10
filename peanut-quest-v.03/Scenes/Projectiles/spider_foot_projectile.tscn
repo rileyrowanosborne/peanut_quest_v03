@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dahhgm5b8mhfq"]
+
+[ext_resource type="Texture2D" uid="uid://bpbt73bpf24rq" path="res://Assets/Sprites/SpiderLeg.png" id="1_3817k"]
+[ext_resource type="Texture2D" uid="uid://bxvpm3wuwxbno" path="res://Assets/Sprites/SpiderFoot.png" id="2_cord1"]
+
+[node name="SpiderFootProjectile" type="Node2D" unique_id=380182106]
+
+[node name="Leg" type="Sprite2D" parent="." unique_id=1107455092]
+texture = ExtResource("1_3817k")
+
+[node name="Leg2" type="Sprite2D" parent="." unique_id=1907522499]
+position = Vector2(0, -128)
+texture = ExtResource("1_3817k")
+
+[node name="Leg3" type="Sprite2D" parent="." unique_id=1885978785]
+position = Vector2(0, -256)
+texture = ExtResource("1_3817k")
+
+[node name="Leg4" type="Sprite2D" parent="." unique_id=1029219143]
+position = Vector2(0, -384)
+texture = ExtResource("1_3817k")
+
+[node name="Foot" type="Sprite2D" parent="." unique_id=4273659]
+position = Vector2(0, 192)
+texture = ExtResource("2_cord1")

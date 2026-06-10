@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://tmsg1j2l6e71"]
+
+[ext_resource type="Texture2D" uid="uid://fnofs1kk0md7" path="res://Assets/Sprites/Bone1.png" id="1_34c08"]
+[ext_resource type="Script" uid="uid://drgpdsxc48awr" path="res://Scripts/bone_projectile.gd" id="1_r3hxy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3hxy"]
+size = Vector2(120, 6)
+
+[node name="BoneProjectile" type="AnimatableBody2D" unique_id=1955933113]
+collision_layer = 512
+script = ExtResource("1_r3hxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=305559293]
+texture = ExtResource("1_34c08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1614218672]
+shape = SubResource("RectangleShape2D_r3hxy")

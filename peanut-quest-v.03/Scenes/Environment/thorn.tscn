@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://p3kloue36vak"]
+
+[ext_resource type="Script" uid="uid://d18pnfi0eiqcg" path="res://Scripts/thorn.gd" id="1_a6bdp"]
+[ext_resource type="Texture2D" uid="uid://cky5vdwvao1cq" path="res://Assets/Sprites/Thorn1Test.png" id="1_sly4j"]
+
+[node name="Thorn" type="Node2D" unique_id=139989128]
+script = ExtResource("1_a6bdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1079522322]
+texture = ExtResource("1_sly4j")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2004689523]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=747527459]
+polygon = PackedVector2Array(-5, -6, 1, -4, 6, -1, 6, 0, 2, 3, -5, 5, -6, 4, -6, -3)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

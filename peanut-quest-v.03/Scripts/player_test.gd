@@ -56,10 +56,16 @@ var speed_sample_position: float = 0.0
 var current_speed : float
 
 var normal_speed : float = 175.0
-var slide_speed : float = 350.0
-var dash_power : float = 350.0
+@export var slide_speed : float = 350.0
+@export var dash_power : float = 350.0
 
-var wall_slide_speed : float = .6
+
+var current_wall_slide_speed : float = .4
+
+var min_wall_slide_speed : float = .1
+var max_wall_slide_speed : float = .7
+
+var wall_slide_decay : float = .9
 
 var acceleration : float = .2
 var decceleration : float = .1
@@ -133,6 +139,8 @@ func _process(delta: float) -> void:
 	GameState.player_location = global_position
 	GameState.player_direction = direction
 	GameState.player_is_on_ground = is_on_floor()
+	
+	
 
 	if not GameState.is_being_hit:
 		if GameState.player_is_wall_sliding:
@@ -167,6 +175,9 @@ func _process(delta: float) -> void:
 	if not is_on_floor():
 		if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()):
 			GameState.player_is_wall_sliding = true
+			can_jump = true
+			if current_wall_slide_speed < max_wall_slide_speed:
+				current_wall_slide_speed += wall_slide_decay * delta
 			if ray_cast_left.is_colliding() or ray_cast_left_2.is_colliding():
 				peanut_anims.flip_h = true
 				wall_jump_direction = 1
@@ -176,8 +187,10 @@ func _process(delta: float) -> void:
 				
 		else:
 			GameState.player_is_wall_sliding = false
+			current_wall_slide_speed = min_wall_slide_speed
 	else:
 		GameState.player_is_wall_sliding = false 
+		current_wall_slide_speed = min_wall_slide_speed
 	
 
 
@@ -191,7 +204,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		is_sliding = false
 	else:
+		if ray_cast_up.is_colliding():
+			can_jump = false
+		else:
+			can_jump = true
 		is_dashing = false
+		
 
 #Movement
 	direction = Input.get_axis("move_left", "move_right")
@@ -199,7 +217,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor(): 
 			velocity.x = lerp(velocity.x, current_speed * direction, acceleration)
 		else:
-			velocity.x = lerp(velocity.x, current_speed * direction, air_acceleration)
+			velocity.x = lerp(velocity.x, current_speed * GameState.last_dir, air_acceleration)
 
 	else:
 		if is_on_floor():
@@ -218,7 +236,7 @@ func _physics_process(delta: float) -> void:
 #Wallslide logic
 	if GameState.player_is_wall_sliding and not is_on_floor():
 		if wall_slide_wait_timer.is_stopped():
-			velocity.y *= wall_slide_speed
+			velocity.y *= current_wall_slide_speed
 	
 	if is_dashing:
 		velocity.x = dash_power * dash_dir
@@ -229,35 +247,13 @@ func _physics_process(delta: float) -> void:
 		sliding_collision_shape.disabled = false
 		standing_collision_shape.disabled = true
 		
-		if ray_cast_up.is_colliding():
-			can_jump = false
 	else:
 		sliding_collision_shape.disabled = true
 		standing_collision_shape.disabled = false
 	
-	
-	# Handle jump.
-	#if Input.is_action_just_pressed("jump") and can_jump:
-		#wall_slide_wait_timer.start()
-		#jump_buffer_timer.start()
-		#
-	#if not jump_buffer_timer.is_stopped() and (is_on_floor() or not coyote_timer.is_stopped()):
-		#jump_buffer_timer.stop()
-		#
-	#
-	#if not jump_buffer_timer.is_stopped() and (is_on_wall() or not wall_coyote_timer.is_stopped()):
-		#velocity.y = jump_velocity
-		#velocity.x = current_speed * wall_jump_direction
-		#jump_buffer_timer.stop()
-		#coyote_timer.stop()
-#
-	#if Input.is_action_just_released("jump") and !jump_cancelled:
-		#jump_cancelled = true
-		#velocity.y *= .4
-#
 
 	
-	if Input.is_action_just_pressed("jump") and not jump_requested:
+	if Input.is_action_just_pressed("jump") and not jump_requested and can_jump:
 		jump_requested = true
 		jump_buffer_timer.start()
 	
@@ -313,25 +309,20 @@ func wall_jump():
 
  
 func _input(event: InputEvent) -> void:
-	
-	
-	if event.is_action_pressed("special_l") or event.is_action_pressed("special_r"):
-		if GameState.current_salt >= 1:
-			GlobalSignalBus.emit_signal("slow_down_start")
-			GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
-			GameState.current_salt -= 1
-			GlobalSignalBus.emit_signal("salt_update")
-
 	if event.is_action_pressed("Slide"):
 		dash_dir = GameState.last_dir
 		if is_on_floor():
 			if not is_sliding and not slide_on_cooldown:
+				GameState.player_invul(.3)
 				slide_on_cooldown = true
 				slide_cooldown_timer.start()
 				is_sliding = true
 				slide_timer.start()
 		else:
 			if can_dash and not dash_on_cooldown:
+				GameState.player_invul(.3)
+				
+				
 				dash_on_cooldown = true
 				dash_cooldown_timer.start()
 				dash_timer.start()
@@ -390,7 +381,9 @@ func take_damage(attack_dir : Vector2):
 	if not GameState.is_invul:
 		GameState.player_invul(1)
 		
-		if GameState.sword_is_active:
+		if GameState.current_health == 3:
+			GameState.current_health -= 1
+			GlobalSignalBus.emit_signal("health_check")
 			GlobalSignalBus.emit_signal("sword_deactivate")
 			GameState.freeze_frame(.1, .4)
 			velocity = knockback_dir * 500
@@ -404,8 +397,10 @@ func take_damage(attack_dir : Vector2):
 					die()
 
 func take_laser_damage():
-	if GameState.sword_is_active:
-		GameState.player_invul(.5)
+	if GameState.current_health == 3:
+		GameState.current_health -= 1
+		GlobalSignalBus.emit_signal("health_check")
+		GameState.player_invul(1)
 		GameState.freeze_frame(.1, .4)
 		velocity.y = -400
 		GlobalSignalBus.emit_signal("sword_deactivate")
@@ -429,9 +424,11 @@ func take_spike_damage():
 		crack_four.emitting = true
 	
 	if not GameState.is_invul:
-		GameState.player_invul(.5)
+		GameState.player_invul(1)
 		
-		if GameState.sword_is_active:
+		if GameState.current_health == 3:
+			GameState.current_health -= 1
+			GlobalSignalBus.emit_signal("health_check")
 			GlobalSignalBus.emit_signal("sword_deactivate")
 			GameState.freeze_frame(.1, .4)
 			velocity.y = -400

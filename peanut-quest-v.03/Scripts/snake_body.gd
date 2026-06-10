@@ -5,8 +5,6 @@ extends CharacterBody2D
 
 @onready var movement_delay_timer: Timer = $MovementDelayTimer
 
-@export var sprite : Texture2D
-
 
 @export var speed : float = 50
 @export var movement_delay_amount : float = 0.1
@@ -19,8 +17,6 @@ func _ready() -> void:
 	
 	movement_delay_timer.start(movement_delay_amount)
 		
-	sprite_2d.texture = sprite
-	
 	add_to_group("enemy")
 
 
@@ -45,7 +41,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_movement_delay_timer_timeout() -> void:
-	current_dir = get_parent().direction
+	current_dir = get_parent().get_parent().direction
 
 
 func _on_hit_box_body_entered(body: Node2D) -> void:

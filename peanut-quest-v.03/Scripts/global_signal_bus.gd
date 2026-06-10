@@ -27,3 +27,7 @@ signal crushed
 
 signal sword_activate
 signal sword_deactivate
+
+
+
+signal sprite_update

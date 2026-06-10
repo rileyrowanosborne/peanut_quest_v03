@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func health_check():
-	print(GameState.current_health)
+	print("current health = " + str(GameState.current_health))
 	crack()
 
 
