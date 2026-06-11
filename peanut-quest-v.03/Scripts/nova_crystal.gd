@@ -8,17 +8,18 @@ extends Node2D
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		if GameState.player_is_shelled:
-			pass
-		else:
-			collect()
+		if not GameState.crystal_is_active:
+			if GameState.player_is_shelled:
+				collect()
+
 
 
 
 func collect():
-	GameState.current_health = GameState.current_max_health
-	GlobalSignalBus.emit_signal("reshell_peanut")
-	GlobalSignalBus.emit_signal("reshell_complete")
+	if not GameState.crystal_is_active:
+		GameState.current_health = 3
+		GameState.crystal_is_active = true
+		GlobalSignalBus.emit_signal("crystal_activate")
 	
 	
 	animated_sprite_2d.play("Destroyed")

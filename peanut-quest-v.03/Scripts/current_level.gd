@@ -46,5 +46,5 @@ func reshell_peanut():
 func spawn_peanut(world_location : Vector2):
 	if peanut_scene:
 		var peanut_instance = peanut_scene.instantiate()
-		get_tree().current_scene.add_child(peanut_instance)
+		get_tree().current_scene.call_deferred("add_child", peanut_instance)
 		peanut_instance.global_position = world_location

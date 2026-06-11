@@ -50,6 +50,7 @@ var player_is_shelled : bool = true
 var first_load : bool = true
 
 var sword_is_active : bool = false
+var crystal_is_active : bool = false
 
 var slow_ability_unlocked : bool = false
 var phase_ability_unlocked : bool = false

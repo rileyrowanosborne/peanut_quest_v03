@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://cxai72yr6a155"]
+
+[ext_resource type="Script" uid="uid://cvbgstx78xxvj" path="res://Scripts/nova_crystal.gd" id="1_2wcxt"]
+[ext_resource type="Texture2D" uid="uid://cta8n0q8hvptj" path="res://Assets/Sprites/NovaCrystal-Collect-Sheet.png" id="2_hxfxa"]
+[ext_resource type="Texture2D" uid="uid://qifrcuo6obh6" path="res://Assets/Sprites/NovaCrystal-Idle-Sheet.png" id="3_j2fug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyfsl"]
+atlas = ExtResource("2_hxfxa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnh0q"]
+atlas = ExtResource("2_hxfxa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry800"]
+atlas = ExtResource("2_hxfxa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wak3p"]
+atlas = ExtResource("2_hxfxa")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjdeh"]
+atlas = ExtResource("2_hxfxa")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmilu"]
+atlas = ExtResource("2_hxfxa")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2w4re"]
+atlas = ExtResource("3_j2fug")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4efq"]
+atlas = ExtResource("3_j2fug")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvej6"]
+atlas = ExtResource("3_j2fug")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciiq7"]
+atlas = ExtResource("3_j2fug")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqpuf"]
+atlas = ExtResource("3_j2fug")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nm3x"]
+atlas = ExtResource("3_j2fug")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k3kl5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyfsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnh0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry800")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wak3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjdeh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmilu")
+}],
+"loop": false,
+"name": &"Destroyed",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2w4re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4efq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvej6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciiq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqpuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nm3x")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wcxt"]
+radius = 9.0
+
+[node name="Nova Crystal" type="Node2D" unique_id=1942668228]
+script = ExtResource("1_2wcxt")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1796980384]
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+radial_accel_min = -500.0
+radial_accel_max = -500.0
+color = Color(2.5032542, 2.5032542, 2.5032542, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2074212693]
+modulate = Color(1.3262677, 1.3262677, 1.3262677, 1)
+sprite_frames = SubResource("SpriteFrames_k3kl5")
+animation = &"Destroyed"
+autoplay = "Idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1844126321]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1018951563]
+shape = SubResource("CircleShape2D_2wcxt")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

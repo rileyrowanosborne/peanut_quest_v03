@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
-const SPEED = 25.0
+@export var SPEED = 25.0
 var direction : int = -1
 
 var current_health : int = 1
@@ -48,9 +48,9 @@ func _physics_process(delta: float) -> void:
 
 func direction_change():
 	if direction == -1:
-		animated_sprite_2d.flip_h = false
-	elif direction == 1:
 		animated_sprite_2d.flip_h = true
+	elif direction == 1:
+		animated_sprite_2d.flip_h = false
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

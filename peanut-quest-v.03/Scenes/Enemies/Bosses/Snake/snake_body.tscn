@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://duo04m2pv6i3c"]
+
+[ext_resource type="Script" uid="uid://bgrx7r166j0ap" path="res://Scripts/snake_body.gd" id="1_bkhr2"]
+[ext_resource type="Texture2D" uid="uid://m8joide25ixl" path="res://Assets/Sprites/SnakePieceTest.png" id="2_b2wvt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b2wvt"]
+radius = 14.035668
+
+[node name="SnakeBody" type="CharacterBody2D" unique_id=1872342852]
+z_index = 10
+collision_layer = 0
+collision_mask = 516
+safe_margin = 1.0
+script = ExtResource("1_bkhr2")
+speed = 100.0
+movement_delay_amount = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=408595707]
+texture = ExtResource("2_b2wvt")
+flip_h = true
+
+[node name="MovementDelayTimer" type="Timer" parent="." unique_id=1760953913]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2059375690]
+shape = SubResource("CircleShape2D_b2wvt")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=941456058]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox" unique_id=710754492]
+position = Vector2(0, -1)
+rotation = 3.1415927
+polygon = PackedVector2Array(-20, -7, -17, -10, 9, -10, 22, -1, 22, 1, 11, 9, -17, 9, -20, 6)
+
+[connection signal="timeout" from="MovementDelayTimer" to="." method="_on_movement_delay_timer_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

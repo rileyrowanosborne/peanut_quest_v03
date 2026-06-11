@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dctsbjgpm5vpi" path="res://Assets/Sprites/TheHandFromAbove-Sheet.png" id="1_hr01o"]
 [ext_resource type="Script" uid="uid://biqjpqm1w3nsq" path="res://Scripts/salt_dispenser.gd" id="1_rm8lf"]
-[ext_resource type="PackedScene" uid="uid://cujaif1ymhmxl" path="res://Scenes/Collectibles/salt_collectible.tscn" id="2_af4g1"]
+[ext_resource type="PackedScene" uid="uid://cujaif1ymhmxl" path="res://Scenes/Essentials/Collectibles/salt_collectible.tscn" id="2_af4g1"]
 [ext_resource type="Texture2D" uid="uid://dhktof5mk3nob" path="res://Assets/Sprites/Button-Sheet.png" id="2_aurdi"]
 [ext_resource type="Texture2D" uid="uid://4kkswmtalj0c" path="res://Assets/Sprites/ActiveButton-Sheet.png" id="4_74iil"]
 

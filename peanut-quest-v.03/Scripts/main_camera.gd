@@ -6,15 +6,20 @@ var camera_offset_x := 0
 var camera_offset_y := 0
 
 
-var max_camera_x : int = 60
-var min_camera_x : int = -60
+var min_camera_x : int = -50
 var neutral_camera_x : int = 0
+var max_camera_x : int = 50
 
 var max_camera_y : int = -50
-var neutral_camera_y : int = 30
+var neutral_camera_y : int = 0
+var min_camera_y : int = 50
+
 
 
 var is_looking_down : bool = false
+var is_looking_up : bool = false
+var is_looking_right : bool = false
+var is_looking_left : bool = false
 
 @export var is_following_player : bool = true
 
@@ -33,7 +38,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	
+	#camera pan down
 	if event.is_action_pressed("aim_down"):
 		if not GameState.player_direction:
 			is_looking_down = true
@@ -44,6 +49,43 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("aim_down"):
 		is_looking_down = false
 	
+	
+	#camera pan right
+	if event.is_action_pressed("aim_right"):
+		if not GameState.player_direction:
+			is_looking_right = true
+		
+		else:
+			is_looking_right = false
+	
+	if event.is_action_released("aim_right"):
+		is_looking_right = false
+	
+	
+	
+	#camera pan up
+	if event.is_action_pressed("aim_up"):
+		if not GameState.player_direction:
+			is_looking_up = true
+		
+		else:
+			is_looking_up = false
+	
+	if event.is_action_released("aim_up"):
+		is_looking_up = false
+	
+	
+	
+	#camera pan left
+	if event.is_action_pressed("aim_left"):
+		if not GameState.player_direction:
+			is_looking_left = true
+		
+		else:
+			is_looking_left = false
+	
+	if event.is_action_released("aim_left"):
+		is_looking_left = false
 
 	
 
@@ -75,6 +117,32 @@ func _process(delta: float) -> void:
 		else:
 			if camera_offset_y < neutral_camera_y:
 				camera_offset_y += 5
+		
+		if is_looking_up:
+			if camera_offset_y < min_camera_y:
+				camera_offset_y += 5
+		else:
+			if camera_offset_y > neutral_camera_y:
+				camera_offset_y -= 5
+		
+		
+		
+		if is_looking_right:
+			if camera_offset_x < max_camera_x:
+				camera_offset_x += 5
+		else:
+			if camera_offset_x > neutral_camera_x:
+				camera_offset_x -= 5
+		
+		
+		if is_looking_left:
+			if camera_offset_x > min_camera_x:
+				camera_offset_x -= 5
+		else:
+			if camera_offset_x < neutral_camera_x:
+				camera_offset_x += 5
+		
+		
 		
 		
 		global_position = Vector2(

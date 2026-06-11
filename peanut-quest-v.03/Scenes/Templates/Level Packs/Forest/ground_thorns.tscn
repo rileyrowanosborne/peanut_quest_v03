@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://4manqacabn7c"]
+
+[ext_resource type="Texture2D" uid="uid://u7p4pe5kav6h" path="res://Assets/Sprites/GroundThron.png" id="1_vvmfu"]
+[ext_resource type="Script" uid="uid://dic6ptbqvf0c0" path="res://Scripts/ground_thorns.gd" id="1_wl2h1"]
+
+[node name="GroundThorn" type="Node2D" unique_id=565171741]
+script = ExtResource("1_wl2h1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=761748456]
+position = Vector2(0, -7)
+texture = ExtResource("1_vvmfu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1790714924]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=21547425]
+polygon = PackedVector2Array(-7, 0, -3, -9, 0, -13, 1, -13, 4, -8, 7, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

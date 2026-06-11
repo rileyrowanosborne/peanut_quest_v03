@@ -21,6 +21,7 @@ func spawn_projectile():
 		get_tree().current_scene.add_child(projectile_instance)
 		projectile_instance.global_position = global_position
 		projectile_instance.direction = aiming_direction
+		projectile_instance.sprite_update()
 		
 
 func _on_shot_delay_timer_timeout() -> void:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmbok4ghbbxic"]
 
 [ext_resource type="Script" uid="uid://pnl613v220st" path="res://Scripts/player_test.gd" id="1_o60cq"]
-[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/PowerUps/Sword/sword_power_up.tscn" id="2_tvrp7"]
+[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/Templates/Level Packs/Pristine/PowerUps/Sword/sword_power_up.tscn" id="2_tvrp7"]
 [ext_resource type="Texture2D" uid="uid://vcruqpwowjd3" path="res://Assets/Sprites/CircleZap-Sheet_2.png" id="3_o60cq"]
 [ext_resource type="Script" uid="uid://c3kydfwve6dfv" path="res://Scripts/peanut_anims.gd" id="4_j8edj"]
 [ext_resource type="Script" uid="uid://d25j227ikawr8" path="res://Scripts/special_charge.gd" id="4_lbtjm"]

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://btjhgk14axsfd"]
+
+[ext_resource type="Script" uid="uid://dnnrljldutp8u" path="res://Scripts/bone_launcher.gd" id="1_pknok"]
+[ext_resource type="PackedScene" uid="uid://tmsg1j2l6e71" path="res://Scenes/Templates/Level Packs/Dilapidated/bone_projectile.tscn" id="2_nqnti"]
+
+[node name="BoneLauncher" type="Node2D" unique_id=1067289884]
+script = ExtResource("1_pknok")
+bone_scene = ExtResource("2_nqnti")
+
+[node name="LaunchTimer" type="Timer" parent="." unique_id=14423280]
+one_shot = true
+
+[connection signal="timeout" from="LaunchTimer" to="." method="_on_launch_timer_timeout"]

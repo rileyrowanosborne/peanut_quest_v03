@@ -2269,6 +2269,18 @@ texture = ExtResource("3_vi7fg")
 5:7/0/terrains_peering_bit/left_side = 0
 5:7/0/terrains_peering_bit/top_left_corner = 0
 5:7/0/terrains_peering_bit/top_side = 0
+8:4/animation_columns = 1
+8:4/animation_mode = 1
+8:4/animation_frame_0/duration = 0.5
+8:4/animation_frame_1/duration = 0.5
+8:4/animation_frame_2/duration = 0.5
+8:4/0 = 0
+9:4/animation_columns = 1
+9:4/animation_frame_0/duration = 0.5
+9:4/animation_frame_1/duration = 0.5
+9:4/animation_frame_2/duration = 0.5
+9:4/0 = 0
+9:4/0/z_index = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_en2lh"]
 texture = ExtResource("4_c6qpq")

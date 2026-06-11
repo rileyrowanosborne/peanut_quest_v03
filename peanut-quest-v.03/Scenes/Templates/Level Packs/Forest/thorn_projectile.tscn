@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c4x4qb4ohsaod"]
+
+[ext_resource type="Script" uid="uid://drjowce0ly21y" path="res://Scripts/thorn_projectile.gd" id="1_viywn"]
+[ext_resource type="Texture2D" uid="uid://boauljhewe0fj" path="res://Assets/Sprites/ForestThornProjectiles.png" id="1_wedld"]
+
+[node name="ThornProjectile" type="Area2D" unique_id=1515159075]
+collision_layer = 0
+script = ExtResource("1_viywn")
+speed = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1978921341]
+texture = ExtResource("1_wedld")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=583687760]
+polygon = PackedVector2Array(-14, -6, 7, -2, 7, 0, 14, 2, -7, 6, -11, 6, -7, 1, -11, -1, -13, -1)
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1577189694]
+target_position = Vector2(10, 0)
+collision_mask = 4
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1915189745]
+target_position = Vector2(-10, 0)
+collision_mask = 4
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

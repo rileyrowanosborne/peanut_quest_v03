@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_agjfm"]
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="2_e17n7"]
-[ext_resource type="PackedScene" uid="uid://5h7cs16to0is" path="res://Scenes/Re-Shellers/hand_of_giving.tscn" id="2_nf6m4"]
+[ext_resource type="PackedScene" uid="uid://5h7cs16to0is" path="res://Scenes/Templates/Level Packs/Brain/Hands/hand_of_giving.tscn" id="2_nf6m4"]
 [ext_resource type="Texture2D" uid="uid://c7c65mth1tjf6" path="res://Assets/Sprites/BrainLevel.png" id="3_ktek7"]
 [ext_resource type="Texture2D" uid="uid://crtg7fgi13jr7" path="res://Assets/Sprites/Forest - Decor SpriteSheet.png" id="4_l1x15"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="5_oxuyr"]
@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="7_vmfma"]
 [ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="8_ahhsx"]
 [ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="9_vxl1w"]
-[ext_resource type="PackedScene" uid="uid://jqvnyu46j6cx" path="res://Scenes/Enemies/Brain/Hands/vertical_hand_platform.tscn" id="10_2ao5d"]
-[ext_resource type="PackedScene" uid="uid://b0ctk724thgnf" path="res://Scenes/Enemies/Brain/Hands/all_seeing_eye.tscn" id="12_7xi28"]
+[ext_resource type="PackedScene" uid="uid://jqvnyu46j6cx" path="res://Scenes/Templates/Level Packs/Brain/Hands/vertical_hand_platform.tscn" id="10_2ao5d"]
+[ext_resource type="PackedScene" uid="uid://b0ctk724thgnf" path="res://Scenes/Templates/Level Packs/Brain/Hands/all_seeing_eye.tscn" id="12_7xi28"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrhms"]
 texture = ExtResource("3_ktek7")

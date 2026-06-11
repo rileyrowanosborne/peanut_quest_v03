@@ -62,6 +62,9 @@ var normal_speed : float = 175.0
 
 var current_wall_slide_speed : float = .4
 
+
+var athletic_wall_speed : float = 0.1
+
 var min_wall_slide_speed : float = .1
 var max_wall_slide_speed : float = .7
 
@@ -75,6 +78,12 @@ var air_decceleration : float = .01
 
 var air_dashing_accel : float = -.5
 var air_dashing_deccel : float = -1 
+
+
+var neutral_multiplier : float = 1.0
+var athletic_multiplier : float = 1.3
+
+var current_multiplier : float = 1.0
 
 
 var jump_velocity = -325.0
@@ -112,10 +121,12 @@ func _ready() -> void:
 	add_to_group("player")
 	
 	current_speed = normal_speed
+	current_multiplier = neutral_multiplier
 	spawn_timer.start()
 	GameState.player_is_wall_sliding = false
 	GameState.player_can_attack = true
 	GameState.player_is_attacking = false
+	GameState.crystal_is_active = false
 	
 	
 	if RoomChangeGlobal.activate:
@@ -127,6 +138,8 @@ func _ready() -> void:
 	
 	GlobalSignalBus.connect("essence_collect", essence_collect)
 	GlobalSignalBus.connect("salt_collect", salt_collect)
+	
+	GlobalSignalBus.connect("crystal_activate", athletic_power_up)
 	
 	GlobalSignalBus.emit_signal("health_check")
 
@@ -176,8 +189,11 @@ func _process(delta: float) -> void:
 		if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()):
 			GameState.player_is_wall_sliding = true
 			can_jump = true
-			if current_wall_slide_speed < max_wall_slide_speed:
-				current_wall_slide_speed += wall_slide_decay * delta
+			if GameState.crystal_is_active:
+				current_wall_slide_speed = athletic_wall_speed
+			else:
+				if current_wall_slide_speed < max_wall_slide_speed:
+					current_wall_slide_speed += wall_slide_decay * delta
 			if ray_cast_left.is_colliding() or ray_cast_left_2.is_colliding():
 				peanut_anims.flip_h = true
 				wall_jump_direction = 1
@@ -215,15 +231,15 @@ func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		if is_on_floor(): 
-			velocity.x = lerp(velocity.x, current_speed * direction, acceleration)
+			velocity.x = lerp(velocity.x, current_speed * direction * current_multiplier, acceleration)
 		else:
-			velocity.x = lerp(velocity.x, current_speed * GameState.last_dir, air_acceleration)
+			velocity.x = lerp(velocity.x, current_speed * GameState.last_dir * current_multiplier, air_acceleration)
 
 	else:
 		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, current_speed * decceleration)
+			velocity.x = move_toward(velocity.x, 0, current_speed * decceleration * current_multiplier)
 		else:
-			velocity.x = lerp(velocity.x, current_speed * direction, air_decceleration)
+			velocity.x = lerp(velocity.x, current_speed * direction, air_decceleration * current_multiplier)
 
 	
 	if direction:
@@ -292,7 +308,7 @@ func jump():
 	wall_slide_wait_timer.start()
 	jump_requested = false
 	jump_cancelled = false
-	velocity.y = jump_velocity
+	velocity.y = jump_velocity * current_multiplier
 	jump_buffer_timer.stop()
 	coyote_timer.stop()
 	wall_coyote_timer.stop()
@@ -301,7 +317,7 @@ func wall_jump():
 	wall_slide_wait_timer.start()
 	jump_requested = false
 	jump_cancelled = false
-	velocity.y = jump_velocity
+	velocity.y = jump_velocity * current_multiplier
 	velocity.x = current_speed * wall_jump_direction
 	jump_buffer_timer.stop()
 	coyote_timer.stop()
@@ -382,9 +398,14 @@ func take_damage(attack_dir : Vector2):
 		GameState.player_invul(1)
 		
 		if GameState.current_health == 3:
+			if GameState.sword_is_active:
+				GlobalSignalBus.emit_signal("sword_deactivate")
+			if GameState.crystal_is_active:
+				GlobalSignalBus.emit_signal("crystal_deactivate")
+				
+				athletic_power_down()
 			GameState.current_health -= 1
 			GlobalSignalBus.emit_signal("health_check")
-			GlobalSignalBus.emit_signal("sword_deactivate")
 			GameState.freeze_frame(.1, .4)
 			velocity = knockback_dir * 500
 		else:
@@ -398,13 +419,16 @@ func take_damage(attack_dir : Vector2):
 
 func take_laser_damage():
 	if GameState.current_health == 3:
+		if GameState.sword_is_active:
+				GlobalSignalBus.emit_signal("sword_deactivate")
+		if GameState.crystal_is_active:
+			GlobalSignalBus.emit_signal("crystal_deactivate")
+			athletic_power_down()
 		GameState.current_health -= 1
 		GlobalSignalBus.emit_signal("health_check")
 		GameState.player_invul(1)
 		GameState.freeze_frame(.1, .4)
 		velocity.y = -400
-		GlobalSignalBus.emit_signal("sword_deactivate")
-		
 	else:
 		GameState.current_health = 0
 		GlobalSignalBus.emit_signal("health_check")
@@ -427,9 +451,13 @@ func take_spike_damage():
 		GameState.player_invul(1)
 		
 		if GameState.current_health == 3:
+			if GameState.sword_is_active:
+				GlobalSignalBus.emit_signal("sword_deactivate")
+			if GameState.crystal_is_active:
+				GlobalSignalBus.emit_signal("crystal_deactivate")
+				athletic_power_down()
 			GameState.current_health -= 1
 			GlobalSignalBus.emit_signal("health_check")
-			GlobalSignalBus.emit_signal("sword_deactivate")
 			GameState.freeze_frame(.1, .4)
 			velocity.y = -400
 		else:
@@ -473,7 +501,12 @@ func salt_collect():
 	salt_absorb_particle_effect.emitting = true
 
 
- 
+func athletic_power_up():
+	current_multiplier = athletic_multiplier
+
+func athletic_power_down():
+	GameState.crystal_is_active = false
+	current_multiplier = neutral_multiplier
 
 
 func _on_jump_buffer_timer_timeout() -> void:

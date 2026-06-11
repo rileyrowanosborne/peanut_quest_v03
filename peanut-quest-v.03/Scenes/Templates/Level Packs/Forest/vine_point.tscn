@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://kr6y06sl4g4s"]
+
+[ext_resource type="Texture2D" uid="uid://cg3kiuhs2bmvq" path="res://Assets/Sprites/VineToper2.png" id="2_fo3hr"]
+
+[node name="VinePoint" type="Node2D" unique_id=1278679086]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1185762001]
+z_index = 5
+texture = ExtResource("2_fo3hr")
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=930337675]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=373355473]
+position = Vector2(0, 8)
+polygon = PackedVector2Array(-4, -6, -5, -1, 7, -1, 6, -6)
