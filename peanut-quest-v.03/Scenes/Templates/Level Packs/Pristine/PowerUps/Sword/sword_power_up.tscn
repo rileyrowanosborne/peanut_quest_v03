@@ -951,7 +951,6 @@ _data = {
 }
 
 [node name="SwordPowerUp" type="Node2D" unique_id=1218250284]
-z_index = 1
 z_as_relative = false
 
 [node name="MegaSword" type="Node2D" parent="." unique_id=976456871]
@@ -971,7 +970,6 @@ region_rect = Rect2(32, 0, 32, 16)
 one_shot = true
 
 [node name="SwordParticles1" type="CPUParticles2D" parent="MegaSword" unique_id=1648164278]
-z_as_relative = false
 position = Vector2(-21.512714, -19.626595)
 emitting = false
 amount = 4

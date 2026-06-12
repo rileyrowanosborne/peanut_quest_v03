@@ -13,6 +13,10 @@ const HEALTHY_SHELLED_PEANUT_CHARGED = preload("uid://dtysk3w4e4cr2")
 
 const ARMORED_SHELLED_PEANUT_TEST = preload("uid://b3s3iomyn3v1k")
 const ATHLETIC_SHELLED_PEANUT_TEST = preload("uid://bucgxyruopfwl")
+const MONK_SHELLED_PEANUT_TEST = preload("uid://bn1iw806stobj")
+const MAGE_SHELLED_PEANUT_TEST = preload("uid://bc6d8tnp80iy")
+
+
 
 @onready var poof: CPUParticles2D = $"../Particles/Poof"
 
@@ -20,8 +24,9 @@ const ATHLETIC_SHELLED_PEANUT_TEST = preload("uid://bucgxyruopfwl")
 
 func _ready() -> void:
 	GlobalSignalBus.connect("health_check", anims_update)
-	GlobalSignalBus.connect("crystal_activate", athletic_skin)
-	GlobalSignalBus.connect("sword_activate", armor_skin)
+	GlobalSignalBus.connect("monk_activate", monk_skin)
+	GlobalSignalBus.connect("knight_activate", armor_skin)
+	GlobalSignalBus.connect("mage_activate", mage_skin)
 
 
 
@@ -35,11 +40,16 @@ func anims_update():
 
 		
 
-		
-	
-func athletic_skin():
+
+
+func monk_skin():
 	poof.emitting = true
-	sprite_frames = ATHLETIC_SHELLED_PEANUT_TEST
+	sprite_frames = MONK_SHELLED_PEANUT_TEST
+
+func mage_skin():
+	poof.emitting = true
+	sprite_frames = MAGE_SHELLED_PEANUT_TEST
+
 
 func armor_skin():
 	poof.emitting = true

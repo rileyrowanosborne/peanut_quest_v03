@@ -25,11 +25,14 @@ signal crushed
 
 
 
-signal sword_activate
-signal sword_deactivate
+signal knight_activate
+signal knight_deactivate
 
-signal crystal_activate
-signal crystal_deactivate
+signal monk_activate
+signal monk_deactivate
+
+signal mage_activate
+signal mage_deactivate
 
 
 signal sprite_update

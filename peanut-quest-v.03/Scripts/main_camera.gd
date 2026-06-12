@@ -10,9 +10,9 @@ var min_camera_x : int = -50
 var neutral_camera_x : int = 0
 var max_camera_x : int = 50
 
-var max_camera_y : int = -50
-var neutral_camera_y : int = 0
-var min_camera_y : int = 50
+var max_camera_y : int = -30
+var neutral_camera_y : int = 20
+var min_camera_y : int = 70
 
 
 

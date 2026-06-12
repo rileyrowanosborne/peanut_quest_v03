@@ -126,7 +126,6 @@ func _ready() -> void:
 	GameState.player_is_wall_sliding = false
 	GameState.player_can_attack = true
 	GameState.player_is_attacking = false
-	GameState.crystal_is_active = false
 	
 	
 	if RoomChangeGlobal.activate:
@@ -139,7 +138,7 @@ func _ready() -> void:
 	GlobalSignalBus.connect("essence_collect", essence_collect)
 	GlobalSignalBus.connect("salt_collect", salt_collect)
 	
-	GlobalSignalBus.connect("crystal_activate", athletic_power_up)
+	GlobalSignalBus.connect("monk_activate", monk_activate)
 	
 	GlobalSignalBus.emit_signal("health_check")
 
@@ -189,7 +188,7 @@ func _process(delta: float) -> void:
 		if (ray_cast_left.is_colliding() or ray_cast_right.is_colliding() or ray_cast_left_2.is_colliding() or ray_cast_right_2.is_colliding()):
 			GameState.player_is_wall_sliding = true
 			can_jump = true
-			if GameState.crystal_is_active:
+			if GameState.monk_is_active:
 				current_wall_slide_speed = athletic_wall_speed
 			else:
 				if current_wall_slide_speed < max_wall_slide_speed:
@@ -398,12 +397,14 @@ func take_damage(attack_dir : Vector2):
 		GameState.player_invul(1)
 		
 		if GameState.current_health == 3:
-			if GameState.sword_is_active:
-				GlobalSignalBus.emit_signal("sword_deactivate")
-			if GameState.crystal_is_active:
-				GlobalSignalBus.emit_signal("crystal_deactivate")
-				
-				athletic_power_down()
+			if GameState.knight_is_active:
+				GlobalSignalBus.emit_signal("knight_deactivate")
+			if GameState.monk_is_active:
+				GlobalSignalBus.emit_signal("monk_deactivate")
+				monk_deactivate()
+			if GameState.mage_is_active:
+				GlobalSignalBus.emit_signal("mage_deactivate")
+				mage_deactivate()
 			GameState.current_health -= 1
 			GlobalSignalBus.emit_signal("health_check")
 			GameState.freeze_frame(.1, .4)
@@ -416,14 +417,18 @@ func take_damage(attack_dir : Vector2):
 				GlobalSignalBus.emit_signal("health_check")
 				if GameState.current_health < 1:
 					die()
+	active_power_ups()
 
 func take_laser_damage():
 	if GameState.current_health == 3:
-		if GameState.sword_is_active:
-				GlobalSignalBus.emit_signal("sword_deactivate")
-		if GameState.crystal_is_active:
-			GlobalSignalBus.emit_signal("crystal_deactivate")
-			athletic_power_down()
+		if GameState.knight_is_active:
+				GlobalSignalBus.emit_signal("knight_deactivate")
+		if GameState.monk_is_active:
+			GlobalSignalBus.emit_signal("monk_deactivate")
+			monk_deactivate()
+		if GameState.mage_is_active:
+			GlobalSignalBus.emit_signal("mage_deactivate")
+			mage_deactivate()
 		GameState.current_health -= 1
 		GlobalSignalBus.emit_signal("health_check")
 		GameState.player_invul(1)
@@ -451,11 +456,14 @@ func take_spike_damage():
 		GameState.player_invul(1)
 		
 		if GameState.current_health == 3:
-			if GameState.sword_is_active:
-				GlobalSignalBus.emit_signal("sword_deactivate")
-			if GameState.crystal_is_active:
-				GlobalSignalBus.emit_signal("crystal_deactivate")
-				athletic_power_down()
+			if GameState.knight_is_active:
+				GlobalSignalBus.emit_signal("knight_deactivate")
+			if GameState.monk_is_active:
+				GlobalSignalBus.emit_signal("monk_deactivate")
+				monk_deactivate()
+			if GameState.mage_is_active:
+				GlobalSignalBus.emit_signal("mage_deactivate")
+				mage_deactivate()
 			GameState.current_health -= 1
 			GlobalSignalBus.emit_signal("health_check")
 			GameState.freeze_frame(.1, .4)
@@ -501,12 +509,24 @@ func salt_collect():
 	salt_absorb_particle_effect.emitting = true
 
 
-func athletic_power_up():
+func monk_activate():
 	current_multiplier = athletic_multiplier
 
-func athletic_power_down():
-	GameState.crystal_is_active = false
+func monk_deactivate():
+	GameState.monk_is_active = false
 	current_multiplier = neutral_multiplier
+
+func mage_activate():
+	pass
+
+func mage_deactivate():
+	GameState.mage_is_active = false
+
+func active_power_ups():
+	print("knight: " + str(GameState.knight_is_active))
+	print("monk: " + str(GameState.monk_is_active))
+	print("mage: " + str(GameState.mage_is_active))
+
 
 
 func _on_jump_buffer_timer_timeout() -> void:

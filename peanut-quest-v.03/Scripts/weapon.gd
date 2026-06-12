@@ -54,7 +54,7 @@ var current_state : sword_state
 
 
 func _ready() -> void:
-	
+	GameState.player_can_attack = true
 	current_state = sword_state.l_idle
 	current_combo = 0
 
