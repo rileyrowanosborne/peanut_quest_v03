@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmbok4ghbbxic"]
 
 [ext_resource type="Script" uid="uid://pnl613v220st" path="res://Scripts/player_test.gd" id="1_o60cq"]
-[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/Floors and there belongings/Level Packs/Pristine/PowerUps/Sword/sword_power_up.tscn" id="2_tvrp7"]
+[ext_resource type="PackedScene" uid="uid://dywdjv7clexiq" path="res://Scenes/Floors and their belongings/Level Packs/Pristine/PowerUps/Sword/sword_power_up.tscn" id="2_tvrp7"]
 [ext_resource type="Texture2D" uid="uid://vcruqpwowjd3" path="res://Assets/Sprites/CircleZap-Sheet_2.png" id="3_o60cq"]
 [ext_resource type="Script" uid="uid://c3kydfwve6dfv" path="res://Scripts/peanut_anims.gd" id="4_j8edj"]
 [ext_resource type="Script" uid="uid://d25j227ikawr8" path="res://Scripts/special_charge.gd" id="4_lbtjm"]
@@ -11,9 +11,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dgqsh7lws08ks" path="res://Assets/Resources/PlayerSpriteSheets/healthy_shelled_peanut.tres" id="7_qki6r"]
 [ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="12_e0rbb"]
 [ext_resource type="Script" uid="uid://dr7t7ylb6agn1" path="res://Scripts/naked_peanut_spawner.gd" id="13_q526i"]
-[ext_resource type="PackedScene" uid="uid://caxn0bga0t2ld" path="res://Scenes/Floors and there belongings/Level Packs/Dilapidated/Stuff/PowerUps/mage_hand.tscn" id="14_0j6ry"]
+[ext_resource type="PackedScene" uid="uid://caxn0bga0t2ld" path="res://Scenes/Floors and their belongings/Level Packs/Dilapidated/Stuff/PowerUps/mage_hand.tscn" id="14_0j6ry"]
 [ext_resource type="PackedScene" uid="uid://cfhmdac4we1e4" path="res://Scenes/Player/naked_player.tscn" id="14_sdx7n"]
-[ext_resource type="PackedScene" uid="uid://dlk2gexxqpf4j" path="res://Scenes/Floors and there belongings/Level Packs/Forest/PowerUps/monk_hand.tscn" id="15_qmqqp"]
+[ext_resource type="PackedScene" uid="uid://dlk2gexxqpf4j" path="res://Scenes/Floors and their belongings/Level Packs/Forest/PowerUps/monk_hand.tscn" id="15_qmqqp"]
 [ext_resource type="Texture2D" uid="uid://cp263ena1a1qh" path="res://Assets/Sprites/PowerUpAnims-Front-Outline.png" id="16_qmqqp"]
 [ext_resource type="Texture2D" uid="uid://4mrerb56p7rd" path="res://Assets/Sprites/PowerUpAnims-Back-OutlineReal.png" id="16_uhkq1"]
 [ext_resource type="Script" uid="uid://cokdxkup1526y" path="res://Scripts/power_up_node.gd" id="18_tvrp7"]
@@ -746,7 +746,7 @@ script = ExtResource("5_8dx66")
 [node name="PeanutAnims" type="AnimatedSprite2D" parent="." unique_id=1406106892]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("7_qki6r")
-animation = &"Crack"
+animation = &"Wall Sliding"
 autoplay = "Idle"
 script = ExtResource("4_j8edj")
 

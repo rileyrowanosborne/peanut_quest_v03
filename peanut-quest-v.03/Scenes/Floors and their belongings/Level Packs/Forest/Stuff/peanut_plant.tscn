@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cp4w1cqaw1yk1"]
+
+[ext_resource type="Script" uid="uid://du8l0e2b3lbhe" path="res://Scripts/peanut_plant.gd" id="1_munuh"]
+[ext_resource type="Texture2D" uid="uid://b5he8dnh8boe4" path="res://Assets/Sprites/PeanutPlant-Idle-Sheet.png" id="1_uuswl"]
+[ext_resource type="Texture2D" uid="uid://c0uip0ckm0d4v" path="res://Assets/Sprites/PeanutPlant-Peanut-Sheet.png" id="3_fydma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_munuh"]
+atlas = ExtResource("1_uuswl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fydma"]
+atlas = ExtResource("1_uuswl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyusm"]
+atlas = ExtResource("1_uuswl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkohj"]
+atlas = ExtResource("1_uuswl")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij1hi"]
+atlas = ExtResource("3_fydma")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv4wd"]
+atlas = ExtResource("3_fydma")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfufb"]
+atlas = ExtResource("3_fydma")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed88h"]
+atlas = ExtResource("3_fydma")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qmasq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_munuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fydma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyusm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkohj")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij1hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv4wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfufb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed88h")
+}],
+"loop": false,
+"name": &"Peanut",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmasq"]
+size = Vector2(68, 63)
+
+[node name="PeanutPlant" type="Node2D" unique_id=1344680129]
+script = ExtResource("1_munuh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=992447033]
+sprite_frames = SubResource("SpriteFrames_qmasq")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=680786620]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1790202972]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_qmasq")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

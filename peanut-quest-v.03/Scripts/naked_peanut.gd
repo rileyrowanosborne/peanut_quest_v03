@@ -30,6 +30,7 @@ extends CharacterBody2D
 
 
 @export var spark_scene : PackedScene
+@onready var camera_aim: Marker2D = $CameraAim
 
 
 
@@ -85,10 +86,12 @@ func _ready() -> void:
 	GameState.player_invul(1)
 
 
+
 func _process(delta: float) -> void:
 	
 	GameState.player_direction = direction
 	GameState.player_location = global_position
+	GameState.camera_aim_location = camera_aim.global_position
 	
 	if alive:
 		if GameState.player_is_wall_sliding:

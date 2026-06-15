@@ -400,6 +400,9 @@ scale_amount_min = 3.0
 scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_ttses")
 
+[node name="CameraAim" type="Marker2D" parent="." unique_id=986004207]
+position = Vector2(0, -30)
+
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WallSlideWaitTimer" to="." method="_on_wall_slide_wait_timer_timeout"]

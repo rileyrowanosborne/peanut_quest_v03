@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 func swing_combo():
 	
 	GameState.player_can_attack = false
-	swing_delay_timer.start(GameState.current_swing_delay)
+	swing_delay_timer.start(GameState.current_attack_delay)
 	GameState.player_is_attacking = true
 	combo_timer.start()
 	if GameState.player_is_on_ground:

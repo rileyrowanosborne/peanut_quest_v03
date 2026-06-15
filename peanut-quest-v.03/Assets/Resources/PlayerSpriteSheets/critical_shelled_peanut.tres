@@ -83,24 +83,24 @@ region = Rect2(32, 32, 16, 16)
 atlas = ExtResource("3_aao8a")
 region = Rect2(48, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ykism"]
-atlas = ExtResource("3_aao8a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aoal"]
+atlas = ExtResource("2_alf7g")
 region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_woj8h"]
-atlas = ExtResource("3_aao8a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_66o2u"]
+atlas = ExtResource("2_alf7g")
 region = Rect2(16, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_skdcp"]
-atlas = ExtResource("3_aao8a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_e76ij"]
+atlas = ExtResource("2_alf7g")
 region = Rect2(32, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ikdo5"]
-atlas = ExtResource("3_aao8a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_o53vs"]
+atlas = ExtResource("2_alf7g")
 region = Rect2(48, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5do1t"]
-atlas = ExtResource("3_aao8a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_82uk8"]
+atlas = ExtResource("2_alf7g")
 region = Rect2(64, 64, 16, 16)
 
 [resource]
@@ -200,19 +200,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ykism")
+"texture": SubResource("AtlasTexture_4aoal")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_woj8h")
+"texture": SubResource("AtlasTexture_66o2u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_skdcp")
+"texture": SubResource("AtlasTexture_e76ij")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ikdo5")
+"texture": SubResource("AtlasTexture_o53vs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5do1t")
+"texture": SubResource("AtlasTexture_82uk8")
 }],
 "loop": true,
 "name": &"Wall Sliding",

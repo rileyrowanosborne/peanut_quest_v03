@@ -16,7 +16,7 @@ var player_is_wall_sliding : bool
 
 var player_is_attacking : bool
 var player_can_attack : bool
-var current_swing_delay : float = .4
+var current_attack_delay : float = .4
 
 
 var current_health : int
