@@ -16,7 +16,6 @@ var current_dir = Vector2.ZERO
 func _ready() -> void:
 	
 	movement_delay_timer.start(movement_delay_amount)
-		
 	add_to_group("enemy")
 
 

@@ -129,6 +129,7 @@ texture_under = ExtResource("4_t1xeu")
 texture_progress = ExtResource("6_36asn")
 
 [node name="BossHealthBar" type="TextureProgressBar" parent="." unique_id=562298381]
+visible = false
 modulate = Color(1.224127, 1.224127, 1.224127, 1)
 anchors_preset = 7
 anchor_left = 0.5

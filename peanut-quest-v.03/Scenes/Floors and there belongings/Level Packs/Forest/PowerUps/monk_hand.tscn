@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dlk2gexxqpf4j"]
+
+[ext_resource type="Script" uid="uid://biivtoi543gck" path="res://Scripts/monk_hand.gd" id="1_kni7r"]
+
+[node name="MonkHand" type="Node2D" unique_id=2143022494]
+script = ExtResource("1_kni7r")

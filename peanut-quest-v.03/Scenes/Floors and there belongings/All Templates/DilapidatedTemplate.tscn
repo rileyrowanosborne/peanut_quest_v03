@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bb24oohaqr3gn"]
+
+[ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_nprrj"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="2_f3tdf"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="3_woh5e"]
+[ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="4_jl26j"]
+[ext_resource type="Texture2D" uid="uid://cpegvjmy5ugwb" path="res://Assets/Sprites/CavernBackGround5.png" id="5_ecc7n"]
+[ext_resource type="PackedScene" uid="uid://bpn7rp1k1gffa" path="res://Scenes/Essentials/all_tile_maps.tscn" id="6_ubqwb"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="7_crv35"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="8_mfxp5"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="10_2cg6h"]
+
+[sub_resource type="Environment" id="Environment_4uf6v"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 5.77
+glow_bloom = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0e0e6"]
+load_path = "res://.godot/imported/BigClouds.png-23110a43f48f977360346496a2ea31b8.ctex"
+
+[node name="DilapidatedTemplate" type="Node2D" unique_id=82904511]
+script = ExtResource("1_nprrj")
+
+[node name="MainCamera" parent="." unique_id=1365551363 instance=ExtResource("2_f3tdf")]
+zoom = Vector2(1.5, 1.5)
+
+[node name="PlayerTest" parent="." unique_id=474886339 instance=ExtResource("3_woh5e")]
+
+[node name="Environment" type="Node2D" parent="." unique_id=1794952953]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1610550046]
+environment = SubResource("Environment_4uf6v")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Environment" unique_id=844334467]
+repeat_size = Vector2(1052, 648)
+repeat_times = 2
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Parallax2D2" unique_id=565308919]
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.8333729, 0.77556455, 0.6904316, 1)
+
+[node name="CavernBottom" type="Node2D" parent="Environment" unique_id=1677157275]
+position = Vector2(387, -329)
+
+[node name="CavernBottom" type="Parallax2D" parent="Environment/CavernBottom" unique_id=1376277037]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom" unique_id=316386031]
+modulate = Color(1, 1, 0.6936509, 1)
+position = Vector2(46, 458)
+scale = Vector2(3, 3)
+texture = SubResource("CompressedTexture2D_0e0e6")
+
+[node name="CavernBottom2" type="Parallax2D" parent="Environment/CavernBottom" unique_id=28646572]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(-385, 326)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom2" unique_id=415299582]
+modulate = Color(0.4807027, 0.60361683, 0.42883584, 1)
+position = Vector2(101, 483)
+scale = Vector2(3, 3)
+texture = ExtResource("4_jl26j")
+
+[node name="CavernBottom3" type="Parallax2D" parent="Environment/CavernBottom" unique_id=1190686846]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(-387, 332)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom3" unique_id=568852632]
+modulate = Color(0.003705731, 0.12270818, 0.1342986, 1)
+position = Vector2(-6, 581)
+scale = Vector2(3, 3)
+texture = ExtResource("5_ecc7n")
+
+[node name="Back" parent="Environment" unique_id=1330860940 instance=ExtResource("6_ubqwb")]
+
+[node name="Front" parent="Environment" unique_id=2081712 instance=ExtResource("6_ubqwb")]
+position = Vector2(355.76035, 75.65289)
+
+[node name="Decor" parent="Environment" unique_id=811229666 instance=ExtResource("6_ubqwb")]
+position = Vector2(355.76035, 75.65289)
+
+[node name="FadeToBlackScreen" parent="Environment" unique_id=1795882491 instance=ExtResource("7_crv35")]
+
+[node name="Hud" parent="Environment" unique_id=471024502 instance=ExtResource("8_mfxp5")]
+visible = false
+
+[node name="Stuff" type="Node2D" parent="." unique_id=538442757]
+
+[node name="Collectibles" type="Node2D" parent="Stuff" unique_id=1611961794]
+
+[node name="PowerUps" type="Node2D" parent="Stuff" unique_id=430088786]
+
+[node name="Hands" type="Node2D" parent="Stuff" unique_id=630217495]
+
+[node name="Hearts" type="Node2D" parent="Stuff" unique_id=700351775]
+
+[node name="Obstacles" type="Node2D" parent="Stuff" unique_id=1332077230]
+
+[node name="Creatures" type="Node2D" parent="Stuff" unique_id=632430447]
+
+[node name="Bouncers" type="Node2D" parent="Stuff" unique_id=69000520]
+
+[node name="Enemies" type="Node2D" parent="Stuff" unique_id=1443451993]
+
+[node name="Doors" type="Node2D" parent="Stuff" unique_id=1336862886]
+
+[node name="DoorToHub" parent="Stuff/Doors" unique_id=429804739 instance=ExtResource("10_2cg6h")]
+rotation = -1.5707964

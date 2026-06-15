@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bn40jpyaj7ni2"]
+
+[ext_resource type="Script" uid="uid://ch2ermiob7uwv" path="res://Scripts/main_camera.gd" id="1_hn7o2"]
+
+[node name="MainCamera" type="Camera2D" unique_id=1365551363]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("1_hn7o2")
+is_following_player = null
+camera_zoom = null
+
+[node name="InitialTimer" type="Timer" parent="." unique_id=937606007]
+one_shot = true
+
+[connection signal="timeout" from="InitialTimer" to="." method="_on_initial_timer_timeout"]

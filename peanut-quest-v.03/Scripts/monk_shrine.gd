@@ -13,6 +13,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		cpu_particles_2d.emitting = true
 
 
+
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		in_range = false
@@ -23,7 +24,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _input(event: InputEvent) -> void:
 	
 	if in_range:
-		if event.is_action_pressed("action"):
+		if event.is_action_pressed("interact"):
 			if not GameState.monk_is_active:
+				GameState.current_health = 3
 				GlobalSignalBus.emit_signal("monk_activate")
 				GameState.monk_is_active = true
+				GlobalSignalBus.emit_signal("health_check")

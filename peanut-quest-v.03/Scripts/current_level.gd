@@ -20,6 +20,7 @@ func _ready() -> void:
 	GlobalSignalBus.connect("reshell_complete", reshell_peanut)
 	
 	if is_boss_room:
+		GameState.current_boss_health = 0
 		GameState.boss_active = true
 		GlobalSignalBus.emit_signal("create_health_bar")
 		GlobalSignalBus.emit_signal("boss_health_update")
@@ -29,6 +30,18 @@ func _ready() -> void:
 		GameState.current_health = GameState.current_max_health
 		GlobalSignalBus.emit_signal("health_check")
 	
+	
+	if GameState.knight_is_active:
+		GlobalSignalBus.emit_signal("knight_activate")
+	
+	if GameState.mage_is_active:
+		GlobalSignalBus.emit_signal("mage_activate")
+	
+	if GameState.monk_is_active:
+		GlobalSignalBus.emit_signal("monk_activate")
+	
+	if GameState.slime_is_active:
+		GlobalSignalBus.emit_signal("slime_activate")
 
 func reload_level():
 	GameState.current_boss_health = 0

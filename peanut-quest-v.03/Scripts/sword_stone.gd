@@ -18,21 +18,21 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		in_range = true
+		cpu_particles_2d.emitting = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		in_range = false
+		cpu_particles_2d.emitting = false
 
 func sword_deactivate():
 	animated_sprite_2d.play("Idle")
-	cpu_particles_2d.emitting = true
 
 
 func _input(event: InputEvent) -> void:
 	
-	if event.is_action_pressed("action") and in_range and not GameState.knight_is_active and GameState.player_is_shelled:
-		cpu_particles_2d.emitting = false
+	if event.is_action_pressed("interact") and in_range and not GameState.knight_is_active and GameState.player_is_shelled:
 		animated_sprite_2d.play("SwordPull")
 		
 		

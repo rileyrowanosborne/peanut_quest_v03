@@ -44,6 +44,7 @@ extends CharacterBody2D
 
 @onready var salt_absorb_particle_effect: CPUParticles2D = $Particles/SaltAbsorbParticleEffect
 
+@onready var camera_aim: Marker2D = $CameraAim
 
 
 @export var spark_scene : PackedScene
@@ -54,11 +55,25 @@ var speed_sample_position: float = 0.0
 
 
 var current_speed : float
+var neutral_speed : float = 175.0
+var slime_speed : float = 150.0
 
-var normal_speed : float = 175.0
-@export var slide_speed : float = 350.0
-@export var dash_power : float = 350.0
+var current_jump : float
+var neutral_jump : float = -325.0
+var slime_jump : float = -450.0
 
+
+
+var current_dash_power : float
+var neutral_dash_power : float = 350.0
+var slime_dash_power : float = 450
+
+var current_dash_length : float
+var neutral_dash_length : float = .2
+var slime_dash_length : float = .3
+
+
+var dash_invul_length : float = .4
 
 var current_wall_slide_speed : float = .4
 
@@ -86,7 +101,6 @@ var athletic_multiplier : float = 1.3
 var current_multiplier : float = 1.0
 
 
-var jump_velocity = -325.0
 var jump_cancelled : bool = false
 
 var bounce_velocity : float = 600
@@ -120,7 +134,10 @@ func _ready() -> void:
 	
 	add_to_group("player")
 	
-	current_speed = normal_speed
+	current_dash_length = neutral_dash_length
+	current_dash_power = neutral_dash_power
+	current_jump = neutral_jump
+	current_speed = neutral_speed
 	current_multiplier = neutral_multiplier
 	spawn_timer.start()
 	GameState.player_is_wall_sliding = false
@@ -128,17 +145,22 @@ func _ready() -> void:
 	GameState.player_is_attacking = false
 	
 	
+	
+	
 	if RoomChangeGlobal.activate:
 		global_position = RoomChangeGlobal.player_pos
 		if RoomChangeGlobal.player_jump_on_enter:
-			velocity.y = jump_velocity
+			velocity.y = current_jump
 		RoomChangeGlobal.activate = false
 	
 	
 	GlobalSignalBus.connect("essence_collect", essence_collect)
 	GlobalSignalBus.connect("salt_collect", salt_collect)
 	
+	GlobalSignalBus.connect("slime_activate", slime_activate)
+	
 	GlobalSignalBus.connect("monk_activate", monk_activate)
+	
 	
 	GlobalSignalBus.emit_signal("health_check")
 
@@ -151,6 +173,7 @@ func _process(delta: float) -> void:
 	GameState.player_location = global_position
 	GameState.player_direction = direction
 	GameState.player_is_on_ground = is_on_floor()
+	GameState.camera_aim_location = camera_aim.global_position
 	
 	
 
@@ -226,26 +249,27 @@ func _physics_process(delta: float) -> void:
 		is_dashing = false
 		
 
-#Movement
-	direction = Input.get_axis("move_left", "move_right")
-	if direction:
-		if is_on_floor(): 
-			velocity.x = lerp(velocity.x, current_speed * direction * current_multiplier, acceleration)
-		else:
-			velocity.x = lerp(velocity.x, current_speed * GameState.last_dir * current_multiplier, air_acceleration)
+	#Movement
+	if GameState.ready_for_input:
+		direction = Input.get_axis("move_left", "move_right")
+		if direction:
+			if is_on_floor(): 
+				velocity.x = lerp(velocity.x, current_speed * direction * current_multiplier, acceleration)
+			else:
+				velocity.x = lerp(velocity.x, current_speed * GameState.last_dir * current_multiplier, air_acceleration)
 
-	else:
-		if is_on_floor():
-			velocity.x = move_toward(velocity.x, 0, current_speed * decceleration * current_multiplier)
 		else:
-			velocity.x = lerp(velocity.x, current_speed * direction, air_decceleration * current_multiplier)
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, 0, current_speed * decceleration * current_multiplier)
+			else:
+				velocity.x = lerp(velocity.x, current_speed * direction, air_decceleration * current_multiplier)
 
-	
-	if direction:
-		if direction < 0:
-			GameState.last_dir = -1
-		if direction > 0:
-			GameState.last_dir = 1
+		
+		if direction:
+			if direction < 0:
+				GameState.last_dir = -1
+			if direction > 0:
+				GameState.last_dir = 1
 		
 
 #Wallslide logic
@@ -254,11 +278,11 @@ func _physics_process(delta: float) -> void:
 			velocity.y *= current_wall_slide_speed
 	
 	if is_dashing:
-		velocity.x = dash_power * dash_dir
+		velocity.x = current_dash_power * dash_dir
 		velocity.y *= .9
 	
 	if is_sliding:
-		velocity.x = slide_speed * dash_dir
+		velocity.x = current_dash_power * dash_dir
 		sliding_collision_shape.disabled = false
 		standing_collision_shape.disabled = true
 		
@@ -267,10 +291,10 @@ func _physics_process(delta: float) -> void:
 		standing_collision_shape.disabled = false
 	
 
-	
-	if Input.is_action_just_pressed("jump") and not jump_requested and can_jump:
-		jump_requested = true
-		jump_buffer_timer.start()
+	if GameState.ready_for_input:
+		if Input.is_action_just_pressed("jump") and not jump_requested and can_jump:
+			jump_requested = true
+			jump_buffer_timer.start()
 	
 	
 	if jump_requested:
@@ -307,7 +331,7 @@ func jump():
 	wall_slide_wait_timer.start()
 	jump_requested = false
 	jump_cancelled = false
-	velocity.y = jump_velocity * current_multiplier
+	velocity.y = current_jump * current_multiplier
 	jump_buffer_timer.stop()
 	coyote_timer.stop()
 	wall_coyote_timer.stop()
@@ -316,7 +340,7 @@ func wall_jump():
 	wall_slide_wait_timer.start()
 	jump_requested = false
 	jump_cancelled = false
-	velocity.y = jump_velocity * current_multiplier
+	velocity.y = current_jump * current_multiplier
 	velocity.x = current_speed * wall_jump_direction
 	jump_buffer_timer.stop()
 	coyote_timer.stop()
@@ -328,19 +352,19 @@ func _input(event: InputEvent) -> void:
 		dash_dir = GameState.last_dir
 		if is_on_floor():
 			if not is_sliding and not slide_on_cooldown:
-				GameState.player_invul(.3)
+				GameState.player_invul(dash_invul_length)
 				slide_on_cooldown = true
 				slide_cooldown_timer.start()
 				is_sliding = true
-				slide_timer.start()
+				slide_timer.start(current_dash_length)
 		else:
 			if can_dash and not dash_on_cooldown:
-				GameState.player_invul(.3)
+				GameState.player_invul(dash_invul_length)
 				
 				
 				dash_on_cooldown = true
 				dash_cooldown_timer.start()
-				dash_timer.start()
+				dash_timer.start(current_dash_length)
 				is_dashing = true
 
 
@@ -405,7 +429,11 @@ func take_damage(attack_dir : Vector2):
 			if GameState.mage_is_active:
 				GlobalSignalBus.emit_signal("mage_deactivate")
 				mage_deactivate()
-			GameState.current_health -= 1
+			if GameState.slime_is_active:
+				GlobalSignalBus.emit_signal("slime_deactivate")
+				slime_deactivate()
+			
+			GameState.current_health = 2
 			GlobalSignalBus.emit_signal("health_check")
 			GameState.freeze_frame(.1, .4)
 			velocity = knockback_dir * 500
@@ -429,7 +457,10 @@ func take_laser_damage():
 		if GameState.mage_is_active:
 			GlobalSignalBus.emit_signal("mage_deactivate")
 			mage_deactivate()
-		GameState.current_health -= 1
+		if GameState.slime_is_active:
+			GlobalSignalBus.emit_signal("slime_deactivate")
+			slime_deactivate()
+		GameState.current_health = 2
 		GlobalSignalBus.emit_signal("health_check")
 		GameState.player_invul(1)
 		GameState.freeze_frame(.1, .4)
@@ -464,7 +495,10 @@ func take_spike_damage():
 			if GameState.mage_is_active:
 				GlobalSignalBus.emit_signal("mage_deactivate")
 				mage_deactivate()
-			GameState.current_health -= 1
+			if GameState.slime_is_active:
+				GlobalSignalBus.emit_signal("slime_deactivate")
+				slime_deactivate()
+			GameState.current_health = 2
 			GlobalSignalBus.emit_signal("health_check")
 			GameState.freeze_frame(.1, .4)
 			velocity.y = -400
@@ -521,6 +555,18 @@ func mage_activate():
 
 func mage_deactivate():
 	GameState.mage_is_active = false
+
+func slime_activate():
+	current_jump = slime_jump
+	current_dash_power = slime_dash_power
+	current_dash_length = slime_dash_length
+	
+
+func slime_deactivate():
+	current_jump = neutral_jump
+	current_dash_power = neutral_dash_power
+	current_dash_length = neutral_dash_length
+	GameState.slime_is_active = false
 
 func active_power_ups():
 	print("knight: " + str(GameState.knight_is_active))

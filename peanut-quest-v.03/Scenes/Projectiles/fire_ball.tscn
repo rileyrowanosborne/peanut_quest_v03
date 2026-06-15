@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://ck4caw5coy1ij"]
+
+[ext_resource type="Script" uid="uid://hoghyjof4s0x" path="res://Scripts/fire_ball.gd" id="1_4db2s"]
+[ext_resource type="Texture2D" uid="uid://bnnqavaajumu5" path="res://Assets/Sprites/LilFireBall-Sheet.png" id="2_kf850"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oljoc"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08hio"]
+atlas = ExtResource("2_kf850")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khyqm"]
+atlas = ExtResource("2_kf850")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyxpr"]
+atlas = ExtResource("2_kf850")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl1sr"]
+atlas = ExtResource("2_kf850")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trc7p"]
+atlas = ExtResource("2_kf850")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02w0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08hio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyxpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl1sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trc7p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="FireBall" type="Node2D" unique_id=327774340]
+script = ExtResource("1_4db2s")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2061539348]
+collision_layer = 0
+collision_mask = 422
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1796020112]
+shape = SubResource("CircleShape2D_oljoc")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=304884180]
+target_position = Vector2(7, 0)
+collision_mask = 422
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=123362702]
+target_position = Vector2(-7, 0)
+collision_mask = 422
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=418775763]
+explosiveness = 0.2
+lifetime_randomness = 1.0
+direction = Vector2(-1, 0)
+spread = 65.28
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+scale_amount_max = 2.0
+color = Color(1, 0.24313726, 0.3019608, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1494008359]
+self_modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+sprite_frames = SubResource("SpriteFrames_02w0g")
+autoplay = "default"
+frame_progress = 0.06702898

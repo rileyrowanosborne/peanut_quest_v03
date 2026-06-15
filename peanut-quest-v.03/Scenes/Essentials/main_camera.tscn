@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://ch2ermiob7uwv" path="res://Scripts/main_camera.gd" id="1_hn7o2"]
 
 [node name="MainCamera" type="Camera2D" unique_id=1365551363]
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("1_hn7o2")
 
 [node name="InitialTimer" type="Timer" parent="." unique_id=937606007]
-wait_time = 0.5
 one_shot = true
+
+[connection signal="timeout" from="InitialTimer" to="." method="_on_initial_timer_timeout"]

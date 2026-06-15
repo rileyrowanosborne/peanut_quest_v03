@@ -34,6 +34,8 @@ signal monk_deactivate
 signal mage_activate
 signal mage_deactivate
 
+signal slime_activate
+signal slime_deactivate
 
 signal sprite_update
 

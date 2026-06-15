@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 @onready var blood_particles: CPUParticles2D = $BloodParticles
 @onready var blood_particles_2: CPUParticles2D = $BloodParticles2
@@ -35,7 +36,7 @@ var chase_player : bool = false
 func _ready() -> void:
 	add_to_group("enemy")
 	current_dir = direction_options.pick_random()
-	GameState.current_boss_health += current_health
+	
 
 
 
@@ -58,7 +59,8 @@ func take_damage(attack_dir : Vector2):
 	knockback_velocity = knockback_dir * 100
 	current_health -= 1
 	health_check()
-	get_parent().get_parent().health_check()
+	if get_parent().get_parent().has_method("health_check"):
+		get_parent().get_parent().health_check()
 	if is_boss:
 		GameState.current_boss_health -= 1
 		GlobalSignalBus.emit_signal("boss_health_update")
@@ -81,7 +83,7 @@ func spawn_blood_spurt():
 
 
 func die():
-	sprite_2d.hide()
+	animated_sprite_2d.hide()
 	blood_particles.emitting = true
 	blood_particles_2.emitting = true
 	spawn_blood_spurt()

@@ -38,3 +38,7 @@ func _on_projectile_range_body_entered(body: Node2D) -> void:
 func _on_projectile_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		in_range = false
+
+
+func sprite_update():
+	pass

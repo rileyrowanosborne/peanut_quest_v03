@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://2bmqkclfmlvp"]
+
+[ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_ykbkw"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="2_kv7r4"]
+[ext_resource type="Texture2D" uid="uid://do0t2qlow4ss0" path="res://Assets/Sprites/CavernBackGround2.png" id="3_3as5a"]
+[ext_resource type="Texture2D" uid="uid://dgc7bvvyfxjo6" path="res://Assets/Sprites/BigClouds3.png" id="4_bjjxu"]
+[ext_resource type="Texture2D" uid="uid://brbn8iyjxjt76" path="res://Assets/Sprites/BigClouds.png" id="5_4whj6"]
+[ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="6_211u8"]
+[ext_resource type="Texture2D" uid="uid://cpegvjmy5ugwb" path="res://Assets/Sprites/CavernBackGround5.png" id="7_qkhyj"]
+[ext_resource type="PackedScene" uid="uid://bpn7rp1k1gffa" path="res://Scenes/Essentials/all_tile_maps.tscn" id="8_v4o3m"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="9_50qbp"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="10_wjxwg"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="11_7mx1e"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="14_h6e8u"]
+
+[sub_resource type="Environment" id="Environment_ndmd8"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 5.77
+glow_bloom = 0.1
+
+[node name="SwampTestingChamber" type="Node2D" unique_id=1371012861]
+script = ExtResource("1_ykbkw")
+current_level = 0.2
+respawn_point = Vector2(-60, 126)
+peanut_scene = ExtResource("2_kv7r4")
+
+[node name="Environment" type="Node2D" parent="." unique_id=1437981246]
+
+[node name="Parallax2D2" type="Parallax2D" parent="Environment" unique_id=1253035902]
+repeat_size = Vector2(1052, 648)
+repeat_times = 2
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Parallax2D2" unique_id=1018303670]
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.07362769, 0.096405394, 0.06739507, 1)
+
+[node name="CavernTop" type="Node2D" parent="Environment" unique_id=709835243]
+position = Vector2(727, -448)
+
+[node name="CavernTop1" type="Parallax2D" parent="Environment/CavernTop" unique_id=531436164]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(280, -225)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop1" unique_id=1459389997]
+modulate = Color(0.11182279, 0.01271529, 0.008329905, 1)
+position = Vector2(-107, 313)
+scale = Vector2(3, 3)
+texture = ExtResource("3_3as5a")
+
+[node name="CavernTop7" type="Parallax2D" parent="Environment/CavernTop" unique_id=1615216946]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(280, -225)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop7" unique_id=571918586]
+modulate = Color(0.11372549, 0.011764706, 0.007843138, 1)
+position = Vector2(-229.00002, -69)
+scale = Vector2(3, 3)
+texture = ExtResource("3_3as5a")
+flip_v = true
+
+[node name="CavernTop2" type="Parallax2D" parent="Environment/CavernTop" unique_id=817679572]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(280, -225)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop2" unique_id=1440128485]
+modulate = Color(0.40439367, 0.20790642, 0.15152934, 1)
+position = Vector2(-47, 319)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bjjxu")
+flip_v = true
+
+[node name="CavernTop6" type="Parallax2D" parent="Environment/CavernTop" unique_id=428160660]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(-107, -303)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop6" unique_id=798629169]
+modulate = Color(0.40392157, 0.20784314, 0.15294118, 1)
+position = Vector2(-226, 15)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bjjxu")
+
+[node name="CavernBottom" type="Node2D" parent="Environment" unique_id=595321334]
+position = Vector2(163, -386)
+
+[node name="CavernBottom" type="Parallax2D" parent="Environment/CavernBottom" unique_id=565073573]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom" unique_id=1888281358]
+modulate = Color(0.29865697, 0.17094463, 0.12017799, 1)
+position = Vector2(-3, 460)
+scale = Vector2(3, 3)
+texture = ExtResource("5_4whj6")
+
+[node name="CavernBottom2" type="Parallax2D" parent="Environment/CavernBottom" unique_id=1797011871]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom2" unique_id=1295332795]
+modulate = Color(0.36475983, 0.14172769, 0.06194102, 1)
+position = Vector2(84, 428)
+scale = Vector2(3, 3)
+texture = ExtResource("6_211u8")
+
+[node name="CavernBottom3" type="Parallax2D" parent="Environment/CavernBottom" unique_id=366007923]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom3" unique_id=608663937]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-3, 641)
+scale = Vector2(3, 3)
+texture = ExtResource("7_qkhyj")
+
+[node name="Back" parent="Environment" unique_id=1330860940 instance=ExtResource("8_v4o3m")]
+
+[node name="Front" parent="Environment" unique_id=1975993931 instance=ExtResource("8_v4o3m")]
+position = Vector2(355.76035, 75.65289)
+
+[node name="Decor" parent="Environment" unique_id=785189445 instance=ExtResource("8_v4o3m")]
+position = Vector2(355.76035, 75.65289)
+
+[node name="FadeToBlackScreen" parent="Environment" unique_id=1092320179 instance=ExtResource("10_wjxwg")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1312014494]
+environment = SubResource("Environment_ndmd8")
+
+[node name="FadeToBlackScreen2" parent="Environment" unique_id=1795882491 instance=ExtResource("10_wjxwg")]
+
+[node name="Hud2" parent="Environment" unique_id=471024502 instance=ExtResource("11_7mx1e")]
+visible = false
+
+[node name="Stuff" type="Node2D" parent="." unique_id=1455551203]
+
+[node name="Collectibles" type="Node2D" parent="Stuff" unique_id=1624478083]
+
+[node name="PowerUps" type="Node2D" parent="Stuff" unique_id=1825016327]
+
+[node name="Hands" type="Node2D" parent="Stuff" unique_id=457373301]
+
+[node name="Hearts" type="Node2D" parent="Stuff" unique_id=75644629]
+
+[node name="Obstacles" type="Node2D" parent="Stuff" unique_id=28462889]
+
+[node name="Creatures" type="Node2D" parent="Stuff" unique_id=1856223332]
+
+[node name="Bouncers" type="Node2D" parent="Stuff" unique_id=1481996813]
+
+[node name="Enemies" type="Node2D" parent="Stuff" unique_id=1689207169]
+
+[node name="Doors" type="Node2D" parent="Stuff" unique_id=1443981237]
+
+[node name="DoorToHub" parent="Stuff/Doors" unique_id=429804739 instance=ExtResource("14_h6e8u")]
+rotation = -1.5707964
+
+[node name="Player" type="Node2D" parent="." unique_id=1532400934]
+
+[node name="MainCamera" parent="Player" unique_id=1365551363 instance=ExtResource("9_50qbp")]
+position = Vector2(384, 216)
+zoom = Vector2(1.5, 1.5)
+
+[node name="PlayerTest" parent="Player" unique_id=474886339 instance=ExtResource("2_kv7r4")]
+position = Vector2(-677, -408)
+
+[node name="Hud" parent="Player" unique_id=895197310 instance=ExtResource("11_7mx1e")]
+visible = false

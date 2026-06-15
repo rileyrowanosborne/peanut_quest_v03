@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://d0rt5m2eebdsv"]
+
+[ext_resource type="Script" uid="uid://m5uqbyx2axg3" path="res://Scripts/current_level.gd" id="1_eiv2s"]
+[ext_resource type="PackedScene" uid="uid://bmbok4ghbbxic" path="res://Scenes/Player/player_test.tscn" id="2_6hhdu"]
+[ext_resource type="Texture2D" uid="uid://brbn8iyjxjt76" path="res://Assets/Sprites/BigClouds.png" id="3_46msa"]
+[ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="4_bs36o"]
+[ext_resource type="Texture2D" uid="uid://dgc7bvvyfxjo6" path="res://Assets/Sprites/BigClouds3.png" id="5_7xcrr"]
+[ext_resource type="PackedScene" uid="uid://bpn7rp1k1gffa" path="res://Scenes/Essentials/all_tile_maps.tscn" id="6_847r5"]
+[ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="7_tv7ga"]
+[ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="8_llwy1"]
+[ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="9_0kfug"]
+[ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="20_oax2d"]
+
+[sub_resource type="Environment" id="Environment_4uf6v"]
+background_mode = 3
+tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 5.77
+glow_bloom = 0.1
+
+[node name="ForestTemplate" type="Node2D" unique_id=1371012861]
+script = ExtResource("1_eiv2s")
+current_level = 0.1
+respawn_point = Vector2(-385, -244)
+peanut_scene = ExtResource("2_6hhdu")
+is_boss_room = true
+
+[node name="Environment" type="Node2D" parent="." unique_id=1149694587]
+
+[node name="Parallax2D2" type="Parallax2D" parent="Environment" unique_id=1253035902]
+repeat_size = Vector2(1052, 648)
+repeat_times = 2
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Parallax2D2" unique_id=1018303670]
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.015546675, 0.07030822, 0.1484505, 1)
+
+[node name="ForestTop" type="Node2D" parent="Environment" unique_id=1610721046]
+position = Vector2(137, 212)
+
+[node name="TopCLouds2" type="Parallax2D" parent="Environment/ForestTop" unique_id=1611487229]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/ForestTop/TopCLouds2" unique_id=812721678]
+modulate = Color(0.16841611, 0.13345158, 0.20746368, 1)
+position = Vector2(-273, -490)
+scale = Vector2(3, 3)
+texture = ExtResource("3_46msa")
+flip_v = true
+
+[node name="TopClouds3" type="Parallax2D" parent="Environment/ForestTop" unique_id=1064469040]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/ForestTop/TopClouds3" unique_id=2146110272]
+modulate = Color(0.046938792, 0.015854461, 0.032392252, 1)
+position = Vector2(-272, -557)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bs36o")
+flip_v = true
+
+[node name="ForestBottom" type="Node2D" parent="Environment" unique_id=2083524122]
+position = Vector2(60, -74)
+
+[node name="BottomClouds" type="Parallax2D" parent="Environment/ForestBottom" unique_id=87242596]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/ForestBottom/BottomClouds" unique_id=742259435]
+modulate = Color(0.046938792, 0.015854461, 0.032392252, 1)
+position = Vector2(-80, 81)
+scale = Vector2(3, 3)
+texture = ExtResource("4_bs36o")
+
+[node name="BottomClouds1" type="Parallax2D" parent="Environment/ForestBottom" unique_id=1526505859]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/ForestBottom/BottomClouds1" unique_id=132775909]
+modulate = Color(0.16841611, 0.13345158, 0.20746368, 1)
+position = Vector2(-260, 250.00002)
+scale = Vector2(3, 3)
+texture = ExtResource("3_46msa")
+
+[node name="BottomClouds2" type="Parallax2D" parent="Environment/ForestBottom" unique_id=572689103]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/ForestBottom/BottomClouds2" unique_id=1043859631]
+modulate = Color(0.3996776, 0.3325869, 0.4749589, 1)
+position = Vector2(-143, 80)
+scale = Vector2(3, 3)
+texture = ExtResource("5_7xcrr")
+
+[node name="Back" parent="Environment" unique_id=1330860940 instance=ExtResource("6_847r5")]
+tile_map_data = PackedByteArray(0, 0, 207, 255, 218, 255, 2, 0, 3, 0, 3, 0, 0, 0)
+
+[node name="Front" parent="Environment" unique_id=291449574 instance=ExtResource("6_847r5")]
+
+[node name="Decor" parent="Environment" unique_id=932879847 instance=ExtResource("6_847r5")]
+
+[node name="FadeToBlackScreen" parent="Environment" unique_id=1795882491 instance=ExtResource("7_tv7ga")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1956720799]
+environment = SubResource("Environment_4uf6v")
+
+[node name="Stuff" type="Node2D" parent="." unique_id=1742198816]
+
+[node name="Collectibles" type="Node2D" parent="Stuff" unique_id=931486362]
+
+[node name="PowerUps" type="Node2D" parent="Stuff" unique_id=164565929]
+
+[node name="Hands" type="Node2D" parent="Stuff" unique_id=1421551970]
+
+[node name="Hearts" type="Node2D" parent="Stuff" unique_id=1162738793]
+
+[node name="Obstacles" type="Node2D" parent="Stuff" unique_id=1526565938]
+
+[node name="Vines" type="Node2D" parent="Stuff/Obstacles" unique_id=290331042]
+
+[node name="Creatures" type="Node2D" parent="Stuff" unique_id=245994455]
+
+[node name="Bouncers" type="Node2D" parent="Stuff" unique_id=227004724]
+
+[node name="Enemies" type="Node2D" parent="Stuff" unique_id=1864221881]
+
+[node name="Doors" type="Node2D" parent="Stuff" unique_id=183698355]
+
+[node name="DoorToHub" parent="Stuff/Doors" unique_id=429804739 instance=ExtResource("20_oax2d")]
+position = Vector2(-416, -248)
+rotation = 1.5707964
+
+[node name="Player" type="Node2D" parent="." unique_id=510689600]
+
+[node name="Hud" parent="Player" unique_id=471024502 instance=ExtResource("8_llwy1")]
+visible = false
+
+[node name="MainCamera" parent="Player" unique_id=1365551363 instance=ExtResource("9_0kfug")]
+position = Vector2(384, 216)
+zoom = Vector2(1.5, 1.5)
+
+[node name="PlayerTest" parent="Player" unique_id=474886339 instance=ExtResource("2_6hhdu")]
+position = Vector2(-388, -241)

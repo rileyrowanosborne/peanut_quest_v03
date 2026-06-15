@@ -52,6 +52,7 @@ var first_load : bool = true
 var knight_is_active : bool = false
 var monk_is_active : bool = false
 var mage_is_active : bool = false
+var slime_is_active : bool = false
 
 var slow_ability_unlocked : bool = false
 var phase_ability_unlocked : bool = false
@@ -60,6 +61,9 @@ var goop_ability_unlocked : bool = false
 var boss_active : bool = false
 var current_boss_health : int = 0
 
+
+var camera_aim_location : Vector2 = Vector2.ZERO
+var ready_for_input : bool = false
 
 func _ready() -> void:
 	player_is_attacking = false

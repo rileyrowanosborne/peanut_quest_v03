@@ -33,7 +33,8 @@ var chase_player : bool = false
 
 func _ready() -> void:
 	current_dir = direction_options.pick_random()
-	GameState.current_boss_health += current_health
+	if GameState.current_boss_health < 40:
+		GameState.current_boss_health += current_health
 	
 	add_to_group("enemy")
 

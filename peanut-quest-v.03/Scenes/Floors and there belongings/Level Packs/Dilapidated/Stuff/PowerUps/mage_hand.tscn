@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://caxn0bga0t2ld"]
+
+[ext_resource type="Script" uid="uid://brboitkjtyn04" path="res://Scripts/mage_hand.gd" id="1_bnuwb"]
+[ext_resource type="PackedScene" uid="uid://ck4caw5coy1ij" path="res://Scenes/Projectiles/fire_ball.tscn" id="2_vvmkb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jajr"]
+
+[node name="MageHand" type="Node2D" unique_id=1447323090]
+script = ExtResource("1_bnuwb")
+fireball_scene = ExtResource("2_vvmkb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=102140675]
+sprite_frames = SubResource("SpriteFrames_0jajr")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=628775866]
+position = Vector2(0, -7)
