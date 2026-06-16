@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bcs6ht7ho1fg4" path="res://Assets/Sprites/Over3.png" id="10_ewur8"]
 [ext_resource type="Texture2D" uid="uid://c8oip6ib1np2k" path="res://Assets/Sprites/Over4.png" id="11_f6akd"]
 [ext_resource type="Texture2D" uid="uid://b3x7exa050nut" path="res://Assets/Sprites/Progress1.png" id="12_2i61c"]
+[ext_resource type="Texture2D" uid="uid://cgepraaryey2p" path="res://Assets/Sprites/FroggyFriend-Sheet.png" id="14_b33d8"]
+[ext_resource type="Script" uid="uid://b88pwemelpjnc" path="res://Scripts/dialogue.gd" id="14_ewur8"]
+[ext_resource type="Theme" uid="uid://ddmg2yykn78wu" path="res://MainTheme.tres" id="16_f6akd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
 atlas = ExtResource("2_bjfho")
@@ -84,6 +87,57 @@ frame_4/duration = 0.1
 frame_5/texture = ExtResource("9_b33d8")
 frame_5/duration = 0.1
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgs6g"]
+atlas = ExtResource("14_b33d8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m83ri"]
+atlas = ExtResource("14_b33d8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1vfa"]
+atlas = ExtResource("14_b33d8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewur8"]
+atlas = ExtResource("14_b33d8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6akd"]
+atlas = ExtResource("14_b33d8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2i61c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgs6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m83ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1vfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1vfa")
+}],
+"loop": true,
+"name": &"FrogIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewur8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6akd")
+}],
+"loop": true,
+"name": &"FrogTalking",
+"speed": 5.0
+}]
+
 [node name="Hud" type="CanvasLayer" unique_id=471024502]
 script = ExtResource("1_fccik")
 
@@ -150,3 +204,24 @@ texture_under = ExtResource("7_6slrd")
 texture_over = SubResource("AnimatedTexture_cgs6g")
 texture_progress = ExtResource("12_2i61c")
 script = ExtResource("9_gktbv")
+
+[node name="DialoguePanel" type="Panel" parent="." unique_id=1674373931]
+offset_left = 16.0
+offset_top = 452.0
+offset_right = 1134.0
+offset_bottom = 634.0
+script = ExtResource("14_ewur8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DialoguePanel" unique_id=1536321996]
+position = Vector2(92, 91)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_2i61c")
+animation = &"FrogIdle"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialoguePanel" unique_id=410162830]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 16.0
+offset_right = 1096.0
+offset_bottom = 163.0
+theme = ExtResource("16_f6akd")

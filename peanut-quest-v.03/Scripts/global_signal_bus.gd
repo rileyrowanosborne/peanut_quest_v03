@@ -42,3 +42,6 @@ signal sprite_update
 
 signal create_health_bar
 signal boss_health_update
+
+
+signal dialogue_sprite_update

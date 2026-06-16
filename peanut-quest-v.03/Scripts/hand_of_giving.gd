@@ -15,7 +15,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if in_range:
-		if event.is_action_pressed("action"):
+		if event.is_action_pressed("interact"):
 			if GameState.player_is_shelled:
 				pass
 			else:

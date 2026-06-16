@@ -65,6 +65,15 @@ var current_boss_health : int = 0
 var camera_aim_location : Vector2 = Vector2.ZERO
 var ready_for_input : bool = false
 
+
+var current_dialogue : String = "FrogIdle"
+var in_range_dialogue : bool = false
+
+
+var current_frog : int = 0
+
+
+
 func _ready() -> void:
 	player_is_attacking = false
 	player_can_attack = true

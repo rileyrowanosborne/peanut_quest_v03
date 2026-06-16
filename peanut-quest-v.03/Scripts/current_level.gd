@@ -14,6 +14,7 @@ extends Node
 func _ready() -> void:
 	GlobalSignalBus.emit_signal("essence_update")
 	GlobalSignalBus.emit_signal("salt_update")
+	GlobalSignalBus.emit_signal("dialogue_sprite_update")
 	
 	GlobalSignalBus.connect("respawn_peanut", reload_level)
 	

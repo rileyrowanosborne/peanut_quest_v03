@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://cnkw606bga8iw"]
+
+[ext_resource type="Script" uid="uid://cqumjegcq4x7c" path="res://Scripts/froggy_friend.gd" id="1_eun3l"]
+[ext_resource type="Texture2D" uid="uid://cgepraaryey2p" path="res://Assets/Sprites/FroggyFriend-Sheet.png" id="1_ve4e1"]
+[ext_resource type="FontFile" uid="uid://78na84sfbk5d" path="res://Assets/Fonts/alagard.ttf" id="3_hut1d"]
+[ext_resource type="Texture2D" uid="uid://b2w6urh4ijjey" path="res://Assets/Sprites/Emoticons-Sheet.png" id="4_cosee"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eun3l"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hut1d"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cosee"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jvo8"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjyyf"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4con"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4fis"]
+atlas = ExtResource("1_ve4e1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bm36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eun3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hut1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cosee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cosee")
+}],
+"loop": true,
+"name": &"Idle-InRange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jvo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjyyf")
+}],
+"loop": true,
+"name": &"Idle-OutRange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4con")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4fis")
+}],
+"loop": true,
+"name": &"Talking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve4e1"]
+size = Vector2(74, 42)
+
+[sub_resource type="Theme" id="Theme_cosee"]
+default_font = ExtResource("3_hut1d")
+default_font_size = 16
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6dva"]
+atlas = ExtResource("4_cosee")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bm36"]
+atlas = ExtResource("4_cosee")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hut1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6dva")
+}],
+"loop": false,
+"name": &"Question",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bm36")
+}],
+"loop": false,
+"name": &"Surprise",
+"speed": 5.0
+}]
+
+[node name="FroggyFriend" type="Node2D" unique_id=603298428]
+script = ExtResource("1_eun3l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2096548341]
+sprite_frames = SubResource("SpriteFrames_7bm36")
+animation = &"Idle-InRange"
+autoplay = "Idle-OutRange"
+frame_progress = 0.9197865
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1530674080]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=166796252]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_ve4e1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=545226410]
+visible = false
+offset_left = -3.0
+offset_top = -22.0
+offset_right = 37.0
+offset_bottom = 18.0
+theme = SubResource("Theme_cosee")
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "?"
+
+[node name="Emote" type="AnimatedSprite2D" parent="." unique_id=964010682]
+visible = false
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_hut1d")
+animation = &"Surprise"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
