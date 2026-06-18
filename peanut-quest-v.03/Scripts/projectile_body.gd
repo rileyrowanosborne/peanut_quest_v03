@@ -16,12 +16,12 @@ var is_deflected : bool
 
 
 func _process(delta: float) -> void:
-	pass
-	#if in_range:
-		#if Input.is_action_just_pressed("action"):
-			#absorb_particle_effect.emitting = true
-			#is_deflected = true
-			#apply_central_impulse((global_position - GameState.player_location).normalized() * 500)
+	if GameState.monk_is_active:
+		if in_range:
+			if Input.is_action_just_pressed("action"):
+				absorb_particle_effect.emitting = true
+				is_deflected = true
+				apply_central_impulse((global_position - GameState.player_location).normalized() * 500)
 
 
 func _physics_process(delta: float) -> void:
@@ -32,6 +32,8 @@ func _physics_process(delta: float) -> void:
 func _on_projectile_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		in_range = true
+		if GameState.monk_is_active:
+			GameState.freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
 
 
 

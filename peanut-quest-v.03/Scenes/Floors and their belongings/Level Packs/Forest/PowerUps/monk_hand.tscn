@@ -1,6 +1,153 @@
 [gd_scene format=3 uid="uid://dlk2gexxqpf4j"]
 
 [ext_resource type="Script" uid="uid://biivtoi543gck" path="res://Scripts/monk_hand.gd" id="1_kni7r"]
+[ext_resource type="Texture2D" uid="uid://cmceh2elcbrnu" path="res://Assets/Sprites/MonkSwing-Sheet.png" id="2_aidvn"]
+[ext_resource type="Script" uid="uid://bp3vhqfasy8c4" path="res://Scripts/monk_light.gd" id="3_p1n3y"]
+[ext_resource type="Texture2D" uid="uid://cq4xstlf2vdb3" path="res://Assets/Sprites/LittleFlameSprite-Sheet.png" id="3_xrwli"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrwli"]
+atlas = ExtResource("2_aidvn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1n3y"]
+atlas = ExtResource("2_aidvn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcrcb"]
+atlas = ExtResource("2_aidvn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0srjj"]
+atlas = ExtResource("2_aidvn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aidvn"]
+atlas = ExtResource("2_aidvn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_diomj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrwli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1n3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcrcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0srjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aidvn")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aidvn"]
+radius = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nr3y"]
+atlas = ExtResource("3_xrwli")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wajn6"]
+atlas = ExtResource("3_xrwli")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f2gw"]
+atlas = ExtResource("3_xrwli")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v6tj"]
+atlas = ExtResource("3_xrwli")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aidvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nr3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wajn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f2gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v6tj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="MonkHand" type="Node2D" unique_id=2143022494]
 script = ExtResource("1_kni7r")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=237702800]
+position = Vector2(0, -7)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=501489281]
+position = Vector2(10, 0)
+sprite_frames = SubResource("SpriteFrames_diomj")
+animation = &"Swing"
+frame = 6
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="Pivot" unique_id=616923854]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D" unique_id=1501326168]
+position = Vector2(8, 0)
+shape = SubResource("CircleShape2D_aidvn")
+
+[node name="HolyLightPivot" type="Node2D" parent="." unique_id=1241058607]
+position = Vector2(0, -7)
+
+[node name="Light1" type="Node2D" parent="HolyLightPivot" unique_id=1795780537]
+position = Vector2(-16, -21)
+script = ExtResource("3_p1n3y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HolyLightPivot/Light1" unique_id=844966247]
+modulate = Color(1.1638972, 1.1638972, 0.5429522, 1)
+position = Vector2(-1, -4)
+sprite_frames = SubResource("SpriteFrames_aidvn")
+autoplay = "default"
+frame_progress = 0.41824713
+
+[node name="Light2" type="Node2D" parent="HolyLightPivot" unique_id=1467119462]
+position = Vector2(30, 3)
+script = ExtResource("3_p1n3y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HolyLightPivot/Light2" unique_id=2081717187]
+modulate = Color(1.1638972, 1.1638972, 0.5429522, 1)
+position = Vector2(-1, -4)
+sprite_frames = SubResource("SpriteFrames_aidvn")
+autoplay = "default"
+frame_progress = 0.81142324
+
+[node name="Light3" type="Node2D" parent="HolyLightPivot" unique_id=2017304774]
+position = Vector2(-14, 25)
+script = ExtResource("3_p1n3y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HolyLightPivot/Light3" unique_id=1294629542]
+modulate = Color(1.1638972, 1.1638972, 0.5429522, 1)
+position = Vector2(-1, -4)
+sprite_frames = SubResource("SpriteFrames_aidvn")
+autoplay = "default"
+frame_progress = 0.23014614
+
+[connection signal="body_entered" from="Pivot/Area2D" to="." method="_on_area_2d_body_entered"]

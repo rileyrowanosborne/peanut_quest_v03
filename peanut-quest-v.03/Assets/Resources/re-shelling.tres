@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://73pcaqoev0is" path="res://Assets/Sprites/FloopyHand-Sheet-Activate.png" id="1_dwh77"]
 [ext_resource type="Texture2D" uid="uid://bandk2olaiqcb" path="res://Assets/Sprites/FloopyHand-Sheet-Idle.png" id="2_bfhwm"]
-[ext_resource type="Texture2D" uid="uid://cfki2oisv377o" path="res://Assets/Sprites/PeanutPlant-Grow-Sheet.png" id="2_vvbl6"]
 [ext_resource type="Texture2D" uid="uid://be6fhhqde4vmu" path="res://Assets/Sprites/FloopyHand-SheetWithGoop.png" id="3_vvbl6"]
 [ext_resource type="Texture2D" uid="uid://b7s7yll6vcag7" path="res://Assets/Sprites/FloopyHand-SheetWithShell.png" id="4_6hm84"]
 
@@ -37,10 +36,6 @@ region = Rect2(768, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rf1d5"]
 atlas = ExtResource("1_dwh77")
 region = Rect2(896, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hm84"]
-atlas = ExtResource("2_vvbl6")
-region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o08uf"]
 atlas = ExtResource("2_bfhwm")
@@ -174,7 +169,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6hm84")
+"texture": null
 }],
 "loop": true,
 "name": &"Hidden",

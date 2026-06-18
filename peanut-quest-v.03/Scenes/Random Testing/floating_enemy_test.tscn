@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dk8oi2gam524d"]
+
+[ext_resource type="Script" uid="uid://blopdv3gou4mj" path="res://Scripts/floating_enemy_test.gd" id="1_pcasj"]
+[ext_resource type="Texture2D" uid="uid://cuhopi8r6l8f" path="res://Assets/Sprites/SpiderEye.png" id="1_q1unp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ev5he"]
+radius = 15.033297
+
+[node name="FloatingEnemyTest" type="CharacterBody2D" unique_id=679737546]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_pcasj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=562016418]
+texture = ExtResource("1_q1unp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=554920710]
+shape = SubResource("CircleShape2D_ev5he")

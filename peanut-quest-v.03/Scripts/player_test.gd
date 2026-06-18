@@ -509,6 +509,7 @@ func take_spike_damage():
 				GameState.current_health -= 1
 				GlobalSignalBus.emit_signal("health_check")
 				if GameState.current_health < 1:
+					velocity.y = -400
 					die()
 
 
@@ -577,3 +578,7 @@ func active_power_ups():
 
 func _on_jump_buffer_timer_timeout() -> void:
 	jump_requested = false
+
+
+func _on_spike_hit_box_body_entered(body: Node2D) -> void:
+	take_spike_damage()

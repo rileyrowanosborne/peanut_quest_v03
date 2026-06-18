@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(attack_dir : Vector2):
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
-	knockback_velocity = knockback_dir * 100
+	knockback_velocity = knockback_dir * 200
 	current_health -= 1
 	health_check()
 	if get_parent().get_parent().has_method("health_check"):
@@ -105,19 +105,19 @@ func spawn_absorb_particles():
 var in_range : bool = false
 var player_loc : Vector2
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player_loc = body.global_position
-		in_range = true
-
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		in_range = false
-
-
-func _input(event: InputEvent) -> void:
-	if in_range:
-		if event.is_action("action"):
-			take_damage(player_loc)
+#
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	#if body.is_in_group("player"):
+		#player_loc = body.global_position
+		#in_range = true
+#
+#
+#func _on_area_2d_body_exited(body: Node2D) -> void:
+	#if body.is_in_group("player"):
+		#in_range = false
+#
+#
+#func _input(event: InputEvent) -> void:
+	#if in_range:
+		#if event.is_action("action"):
+			#take_damage(player_loc)

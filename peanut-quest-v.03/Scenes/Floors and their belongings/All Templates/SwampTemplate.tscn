@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://brbn8iyjxjt76" path="res://Assets/Sprites/BigClouds.png" id="5_4whj6"]
 [ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="6_211u8"]
 [ext_resource type="Texture2D" uid="uid://cpegvjmy5ugwb" path="res://Assets/Sprites/CavernBackGround5.png" id="7_qkhyj"]
+[ext_resource type="Texture2D" uid="uid://dxkjhceyt516u" path="res://Assets/Sprites/GrandSpikeWebs.png" id="8_v0flt"]
 [ext_resource type="PackedScene" uid="uid://bpn7rp1k1gffa" path="res://Scenes/Essentials/all_tile_maps.tscn" id="8_v4o3m"]
 [ext_resource type="PackedScene" uid="uid://bn40jpyaj7ni2" path="res://Scenes/Essentials/main_camera.tscn" id="9_50qbp"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="10_wjxwg"]
@@ -20,10 +21,8 @@ glow_enabled = true
 glow_intensity = 5.77
 glow_bloom = 0.1
 
-[node name="SwampTestingChamber" type="Node2D" unique_id=1371012861]
+[node name="SwampTemplate" type="Node2D" unique_id=1371012861]
 script = ExtResource("1_ykbkw")
-current_level = 0.2
-respawn_point = Vector2(-60, 126)
 peanut_scene = ExtResource("2_kv7r4")
 
 [node name="Environment" type="Node2D" parent="." unique_id=1437981246]
@@ -38,101 +37,108 @@ offset_bottom = 648.0
 color = Color(0.07362769, 0.096405394, 0.06739507, 1)
 
 [node name="CavernTop" type="Node2D" parent="Environment" unique_id=709835243]
-position = Vector2(727, -448)
 
 [node name="CavernTop1" type="Parallax2D" parent="Environment/CavernTop" unique_id=531436164]
 scroll_scale = Vector2(0.4, 0.4)
-scroll_offset = Vector2(280, -225)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop1" unique_id=1459389997]
 modulate = Color(0.11182279, 0.01271529, 0.008329905, 1)
-position = Vector2(-107, 313)
+position = Vector2(615, -289)
 scale = Vector2(3, 3)
 texture = ExtResource("3_3as5a")
 
 [node name="CavernTop7" type="Parallax2D" parent="Environment/CavernTop" unique_id=1615216946]
 scroll_scale = Vector2(0.4, 0.4)
-scroll_offset = Vector2(280, -225)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop7" unique_id=571918586]
 modulate = Color(0.11372549, 0.011764706, 0.007843138, 1)
-position = Vector2(-229.00002, -69)
+position = Vector2(341, -651)
 scale = Vector2(3, 3)
 texture = ExtResource("3_3as5a")
 flip_v = true
 
 [node name="CavernTop2" type="Parallax2D" parent="Environment/CavernTop" unique_id=817679572]
 scroll_scale = Vector2(0.5, 0.5)
-scroll_offset = Vector2(280, -225)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop2" unique_id=1440128485]
 modulate = Color(0.40439367, 0.20790642, 0.15152934, 1)
-position = Vector2(-47, 319)
+position = Vector2(482, -270)
 scale = Vector2(3, 3)
 texture = ExtResource("4_bjjxu")
 flip_v = true
 
 [node name="CavernTop6" type="Parallax2D" parent="Environment/CavernTop" unique_id=428160660]
 scroll_scale = Vector2(0.5, 0.5)
-scroll_offset = Vector2(-107, -303)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernTop/CavernTop6" unique_id=798629169]
 modulate = Color(0.40392157, 0.20784314, 0.15294118, 1)
-position = Vector2(-226, 15)
+position = Vector2(348, -644)
 scale = Vector2(3, 3)
 texture = ExtResource("4_bjjxu")
 
 [node name="CavernBottom" type="Node2D" parent="Environment" unique_id=595321334]
-position = Vector2(163, -386)
 
 [node name="CavernBottom" type="Parallax2D" parent="Environment/CavernBottom" unique_id=565073573]
 scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(1170, 510)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom" unique_id=1888281358]
 modulate = Color(0.29865697, 0.17094463, 0.12017799, 1)
-position = Vector2(-3, 460)
+position = Vector2(386, 464)
 scale = Vector2(3, 3)
 texture = ExtResource("5_4whj6")
 
 [node name="CavernBottom2" type="Parallax2D" parent="Environment/CavernBottom" unique_id=1797011871]
 scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(1170, 510)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom2" unique_id=1295332795]
 modulate = Color(0.36475983, 0.14172769, 0.06194102, 1)
-position = Vector2(84, 428)
+position = Vector2(364, 482)
 scale = Vector2(3, 3)
 texture = ExtResource("6_211u8")
 
+[node name="Webs" type="Parallax2D" parent="Environment/CavernBottom" unique_id=1746826606]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(1170, 510)
+repeat_size = Vector2(512, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/Webs" unique_id=738584750]
+modulate = Color(0.11119685, 0.11119684, 0.11119684, 1)
+position = Vector2(358, 525)
+scale = Vector2(4, 4)
+texture = ExtResource("8_v0flt")
+
 [node name="CavernBottom3" type="Parallax2D" parent="Environment/CavernBottom" unique_id=366007923]
 scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(1170, 510)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CavernBottom/CavernBottom3" unique_id=608663937]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(-3, 641)
+position = Vector2(511, 612)
 scale = Vector2(3, 3)
 texture = ExtResource("7_qkhyj")
 
 [node name="Back" parent="Environment" unique_id=1330860940 instance=ExtResource("8_v4o3m")]
 
 [node name="Front" parent="Environment" unique_id=1975993931 instance=ExtResource("8_v4o3m")]
-position = Vector2(355.76035, 75.65289)
 
 [node name="Decor" parent="Environment" unique_id=785189445 instance=ExtResource("8_v4o3m")]
-position = Vector2(355.76035, 75.65289)
 
 [node name="FadeToBlackScreen" parent="Environment" unique_id=1092320179 instance=ExtResource("10_wjxwg")]
 
@@ -167,14 +173,13 @@ visible = false
 [node name="DoorToHub" parent="Stuff/Doors" unique_id=429804739 instance=ExtResource("14_h6e8u")]
 rotation = -1.5707964
 
+[node name="NPCs" type="Node2D" parent="Stuff" unique_id=27199278]
+
 [node name="Player" type="Node2D" parent="." unique_id=1532400934]
 
 [node name="MainCamera" parent="Player" unique_id=1365551363 instance=ExtResource("9_50qbp")]
-position = Vector2(384, 216)
-zoom = Vector2(1.5, 1.5)
 
 [node name="PlayerTest" parent="Player" unique_id=474886339 instance=ExtResource("2_kv7r4")]
-position = Vector2(-677, -408)
 
 [node name="Hud" parent="Player" unique_id=895197310 instance=ExtResource("11_7mx1e")]
 visible = false

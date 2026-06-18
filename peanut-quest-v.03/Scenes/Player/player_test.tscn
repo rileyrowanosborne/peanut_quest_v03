@@ -877,6 +877,14 @@ current = true
 [node name="CameraAim" type="Marker2D" parent="." unique_id=1411435846]
 position = Vector2(0, -30)
 
+[node name="SpikeHitBox" type="Area2D" parent="." unique_id=1971014205]
+collision_layer = 0
+collision_mask = 8
+
+[node name="StandingCollisionShape2" type="CollisionShape2D" parent="SpikeHitBox" unique_id=534434009]
+position = Vector2(-0.5, -6.5)
+shape = SubResource("RectangleShape2D_3smsa")
+
 [connection signal="timeout" from="Timers/TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="Timers/Slide Timer" to="." method="_on_slide_timer_timeout"]
 [connection signal="timeout" from="Timers/SlideCooldownTimer" to="." method="_on_slide_cooldown_timer_timeout"]
@@ -884,3 +892,4 @@ position = Vector2(0, -30)
 [connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Timers/DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="body_entered" from="SpikeHitBox" to="." method="_on_spike_hit_box_body_entered"]

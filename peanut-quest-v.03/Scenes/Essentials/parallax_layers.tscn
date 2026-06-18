@@ -4,8 +4,69 @@
 [ext_resource type="Texture2D" uid="uid://b5fds62ibm2vw" path="res://Assets/Sprites/CloudTest.png" id="2_cdwra"]
 [ext_resource type="Texture2D" uid="uid://dgc7bvvyfxjo6" path="res://Assets/Sprites/BigClouds3.png" id="3_ypghr"]
 [ext_resource type="Texture2D" uid="uid://b5prn12ehn3ju" path="res://Assets/Sprites/Clouds.png" id="4_g6u87"]
+[ext_resource type="Texture2D" uid="uid://dxkjhceyt516u" path="res://Assets/Sprites/GrandSpikeWebs.png" id="5_we1m3"]
 [ext_resource type="Texture2D" uid="uid://do0t2qlow4ss0" path="res://Assets/Sprites/CavernBackGround2.png" id="5_ypghr"]
 [ext_resource type="Texture2D" uid="uid://cpegvjmy5ugwb" path="res://Assets/Sprites/CavernBackGround5.png" id="6_g6u87"]
+[ext_resource type="Texture2D" uid="uid://d2nbi75spiiyj" path="res://Assets/Sprites/SunTest-Sheet.png" id="7_ov7av"]
+[ext_resource type="Texture2D" uid="uid://cfbtkwcq2pepj" path="res://Assets/Sprites/DistantCity.png" id="8_4s5m4"]
+[ext_resource type="Texture2D" uid="uid://cfe7vr8dheemx" path="res://Assets/Sprites/DistantCloserForest.png" id="9_we1m3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wajbu"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s5m4"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we1m3"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k4dt"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb5wu"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2faqv"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h47sr"]
+atlas = ExtResource("7_ov7av")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhufh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wajbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s5m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we1m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k4dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb5wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2faqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h47sr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="ParallaxLayers" type="Node2D" unique_id=1795814093]
 
@@ -18,67 +79,16 @@ offset_right = 1153.0
 offset_bottom = 648.0
 color = Color(0.08069629, 0.08054998, 0.11787935, 1)
 
-[node name="ForestTop" type="Node2D" parent="." unique_id=1564887736]
+[node name="Sun" type="Parallax2D" parent="." unique_id=1235260175]
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(117, 422)
 
-[node name="TopCLouds2" type="Parallax2D" parent="ForestTop" unique_id=1140230344]
-scroll_scale = Vector2(0.9, 0.9)
-repeat_size = Vector2(384, 0)
-repeat_times = 10
-
-[node name="Sprite2D" type="Sprite2D" parent="ForestTop/TopCLouds2" unique_id=926586884]
-modulate = Color(0.16841611, 0.13345158, 0.20746368, 1)
-position = Vector2(-273, -490)
-scale = Vector2(3, 3)
-texture = ExtResource("1_fx7cd")
-flip_v = true
-
-[node name="TopClouds3" type="Parallax2D" parent="ForestTop" unique_id=1931922783]
-scroll_scale = Vector2(0.9, 0.9)
-repeat_size = Vector2(384, 0)
-repeat_times = 10
-
-[node name="Sprite2D" type="Sprite2D" parent="ForestTop/TopClouds3" unique_id=584661001]
-modulate = Color(0.046938792, 0.015854461, 0.032392252, 1)
-position = Vector2(-272, -557)
-scale = Vector2(3, 3)
-texture = ExtResource("2_cdwra")
-flip_v = true
-
-[node name="ForestBottom" type="Node2D" parent="." unique_id=1059618915]
-position = Vector2(32, -432)
-
-[node name="BottomClouds" type="Parallax2D" parent="ForestBottom" unique_id=1394857524]
-scroll_scale = Vector2(0.7, 0.7)
-repeat_size = Vector2(384, 0)
-repeat_times = 10
-
-[node name="Sprite2D" type="Sprite2D" parent="ForestBottom/BottomClouds" unique_id=460738171]
-modulate = Color(0.046938792, 0.015854461, 0.032392252, 1)
-position = Vector2(-80, 81)
-scale = Vector2(3, 3)
-texture = ExtResource("2_cdwra")
-
-[node name="BottomClouds1" type="Parallax2D" parent="ForestBottom" unique_id=1997379594]
-scroll_scale = Vector2(0.8, 0.8)
-repeat_size = Vector2(384, 0)
-repeat_times = 10
-
-[node name="Sprite2D" type="Sprite2D" parent="ForestBottom/BottomClouds1" unique_id=1053797437]
-modulate = Color(0.16841611, 0.13345158, 0.20746368, 1)
-position = Vector2(-260, 250.00002)
-scale = Vector2(3, 3)
-texture = ExtResource("1_fx7cd")
-
-[node name="BottomClouds2" type="Parallax2D" parent="ForestBottom" unique_id=578550933]
-scroll_scale = Vector2(0.85, 0.85)
-repeat_size = Vector2(384, 0)
-repeat_times = 10
-
-[node name="Sprite2D" type="Sprite2D" parent="ForestBottom/BottomClouds2" unique_id=1327481971]
-modulate = Color(0.3996776, 0.3325869, 0.4749589, 1)
-position = Vector2(-143, 80)
-scale = Vector2(3, 3)
-texture = ExtResource("3_ypghr")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sun" unique_id=1196805172]
+self_modulate = Color(1.224127, 1.224127, 0.7816459, 1)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_hhufh")
+autoplay = "default"
+frame_progress = 0.74529636
 
 [node name="CavernTop" type="Node2D" parent="." unique_id=1678927388]
 position = Vector2(473, 713)
@@ -137,35 +147,49 @@ texture = ExtResource("3_ypghr")
 position = Vector2(298, 308)
 
 [node name="CavernBottom" type="Parallax2D" parent="CavernBottom" unique_id=220692003]
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(-297, -302)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="CavernBottom/CavernBottom" unique_id=2119714641]
 modulate = Color(0.23904923, 0.20870605, 0.076602496, 1)
-position = Vector2(33, 595)
+position = Vector2(-41, 620)
 scale = Vector2(3, 3)
 texture = ExtResource("1_fx7cd")
 
+[node name="Webs" type="Parallax2D" parent="CavernBottom" unique_id=2008065829]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(-158, -264)
+repeat_size = Vector2(512, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="CavernBottom/Webs" unique_id=1465159871]
+position = Vector2(-214, 550)
+scale = Vector2(4, 4)
+texture = ExtResource("5_we1m3")
+
 [node name="CavernBottom2" type="Parallax2D" parent="CavernBottom" unique_id=1699388099]
 scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(-294, -305)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="CavernBottom/CavernBottom2" unique_id=1834755046]
 modulate = Color(0.17564929, 0.18900737, 0.018084528, 1)
-position = Vector2(46, 591)
+position = Vector2(-37, 598)
 scale = Vector2(3, 3)
 texture = ExtResource("2_cdwra")
 
 [node name="CavernBottom3" type="Parallax2D" parent="CavernBottom" unique_id=2052333652]
-scroll_scale = Vector2(0.6, 0.6)
+scroll_scale = Vector2(0.7, 0.7)
+scroll_offset = Vector2(-302, -305)
 repeat_size = Vector2(384, 0)
 repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="CavernBottom/CavernBottom3" unique_id=1422505618]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(-6, 581)
+position = Vector2(-47, 792)
 scale = Vector2(3, 3)
 texture = ExtResource("6_g6u87")
 
@@ -184,3 +208,230 @@ modulate = Color(0.31764707, 0.31764707, 0.31764707, 1)
 position = Vector2(705, 653)
 scale = Vector2(4, 4)
 texture = ExtResource("4_g6u87")
+
+[node name="Forestry" type="Node2D" parent="." unique_id=1705844316]
+
+[node name="ForestTop" type="Node2D" parent="Forestry" unique_id=1564887736]
+
+[node name="TopCLouds2" type="Parallax2D" parent="Forestry/ForestTop" unique_id=1140230344]
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestTop/TopCLouds2" unique_id=926586884]
+modulate = Color(0.16841611, 0.13345158, 0.20746368, 1)
+position = Vector2(-273, -490)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fx7cd")
+flip_v = true
+
+[node name="TopClouds3" type="Parallax2D" parent="Forestry/ForestTop" unique_id=1931922783]
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestTop/TopClouds3" unique_id=584661001]
+modulate = Color(0.046938792, 0.015854461, 0.032392252, 1)
+position = Vector2(-272, -557)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cdwra")
+flip_v = true
+
+[node name="ForestBottom" type="Node2D" parent="Forestry" unique_id=1059618915]
+position = Vector2(32, -432)
+
+[node name="BottomClouds" type="Parallax2D" parent="Forestry/ForestBottom" unique_id=1394857524]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottom/BottomClouds" unique_id=460738171]
+modulate = Color(0.046938792, 0.015854461, 0.032392252, 1)
+position = Vector2(-80, 81)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cdwra")
+
+[node name="BottomClouds1" type="Parallax2D" parent="Forestry/ForestBottom" unique_id=1997379594]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottom/BottomClouds1" unique_id=1053797437]
+modulate = Color(0.16841611, 0.13345158, 0.20746368, 1)
+position = Vector2(-260, 250.00002)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fx7cd")
+
+[node name="BottomClouds2" type="Parallax2D" parent="Forestry/ForestBottom" unique_id=578550933]
+scroll_scale = Vector2(0.85, 0.85)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottom/BottomClouds2" unique_id=1327481971]
+modulate = Color(0.3996776, 0.3325869, 0.4749589, 1)
+position = Vector2(-143, 80)
+scale = Vector2(3, 3)
+texture = ExtResource("3_ypghr")
+
+[node name="ForestTopAlt" type="Node2D" parent="Forestry" unique_id=1223182612]
+visible = false
+position = Vector2(1, 0)
+
+[node name="TopCLouds2" type="Parallax2D" parent="Forestry/ForestTopAlt" unique_id=1778088428]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestTopAlt/TopCLouds2" unique_id=1004697851]
+modulate = Color(0.2428627, 0.2547996, 0.40386027, 1)
+position = Vector2(134, -12)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fx7cd")
+flip_v = true
+
+[node name="TopClouds3" type="Parallax2D" parent="Forestry/ForestTopAlt" unique_id=1736512533]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-360, 79)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestTopAlt/TopClouds3" unique_id=716502624]
+modulate = Color(0.6224992, 0.6294682, 0.6905151, 1)
+position = Vector2(-30, -148)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cdwra")
+flip_v = true
+
+[node name="ForestBottomAlt" type="Node2D" parent="Forestry" unique_id=1472173512]
+position = Vector2(60, -74)
+
+[node name="BottomClouds" type="Parallax2D" parent="Forestry/ForestBottomAlt" unique_id=784956508]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(-369, 110)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottomAlt/BottomClouds" unique_id=992442040]
+modulate = Color(0.48094052, 0.4813614, 0.5629042, 1)
+position = Vector2(50, 85)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cdwra")
+
+[node name="BottomClouds1" type="Parallax2D" parent="Forestry/ForestBottomAlt" unique_id=1697061387]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottomAlt/BottomClouds1" unique_id=79132426]
+modulate = Color(0.2664499, 0.22377798, 0.2806771, 1)
+position = Vector2(-260, 250.00002)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fx7cd")
+
+[node name="DistantCity" type="Parallax2D" parent="Forestry/ForestBottomAlt" unique_id=737101822]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottomAlt/DistantCity" unique_id=505561690]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(229, 148)
+scale = Vector2(3, 3)
+texture = ExtResource("8_4s5m4")
+
+[node name="Trees" type="Parallax2D" parent="Forestry/ForestBottomAlt" unique_id=299492647]
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-60, 74)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/ForestBottomAlt/Trees" unique_id=784414256]
+modulate = Color(0.036749836, 0.052015297, 0.04283289, 1)
+position = Vector2(-96, -29)
+scale = Vector2(3, 3)
+texture = ExtResource("9_we1m3")
+
+[node name="BlueForestTop" type="Node2D" parent="Forestry" unique_id=601407337]
+position = Vector2(1, 0)
+
+[node name="TopCLouds2" type="Parallax2D" parent="Forestry/BlueForestTop" unique_id=1380444887]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/BlueForestTop/TopCLouds2" unique_id=103484086]
+modulate = Color(0.030817313, 0.1112627, 0.21502137, 1)
+position = Vector2(134, -12)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fx7cd")
+flip_v = true
+
+[node name="TopClouds3" type="Parallax2D" parent="Forestry/BlueForestTop" unique_id=1292037575]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-360, 79)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/BlueForestTop/TopClouds3" unique_id=1983034347]
+modulate = Color(0.06769386, 0.18371609, 0.3323327, 1)
+position = Vector2(-30, -148)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cdwra")
+flip_v = true
+
+[node name="BlueForestBottom" type="Node2D" parent="Forestry" unique_id=1672679387]
+position = Vector2(60, -74)
+
+[node name="BottomClouds" type="Parallax2D" parent="Forestry/BlueForestBottom" unique_id=818737801]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(-369, 110)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/BlueForestBottom/BottomClouds" unique_id=1348946588]
+modulate = Color(0.03967999, 0.12963605, 0.24480975, 1)
+position = Vector2(50, 85)
+scale = Vector2(3, 3)
+texture = ExtResource("2_cdwra")
+
+[node name="BottomClouds1" type="Parallax2D" parent="Forestry/BlueForestBottom" unique_id=1710884694]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/BlueForestBottom/BottomClouds1" unique_id=326706029]
+modulate = Color(0.0846139, 0.21607158, 0.38451868, 1)
+position = Vector2(-260, 250.00002)
+scale = Vector2(3, 3)
+texture = ExtResource("1_fx7cd")
+
+[node name="DistantCity" type="Parallax2D" parent="Forestry/BlueForestBottom" unique_id=1715446159]
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/BlueForestBottom/DistantCity" unique_id=1566954871]
+modulate = Color(0.030674888, 0.11093978, 0.21625337, 1)
+position = Vector2(229, 148)
+scale = Vector2(3, 3)
+texture = ExtResource("8_4s5m4")
+
+[node name="Trees" type="Parallax2D" parent="Forestry/BlueForestBottom" unique_id=2014089930]
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(-60, 74)
+repeat_size = Vector2(384, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Forestry/BlueForestBottom/Trees" unique_id=740346046]
+modulate = Color(0.21845075, 0.44098827, 0.72925127, 1)
+position = Vector2(-96, -29)
+scale = Vector2(3, 3)
+texture = ExtResource("9_we1m3")

@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://brboitkjtyn04" path="res://Scripts/mage_hand.gd" id="1_bnuwb"]
 [ext_resource type="PackedScene" uid="uid://ck4caw5coy1ij" path="res://Scenes/Projectiles/fire_ball.tscn" id="2_vvmkb"]
+[ext_resource type="Script" uid="uid://djwqnepfdeo5k" path="res://Scripts/mage_laser.gd" id="3_ki46u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0jajr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s5mou"]
+radius = 254.19678
 
 [node name="MageHand" type="Node2D" unique_id=1447323090]
 script = ExtResource("1_bnuwb")
@@ -18,4 +22,47 @@ position = Vector2(0, -7)
 [node name="FireBallCooldownTimer" type="Timer" parent="." unique_id=1891075870]
 one_shot = true
 
+[node name="Area2D" type="Area2D" parent="." unique_id=117732683]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=694677257]
+shape = SubResource("CircleShape2D_s5mou")
+disabled = true
+
+[node name="Pivot" type="Node2D" parent="." unique_id=774349153]
+position = Vector2(0, -7)
+
+[node name="Laser" type="RayCast2D" parent="Pivot" unique_id=2142543690]
+target_position = Vector2(11, 0)
+collision_mask = 6
+script = ExtResource("3_ki46u")
+color = Color(1.4369954, 0, 0, 1)
+max_length = 100.0
+is_casting = true
+laser_width = 8.0
+
+[node name="Line2D" type="Line2D" parent="Pivot/Laser" unique_id=1569658023]
+modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 5.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Pivot" unique_id=1943047604]
+emitting = false
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+radial_accel_min = -200.0
+radial_accel_max = -100.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(1.4369954, 0, 0, 1)
+
 [connection signal="timeout" from="FireBallCooldownTimer" to="." method="_on_fire_ball_cooldown_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -66,7 +66,7 @@ var alive : bool = true
 
 var bounce_velocity : float = 600
 	
-
+var can_jump : bool = true
 
 func _ready() -> void:
 	GameState.player_is_shelled = false
@@ -222,7 +222,7 @@ func take_damage(attack_dir : Vector2):
 	
 	knockback_dir = (global_position - attack_dir).normalized()
 	
-	velocity = knockback_dir * 2000
+	velocity = knockback_dir * 1000
 	GameState.freeze_frame(.1, .4)
 	
 	if not GameState.is_invul:
@@ -278,3 +278,7 @@ func bounce(bounce_dir : Vector2, bounce_multiplier : float):
 	
 	
 	velocity = bounce_dir * bounce_velocity * bounce_multiplier
+
+
+func _on_spike_hit_box_body_entered(body: Node2D) -> void:
+	take_spike_damage()

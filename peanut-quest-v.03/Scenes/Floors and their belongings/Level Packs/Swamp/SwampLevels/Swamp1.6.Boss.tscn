@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dj638h0d1onxo" path="res://Scenes/Essentials/door_area_2d.tscn" id="11_icy67"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="12_inlkr"]
 [ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="13_kh2rw"]
-[ext_resource type="PackedScene" uid="uid://b87ie518boiuy" path="res://Scenes/Enemies/Bosses/Spider/spider.tscn" id="14_a62r6"]
+[ext_resource type="PackedScene" uid="uid://b87ie518boiuy" path="res://Scenes/NPCs/spider.tscn" id="14_a62r6"]
 [ext_resource type="PackedScene" uid="uid://dahhgm5b8mhfq" path="res://Scenes/Enemies/Bosses/Spider/spider_foot_projectile.tscn" id="15_i27mk"]
 [ext_resource type="PackedScene" uid="uid://b5oq8rd3gotms" path="res://Scenes/Essentials/world_environment_scene.tscn" id="19_ix3hj"]
 

@@ -17,6 +17,7 @@ var player_is_wall_sliding : bool
 var player_is_attacking : bool
 var player_can_attack : bool
 var current_attack_delay : float = .4
+var current_fireball_delay : float = .2
 
 
 var current_health : int
@@ -70,7 +71,16 @@ var current_dialogue : String = "FrogIdle"
 var in_range_dialogue : bool = false
 
 
-var current_frog : int = 0
+var current_dialogue_progress : int = 0
+
+var monk_rotation_amount : float = 100
+
+var current_monk_level : int = 1
+var current_slime_level : int = 1
+var current_mage_level : int = 3
+var current_knight_level : int = 1
+
+var max_ability_level : int = 3
 
 
 

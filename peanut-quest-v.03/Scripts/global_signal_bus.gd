@@ -44,4 +44,18 @@ signal create_health_bar
 signal boss_health_update
 
 
+
+signal rude_frog_dialogue
+signal nice_frog_dialogue
+signal apathetic_frog_dialogue
+
+signal forest_hand_dialogue
+
+signal spider_dialogue
+
+
 signal dialogue_sprite_update
+
+
+signal end_dialogue
+signal begin_dialogue

@@ -75,7 +75,7 @@ func spawn_mage():
 	if mage_instance == null:
 		if mage_scene:
 			mage_instance = mage_scene.instantiate()
-			get_parent().add_child(mage_instance)
+			get_parent().call_deferred("add_child", mage_instance)
 
 func despawn_mage():
 	if GameState.mage_is_active:
