@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c2vqq1c3gvg28" path="res://Scripts/laser_beam.gd" id="1_ot8dx"]
 [ext_resource type="Texture2D" uid="uid://n88dx0ts0esm" path="res://Assets/Sprites/LaserBeam-Large-Sheet.png" id="2_moj7p"]
-[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Random Testing/hit_box.tscn" id="3_io348"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Essentials/hit_box.tscn" id="3_io348"]
 [ext_resource type="Texture2D" uid="uid://ddt80u5b2tjks" path="res://Assets/Sprites/LaserLauncher-Sheet.png" id="4_swr2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io348"]

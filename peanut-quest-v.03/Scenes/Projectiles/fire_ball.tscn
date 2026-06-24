@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ck4caw5coy1ij"]
 
 [ext_resource type="Script" uid="uid://hoghyjof4s0x" path="res://Scripts/fire_ball.gd" id="1_4db2s"]
+[ext_resource type="PackedScene" uid="uid://suerd7d6qhas" path="res://Scenes/Projectiles/mage_explosion.tscn" id="2_08hio"]
 [ext_resource type="Texture2D" uid="uid://bnnqavaajumu5" path="res://Assets/Sprites/LilFireBall-Sheet.png" id="2_kf850"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oljoc"]
@@ -54,6 +55,7 @@ radius = 52.0
 
 [node name="FireBall" type="Node2D" unique_id=327774340]
 script = ExtResource("1_4db2s")
+explosion_scene = ExtResource("2_08hio")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2061539348]
 collision_layer = 0

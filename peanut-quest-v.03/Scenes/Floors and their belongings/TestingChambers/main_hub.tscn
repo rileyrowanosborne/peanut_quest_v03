@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dmxwfk3amkmd" path="res://Scenes/Floors and their belongings/Level Packs/Swamp/PowerUps/slime_altar.tscn" id="15_3vyu0"]
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="16_0mjlf"]
 [ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="17_6xe2s"]
+[ext_resource type="PackedScene" uid="uid://bu0jv5bm0baat" path="res://Scenes/Floors and their belongings/Level Packs/Swamp/mimic_slime.tscn" id="18_jp77f"]
 
 [node name="MainHub" type="Node2D" unique_id=1179617459]
 script = ExtResource("1_di5kv")
@@ -138,13 +139,16 @@ position = Vector2(-512, 96)
 [node name="Bouncers" type="Node2D" parent="Stuff" unique_id=1063282756]
 
 [node name="WebBouncer3" parent="Stuff/Bouncers" unique_id=993781647 instance=ExtResource("10_wjfyu")]
-position = Vector2(-296, -131)
+position = Vector2(-349, -120)
 
 [node name="WebBouncer5" parent="Stuff/Bouncers" unique_id=976965293 instance=ExtResource("10_wjfyu")]
-position = Vector2(-224, -297)
+position = Vector2(-377, -314)
+
+[node name="WebBouncer7" parent="Stuff/Bouncers" unique_id=156336114 instance=ExtResource("10_wjfyu")]
+position = Vector2(-132, -315)
 
 [node name="WebBouncer6" parent="Stuff/Bouncers" unique_id=405987698 instance=ExtResource("10_wjfyu")]
-position = Vector2(-198, -453)
+position = Vector2(-246, -437)
 bounce_multiplier = 1.3
 
 [node name="LittleGoop" parent="Stuff/Bouncers" unique_id=984228061 instance=ExtResource("11_fxxhn")]
@@ -199,3 +203,9 @@ position = Vector2(1, -36)
 [node name="FadeToBlackScreen" parent="Player" unique_id=1795882491 instance=ExtResource("16_0mjlf")]
 
 [node name="Hud" parent="Player" unique_id=471024502 instance=ExtResource("17_6xe2s")]
+
+[node name="MimicSlime" parent="." unique_id=944938049 instance=ExtResource("18_jp77f")]
+position = Vector2(-90, 16)
+
+[node name="MimicSlime2" parent="." unique_id=1808572466 instance=ExtResource("18_jp77f")]
+position = Vector2(75, 16)

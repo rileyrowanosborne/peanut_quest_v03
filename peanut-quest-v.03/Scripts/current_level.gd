@@ -43,6 +43,8 @@ func _ready() -> void:
 	
 	if GameState.slime_is_active:
 		GlobalSignalBus.emit_signal("slime_activate")
+	
+	GlobalSignalBus.emit_signal("level_up")
 
 func reload_level():
 	GameState.current_boss_health = 0

@@ -18,6 +18,7 @@ var player_is_attacking : bool
 var player_can_attack : bool
 var current_attack_delay : float = .4
 var current_fireball_delay : float = .2
+var current_slime_delay : float = .5
 
 
 var current_health : int
@@ -50,14 +51,24 @@ var player_is_shelled : bool = true
 
 var first_load : bool = true
 
+
+
+#abilities and such
 var knight_is_active : bool = false
 var monk_is_active : bool = false
 var mage_is_active : bool = false
 var slime_is_active : bool = false
 
-var slow_ability_unlocked : bool = false
-var phase_ability_unlocked : bool = false
-var goop_ability_unlocked : bool = false
+
+var current_peanut_level : int = 1
+
+
+
+var class_mask := 0
+
+var current_class : String
+
+
 
 var boss_active : bool = false
 var current_boss_health : int = 0
@@ -75,19 +86,13 @@ var current_dialogue_progress : int = 0
 
 var monk_rotation_amount : float = 100
 
-var current_monk_level : int = 1
-var current_slime_level : int = 1
-var current_mage_level : int = 3
-var current_knight_level : int = 1
 
-var max_ability_level : int = 3
 
 
 
 func _ready() -> void:
 	player_is_attacking = false
 	player_can_attack = true
-	slow_ability_unlocked = true
 
 
 
@@ -105,13 +110,14 @@ func player_invul(length : float):
 	is_invul = false
 	#is_being_hit = false
 	
-	
+var on_cooldown : bool = true
 
 func _input(event: InputEvent) -> void:
-	if slow_ability_unlocked:
+	if not on_cooldown:
 		if event.is_action_pressed("special_l"):
-			if current_salt >= 1:
-				GlobalSignalBus.emit_signal("slow_down_start")
-				freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
-				current_salt -= 1
-				GlobalSignalBus.emit_signal("salt_update")
+			on_cooldown = true
+			GlobalSignalBus.emit_signal("slow_down_start")
+			freeze_frame(GameState.current_slow_down_power, GameState.current_slow_down_length)
+			await get_tree().create_timer(2).timeout
+			on_cooldown = false
+				

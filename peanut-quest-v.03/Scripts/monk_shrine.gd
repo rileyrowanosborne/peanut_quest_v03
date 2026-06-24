@@ -24,9 +24,16 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _input(event: InputEvent) -> void:
 	
 	if in_range:
-		if event.is_action_pressed("interact"):
+		if event.is_action_pressed("interact") and GameState.player_is_shelled:
 			if not GameState.monk_is_active:
 				GameState.current_health = 3
 				GlobalSignalBus.emit_signal("monk_activate")
 				GameState.monk_is_active = true
 				GlobalSignalBus.emit_signal("health_check")
+				GlobalSignalBus.emit_signal("class_update")
+			else:
+				GlobalSignalBus.emit_signal("monk_deactivate")
+				GameState.monk_is_active = false
+				GlobalSignalBus.emit_signal("health_check")
+				GlobalSignalBus.emit_signal("class_update")
+				

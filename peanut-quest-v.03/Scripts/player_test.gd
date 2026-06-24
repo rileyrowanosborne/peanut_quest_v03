@@ -130,6 +130,8 @@ var direction : float
 
 func _ready() -> void:
 	
+	GlobalSignalBus.emit_signal("class_update")
+	
 	GameState.player_is_shelled = true
 	
 	add_to_group("player")
@@ -401,56 +403,16 @@ func instant_death():
 
 
 func take_damage(attack_dir : Vector2):
-	
-	var random_num = randi_range(1,4)
-	if random_num == 1:
-		crack_one.emitting = true
-	elif random_num == 2:
-		crack_two.emitting = true
-	elif random_num == 3:
-		crack_three.emitting = true
-	elif random_num == 4:
-		crack_four.emitting = true
+	crack_anims()
 	
 	var knockback_dir : Vector2 = (global_position - attack_dir).normalized()
 	GameState.knockback_direction = knockback_dir
 	
-		
-	
 	if not GameState.is_invul:
 		GameState.player_invul(1)
 		
-		if GameState.current_health == 3:
-			if GameState.knight_is_active:
-				GlobalSignalBus.emit_signal("knight_deactivate")
-			if GameState.monk_is_active:
-				GlobalSignalBus.emit_signal("monk_deactivate")
-				monk_deactivate()
-			if GameState.mage_is_active:
-				GlobalSignalBus.emit_signal("mage_deactivate")
-				mage_deactivate()
-			if GameState.slime_is_active:
-				GlobalSignalBus.emit_signal("slime_deactivate")
-				slime_deactivate()
-			
-			GameState.current_health = 2
-			GlobalSignalBus.emit_signal("health_check")
-			GameState.freeze_frame(.1, .4)
-			velocity = knockback_dir * 500
-		else:
-			if GameState.current_health > 0:
-				GameState.freeze_frame(.1, .4)
-				velocity = knockback_dir * 500
-				GameState.current_health -= 1
-				GlobalSignalBus.emit_signal("health_check")
-				if GameState.current_health < 1:
-					die()
-	active_power_ups()
-
-func take_laser_damage():
-	if GameState.current_health == 3:
 		if GameState.knight_is_active:
-				GlobalSignalBus.emit_signal("knight_deactivate")
+			GlobalSignalBus.emit_signal("knight_deactivate")
 		if GameState.monk_is_active:
 			GlobalSignalBus.emit_signal("monk_deactivate")
 			monk_deactivate()
@@ -460,19 +422,18 @@ func take_laser_damage():
 		if GameState.slime_is_active:
 			GlobalSignalBus.emit_signal("slime_deactivate")
 			slime_deactivate()
-		GameState.current_health = 2
-		GlobalSignalBus.emit_signal("health_check")
-		GameState.player_invul(1)
-		GameState.freeze_frame(.1, .4)
-		velocity.y = -400
-	else:
-		GameState.current_health = 0
-		GlobalSignalBus.emit_signal("health_check")
-		
-		die()
-		
 
-func take_spike_damage():
+		if GameState.current_health > 0:
+			GameState.freeze_frame(.1, .4)
+			velocity = knockback_dir * 500
+			GameState.current_health -= 1
+			GlobalSignalBus.emit_signal("health_check")
+			if GameState.current_health < 1:
+				die()
+				
+	GlobalSignalBus.emit_signal("class_update")
+
+func crack_anims():
 	var random_num = randi_range(1,4)
 	if random_num == 1:
 		crack_one.emitting = true
@@ -482,35 +443,72 @@ func take_spike_damage():
 		crack_three.emitting = true
 	elif random_num == 4:
 		crack_four.emitting = true
-	
-	if not GameState.is_invul:
-		GameState.player_invul(1)
+
+
+#func take_laser_damage():
+	#if GameState.current_health == 3:
+		#if GameState.knight_is_active:
+				#GlobalSignalBus.emit_signal("knight_deactivate")
+		#if GameState.monk_is_active:
+			#GlobalSignalBus.emit_signal("monk_deactivate")
+			#monk_deactivate()
+		#if GameState.mage_is_active:
+			#GlobalSignalBus.emit_signal("mage_deactivate")
+			#mage_deactivate()
+		#if GameState.slime_is_active:
+			#GlobalSignalBus.emit_signal("slime_deactivate")
+			#slime_deactivate()
+		#GameState.current_health = 2
+		#GlobalSignalBus.emit_signal("health_check")
+		#GameState.player_invul(1)
+		#GameState.freeze_frame(.1, .4)
+		#velocity.y = -400
+	#else:
+		#GameState.current_health = 0
+		#GlobalSignalBus.emit_signal("health_check")
+		#
+		#die()
 		
-		if GameState.current_health == 3:
-			if GameState.knight_is_active:
-				GlobalSignalBus.emit_signal("knight_deactivate")
-			if GameState.monk_is_active:
-				GlobalSignalBus.emit_signal("monk_deactivate")
-				monk_deactivate()
-			if GameState.mage_is_active:
-				GlobalSignalBus.emit_signal("mage_deactivate")
-				mage_deactivate()
-			if GameState.slime_is_active:
-				GlobalSignalBus.emit_signal("slime_deactivate")
-				slime_deactivate()
-			GameState.current_health = 2
-			GlobalSignalBus.emit_signal("health_check")
-			GameState.freeze_frame(.1, .4)
-			velocity.y = -400
-		else:
-			if GameState.current_health > 0:
-				GameState.freeze_frame(.1, .4)
-				velocity.y = -400
-				GameState.current_health -= 1
-				GlobalSignalBus.emit_signal("health_check")
-				if GameState.current_health < 1:
-					velocity.y = -400
-					die()
+
+#func take_spike_damage():
+	#var random_num = randi_range(1,4)
+	#if random_num == 1:
+		#crack_one.emitting = true
+	#elif random_num == 2:
+		#crack_two.emitting = true
+	#elif random_num == 3:
+		#crack_three.emitting = true
+	#elif random_num == 4:
+		#crack_four.emitting = true
+	#
+	#if not GameState.is_invul:
+		#GameState.player_invul(1)
+		#
+		#if GameState.current_health == 3:
+			#if GameState.knight_is_active:
+				#GlobalSignalBus.emit_signal("knight_deactivate")
+			#if GameState.monk_is_active:
+				#GlobalSignalBus.emit_signal("monk_deactivate")
+				#monk_deactivate()
+			#if GameState.mage_is_active:
+				#GlobalSignalBus.emit_signal("mage_deactivate")
+				#mage_deactivate()
+			#if GameState.slime_is_active:
+				#GlobalSignalBus.emit_signal("slime_deactivate")
+				#slime_deactivate()
+			#GameState.current_health = 2
+			#GlobalSignalBus.emit_signal("health_check")
+			#GameState.freeze_frame(.1, .4)
+			#velocity.y = -400
+		#else:
+			#if GameState.current_health > 0:
+				#GameState.freeze_frame(.1, .4)
+				#velocity.y = -400
+				#GameState.current_health -= 1
+				#GlobalSignalBus.emit_signal("health_check")
+				#if GameState.current_health < 1:
+					#velocity.y = -400
+					#die()
 
 
 func die():
@@ -569,11 +567,6 @@ func slime_deactivate():
 	current_dash_length = neutral_dash_length
 	GameState.slime_is_active = false
 
-func active_power_ups():
-	print("knight: " + str(GameState.knight_is_active))
-	print("monk: " + str(GameState.monk_is_active))
-	print("mage: " + str(GameState.mage_is_active))
-
 
 
 func _on_jump_buffer_timer_timeout() -> void:
@@ -581,4 +574,5 @@ func _on_jump_buffer_timer_timeout() -> void:
 
 
 func _on_spike_hit_box_body_entered(body: Node2D) -> void:
-	take_spike_damage()
+	pass
+	#take_spike_damage()

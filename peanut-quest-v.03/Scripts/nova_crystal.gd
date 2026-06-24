@@ -20,6 +20,11 @@ func collect():
 		GameState.current_health = 3
 		GameState.mage_is_active = true
 		GlobalSignalBus.emit_signal("mage_activate")
+		GlobalSignalBus.emit_signal("class_update")
+	else:
+		GameState.mage_is_active = false
+		GlobalSignalBus.emit_signal("mage_deactivate")
+		GlobalSignalBus.emit_signal("class_update")
 	
 	
 	animated_sprite_2d.play("Destroyed")

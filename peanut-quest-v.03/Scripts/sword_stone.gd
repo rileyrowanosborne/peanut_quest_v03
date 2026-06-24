@@ -32,12 +32,19 @@ func sword_deactivate():
 
 func _input(event: InputEvent) -> void:
 	
-	if event.is_action_pressed("interact") and in_range and not GameState.knight_is_active and GameState.player_is_shelled:
-		animated_sprite_2d.play("SwordPull")
-		
-		
-		await get_tree().create_timer(1.05).timeout
-		GlobalSignalBus.emit_signal("knight_activate")
-		GameState.current_health = 3
-		GameState.knight_is_active = true
-		GlobalSignalBus.emit_signal("health_check")
+	if event.is_action_pressed("interact") and in_range and GameState.player_is_shelled:
+		if not GameState.knight_is_active:
+			animated_sprite_2d.play("SwordPull")
+			
+			
+			await get_tree().create_timer(1.05).timeout
+			GlobalSignalBus.emit_signal("knight_activate")
+			GameState.current_health = 3
+			GameState.knight_is_active = true
+			GlobalSignalBus.emit_signal("health_check")
+			GlobalSignalBus.emit_signal("class_update")
+		else:
+			GlobalSignalBus.emit_signal("knight_deactivate")
+			GameState.knight_is_active = false
+			GlobalSignalBus.emit_signal("health_check")
+			GlobalSignalBus.emit_signal("class_update")

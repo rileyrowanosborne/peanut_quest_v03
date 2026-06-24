@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://suerd7d6qhas"]
+
+[ext_resource type="Script" uid="uid://tqmteafwm3gj" path="res://Scripts/explosion.gd" id="1_s230p"]
+[ext_resource type="Texture2D" uid="uid://bw4ufrx1mfh0b" path="res://Assets/Sprites/TinyCloud.png" id="2_hu0el"]
+[ext_resource type="Texture2D" uid="uid://dxtc0ng640joy" path="res://Assets/Sprites/Explosion1-Sheet.png" id="3_s2g1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdp7h"]
+atlas = ExtResource("3_s2g1k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhdot"]
+atlas = ExtResource("3_s2g1k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf0yw"]
+atlas = ExtResource("3_s2g1k")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suv18"]
+atlas = ExtResource("3_s2g1k")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n11du"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdp7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhdot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf0yw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suv18")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf0yw"]
+radius = 19.026299
+
+[node name="SlimeExplosion" type="Node2D" unique_id=1779047264]
+script = ExtResource("1_s230p")
+
+[node name="DustParticles" type="CPUParticles2D" parent="." unique_id=215764498]
+emitting = false
+texture = ExtResource("2_hu0el")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_amount_max = 2.0
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="." unique_id=1322004501]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(0, -1)
+spread = 85.78
+gravity = Vector2(0, 98)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.57224447, 0.23902959, 0.2767445, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=173844459]
+modulate = Color(0.6748712, 0.2895697, 0.25295717, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_n11du")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=860760422]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1619591366]
+shape = SubResource("CircleShape2D_lf0yw")
+
+[connection signal="finished" from="DustParticles" to="." method="_on_dust_particles_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

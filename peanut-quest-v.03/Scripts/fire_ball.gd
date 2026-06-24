@@ -5,6 +5,8 @@ extends Node2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+@export var explosion_scene : PackedScene
+
 var target_location : Vector2
 
 var direction_x : float
@@ -48,6 +50,7 @@ func _physics_process(delta: float) -> void:
 
 func explode():
 	print("boom!")
+	spawn_explosion(global_position)
 	queue_free()
 
 func default_target():
@@ -75,3 +78,11 @@ func _on_area_2d_2_body_entered(body: Node2D) -> void:
 			target_location = body.global_position
 			animated_sprite_2d.flip_h = false
 			look_at(body.global_position)
+
+
+func spawn_explosion(world_location : Vector2):
+	if explosion_scene:
+		var explosion_instance = explosion_scene.instantiate()
+		get_tree().current_scene.call_deferred("add_child", explosion_instance)
+		explosion_instance.global_position = world_location
+		

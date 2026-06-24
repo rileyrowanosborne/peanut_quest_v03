@@ -27,11 +27,18 @@ func _input(event: InputEvent) -> void:
 	
 	if in_range:
 		if event.is_action_pressed("interact"):
-			if not GameState.slime_is_active:
-				GameState.current_health = 3
-				GlobalSignalBus.emit_signal("slime_activate")
-				GameState.slime_is_active = true
-				GlobalSignalBus.emit_signal("health_check")
+			if GameState.player_is_shelled:
+				if not GameState.slime_is_active:
+					GameState.current_health = 3
+					GlobalSignalBus.emit_signal("slime_activate")
+					GameState.slime_is_active = true
+					GlobalSignalBus.emit_signal("health_check")
+					GlobalSignalBus.emit_signal("class_update")
+				else:
+					GlobalSignalBus.emit_signal("slime_deactivate")
+					GameState.slime_is_active = false
+					GlobalSignalBus.emit_signal("health_check")
+					GlobalSignalBus.emit_signal("class_update")
 
 
 

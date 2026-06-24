@@ -3,20 +3,59 @@ extends AnimatedSprite2D
 
 
 
+#completed
+const CRITICAL_SPRITE = preload("uid://conjsqldubh0o")
+const PEANUT_SPRITE = preload("uid://dgqsh7lws08ks")
 
-const CRITICAL_SHELLED_PEANUT = preload("uid://conjsqldubh0o")
-const HEALTHY_SHELLED_PEANUT = preload("uid://dgqsh7lws08ks")
+#singles
+const KNIGHT_SPRITE = preload("uid://b3s3iomyn3v1k")
+const MONK_SPRITE = preload("uid://bn1iw806stobj")
+const MAGE_SPRITE = preload("uid://bc6d8tnp80iy")
+const SLIME_SPRITE = preload("uid://bwknbmdrs6hpm")
 
-const CRITICAL_SHELLED_PEANUT_CHARGED = preload("uid://bmjj5wng2vag")
-const HEALTHY_SHELLED_PEANUT_CHARGED = preload("uid://dtysk3w4e4cr2")
+#doubles
+const MONK_MAGE_SPRITE = preload("uid://drvhi28ghoryt")
+const MONK_SLIME_SPRITE = preload("uid://c8vaek5kxqjum")
+const MONK_KNIGHT_SPRITE = preload("uid://7qs80tyba1la")
+const MAGE_KNIGHT_SPRITE = preload("uid://emlxox5myc7n")
+
+#triples
+const MONK_SLIME_MAGE_SPRITE = preload("uid://c1s0xsgx7x33h")
+const SLIME_MAGE_KNIGHT_SPRITE = preload("uid://djgf0113p84cx")
 
 
-const ARMORED_SHELLED_PEANUT_TEST = preload("uid://b3s3iomyn3v1k")
-const ATHLETIC_SHELLED_PEANUT_TEST = preload("uid://bucgxyruopfwl")
-const MONK_SHELLED_PEANUT_TEST = preload("uid://bn1iw806stobj")
-const MAGE_SHELLED_PEANUT_TEST = preload("uid://bc6d8tnp80iy")
-const SLIME_SHELLED_PEANUT_TEST = preload("uid://bwknbmdrs6hpm")
+#no sprite sheet yet
+const SLIME_MAGE_SPRITE = preload("uid://dgqsh7lws08ks")
+const SLIME_KNIGHT_SPRITE = preload("uid://dgqsh7lws08ks")
 
+const MONK_SLIME_KNIGHT_SPRITE = preload("uid://dgqsh7lws08ks")
+const MONK_MAGE_KNIGHT_SPRITE = preload("uid://dgqsh7lws08ks")
+
+
+const MONK_SLIME_MAGE_KNIGHT_SPRITE = preload("uid://dgqsh7lws08ks")
+
+
+const SPRITES = {
+	0: PEANUT_SPRITE,
+	0.5: CRITICAL_SPRITE,
+	1: MONK_SPRITE,
+	2: SLIME_SPRITE,
+	4: MAGE_SPRITE,
+	8: KNIGHT_SPRITE,
+	3: MONK_SLIME_SPRITE,
+	5: MONK_MAGE_SPRITE,
+	9: MONK_KNIGHT_SPRITE,
+	6: SLIME_MAGE_SPRITE,
+	10: SLIME_KNIGHT_SPRITE,
+	12: MAGE_KNIGHT_SPRITE,
+
+	7: MONK_SLIME_MAGE_SPRITE,
+	11: MONK_SLIME_KNIGHT_SPRITE,
+	13: MONK_MAGE_KNIGHT_SPRITE,
+	14: SLIME_MAGE_KNIGHT_SPRITE,
+
+	15: MONK_SLIME_MAGE_KNIGHT_SPRITE,
+	}
 
 
 @onready var poof: CPUParticles2D = $"../Particles/Poof"
@@ -24,38 +63,29 @@ const SLIME_SHELLED_PEANUT_TEST = preload("uid://bwknbmdrs6hpm")
 
 
 func _ready() -> void:
-	GlobalSignalBus.connect("health_check", anims_update)
-	GlobalSignalBus.connect("monk_activate", monk_skin)
-	GlobalSignalBus.connect("knight_activate", armor_skin)
-	GlobalSignalBus.connect("mage_activate", mage_skin)
-	GlobalSignalBus.connect("slime_activate", slime_skin)
+
+	GlobalSignalBus.connect("class_update", class_update)
 
 
 
-func anims_update():
-	#poof.emitting = true
-	if GameState.current_health == 1:
-			sprite_frames = CRITICAL_SHELLED_PEANUT
-		
-	elif GameState.current_health == 2:
-		sprite_frames = HEALTHY_SHELLED_PEANUT
-
-		
+func  sprite_update():
+	sprite_frames = SPRITES[GameState.class_mask]
+	
 
 
 
-func monk_skin():
-	#poof.emitting = true
-	sprite_frames = MONK_SHELLED_PEANUT_TEST
-
-func slime_skin():
-	sprite_frames = SLIME_SHELLED_PEANUT_TEST
-
-func mage_skin():
-	#poof.emitting = true
-	sprite_frames = MAGE_SHELLED_PEANUT_TEST
-
-
-func armor_skin():
-	#poof.emitting = true
-	sprite_frames = ARMORED_SHELLED_PEANUT_TEST
+func class_update():
+	
+	GameState.class_mask = 0
+	
+	if GameState.monk_is_active:
+		GameState.class_mask |= 1
+	if GameState.slime_is_active:
+		GameState.class_mask |= 2
+	if GameState.mage_is_active:
+		GameState.class_mask |= 4
+	if GameState.knight_is_active:
+		GameState.class_mask |= 8
+	
+	
+	sprite_update()

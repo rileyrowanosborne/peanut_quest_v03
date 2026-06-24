@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cdrvrgydyitkk"]
+
+[ext_resource type="Script" uid="uid://jpn4qw1h2lsd" path="res://Scripts/slime_projectile.gd" id="1_0g48u"]
+[ext_resource type="Texture2D" uid="uid://c67u4yxmba848" path="res://Assets/Sprites/SlimeProjectile.png" id="1_4rlau"]
+[ext_resource type="PackedScene" uid="uid://cr5xj2fxufowm" path="res://Scenes/Projectiles/slime_explosion.tscn" id="2_kf1do"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rlau"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0g48u"]
+radius = 11.0
+
+[node name="SlimeProjectile" type="RigidBody2D" unique_id=847901162]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_0g48u")
+explosion_scene = ExtResource("2_kf1do")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=401600161]
+position = Vector2(-1, 0)
+texture = ExtResource("1_4rlau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694127140]
+shape = SubResource("CircleShape2D_4rlau")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1255310862]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1271753540]
+shape = SubResource("CircleShape2D_0g48u")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

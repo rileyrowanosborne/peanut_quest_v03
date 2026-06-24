@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bk47e1xsdi7ft" path="res://Scripts/weapon.gd" id="1_q8ojv"]
 [ext_resource type="Texture2D" uid="uid://4tquif4jvn7s" path="res://Assets/Sprites/CharactersSheet.png" id="2_yhwpw"]
-[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Random Testing/hit_box.tscn" id="3_hebr1"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Essentials/hit_box.tscn" id="3_hebr1"]
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="4_tv1ro"]
 [ext_resource type="Texture2D" uid="uid://w4xopesbdmc5" path="res://Assets/Sprites/Stab-Sheet.png" id="5_383kf"]
 

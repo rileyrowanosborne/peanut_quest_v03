@@ -1,11 +1,6 @@
 extends Node2D
 
-@onready var marker_2d: Marker2D = $Marker2D
-@onready var fire_ball_cooldown_timer: Timer = $FireBallCooldownTimer
-@onready var laser: RayCast2D = $Pivot/Laser
-@onready var pivot: Node2D = $Pivot
-@onready var cpu_particles_2d: CPUParticles2D = $Pivot/CPUParticles2D
-
+@onready var fire_ball_cooldown_timer: Timer = $Pivot/FireBallCooldownTimer
 
 @export var fireball_scene : PackedScene
 
@@ -16,45 +11,35 @@ var can_attack : bool = true
 var enemy_in_range : bool = false
 var enemy_location : Vector2
 
+
+var is_active = false
+
 func _ready() -> void:
+	GlobalSignalBus.connect("ability_update", class_update)
 	GlobalSignalBus.connect("mage_deactivate", despawn_hand)
-	
-func _process(delta: float) -> void:
-	
-	if GameState.last_dir == -1:
-		pivot.rotation_degrees = 180
-	elif GameState.last_dir == 1:
-		pivot.rotation_degrees = 0
+
+
+func class_update():
+	if GameState.current_class == "Mage":
+		is_active = true
+	else:
+		is_active = false
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("action"):
-		if GameState.current_mage_level == GameState.max_ability_level:
-			if can_attack:
-				fire_laser()
-		else:
+	if is_active:
+		if event.is_action_pressed("action"):
 			if can_attack:
 				can_attack = false
-				spawn_fireball(marker_2d.global_position)
+				spawn_fireball(global_position)
 				fire_ball_cooldown_timer.start(GameState.current_fireball_delay)
 				
 	
-	if event.is_action_released("action"):
-		if GameState.current_mage_level == GameState.max_ability_level:
-			stop_laser()
 
 
 func despawn_hand():
-	queue_free()
+	is_active = false
 
-
-func fire_laser():
-	laser.set_is_casting(true)
-	cpu_particles_2d.emitting = true
-
-func stop_laser():
-	laser.set_is_casting(false)
-	cpu_particles_2d.emitting = false
 
 func spawn_fireball(world_location : Vector2):
 	if fireball_scene:

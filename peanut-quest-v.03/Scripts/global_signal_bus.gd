@@ -37,6 +37,11 @@ signal mage_deactivate
 signal slime_activate
 signal slime_deactivate
 
+signal class_update
+signal ability_update
+
+signal level_up
+
 signal sprite_update
 
 

@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b8e62xupq6suq" path="res://Assets/Sprites/HandTalkingIcon-Sheet.png" id="16_cgs6g"]
 [ext_resource type="Theme" uid="uid://ddmg2yykn78wu" path="res://MainTheme.tres" id="16_f6akd"]
 [ext_resource type="Texture2D" uid="uid://ckgs0iv3dd6ne" path="res://Assets/Sprites/SpiderIcon.png" id="17_m83ri"]
+[ext_resource type="FontFile" uid="uid://78na84sfbk5d" path="res://Assets/Fonts/alagard.ttf" id="20_7ug82"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
 atlas = ExtResource("2_bjfho")
@@ -321,6 +322,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Theme" id="Theme_23dqv"]
+default_font = ExtResource("20_7ug82")
+default_font_size = 64
+
+[sub_resource type="Theme" id="Theme_7ug82"]
+default_font = ExtResource("20_7ug82")
+default_font_size = 128
+
 [node name="Hud" type="CanvasLayer" unique_id=471024502]
 script = ExtResource("1_fccik")
 
@@ -440,6 +449,41 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 text = "Here are some testing words"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Currency" type="Control" parent="." unique_id=713883700]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CurrencyText" type="RichTextLabel" parent="Currency" unique_id=1106094658]
+layout_mode = 0
+offset_left = 966.0
+offset_top = 25.0
+offset_right = 1119.0
+offset_bottom = 90.0
+theme = SubResource("Theme_23dqv")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+text = "400"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ClassText" type="RichTextLabel" parent="Currency" unique_id=1799400678]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 170.0
+offset_right = 1030.0
+offset_bottom = 463.0
+theme = SubResource("Theme_7ug82")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
 horizontal_alignment = 1
 vertical_alignment = 1
 

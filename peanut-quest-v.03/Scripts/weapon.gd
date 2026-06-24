@@ -1,14 +1,10 @@
 extends Node2D
 
-
-
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
-
-
+@onready var swing_delay_timer: Timer = $SwingDelayTimer
+@onready var sword_particles_1: CPUParticles2D = $SwordParticles1
+@onready var combo_timer: Timer = $ComboTimer
 @onready var sword_collision: CollisionPolygon2D = $HitBox/SwordCollision
-
 @onready var swing_left_anim: AnimatedSprite2D = $"../Swings/SwingLeftAnim"
 @onready var stab_left_anim: AnimatedSprite2D = $"../Swings/StabLeftAnim"
 @onready var swing_left_anim_2: AnimatedSprite2D = $"../Swings/SwingLeftAnim2"
@@ -16,12 +12,9 @@ extends Node2D
 @onready var stab_right_anim: AnimatedSprite2D = $"../Swings/StabRightAnim"
 @onready var swing_right_anim_2: AnimatedSprite2D = $"../Swings/SwingRightAnim2"
 @onready var stab_air_anim: AnimatedSprite2D = $"../Swings/StabAirAnim"
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 
-@onready var swing_delay_timer: Timer = $SwingDelayTimer
-@onready var combo_timer: Timer = $ComboTimer
-
-@onready var sword_particles_1: CPUParticles2D = $SwordParticles1
 
 
 var current_combo : int = 0
@@ -52,7 +45,6 @@ enum sword_state {
 var current_state : sword_state
 
 
-
 func _ready() -> void:
 	GameState.player_can_attack = true
 	current_state = sword_state.l_idle
@@ -61,8 +53,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("action") and GameState.player_can_attack:
-		swing_combo()
+	if get_parent().is_active:
+		if event.is_action_pressed("action") and GameState.player_can_attack:
+			swing_combo()
 
 
 func swing_combo():
@@ -110,6 +103,7 @@ func _process(delta: float) -> void:
 	state_machine()
 	
 	state_machine_logic()
+	
 	
 	
 func state_machine():
