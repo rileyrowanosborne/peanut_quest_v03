@@ -51,26 +51,20 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kf850"]
-radius = 52.0
 
-[node name="FireBall" type="Node2D" unique_id=327774340]
+[node name="FireBall" type="RigidBody2D" unique_id=1278112907]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("1_4db2s")
 explosion_scene = ExtResource("2_08hio")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2061539348]
 collision_layer = 0
-collision_mask = 422
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1796020112]
 shape = SubResource("CircleShape2D_oljoc")
-
-[node name="RayCastRight" type="RayCast2D" parent="." unique_id=304884180]
-target_position = Vector2(7, 0)
-collision_mask = 422
-
-[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=123362702]
-target_position = Vector2(-7, 0)
-collision_mask = 422
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=418775763]
 explosiveness = 0.2
@@ -91,12 +85,7 @@ sprite_frames = SubResource("SpriteFrames_02w0g")
 autoplay = "default"
 frame_progress = 0.06702898
 
-[node name="Area2D2" type="Area2D" parent="." unique_id=1415676402]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1473382475]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1381145695]
 shape = SubResource("CircleShape2D_kf850")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

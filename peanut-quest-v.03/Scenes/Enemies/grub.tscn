@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://c1gprvp0d31co"]
+
+[ext_resource type="Script" uid="uid://xj4hjpq56g6o" path="res://Scripts/grub.gd" id="1_yqlao"]
+[ext_resource type="Texture2D" uid="uid://bipt6gsxnmk54" path="res://Assets/Sprites/Grub-Sheet.png" id="2_oa7wc"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Essentials/hit_box.tscn" id="3_kuwon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqlao"]
+size = Vector2(12, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_837ps"]
+atlas = ExtResource("2_oa7wc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuwon"]
+atlas = ExtResource("2_oa7wc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oa7wc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_837ps")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuwon")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa7wc"]
+size = Vector2(10, 6)
+
+[node name="Grub" type="CharacterBody2D" unique_id=791470482]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_yqlao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=233734783]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_yqlao")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=18193331]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_oa7wc")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1857692177]
+position = Vector2(0, -3)
+target_position = Vector2(-9, 0)
+collision_mask = 4
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=457784973]
+position = Vector2(0, -3)
+target_position = Vector2(9, 0)
+collision_mask = 4
+
+[node name="HitBox" parent="." unique_id=1323420167 instance=ExtResource("3_kuwon")]
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=678440236]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_oa7wc")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=754600587]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

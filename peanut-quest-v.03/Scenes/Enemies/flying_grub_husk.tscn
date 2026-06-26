@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c6dchxjsgtp5r"]
+
+[ext_resource type="Texture2D" uid="uid://dvdeeklfinqdy" path="res://Assets/Sprites/FlyingGrubHive.png" id="1_o0mf3"]
+[ext_resource type="Script" uid="uid://b31uk0nlwdlpk" path="res://Scripts/flying_grub_husk.gd" id="1_vejal"]
+[ext_resource type="Texture2D" uid="uid://b0k1c2pc10r14" path="res://Assets/Sprites/FlyingGrubHive-Sheet.png" id="2_d23gw"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Essentials/hit_box.tscn" id="2_vejal"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o0mf3"]
+radius = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0qqh"]
+atlas = ExtResource("2_d23gw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d23gw"]
+atlas = ExtResource("1_o0mf3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o0qqh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0qqh")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d23gw")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vejal"]
+radius = 23.409399
+
+[node name="FlyingGrubHusk" type="CharacterBody2D" unique_id=1333937185]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_vejal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166339614]
+position = Vector2(1, -24)
+shape = SubResource("CircleShape2D_o0mf3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=895009085]
+position = Vector2(1, -31)
+sprite_frames = SubResource("SpriteFrames_o0qqh")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="HitBox" parent="." unique_id=1323420167 instance=ExtResource("2_vejal")]
+position = Vector2(0, -29)
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=995663212]
+position = Vector2(2, 5)
+shape = SubResource("CircleShape2D_vejal")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1236711278]
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

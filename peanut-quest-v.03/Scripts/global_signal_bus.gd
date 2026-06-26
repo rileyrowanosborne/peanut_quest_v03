@@ -58,6 +58,8 @@ signal forest_hand_dialogue
 
 signal spider_dialogue
 
+signal monty_dialogue
+
 
 signal dialogue_sprite_update
 

@@ -2,9 +2,9 @@ extends RigidBody2D
 
 
 
-@export var initial_y_velocity : float = 0
+var initial_y_velocity : float = -100
 
-@export var initial_x_velocity : float = 400
+var initial_x_velocity : float = 400
 
 
 @export var explosion_scene : PackedScene

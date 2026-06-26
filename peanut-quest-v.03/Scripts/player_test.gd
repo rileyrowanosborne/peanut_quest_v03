@@ -430,8 +430,9 @@ func take_damage(attack_dir : Vector2):
 			GlobalSignalBus.emit_signal("health_check")
 			if GameState.current_health < 1:
 				die()
-				
-	GlobalSignalBus.emit_signal("class_update")
+		
+		if GameState.current_health > 1:
+			GlobalSignalBus.emit_signal("class_update")
 
 func crack_anims():
 	var random_num = randi_range(1,4)

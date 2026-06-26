@@ -1,45 +1,63 @@
-[gd_scene format=3 uid="uid://c8htc5x2ud06y"]
+[gd_scene format=3 uid="uid://b18wwo38g8k6s"]
 
-[ext_resource type="Texture2D" uid="uid://cvwuuwa8q65h6" path="res://Assets/Sprites/WarlockProjectileTest.png" id="1_nq3wc"]
-[ext_resource type="Script" uid="uid://dvu4t8iuh8y7j" path="res://Scripts/warlock_projectile.gd" id="1_ome8p"]
+[ext_resource type="Script" uid="uid://hoghyjof4s0x" path="res://Scripts/fire_ball.gd" id="1_ome8p"]
 [ext_resource type="PackedScene" uid="uid://suerd7d6qhas" path="res://Scenes/Projectiles/mage_explosion.tscn" id="2_ome8p"]
+[ext_resource type="Texture2D" uid="uid://sap4gu3f6fiv" path="res://Assets/Sprites/PaladinProjectile.png" id="3_ome8p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nq3wc"]
-radius = 3.1622777
+[sub_resource type="CircleShape2D" id="CircleShape2D_oljoc"]
+radius = 7.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oyih2"]
-radius = 11.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyih2"]
+atlas = ExtResource("3_ome8p")
+region = Rect2(0, 0, 8, 16)
 
-[node name="WarlockProjectile" type="RigidBody2D" unique_id=1099421379]
+[sub_resource type="SpriteFrames" id="SpriteFrames_02w0g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyih2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ome8p"]
+
+[node name="WarlockProjectile" type="RigidBody2D" unique_id=238868899]
 collision_layer = 0
 collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("1_ome8p")
 explosion_scene = ExtResource("2_ome8p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649947940]
-shape = SubResource("CircleShape2D_nq3wc")
+[node name="Area2D" type="Area2D" parent="." unique_id=2061539348]
+collision_layer = 0
+collision_mask = 6
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1415778045]
-texture = ExtResource("1_nq3wc")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1796020112]
+shape = SubResource("CircleShape2D_oljoc")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1380207299]
-position = Vector2(-2, 0)
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=418775763]
+explosiveness = 0.2
+lifetime_randomness = 1.0
 direction = Vector2(-1, 0)
-spread = 21.09
+spread = 65.28
 gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
-initial_velocity_max = 20.0
-radial_accel_min = -56.25
-radial_accel_max = -15.11
-scale_amount_min = 2.0
+initial_velocity_max = 50.0
+radial_accel_min = -100.0
+radial_accel_max = -100.0
 scale_amount_max = 2.0
-color = Color(1.3262677, 1.3262677, 1.3262677, 1)
+color = Color(1, 1, 0.9411765, 1)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1010816135]
-collision_layer = 0
-collision_mask = 38
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1494008359]
+self_modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+sprite_frames = SubResource("SpriteFrames_02w0g")
+autoplay = "default"
+frame_progress = 0.06702898
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=383575120]
-shape = SubResource("CircleShape2D_oyih2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=130504115]
+shape = SubResource("CircleShape2D_ome8p")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

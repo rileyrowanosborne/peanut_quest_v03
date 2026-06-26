@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://uygkh2dsd0mf"]
+
+[ext_resource type="Texture2D" uid="uid://c5gntx6c1w5k3" path="res://Assets/Sprites/FlyingGrub-Sheet.png" id="1_vhkjf"]
+[ext_resource type="Script" uid="uid://dh1aokeau6ol5" path="res://Scripts/flying_grub.gd" id="1_wxp1e"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Essentials/hit_box.tscn" id="2_wxp1e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhkjf"]
+atlas = ExtResource("1_vhkjf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2db"]
+atlas = ExtResource("1_vhkjf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5rdqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhkjf")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2db")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8856h"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhkjf"]
+radius = 5.0
+
+[node name="FlyingGrub" type="CharacterBody2D" unique_id=416771417]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_wxp1e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1016921978]
+sprite_frames = SubResource("SpriteFrames_5rdqy")
+animation = &"Hurt"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2018967667]
+shape = SubResource("CircleShape2D_8856h")
+
+[node name="HitBox" parent="." unique_id=1323420167 instance=ExtResource("2_wxp1e")]
+collision_mask = 1
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox" unique_id=797405483]
+shape = SubResource("CircleShape2D_vhkjf")
+
+[node name="FlightTimer" type="Timer" parent="." unique_id=103660057]
+one_shot = true
+
+[connection signal="timeout" from="FlightTimer" to="." method="_on_flight_timer_timeout"]

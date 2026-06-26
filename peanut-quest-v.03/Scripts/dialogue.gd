@@ -76,6 +76,22 @@ var spider_options = {
 	
 }
 
+var monty_options = {
+	option00 = "",
+	option01 = "Oh snap! Who is this!? Who are you?",
+	option02 = "",
+	option03 = "",
+	option04 = "",
+	option05 = "",
+	option06 = "",
+	option07 = "",
+	option08 = "",
+	option09 = "",
+	option10 = "",
+	option11 = "",
+	
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -84,6 +100,7 @@ func _ready() -> void:
 	GlobalSignalBus.connect("rude_frog_dialogue", rude_frog_update)
 	GlobalSignalBus.connect("forest_hand_dialogue", forest_hand_dialogue)
 	GlobalSignalBus.connect("spider_dialogue", spider_dialogue)
+	GlobalSignalBus.connect("monty_dialogue", monty_dialogue)
 	GlobalSignalBus.connect("begin_dialogue", begin_dialogue)
 	GlobalSignalBus.connect("end_dialogue", end_dialogue)
 
@@ -147,6 +164,25 @@ func forest_hand_dialogue():
 		elif GameState.current_dialogue_progress == 7:
 			rich_text_label.text = forest_hand_options.option07
 
+func monty_dialogue():
+	GameState.current_dialogue = "monty_dialogue"
+	
+	if Input.is_action_just_pressed("interact"):
+		if GameState.current_dialogue_progress == 1:
+			rich_text_label.text = monty_options.option01
+		elif GameState.current_dialogue_progress == 2:
+			rich_text_label.text = monty_options.option02
+		elif GameState.current_dialogue_progress == 3:
+			rich_text_label.text = monty_options.option03
+		elif GameState.current_dialogue_progress == 4:
+			rich_text_label.text = monty_options.option04
+		elif GameState.current_dialogue_progress == 5:
+			rich_text_label.text = monty_options.option05
+		elif GameState.current_dialogue_progress == 6:
+			rich_text_label.text = monty_options.option06
+		elif GameState.current_dialogue_progress == 7:
+			rich_text_label.text = monty_options.option07
+
 
 func spider_dialogue():
 	GameState.current_dialogue = "spider_dialogue"
@@ -177,6 +213,9 @@ func dialogue_sprite_update():
 	
 	if GameState.current_dialogue == "spider_dialogue":
 		animated_sprite_2d.play("SpiderTalking")
+	
+	if GameState.current_dialogue == "monty_dialogue":
+		animated_sprite_2d.play("MontyTalking")
 
 func end_dialogue():
 	hide()
@@ -189,3 +228,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animated_sprite_2d.play("HandIdle")
 	elif animated_sprite_2d.animation == "SpiderTalking":
 		animated_sprite_2d.play("SpiderIdle")
+	elif animated_sprite_2d.animation == "MontyTalking":
+		animated_sprite_2d.play("MontyIdle")

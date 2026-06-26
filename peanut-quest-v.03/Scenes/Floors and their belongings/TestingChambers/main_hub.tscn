@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cu857h21u125e" path="res://Scenes/Essentials/HUD/Fade_to_black_screen.tscn" id="16_0mjlf"]
 [ext_resource type="PackedScene" uid="uid://dab4v1jruacn2" path="res://Scenes/Essentials/HUD/hud.tscn" id="17_6xe2s"]
 [ext_resource type="PackedScene" uid="uid://bu0jv5bm0baat" path="res://Scenes/Floors and their belongings/Level Packs/Swamp/mimic_slime.tscn" id="18_jp77f"]
+[ext_resource type="PackedScene" uid="uid://dktpiuh3akqkg" path="res://Scenes/NPCs/monty.tscn" id="19_mdgxi"]
 
 [node name="MainHub" type="Node2D" unique_id=1179617459]
 script = ExtResource("1_di5kv")
@@ -117,16 +118,16 @@ tile_map_data = PackedByteArray("AADq/wMAAwAJAAQAAADr/wMAAwAJAAQAAADs/wMAAwAJAAQ
 [node name="PowerUps" type="Node2D" parent="Stuff" unique_id=703972790]
 
 [node name="CrystalSpawner" parent="Stuff/PowerUps" unique_id=954140992 instance=ExtResource("12_2ar8a")]
-position = Vector2(-407, -215)
+position = Vector2(96, 16)
 
 [node name="SwordStone" parent="Stuff/PowerUps" unique_id=933023054 instance=ExtResource("13_kw663")]
-position = Vector2(-141, -224)
+position = Vector2(22, 16)
 
 [node name="MonkShrine" parent="Stuff/PowerUps" unique_id=297905340 instance=ExtResource("14_j06iw")]
-position = Vector2(227, -160)
+position = Vector2(-63, 16)
 
 [node name="SlimeAltar" parent="Stuff/PowerUps" unique_id=1408683363 instance=ExtResource("15_3vyu0")]
-position = Vector2(-512, 96)
+position = Vector2(-129, 0)
 
 [node name="Hands" type="Node2D" parent="Stuff" unique_id=1646125494]
 
@@ -203,9 +204,10 @@ position = Vector2(1, -36)
 [node name="FadeToBlackScreen" parent="Player" unique_id=1795882491 instance=ExtResource("16_0mjlf")]
 
 [node name="Hud" parent="Player" unique_id=471024502 instance=ExtResource("17_6xe2s")]
-
-[node name="MimicSlime" parent="." unique_id=944938049 instance=ExtResource("18_jp77f")]
-position = Vector2(-90, 16)
+visible = false
 
 [node name="MimicSlime2" parent="." unique_id=1808572466 instance=ExtResource("18_jp77f")]
-position = Vector2(75, 16)
+position = Vector2(233, 16)
+
+[node name="MontyTheMagistrate" parent="." unique_id=603298428 instance=ExtResource("19_mdgxi")]
+position = Vector2(234, -168)

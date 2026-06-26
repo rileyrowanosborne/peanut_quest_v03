@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bcqym0o1b6pg6"]
+
+[ext_resource type="Texture2D" uid="uid://5jkf2n8s65w0" path="res://Assets/Sprites/EmptyHusk.png" id="1_syw3q"]
+[ext_resource type="Script" uid="uid://xakn05r100uf" path="res://Scripts/empty_husk.gd" id="1_vsyb3"]
+[ext_resource type="PackedScene" uid="uid://c1gprvp0d31co" path="res://Scenes/Enemies/grub.tscn" id="2_e1ks3"]
+[ext_resource type="Texture2D" uid="uid://didnbxkexqpqp" path="res://Assets/Sprites/EmptyHusk-Sheet.png" id="3_b4fps"]
+[ext_resource type="PackedScene" uid="uid://0coo5yyad46a" path="res://Scenes/Essentials/hit_box.tscn" id="4_qgkac"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttgu2"]
+atlas = ExtResource("3_b4fps")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsyb3"]
+atlas = ExtResource("1_syw3q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1ks3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttgu2")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsyb3")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syw3q"]
+size = Vector2(20, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgkac"]
+size = Vector2(16, 27)
+
+[node name="EmptyHusk" type="CharacterBody2D" unique_id=18829218]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_vsyb3")
+grub_scene = ExtResource("2_e1ks3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1337715587]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_e1ks3")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960977598]
+position = Vector2(-1, -14.5)
+shape = SubResource("RectangleShape2D_syw3q")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=374559735]
+one_shot = true
+
+[node name="HitBox" parent="." unique_id=1323420167 instance=ExtResource("4_qgkac")]
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1111202867]
+position = Vector2(-1, -13.5)
+shape = SubResource("RectangleShape2D_qgkac")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

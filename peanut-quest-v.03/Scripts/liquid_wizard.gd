@@ -3,24 +3,29 @@ extends Node2D
 
 var is_active : bool = false
 
-@onready var big_axe: Node2D = $BigAxe
-
 @export var projectile_scene : PackedScene
 
-@onready var projectile_hand: Node2D = $ProjectileHand
 
 
 
 func _ready() -> void:
 	GlobalSignalBus.connect("ability_update", class_update)
-	big_axe.hide()
+
 
 
 func _input(event: InputEvent) -> void:
 	if is_active:
 		if event.is_action_pressed("action"):
-			spawn_projectile(projectile_hand.global_position)
+			spawn_projectile(global_position)
 
+
+
+func class_update():
+	if GameState.current_class == "Liquid Wizard":
+		is_active = true
+
+	else:
+		is_active = false
 
 
 
@@ -29,12 +34,3 @@ func spawn_projectile(world_location : Vector2):
 		var projectile_instance = projectile_scene.instantiate()
 		get_tree().current_scene.call_deferred("add_child", projectile_instance)
 		projectile_instance.global_position = world_location
-
-
-func class_update():
-	if GameState.current_class == "Paladin":
-		is_active = true
-		big_axe.show()
-	else:
-		is_active = false
-		big_axe.hide()

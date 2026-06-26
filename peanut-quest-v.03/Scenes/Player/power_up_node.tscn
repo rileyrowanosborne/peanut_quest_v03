@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b8rdtfi0e1ch1"]
 
 [ext_resource type="Script" uid="uid://cokdxkup1526y" path="res://Scripts/power_up_node.gd" id="1_yxa5g"]
+[ext_resource type="Script" uid="uid://n61v2dcdqpxr" path="res://Scripts/peanut.gd" id="4_2bvgj"]
 [ext_resource type="Texture2D" uid="uid://4mrerb56p7rd" path="res://Assets/Sprites/PowerUpAnims-Back-OutlineReal.png" id="5_v18bx"]
 [ext_resource type="Texture2D" uid="uid://cp263ena1a1qh" path="res://Assets/Sprites/PowerUpAnims-Front-Outline.png" id="6_lthn7"]
 [ext_resource type="Script" uid="uid://brboitkjtyn04" path="res://Scripts/mage_hand.gd" id="6_v18bx"]
@@ -20,13 +21,19 @@
 [ext_resource type="Texture2D" uid="uid://gwde2s5tuohd" path="res://Assets/Sprites/SlashAnimation-Sheet copy.png" id="12_4hxet"]
 [ext_resource type="Script" uid="uid://b2ihrvusns1we" path="res://Scripts/warlock_hand.gd" id="12_nctmu"]
 [ext_resource type="Texture2D" uid="uid://w4xopesbdmc5" path="res://Assets/Sprites/Stab-Sheet.png" id="13_xt5vi"]
-[ext_resource type="PackedScene" uid="uid://c8htc5x2ud06y" path="res://Scenes/Projectiles/warlock_projectile.tscn" id="20_55nuq"]
+[ext_resource type="Script" uid="uid://c7h7qet88aeiq" path="res://Scripts/warlock.gd" id="16_3jkyi"]
+[ext_resource type="PackedScene" uid="uid://b18wwo38g8k6s" path="res://Scenes/Projectiles/warlock_projectile.tscn" id="20_55nuq"]
 [ext_resource type="Script" uid="uid://h2enifdj0270" path="res://Scripts/paladin_hand.gd" id="21_kbom4"]
 [ext_resource type="Script" uid="uid://cfjf6vvt1cieg" path="res://Scripts/toxic_deluge.gd" id="21_l77mk"]
 [ext_resource type="Texture2D" uid="uid://cwoabk1ptqr7" path="res://Assets/Sprites/PaladinAxe.png" id="22_7j8op"]
 [ext_resource type="Script" uid="uid://bgumkhgr6hvuv" path="res://Scripts/big_axe.gd" id="22_ds4g0"]
+[ext_resource type="PackedScene" uid="uid://c8htc5x2ud06y" path="res://Scenes/Projectiles/sorceror_projectile.tscn" id="22_jebaf"]
+[ext_resource type="PackedScene" uid="uid://bfd1c06mlu2wx" path="res://Scenes/Projectiles/paladin_projectile.tscn" id="23_dl4hk"]
+[ext_resource type="Script" uid="uid://ypmx8g1mqx3h" path="res://Scripts/liquid_wizard.gd" id="25_3kuhx"]
 [ext_resource type="Script" uid="uid://dn4nf7am6px0f" path="res://Scripts/mimic_hand.gd" id="26_2340h"]
+[ext_resource type="PackedScene" uid="uid://bqdwamfwto2n3" path="res://Scenes/Projectiles/liquid_wizard_projectile.tscn" id="26_aub6c"]
 [ext_resource type="Texture2D" uid="uid://cn8o6f030sqte" path="res://Assets/Sprites/mIMICaTTACK-Sheet.png" id="26_m8rvk"]
+[ext_resource type="Script" uid="uid://b7q6apt8grjhs" path="res://Scripts/holy_warrior.gd" id="33_cem0q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6v3m"]
 atlas = ExtResource("5_v18bx")
@@ -465,6 +472,65 @@ animations = [{
 "name": &"Yellow",
 "speed": 8.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex0oq"]
+atlas = ExtResource("12_4hxet")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f1pr"]
+atlas = ExtResource("12_4hxet")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4v1f"]
+atlas = ExtResource("12_4hxet")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cepe"]
+atlas = ExtResource("12_4hxet")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijutw"]
+atlas = ExtResource("12_4hxet")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqcll"]
+atlas = ExtResource("12_4hxet")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1h48n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex0oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f1pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4v1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cepe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijutw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqcll")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Swing",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bvgj"]
+radius = 17.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrwli"]
 atlas = ExtResource("7_q4ins")
@@ -2527,6 +2593,29 @@ animation = &"Idle"
 [node name="Hands" type="Node2D" parent="." unique_id=1124736391]
 position = Vector2(0, -12)
 
+[node name="Peanut" type="Node2D" parent="Hands" unique_id=1422803414]
+script = ExtResource("4_2bvgj")
+
+[node name="Pivot" type="Node2D" parent="Hands/Peanut" unique_id=916707688]
+position = Vector2(0, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hands/Peanut/Pivot" unique_id=672954560]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 1)
+position = Vector2(17, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1h48n")
+animation = &"Swing"
+frame = 7
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="Hands/Peanut/Pivot" unique_id=912112527]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hands/Peanut/Pivot/Area2D" unique_id=1395639695]
+position = Vector2(14, 0)
+shape = SubResource("CircleShape2D_2bvgj")
+
 [node name="Monk" type="Node2D" parent="Hands" unique_id=1578828995]
 position = Vector2(0, -7)
 script = ExtResource("7_lthn7")
@@ -2704,6 +2793,10 @@ root_node = NodePath("../MegaSword")
 libraries/ = SubResource("AnimationLibrary_2340h")
 autoplay = &"IdleLeft"
 
+[node name="Warlock" type="Node2D" parent="Hands" unique_id=363508892]
+script = ExtResource("16_3jkyi")
+projectile_scene = ExtResource("20_55nuq")
+
 [node name="Test Sorceror" type="Node2D" parent="Hands" unique_id=1270225268]
 position = Vector2(0, 6)
 script = ExtResource("9_nctmu")
@@ -2749,7 +2842,7 @@ script = ExtResource("12_nctmu")
 [node name="Light1" type="Node2D" parent="Hands/Sorceror/LightsPivot" unique_id=895474367]
 position = Vector2(-16, -21)
 script = ExtResource("8_4sb2h")
-projectile_scene = ExtResource("20_55nuq")
+projectile_scene = ExtResource("22_jebaf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hands/Sorceror/LightsPivot/Light1" unique_id=2029590530]
 modulate = Color(1.1638972, 1.1638972, 0.5429522, 1)
@@ -2760,7 +2853,7 @@ autoplay = "default"
 [node name="Light2" type="Node2D" parent="Hands/Sorceror/LightsPivot" unique_id=781743874]
 position = Vector2(30, 3)
 script = ExtResource("8_4sb2h")
-projectile_scene = ExtResource("20_55nuq")
+projectile_scene = ExtResource("22_jebaf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hands/Sorceror/LightsPivot/Light2" unique_id=1093041343]
 modulate = Color(1.1638972, 1.1638972, 0.5429522, 1)
@@ -2771,7 +2864,7 @@ autoplay = "default"
 [node name="Light3" type="Node2D" parent="Hands/Sorceror/LightsPivot" unique_id=728679792]
 position = Vector2(-14, 25)
 script = ExtResource("8_4sb2h")
-projectile_scene = ExtResource("20_55nuq")
+projectile_scene = ExtResource("22_jebaf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hands/Sorceror/LightsPivot/Light3" unique_id=322303715]
 modulate = Color(1.1638972, 1.1638972, 0.5429522, 1)
@@ -2784,6 +2877,7 @@ autoplay = "default"
 [node name="Paladin" type="Node2D" parent="Hands" unique_id=1131161748]
 position = Vector2(0, 9)
 script = ExtResource("21_kbom4")
+projectile_scene = ExtResource("23_dl4hk")
 
 [node name="BigAxe" type="Node2D" parent="Hands/Paladin" unique_id=320169386]
 z_as_relative = false
@@ -2830,22 +2924,26 @@ scale = Vector2(3.0000002, 3.0000002)
 [node name="SwingLeftAnim" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=827804378]
 position = Vector2(-13.093607, -13.772018)
 rotation = 1.6041162
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3jkyi")
 animation = &"Slash"
+frame = 7
+frame_progress = 1.0
 flip_h = true
 
 [node name="StabLeftAnim" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=310606899]
 position = Vector2(-18.254147, -14.464802)
 rotation = -2.3214104
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_04wyq")
 animation = &"Stab"
+frame = 8
+frame_progress = 1.0
 
 [node name="SwingLeftAnim2" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=757363429]
 position = Vector2(-9.65205, -11.501405)
 rotation = 1.7197186
-scale = Vector2(1.6383907, 1.6165284)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_b7v1v")
 animation = &"Slash"
 flip_h = true
@@ -2853,21 +2951,21 @@ flip_v = true
 
 [node name="SwingRightAnim" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=2072559981]
 position = Vector2(2.028638, 2.2101192)
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_chnqq")
 animation = &"Stab"
 
 [node name="StabRightAnim" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=1108678990]
 position = Vector2(3.7548056, 11.484835)
 rotation = 0.8351791
-scale = Vector2(0.99999964, 0.99999964)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q3n6c")
 animation = &"Stab"
 
 [node name="SwingRightAnim2" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=1356954795]
 position = Vector2(1.453248, -0.8814516)
 rotation = 0.14904247
-scale = Vector2(1.1826006, 1.3744727)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_80d8o")
 animation = &"Slash"
 flip_v = true
@@ -2875,7 +2973,7 @@ flip_v = true
 [node name="StabAirAnim" type="AnimatedSprite2D" parent="Hands/Paladin/Swings" unique_id=1214561093]
 position = Vector2(1.9573641, -12.655778)
 rotation = -0.7538713
-scale = Vector2(0.99999964, 0.99999964)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ex0oq")
 animation = &"Stab"
 
@@ -2893,9 +2991,16 @@ position = Vector2(-25, 2)
 shape = SubResource("CircleShape2D_y82om")
 disabled = true
 
+[node name="ProjectileHand" type="Node2D" parent="Hands/Paladin" unique_id=1086120300]
+position = Vector2(0, -9)
+
 [node name="ArmoredGoop" type="Node2D" parent="Hands" unique_id=1929863209]
 
 [node name="LiquidWizard" type="Node2D" parent="Hands" unique_id=1852690009]
+script = ExtResource("25_3kuhx")
+projectile_scene = ExtResource("26_aub6c")
+
+[node name="Pivot" type="Node2D" parent="Hands/LiquidWizard" unique_id=197335211]
 
 [node name="ToxicDeluge" type="Node2D" parent="Hands" unique_id=1354053606]
 z_as_relative = false
@@ -2941,10 +3046,14 @@ shape = SubResource("CapsuleShape2D_2340h")
 disabled = true
 
 [node name="HolyWarrior" type="Node2D" parent="Hands" unique_id=537113572]
+position = Vector2(-11, -7)
+rotation = 2.12371
+script = ExtResource("33_cem0q")
 
 [node name="MegaPeanut" type="Node2D" parent="Hands" unique_id=867024862]
 position = Vector2(8, 0)
 
+[connection signal="body_entered" from="Hands/Peanut/Pivot/Area2D" to="Hands/Peanut" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Hands/Monk/Pivot/Area2D" to="Hands/Monk" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Hands/Mage/Pivot/FireBallCooldownTimer" to="Hands/Mage" method="_on_fire_ball_cooldown_timer_timeout"]
 [connection signal="timeout" from="Hands/Slime/Pivot/ProjectileCooldownTimer" to="Hands/Slime" method="_on_projectile_cooldown_timer_timeout"]

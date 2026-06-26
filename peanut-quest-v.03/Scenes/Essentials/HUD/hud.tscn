@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b8e62xupq6suq" path="res://Assets/Sprites/HandTalkingIcon-Sheet.png" id="16_cgs6g"]
 [ext_resource type="Theme" uid="uid://ddmg2yykn78wu" path="res://MainTheme.tres" id="16_f6akd"]
 [ext_resource type="Texture2D" uid="uid://ckgs0iv3dd6ne" path="res://Assets/Sprites/SpiderIcon.png" id="17_m83ri"]
+[ext_resource type="Texture2D" uid="uid://dee1re8yqtdou" path="res://Assets/Sprites/MonyTheMagistrate.png" id="18_23dqv"]
 [ext_resource type="FontFile" uid="uid://78na84sfbk5d" path="res://Assets/Fonts/alagard.ttf" id="20_7ug82"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fbih"]
@@ -146,6 +147,10 @@ region = Rect2(192, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cq2fk"]
 atlas = ExtResource("16_cgs6g")
 region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xncs5"]
+atlas = ExtResource("18_23dqv")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6gi5"]
 atlas = ExtResource("17_m83ri")
@@ -308,6 +313,22 @@ animations = [{
 "name": &"HandTalking",
 "speed": 7.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xncs5")
+}],
+"loop": true,
+"name": &"MontyIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xncs5")
+}],
+"loop": true,
+"name": &"MontyTalking",
+"speed": 5.0
+}, {
 "frames": [],
 "loop": true,
 "name": &"SpiderIdle",
@@ -434,7 +455,7 @@ patch_margin_bottom = 7
 position = Vector2(107, 79)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_2i61c")
-animation = &"FrogTalking"
+animation = &"MontyTalking"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DialoguePanel" unique_id=410162830]
 layout_mode = 0
